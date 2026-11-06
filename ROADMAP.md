@@ -32,7 +32,7 @@ Fechas del PRD §8. Estado a 06/11/2026. ✅ hecho y verificado · 🟡 en curso
 | 8 | M07 | Catálogo de medidas | A1 | — | 12 nov | ✅ (revisión técnica humana pendiente) |
 | 9 | M08 | Escenarios + optimizador + sensibilidad | A5/A6 | 8 | 17 nov | ✅ API |
 | 10 | M09 | Plan de ejecución, historial | A6/A7 | 9 | 18 nov | ✅ API · 🟡 UI |
-| 11 | M10 | Informe PDF + export CSV/GeoJSON | A6 | 9 | 18 nov | ✅ PDF · ⬜ CSV/GeoJSON export |
+| 11 | M10 | Informe PDF + export CSV/GeoJSON | A6 | 9 | 18 nov | ✅ PDF · ✅ CSV municipal · ✅ GeoJSON capas · ⬜ GeoJSON de áreas |
 | 12 | M12 | Panel de impacto (KPIs operativos) | A6/A7 | 10 | 19 nov | ✅ API · 🟡 UI |
 | 13 | M22 | Observabilidad: logs de latencia, salud de fuentes | A10 | — | 20 nov | 🟡 logs + /health · ⬜ backups |
 | 14 | — | Migraciones Alembic formales | A6 | — | 20 nov | ✅ |
