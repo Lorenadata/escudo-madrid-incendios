@@ -281,6 +281,34 @@ def download_evidence(evidence_id: str, p: Principal = Depends(current_principal
                     headers={"Content-Disposition": f'attachment; filename="{e.id}"', "Cache-Control": "private, no-store"})
 
 
+class ReviewIn(BaseModel):
+    verdict: Literal["util", "inviable", "redundante", "requiere_revision"]
+    note: str = Field("", max_length=4000)
+
+
+@router.post("/inspections/{inspection_id}/reviews", tags=["inspecciones"], status_code=201)
+def review_inspection(inspection_id: str, body: ReviewIn, p: Principal = Depends(current_principal),
+                      session: Session = Depends(get_session)) -> dict:
+    """Revisión técnica (PRD §2.4): solo rol «tecnico» con cualificación VERIFICADA. No es aprobación administrativa."""
+    from ..models import ProfessionalReview
+
+    i = session.get(Inspection, inspection_id)
+    if i is None or i.organization_id not in p.org_ids:
+        raise HTTPException(404, "Recurso no encontrado")
+    m = p.require_org(i.organization_id)
+    if m.role != "tecnico" or not m.technical_qualification_verified:
+        raise HTTPException(403, "Solo personal técnico con cualificación verificada puede registrar la revisión")
+    r = ProfessionalReview(organization_id=i.organization_id, inspection_id=i.id, reviewer_user_id=p.user.id,
+                           verdict=body.verdict, note=body.note)
+    session.add(r)
+    i.review_status = "reviewed"
+    audit(session, org_id=i.organization_id, user_id=p.user.id, action="review", entity="inspection", entity_id=i.id,
+          detail={"verdict": body.verdict})
+    session.commit()
+    return {"inspection_id": i.id, "verdict": r.verdict, "review_status": i.review_status,
+            "notice": "La revisión técnica no equivale a aprobación administrativa ni a informe favorable de PAIF."}
+
+
 # ---------------------------------------------------------------- escenarios (M08)
 
 

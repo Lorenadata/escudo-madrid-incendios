@@ -156,3 +156,20 @@ def test_demo_guided_is_public_and_labeled(client):
     assert "FICTICIOS" in d["notice"]
     assert d["area"]["record_status"] == "synthetic" and d["scenario"]["is_demo_budget"] is True
     assert d["scenario"]["latest_result"]["status"] == "OPTIMAL"
+
+
+def test_csv_export_matches_processed(client):
+    r = client.get("/v1/exports/municipalities.csv")
+    assert r.status_code == 200
+    rows = list(csv.DictReader(r.text.splitlines()))
+    assert len(rows) == 179 and rows[0]["population_source"] == "CAM-01"
+
+
+def test_review_requires_verified_technician(client, auth_a):
+    tech = client.post("/v1/auth/login", json={"email": "tecnico@demo.escudo.local", "password": "demo-escudo-2026"}).json()
+    h = {"Authorization": f"Bearer {tech['access_token']}"}
+    insp = client.get("/v1/inspections", headers=h).json()[0]
+    # el técnico demo NO tiene cualificación verificada → 403
+    assert client.post(f"/v1/inspections/{insp['id']}/reviews", headers=h, json={"verdict": "util"}).status_code == 403
+    # el gestor tampoco puede revisar
+    assert client.post(f"/v1/inspections/{insp['id']}/reviews", headers=auth_a, json={"verdict": "util"}).status_code == 403

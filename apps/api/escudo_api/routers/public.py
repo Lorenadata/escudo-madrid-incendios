@@ -219,3 +219,23 @@ def measure_dict(m: MeasureCatalog) -> dict[str, Any]:
 @router.get("/v1/measures", tags=["medidas"])
 def list_measures(session: Session = Depends(get_session)) -> list[dict[str, Any]]:
     return [measure_dict(m) for m in session.scalars(select(MeasureCatalog).order_by(MeasureCatalog.code))]
+
+
+@router.get("/v1/exports/municipalities.csv", tags=["exportación"])
+def export_municipalities_csv(session: Session = Depends(get_session)):
+    """Export reproducible (M10/M20) de los indicadores municipales con fuente y periodo por columna."""
+    import csv
+    import io
+
+    from fastapi.responses import Response
+
+    buf = io.StringIO()
+    w = csv.writer(buf)
+    w.writerow(["ine_code", "name", "population_total", "population_year", "population_source", "age_65_plus_share",
+                "density_hab_km2", "density_year", "density_source", "altitude_m", "altitude_source", "area_km2_derived",
+                "area_source"])
+    for m in session.scalars(select(Municipality).order_by(Municipality.ine_code)):
+        w.writerow([m.ine_code, m.name, m.population_total, m.population_year, "CAM-01", m.age_65_plus_share,
+                    m.density_hab_km2, m.density_year, "CAM-02", m.altitude_m, "CAM-03", m.area_km2, "CAM-08"])
+    return Response(buf.getvalue(), media_type="text/csv; charset=utf-8",
+                    headers={"Content-Disposition": 'attachment; filename="escudo-municipios.csv"'})

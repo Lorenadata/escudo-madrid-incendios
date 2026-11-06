@@ -595,6 +595,26 @@
         }
       }
     },
+    "/v1/exports/municipalities.csv": {
+      "get": {
+        "tags": [
+          "exportación"
+        ],
+        "summary": "Export Municipalities Csv",
+        "description": "Export reproducible (M10/M20) de los indicadores municipales con fuente y periodo por columna.",
+        "operationId": "export_municipalities_csv_v1_exports_municipalities_csv_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/auth/login": {
       "post": {
         "tags": [
@@ -1013,6 +1033,66 @@
             "content": {
               "application/json": {
                 "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/inspections/{inspection_id}/reviews": {
+      "post": {
+        "tags": [
+          "inspecciones"
+        ],
+        "summary": "Review Inspection",
+        "description": "Revisión técnica (PRD §2.4): solo rol «tecnico» con cualificación VERIFICADA. No es aprobación administrativa.",
+        "operationId": "review_inspection_v1_inspections__inspection_id__reviews_post",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "inspection_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Inspection Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReviewIn"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Review Inspection V1 Inspections  Inspection Id  Reviews Post"
+                }
               }
             }
           },
@@ -2012,6 +2092,31 @@
           "scenario_id"
         ],
         "title": "PlanIn"
+      },
+      "ReviewIn": {
+        "properties": {
+          "verdict": {
+            "type": "string",
+            "enum": [
+              "util",
+              "inviable",
+              "redundante",
+              "requiere_revision"
+            ],
+            "title": "Verdict"
+          },
+          "note": {
+            "type": "string",
+            "maxLength": 4000,
+            "title": "Note",
+            "default": ""
+          }
+        },
+        "type": "object",
+        "required": [
+          "verdict"
+        ],
+        "title": "ReviewIn"
       },
       "ScenarioIn": {
         "properties": {
