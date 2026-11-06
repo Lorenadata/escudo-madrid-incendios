@@ -8,8 +8,8 @@
 | Requisito | Evidencia | Cómo verificarla | Estado |
 |---|---|---|---|
 | ≥1 dataset del Portal CAM usado efectivamente (admisión) | 8 datasets CAM ingeridos (CAM-01…08) con manifest y SHA-256 | `DATA_CATALOG.md`; `GET /v1/sources`; `pipelines/tests/test_cam.py::test_T01…` | ✅ |
-| Función analítica (a): ficha municipal demográfica con año y unidades | `/v1/municipalities/{ine}/profile` (CAM-01/02/03/08) con `Indicator` trazable | `tests/integration/test_api.py::test_profile_values_trace_to_processed_cam_data` | ✅ API · 🟡 UI (A7 en curso) |
-| Función analítica (b): filtro/comparador regional reproducible | `/v1/municipalities?min_density=` y `/v1/compare` (CAM-02) | `test_density_filter_changes_with_cam02` | ✅ API · 🟡 UI |
+| Función analítica (a): ficha municipal demográfica con año y unidades | `/v1/municipalities/{ine}/profile` (CAM-01/02/03/08) con `Indicator` trazable | `tests/integration/test_api.py::test_profile_values_trace_to_processed_cam_data` | ✅ API · ✅ UI (`artifacts/demo-screenshots/02-ficha-riesgo-oficial.png`) |
+| Función analítica (b): filtro/comparador regional reproducible | `/v1/municipalities?min_density=` y `/v1/compare` (CAM-02) | `test_density_filter_changes_with_cam02` | ✅ API · ✅ UI (filtro de densidad y `/comparar`) |
 | El resultado cambia al actualizar el recurso | Pipeline fetch→transform→load idempotente con versión por SHA-256 (`dataset_versions`) | Re-ejecutar fetch; nueva fila en `dataset_versions` si cambia el hash | 🟡 (falta test automatizado de actualización) |
 | Lineage por indicador | Tabla `indicator_definitions` + `/v1/indicators` (PRD §4.5) | `GET /v1/indicators` | ✅ |
 | Geometría municipal propia del Portal CAM | CAM-08 secciones censales disueltas a 179 municipios | `test_T02_processed_outputs` | ✅ |
@@ -21,7 +21,7 @@
 | Requisito | Evidencia | Estado |
 |---|---|---|
 | Comparativa con soluciones existentes | `COMPETITORS.md` (FIREPRIME, Geoportal/IDEM, INFOMA, SAVER/MINCE, XESBIO2, Technosylva…) | ✅ (hipótesis de demanda sin validar) |
-| Cadena integrada mapa → inspección → optimización → plan → evidencia → informe | Test `test_flow_A_end_to_end` | ✅ backend · 🟡 UI |
+| Cadena integrada mapa → inspección → optimización → plan → evidencia → informe | Test `test_flow_A_end_to_end` | ✅ backend · ✅ UI (capturas 03–05) |
 | Optimización transparente con baselines y sensibilidad | `services/optimizer`, `docs/optimizer-method.md`, 13 tests incl. fuerza bruta 200 instancias | ✅ |
 | Catálogo de medidas ligado a obligaciones normativas (INFOMA) | `data/reference/measures_catalog.json` (16 medidas) | ✅ (pendiente revisión técnica) |
 
@@ -59,7 +59,7 @@
 
 | Requisito | Evidencia | Estado |
 |---|---|---|
-| 3 diapositivas + 4.ª captura | — | ⬜ A11 |
+| 3 diapositivas + 4.ª captura | Capturas reales en `artifacts/demo-screenshots/` | 🟡 faltan las diapositivas (A11) |
 | Guion demo 5 min + backup | — | ⬜ A11 |
 | Resumen ≤100 palabras antes del 24/11 | Borrador PRD §10.4 = 91 palabras (A1); ajustar última frase | 🟡 |
 

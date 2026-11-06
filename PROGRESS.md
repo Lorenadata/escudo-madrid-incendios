@@ -19,11 +19,13 @@ Actualizado: 06/11/2026 (A0). Solo se marca ✅ lo verificado con test o ejecuci
 | Docker Compose (db) | ✅ db · 🟡 perfil `full` (api/web) sin construir | `infra/docker-compose.yml` | A10 (A0) |
 | CI GitHub Actions | 🟡 escrito, no ejecutado (no hay remoto) | `.github/workflows/ci.yml` | A10 (A0) |
 
+| Web Next.js 16 + MapLibre: explorador (coropletas CAM-01/02/03, capas oficiales GEO-01/02/03 con leyenda literal, mapa base IGN), ficha municipal con series 2021–2025 y AEMET, comparador, fuentes con SHA-256 y CSV, caso guiado público, login y área de trabajo (áreas, inspecciones, escenarios, plan, KPIs) | ✅ lint + tipos + build; verificado en navegador contra la API real (capturas en `artifacts/demo-screenshots/`) | A7 (verificación A0) |
+
 ## En desarrollo
 
 | Módulo | Agente | Nota |
 |---|---|---|
-| Web Next.js + MapLibre (explorador, ficha, comparar, fuentes, demo, login, área privada) | A7 | en curso, integrando contra la API real |
+| Recorrido e2e automatizado (Playwright, T10) | A9 | pendiente |
 
 ## Pruebas ejecutadas (06/11/2026)
 

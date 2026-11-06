@@ -66,7 +66,7 @@ Base URL dev: `http://localhost:8000`. JSON UTF-8. Fechas ISO 8601. Geometrías 
 - `MunicipalitySummary`: `{ine_code (5 díg., p. ej. "28079"), name, population: Indicator, density: Indicator, altitude_m: Indicator, age_65_plus_share: Indicator}`
 - `MunicipalityProfile`: summary + `{area_km2: Indicator(derived), forest_share: Indicator, official_fire: {risk, hazard, vulnerability}: OfficialLayerSummary|unavailable, weather: WeatherContext, sources: string[], scale_notice: string}`
 - `OfficialLayerSummary`: `{source_id, status, classes: [{class_label (literal fuente), area_share (0-1, derived)}], dominant_class, version}`
-- `WeatherContext`: `{status: "ok"|"stale"|"unavailable", issued_at, valid_from, valid_to, reference_location, variables: Indicator[], fire_danger: Indicator|null, disclaimer: "Índice de peligro meteorológico; no es pronóstico de ignición ni alerta operativa.", last_valid_at}`
+- `WeatherContext`: `{status: "ok"|"stale"|"unavailable", issued_at, valid_from, valid_to, reference_location, variables: Indicator[], fire_danger: Indicator|null, disclaimer: "Predicción meteorológica oficial de AEMET, solo informativa: no es un índice de peligro de incendio, ni pronóstico de ignición, ni alerta operativa.", last_valid_at}`
 - `Area`: `{id, organization_id, name, municipality_code, description, has_geometry, geometry?, record_status ("active"|"synthetic")}`
 - `Inspection`: `{id, area_id, inspected_on, inspector_name, review_status ("pending_technical_review"|"reviewed"), items[], evidence[]}`
 - `Measure`: `{code, name, description, unit, reference_unit_cost_eur|null, cost_status ("reference"|"user_quote"|"scenario"), cost_source, normative_refs[], prerequisites[], excludes[], requires_professional: bool}`

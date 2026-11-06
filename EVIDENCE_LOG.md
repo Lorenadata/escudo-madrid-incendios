@@ -12,3 +12,4 @@ Formato: fecha · agente · artefacto · cómo verificar · criterio(s). Solo he
 | 06/11/2026 | A1 | `COMPLIANCE.md` (25 normas), `COMPETITORS.md`, catálogo de 16 medidas con citas INFOMA verificadas | Lectura + JSON validado | Admisión, D20, D15 |
 | 06/11/2026 | A0/A6 | API FastAPI + PostGIS: 35 rutas, multi-tenant, auditoría, informe PDF | `pytest tests/integration` (10 ✔: T01, T04, T05, T06, T07, T08, T09, Flujo A) | D15, D25, D10 |
 | 06/11/2026 | A0 | Recorrido vertical: dato CAM → PostGIS → API → escenario optimizado → plan → PDF | `GET /v1/demo/guided`, `GET /v1/demo/report.pdf` | D15, D20, D25 |
+| 06/11/2026 | A7 (+A0) | Web Next.js + MapLibre verificada contra la API real: explorador, ficha con capas oficiales y AEMET, caso guiado, área privada, fuentes | `npm run lint && npm run build`; capturas `artifacts/demo-screenshots/01…06` | D15, D25, D5 |

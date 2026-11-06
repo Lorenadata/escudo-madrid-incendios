@@ -1,0 +1,79 @@
+@import "tailwindcss";
+
+/* Paleta ESCUDO: cartografía forestal técnica, fría. Sin colores corporativos institucionales. */
+@theme inline {
+  --color-pine: #1E3B2F;
+  --color-pine-50: #E6EEE9;
+  --color-pine-700: #284D3D;
+  --color-granite: #EEF1EF;
+  --color-line: #D5DBD8;
+  --color-ink: #15201A;
+  --color-ink-800: #26302B;
+  --color-ink-700: #3A4540;
+  --color-ink-600: #4C5752;
+  --color-ink-500: #5F6A65;
+  --color-slate: #3C5A73;
+  --color-slate-50: #EAF0F5;
+  --color-ochre: #B7791F;
+  --color-ochre-50: #FBF3E4;
+  --color-ochre-800: #6E4810;
+  --color-plum: #5B3E6E;
+  --color-ash: #8A8F8C;
+  --color-ash-50: #F0F1F0;
+  --color-ash-800: #4A4E4C;
+  --color-rust: #9A3B1F;
+  --color-rust-50: #F8ECE7;
+  --font-sans: var(--font-plex), system-ui, sans-serif;
+  --font-cond: var(--font-plex-cond), var(--font-plex), system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+html, body {
+  background: #EEF1EF;
+  color: #15201A;
+}
+
+body {
+  font-family: var(--font-plex), system-ui, sans-serif;
+}
+
+/* Rayado para «no disponible»: se reconoce sin color. */
+.status-hatch {
+  background-color: #F0F1F0;
+  background-image: repeating-linear-gradient(135deg, rgba(74, 78, 76, 0.18) 0 2px, transparent 2px 6px);
+}
+
+:focus-visible {
+  outline: 2px solid #B7791F;
+  outline-offset: 2px;
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-1.5 rounded bg-pine px-3 py-1.5 text-sm font-medium text-white hover:bg-pine-700 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-1.5 rounded border border-ink/25 bg-white px-3 py-1.5 text-sm font-medium text-ink hover:bg-granite disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .field {
+    @apply w-full rounded border border-ink/25 bg-white px-2.5 py-1.5 text-sm text-ink placeholder:text-ink-500;
+  }
+  .label {
+    @apply mb-1 block text-sm font-medium text-ink-700;
+  }
+  .panel {
+    @apply rounded border border-line bg-white p-4;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+.maplibregl-popup-content {
+  font-family: var(--font-plex), system-ui, sans-serif;
+  border-radius: 4px;
+}

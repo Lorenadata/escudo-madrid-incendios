@@ -32,7 +32,7 @@ SCALE_NOTICE = (
     "No describen urbanizaciones, parcelas ni viviendas concretas."
 )
 
-WEATHER_DISCLAIMER = "Índice de peligro meteorológico; no es pronóstico de ignición ni alerta operativa."
+WEATHER_DISCLAIMER = "Predicción meteorológica oficial de AEMET, solo informativa: no es un índice de peligro de incendio, ni pronóstico de ignición, ni alerta operativa."
 
 
 def municipality_summary(m: Municipality) -> dict[str, Any]:

@@ -23,7 +23,7 @@ from .parsers import MADRID_TZ, DayForecast, ParsedForecast
 
 SOURCE_ID = "AEMET-PRED-MUN"
 MAX_FORECAST_AGE = timedelta(hours=24)
-DISCLAIMER = "Índice de peligro meteorológico; no es pronóstico de ignición ni alerta operativa."
+DISCLAIMER = "Predicción meteorológica oficial de AEMET, solo informativa: no es un índice de peligro de incendio, ni pronóstico de ignición, ni alerta operativa."
 ATTRIBUTION = (
     "Fuente: AEMET. Información elaborada utilizando, entre otras, la obtenida de la "
     "Agencia Estatal de Meteorología. AEMET no participa ni patrocina este uso."
