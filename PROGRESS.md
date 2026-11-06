@@ -1,0 +1,58 @@
+# PROGRESS — Estado real de ESCUDO MADRID
+
+Actualizado: 06/11/2026 (A0). Solo se marca ✅ lo verificado con test o ejecución real.
+
+## Módulos implementados
+
+| Módulo | Estado | Evidencia | Agente |
+|---|---|---|---|
+| Pipeline Portal CAM (8 datasets, SHA-256, licencia, calidad) | ✅ | `pipelines/tests/test_cam.py` (11 ✔), `quality.json` 8/8 | A2 (A0) |
+| Cartografía oficial IDEM GEO-01/02/03 (ráster 5 m → reparto municipal + capa web) | ✅ | `pipelines/tests/test_idem.py` (15 ✔) | A3 |
+| Conector AEMET (XML público, OpenData con clave, TTL, stale/unavailable) | ✅ | `pipelines/tests/test_aemet.py` (14 ✔, incl. red) | A4 |
+| Optimizador CP-SAT + baselines + sensibilidad | ✅ | `tests/unit/test_optimizer.py` (13 ✔, fuerza bruta 200 instancias) | A5 |
+| Esquema PostGIS (28 tablas, PRD §6.3) + migración Alembic verificada (upgrade/check/downgrade) + cargador idempotente + seed ficticio | ✅ | `alembic upgrade head`, `python -m escudo_api.etl_load` | A6 (A0) |
+| API FastAPI (37 rutas): fuentes, municipios, comparador, capas, meteo, histórico, auth, áreas, inspecciones, evidencias, revisión técnica, medidas, escenarios, planes, informe PDF, KPIs, auditoría, export CSV, demo guiada | ✅ | `tests/integration/test_api.py` (12 ✔) | A6 (A0) |
+| Informe PDF trazable (T09) | ✅ | `test_T09_report_text` | A6 (A0) |
+| Catálogo de 16 medidas con citas INFOMA verificadas (costes `null`/escenario) | ✅ (revisión técnica humana pendiente) | `data/reference/measures_catalog.json` | A1 |
+| COMPLIANCE (25 normas), COMPETITORS | ✅ | ficheros raíz | A1 |
+| Contrato OpenAPI exportado | ✅ | `packages/contracts/openapi.json` | A0 |
+| Docker Compose (db) | ✅ db · 🟡 perfil `full` (api/web) sin construir | `infra/docker-compose.yml` | A10 (A0) |
+| CI GitHub Actions | 🟡 escrito, no ejecutado (no hay remoto) | `.github/workflows/ci.yml` | A10 (A0) |
+
+## En desarrollo
+
+| Módulo | Agente | Nota |
+|---|---|---|
+| Web Next.js + MapLibre (explorador, ficha, comparar, fuentes, demo, login, área privada) | A7 | en curso, integrando contra la API real |
+
+## Pruebas ejecutadas (06/11/2026)
+
+`pytest -m "not network"`: **62 passed** antes de añadir 2 tests nuevos; integración posterior **12/12 passed**; `ruff check` limpio. Pruebas PRD cubiertas: T01, T02, T03, T04, T05, T06, T07, T08, T09. Pendientes: T10 (demo e2e Playwright), T11 (instalación limpia en máquina ajena), T12 (entrega).
+
+## Bloqueos y decisiones humanas
+
+1. **Periodo oficial**: el repo se inició el 06/11 (antes del 07/11). Declarado en `PROVENANCE.md`; valorar consulta a la organización.
+2. **Asistencia** (bases vs web): escribir a madrid.datamad@urjc.es (C22 en `COMPLIANCE.md`).
+3. **Clave AEMET OpenData** (gratuita, registro con email): necesaria para el mapa oficial de peligro de incendios. Sin ella funciona la predicción municipal pública.
+4. **Licencia del código**: propuesta EUPL-1.2 (ADR-0004), confirmar.
+5. **Repositorio remoto público y despliegue**: no realizados (requieren autorización).
+6. **Validación profesional y experimento de utilidad**: requieren personas (criterio de impacto).
+7. **Costes reales** de medidas: no hay base de precios pública aplicable; hacen falta presupuestos reales o se mantienen como escenario.
+8. Web oficial DATAMAD generada con JS: verificar en navegador límite de palabras y preselección.
+
+## Riesgos DATAMAD
+
+| Riesgo | Mitigación |
+|---|---|
+| UI no terminada a tiempo | A7 en curso; API ya completa; demo pública `/v1/demo/guided` |
+| Impacto sin evidencia con usuarios | Planificar ensayo interno cronometrado (G6) y comunicarlo honestamente |
+| Inestabilidad de PostGIS en Docker Desktop (reinicios de backend observados) | `shm_size: 512mb` aplicado; sin recurrencia tras el cambio; vigilar |
+| Dependencia de servicios externos en la demo | Datos cargados localmente; AEMET degrada a `unavailable` |
+
+## Próximas tareas
+
+1. Integrar y verificar la web (A7) contra la API; capturas para el pitch.
+2. Test de actualización de versión de dataset.
+3. e2e Playwright del Flujo C (T10) y construcción de imágenes Docker (`--profile full`).
+4. A11: guion de 5 min, 3+1 diapositivas, resumen ≤100 palabras revisado.
+5. P1: calendario preventivo, colaboración, asistente documental con citas.

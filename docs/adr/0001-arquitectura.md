@@ -8,5 +8,5 @@
 - Sin GeoPandas: shapely/pyproj/pyshp/rasterio cubren las necesidades y simplifican la instalación en Python 3.14 (entorno del equipo).
 - Sin Redis/RQ en esta fase: no hay tareas en segundo plano que lo justifiquen (PRD §6.1 «no añadir servicios sin caso de uso»). La meteo se consulta bajo demanda con caché TTL.
 - Evidencias en almacenamiento local privado (`ESCUDO_EVIDENCE_DIR`) con descarga autenticada; S3 compatible queda para despliegue.
-- Esquema creado con `metadata.create_all` desde el cargador; las migraciones Alembic formales se generarán antes del freeze (G7) — un único dueño de esquema (A0/A6).
+- Migraciones Alembic en `infra/migrations` (`alembic upgrade head`); el cargador usa `create_all` para desarrollo rápido. `alembic check` debe quedar sin diferencias. Único dueño de esquema: A0/A6.
 - Estructura: paquetes Python `escudo_api` (apps/api), `escudo_pipelines` (pipelines), `escudo_optimizer` (services/optimizer), `escudo_reporting` (services/reporting).
