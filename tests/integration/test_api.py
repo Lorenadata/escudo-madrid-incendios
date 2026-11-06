@@ -173,3 +173,39 @@ def test_review_requires_verified_technician(client, auth_a):
     assert client.post(f"/v1/inspections/{insp['id']}/reviews", headers=h, json={"verdict": "util"}).status_code == 403
     # el gestor tampoco puede revisar
     assert client.post(f"/v1/inspections/{insp['id']}/reviews", headers=auth_a, json={"verdict": "util"}).status_code == 403
+
+
+def test_dataset_version_tracking_on_source_update(loaded_db, tmp_path, monkeypatch):
+    """PRD §4.1: al actualizarse un recurso CAM (nuevo SHA-256) se registra una versión nueva y
+    la API expone la última; re-cargar el mismo fichero no duplica versiones."""
+    import shutil
+
+    from sqlalchemy import func, select
+
+    from escudo_api import etl_load
+    from escudo_api.db import SessionLocal
+    from escudo_api.models import DatasetVersion, IngestionRun
+
+    fake_data = tmp_path / "data"
+    shutil.copytree(ROOT / "data" / "raw", fake_data / "raw", ignore=shutil.ignore_patterns("*.csv", "*.zip", "*.shp",
+                                                                                            "*.dbf", "*.shx", "*.sbn",
+                                                                                            "*.sbx", "*.prj", "*.xml"))
+    m_path = fake_data / "raw" / "CAM-02" / "manifest.json"
+    m = json.loads(m_path.read_text(encoding="utf-8"))
+    m["sha256"] = "f" * 64
+    m["extracted_at"] = "2026-11-20T10:00:00+00:00"
+    m_path.write_text(json.dumps(m), encoding="utf-8")
+    monkeypatch.setattr(etl_load, "DATA", fake_data)
+
+    def versions(session):
+        return session.scalar(select(func.count()).select_from(DatasetVersion).where(DatasetVersion.source_id == "CAM-02"))
+
+    with SessionLocal() as s:
+        before = versions(s)
+        run = IngestionRun(status="test")
+        s.add(run)
+        s.flush()
+        etl_load.load_sources(s, run)
+        etl_load.load_sources(s, run)  # idempotente
+        assert versions(s) == before + 1
+        s.rollback()  # no contaminar el resto de tests

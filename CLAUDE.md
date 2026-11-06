@@ -56,6 +56,7 @@ cd apps/web && npm install && npm run dev                  # http://localhost:30
 # Tests
 .venv/Scripts/python -m pytest                             # unit + integración (requiere db) + pipelines
 cd apps/web && npm run lint && npm run build
+cd apps/web && E2E_BASE_URL=http://localhost:3000 npm run e2e   # T10 Playwright (API + web levantadas)
 ```
 
 Variables: ver `.env.example`. `DATABASE_URL`, `DATABASE_URL_TEST`, `AEMET_API_KEY` (opcional, sin ella la meteo es `unavailable`), `ESCUDO_JWT_SECRET`.
@@ -75,7 +76,7 @@ Un único dueño por zona. Para tocar una zona ajena, pedirlo a A0. **Esquema BD
 | A6 Backend | `apps/api/`, `infra/migrations/`, `packages/contracts/`, `tests/integration/` |
 | A7 Frontend | `apps/web/` |
 | A8 UX/Product | `docs/ux/`, copys revisados vía PR a A7 |
-| A9 Seguridad/QA | `docs/privacy-security.md`, `docs/validation-report.md`, `tests/e2e/` |
+| A9 Seguridad/QA | `docs/privacy-security.md`, `docs/validation-report.md`, `apps/web/e2e/` (Playwright vive junto a la web para resolver `@playwright/test`) |
 | A10 DevOps | `infra/docker/`, `.github/workflows/`, `scripts/` |
 | A11 Pitch | `docs/pitch/`, `docs/demo-script.md`, `artifacts/` |
 
@@ -85,5 +86,6 @@ Un único dueño por zona. Para tocar una zona ajena, pedirlo a A0. **Esquema BD
 - Rama `main` siempre verde. Commits pequeños, mensaje con criterio DATAMAD afectado (`[D25]`, `[D20]`, `[D25i]`, `[D15]`, `[D10]`, `[D5]`).
 - Definition of Done (PRD §9.1): datos reales o autorizados, fuente visible, API+UI reales, test automático, nulos/errores gestionados, privacidad, documentado y reproducible.
 - Cada agente cierra con el formato de reporte de `ESCUDO_MADRID_INICIO_CLAUDE.md` y añade entrada en `EVIDENCE_LOG.md` (vía A0).
+- Tras `npm run build`, reiniciar `next start`: un servidor ya arrancado sirve HTML que apunta a chunks borrados (500) y la página no hidrata.
 - Red: en Windows `curl` necesita `--ssl-no-revoke` contra datos.comunidad.madrid (schannel). Python/httpx funciona sin cambios.
 - Fechas: periodo oficial de desarrollo 07–26/11/2026. Resumen ≤100 palabras antes del 24/11. Entrega antes de las 14:00 del 26/11.
