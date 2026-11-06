@@ -8,9 +8,9 @@ Fechas del PRD §8. Estado a 06/11/2026. ✅ hecho y verificado · 🟡 en curso
 |---|---|---|---|
 | G0 | 7 nov | Repo, PRD, contratos | ✅ (andamiaje 06/11 declarado en PROVENANCE) |
 | G1 | 8–9 nov | ≥1 dataset CAM usado analíticamente; IDEM y AEMET evaluados | ✅ adelantado |
-| G2 | 10–11 nov | PostGIS, fuentes versionadas, primer mapa y fichas | 🟡 API ✅ · mapa web A7 en curso |
-| G3 | 12–14 nov | Login, zona, inspección, medidas, export E2E | 🟡 backend ✅ · UI pendiente |
-| G4 | 15–17 nov | Solver validado, 3 escenarios, baseline, tests | ✅ backend · UI pendiente |
+| G2 | 10–11 nov | PostGIS, fuentes versionadas, primer mapa y fichas | ✅ |
+| G3 | 12–14 nov | Login, zona, inspección, medidas, export E2E | ✅ |
+| G4 | 15–17 nov | Solver validado, 3 escenarios, baseline, tests | ✅ |
 | G5 | 18–20 nov | AEMET, tareas, informes, capas, multiusuario, observabilidad | 🟡 |
 | G6 | 21–22 nov | Validación con usuarios/técnico | ⬜ humano |
 | G7 | 23 nov | Freeze candidatura + resumen ≤100 palabras | ⬜ |
@@ -37,8 +37,8 @@ Fechas del PRD §8. Estado a 06/11/2026. ✅ hecho y verificado · 🟡 en curso
 | 13 | M22 | Observabilidad: logs de latencia, salud de fuentes | A10 | — | 20 nov | 🟡 logs + /health · ⬜ backups |
 | 14 | — | Migraciones Alembic formales | A6 | — | 20 nov | ✅ |
 | 15 | — | CI en GitHub (requiere repo remoto — decisión humana) | A10 | — | 20 nov | 🟡 workflow escrito |
-| 16 | — | e2e Playwright (T10) | A9 | 3 | 22 nov | ⬜ |
-| 17 | — | Pitch 3+1, guion, capturas | A11 | 3,9 | 24 nov | ⬜ |
+| 16 | — | e2e Playwright (T10) | A9 | 3 | 22 nov | ✅ 5 tests (`apps/web/e2e`) |
+| 17 | — | Pitch 3+1, guion, capturas | A11 | 3,9 | 24 nov | 🟡 contenido, guion, resumen (93 palabras) y capturas listos · ⬜ diseño de diapositivas e integrantes |
 
 ## P1 (tras asegurar P0)
 

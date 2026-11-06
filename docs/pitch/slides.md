@@ -1,0 +1,36 @@
+# Contenido de la presentación 3 + 1 (bases DATAMAD, ap. 8)
+
+Estructura **obligatoria**: máximo 3 diapositivas de contenido + 4.ª con una captura del sistema. Este fichero es la fuente del texto; el diseño final se monta a partir de aquí.
+
+## Diapositiva 1 — Nombre, participantes y descripción
+
+- **ESCUDO MADRID**
+- *Del mapa al plan; del plan a la ejecución comprobable.*
+- Integrantes: **[COMPLETAR con las personas inscritas — acción humana]**
+- Plataforma abierta de planificación preventiva de incendios forestales para municipios y urbanizaciones de la Comunidad de Madrid: contexto oficial → inspección → actuaciones bajo presupuesto → plan con evidencias → informe trazable.
+- Pie: herramienta de apoyo; no sustituye a ASEM 112, AEMET, INFOMA ni a personal técnico.
+
+## Diapositiva 2 — Problema, datasets y enlaces
+
+- **Problema:** la información de prevención existe, pero pasar a actuaciones priorizadas, presupuestadas y documentadas exige coordinación entre ayuntamientos, urbanizaciones y técnicos.
+- **Contexto (Plan Anual 2026 de la CAM):** 5.652,38 ha programadas para trabajos preventivos; 68 PAIF en 26 municipios (21 con informe favorable, 47 en tramitación).
+- **Portal de Datos Abiertos de la Comunidad de Madrid (8 conjuntos, CC-BY):**
+  - CAM-01 Población censada por edad, nacionalidad y sexo — datos.comunidad.madrid/dataset/poblacion_censada_por_edad_nacionalidad_y_sexo
+  - CAM-02 Densidad de población — datos.comunidad.madrid/dataset/1930748
+  - CAM-03 Altitud — datos.comunidad.madrid/dataset/101002
+  - CAM-08 Secciones censales (geometría de los 179 municipios) — datos.comunidad.madrid/dataset/secciones_censales
+  - CAM-04 Espacios protegidos · CAM-05 Incendios y superficie afectada · CAM-06 Repoblaciones · CAM-07 Usos del suelo
+- **Complementarias:** cartografía oficial IDEM de riesgo, peligrosidad y vulnerabilidad (CC BY 4.0) · AEMET predicción municipal.
+- Diagrama: Portal CAM / IDEM / AEMET → ETL con SHA-256 → PostGIS → API → mapa, optimizador e informes.
+
+## Diapositiva 3 — Resultados, impacto, viabilidad y enlaces
+
+- **Resultados verificables:** 179 municipios con indicadores trazables · reparto exacto de las clases oficiales de riesgo por municipio · optimizador determinista validado contra la solución exacta en 200 instancias · 65 tests automáticos + 5 de navegador.
+- **Caso guiado (datos ficticios):** con el mismo presupuesto, la optimización cubre el 90,1 % de la prioridad técnica frente al 84,2 % (priorización manual) y el 85,1 % (menor coste).
+- **Impacto que medimos:** cobertura de prioridades bajo presupuesto, actuaciones documentadas con evidencia, plazos vencidos, reproducibilidad. **No** afirmamos incendios evitados ni reducción de riesgo.
+- **Viabilidad:** software libre (EUPL-1.2, pendiente de confirmar), Docker, datos abiertos, multiusuario aislado, modo degradado si AEMET cae.
+- Enlaces: **demo [COMPLETAR]** · **repositorio [COMPLETAR]** (requieren publicación autorizada).
+
+## Diapositiva 4 — Captura del sistema
+
+Usar `artifacts/demo-screenshots/02-ficha-riesgo-oficial.png` (mapa + ficha + capa oficial). Alternativa: `04-comparacion-estrategias.png`. Debe ser una pantalla que exista en la versión entregada.

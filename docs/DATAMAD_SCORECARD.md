@@ -10,7 +10,7 @@
 | ≥1 dataset del Portal CAM usado efectivamente (admisión) | 8 datasets CAM ingeridos (CAM-01…08) con manifest y SHA-256 | `DATA_CATALOG.md`; `GET /v1/sources`; `pipelines/tests/test_cam.py::test_T01…` | ✅ |
 | Función analítica (a): ficha municipal demográfica con año y unidades | `/v1/municipalities/{ine}/profile` (CAM-01/02/03/08) con `Indicator` trazable | `tests/integration/test_api.py::test_profile_values_trace_to_processed_cam_data` | ✅ API · ✅ UI (`artifacts/demo-screenshots/02-ficha-riesgo-oficial.png`) |
 | Función analítica (b): filtro/comparador regional reproducible | `/v1/municipalities?min_density=` y `/v1/compare` (CAM-02) | `test_density_filter_changes_with_cam02` | ✅ API · ✅ UI (filtro de densidad y `/comparar`) |
-| El resultado cambia al actualizar el recurso | Pipeline fetch→transform→load idempotente con versión por SHA-256 (`dataset_versions`) | Re-ejecutar fetch; nueva fila en `dataset_versions` si cambia el hash | 🟡 (falta test automatizado de actualización) |
+| El resultado cambia al actualizar el recurso | Pipeline fetch→transform→load idempotente con versión por SHA-256 (`dataset_versions`) | `test_dataset_version_tracking_on_source_update` | ✅ |
 | Lineage por indicador | Tabla `indicator_definitions` + `/v1/indicators` (PRD §4.5) | `GET /v1/indicators` | ✅ |
 | Geometría municipal propia del Portal CAM | CAM-08 secciones censales disueltas a 179 municipios | `test_T02_processed_outputs` | ✅ |
 | Uso honesto de recursos regionales | CAM-05/06/07 marcados «agregado regional»; `forest_share` municipal = `unavailable` | `test_regional_series_are_labeled_regional` | ✅ |
@@ -51,7 +51,7 @@
 |---|---|---|
 | Licencia abierta | `LICENSE` EUPL-1.2 (pendiente confirmación del equipo) | 🟡 |
 | ETL reproducible con checksums | `fetch` + manifests versionados | ✅ |
-| Tests y CI | 62 tests pytest; `.github/workflows/ci.yml` | ✅ local · ⬜ CI ejecutada en GitHub |
+| Tests y CI | 65 tests pytest + 5 Playwright; `.github/workflows/ci.yml` | ✅ local · ⬜ CI ejecutada en GitHub |
 | Contrato OpenAPI | `packages/contracts/openapi.json` (35 rutas) | ✅ |
 | Procedencia del trabajo asistido por IA | `PROVENANCE.md` | ✅ |
 
@@ -60,8 +60,8 @@
 | Requisito | Evidencia | Estado |
 |---|---|---|
 | 3 diapositivas + 4.ª captura | Capturas reales en `artifacts/demo-screenshots/` | 🟡 faltan las diapositivas (A11) |
-| Guion demo 5 min + backup | — | ⬜ A11 |
-| Resumen ≤100 palabras antes del 24/11 | Borrador PRD §10.4 = 91 palabras (A1); ajustar última frase | 🟡 |
+| Guion demo 5 min + backup | `docs/demo-script.md` (plan B con capturas y PDF) + `npm run e2e` | ✅ pendiente de ensayo cronometrado |
+| Resumen ≤100 palabras antes del 24/11 | `docs/pitch/resumen-preseleccion.md`: 93 palabras (`scripts/count_words.py`), sin promesas inexistentes | ✅ texto · ⬜ envío (humano) |
 
 ## Desempate (bases ap. 10)
 Prioridad: intensidad de uso de datos de Madrid → impacto → originalidad → viabilidad. Refuerzo previsto: más funciones analíticas sobre CAM (series 2021–2025 en UI, comparador), test de actualización de versión.

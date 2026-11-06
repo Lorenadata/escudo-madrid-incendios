@@ -25,11 +25,11 @@ Actualizado: 06/11/2026 (A0). Solo se marca ✅ lo verificado con test o ejecuci
 
 | Módulo | Agente | Nota |
 |---|---|---|
-| Recorrido e2e automatizado (Playwright, T10) | A9 | pendiente |
+| Diseño final de las 3+1 diapositivas | A11 | contenido en `docs/pitch/slides.md`; faltan integrantes y enlaces publicados |
 
 ## Pruebas ejecutadas (06/11/2026)
 
-`pytest -m "not network"`: **62 passed** antes de añadir 2 tests nuevos; integración posterior **12/12 passed**; `ruff check` limpio. Pruebas PRD cubiertas: T01, T02, T03, T04, T05, T06, T07, T08, T09. Pendientes: T10 (demo e2e Playwright), T11 (instalación limpia en máquina ajena), T12 (entrega).
+`pytest -m "not network"`: **62 passed** antes de añadir 2 tests nuevos; integración posterior **12/12 passed**; `ruff check` limpio. Pruebas PRD cubiertas: T01, T02, T03, T04, T05, T06, T07, T08, T09. Después: **65 passed** (`pytest -m "not network"`) y **5 passed** Playwright (`npm run e2e`, T10). Pendientes: T11 (instalación limpia en máquina ajena), T12 (entrega).
 
 ## Bloqueos y decisiones humanas
 
@@ -54,7 +54,7 @@ Actualizado: 06/11/2026 (A0). Solo se marca ✅ lo verificado con test o ejecuci
 ## Próximas tareas
 
 1. Integrar y verificar la web (A7) contra la API; capturas para el pitch.
-2. Test de actualización de versión de dataset.
-3. e2e Playwright del Flujo C (T10) y construcción de imágenes Docker (`--profile full`).
-4. A11: guion de 5 min, 3+1 diapositivas, resumen ≤100 palabras revisado.
+2. Export GeoJSON de áreas autorizadas y endpoint de calendario preventivo (M16, P1).
+3. Construcción de imágenes Docker (`--profile full`) e instalación limpia (T11).
+4. A11: ensayo cronometrado del guion y diseño de las diapositivas (contenido, guion y resumen de 93 palabras ya listos).
 5. P1: calendario preventivo, colaboración, asistente documental con citas.
