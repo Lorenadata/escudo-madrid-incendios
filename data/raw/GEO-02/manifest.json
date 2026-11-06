@@ -1,0 +1,78 @@
+{
+  "source_id": "GEO-02",
+  "ckan_id": null,
+  "title": "Peligrosidad por incendios forestales",
+  "catalog_url": "https://datos.gob.es/es/catalogo/a13002908-peligrosidad-por-incendios-forestales",
+  "resource_id": "spacm_peligroiiff",
+  "resource_url": "https://idem.comunidad.madrid/recursos_cat_geo/Catalogo/recursos/ZonasRiesgo/PCivil/peligrosid_3_1.zip",
+  "format": "GeoTIFF uint8 (ZIP)",
+  "file": "peligrosid_3_1.zip",
+  "bytes": 20221862,
+  "sha256": "1e31036a4f9a9fd99322a663e3f68d95a5f909e0766a3cf1854b16ae1453acec",
+  "license_id": "CC-BY-4.0",
+  "license_title": "CC BY 4.0 Comunidad de Madrid",
+  "portal_metadata_modified": "2026-07-07",
+  "resource_last_modified": "2025-12-01",
+  "extracted_at": "2026-11-06T19:03:15+00:00",
+  "metadata_file": "spacm_peligroiiff.iso19139.xml",
+  "metadata_sha256": "b666b266a715a6de998153fae166b452e486b1a4f91d1200ecc92e9dc8ff5bbe",
+  "iso_metadata": {
+    "metadata_date_stamp": "2026-07-07",
+    "citation_dates": {
+      "creation": "2018-12-12",
+      "revision": "2025-12-01",
+      "publication": "2008-06-01"
+    },
+    "crs_declared": "EPSG:25830",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/deed.es",
+    "license_title": "CC BY 4.0 Comunidad de Madrid",
+    "scale_denominator": 5000
+  },
+  "legend_url": "https://idem.comunidad.madrid/geoidem/ZonasRiesgo/wms?service=WMS&version=1.3.0&request=GetLegendGraphic&format=application/json&layer=peligrosid_3_1",
+  "legend_file": "legend.json",
+  "legend_sha256": "e100a27f503da133f33ab4f363ae9ec8b6246190aa3d2294f7d31ddd4000a90e",
+  "legend_classes": [
+    {
+      "class_code": 0,
+      "class_label": "Sin peligro",
+      "color": "#EDFFBA",
+      "transparent_in_official_style": true
+    },
+    {
+      "class_code": 1,
+      "class_label": "Peligrosidad muy baja",
+      "color": "#2C7BB6",
+      "transparent_in_official_style": false
+    },
+    {
+      "class_code": 2,
+      "class_label": "Peligrosidad baja",
+      "color": "#ABD9E9",
+      "transparent_in_official_style": false
+    },
+    {
+      "class_code": 3,
+      "class_label": "Peligrosidad moderada",
+      "color": "#FFFFBF",
+      "transparent_in_official_style": false
+    },
+    {
+      "class_code": 4,
+      "class_label": "Peligrosidad alta",
+      "color": "#FDAE61",
+      "transparent_in_official_style": false
+    },
+    {
+      "class_code": 5,
+      "class_label": "Peligrosidad muy alta",
+      "color": "#D7191C",
+      "transparent_in_official_style": false
+    },
+    {
+      "class_code": 99,
+      "class_label": "Peligrosidad no calculada",
+      "color": "#DBDDDF",
+      "transparent_in_official_style": false
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "source_id": "CAM-01",
+  "ckan_id": "poblacion_censada_por_edad_nacionalidad_y_sexo",
+  "title": "Población censada por edad, nacionalidad y sexo. Censo anual. Municipios",
+  "catalog_url": "https://datos.comunidad.madrid/dataset/poblacion_censada_por_edad_nacionalidad_y_sexo",
+  "resource_id": "bab16922-8df1-49b5-9791-aed4edf8ced1",
+  "resource_url": "https://datos.comunidad.madrid/dataset/0a14fbfe-783e-4de3-81b1-ff3792bfd402/resource/bab16922-8df1-49b5-9791-aed4edf8ced1/download/poblacion-censada-por-edad-nacionalidad-y-sexo.-censo-anual.-municipios.csv",
+  "format": "CSV",
+  "file": "poblacion-censada-por-edad-nacionalidad-y-sexo.-censo-anual.-municipios.csv",
+  "bytes": 15573665,
+  "sha256": "9a8087ab860803241ffe77903c9d306bc37cad4a2ca2d3814454960bc6dbedde",
+  "license_id": "cc-by",
+  "license_title": "Creative Commons Attribution",
+  "portal_metadata_modified": "2026-11-05T17:26:22.409018",
+  "resource_last_modified": "2026-11-05T17:26:18.497721",
+  "extracted_at": "2026-11-06T18:53:23+00:00"
+}

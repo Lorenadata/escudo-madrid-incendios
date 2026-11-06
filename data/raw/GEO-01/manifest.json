@@ -1,0 +1,78 @@
+{
+  "source_id": "GEO-01",
+  "ckan_id": null,
+  "title": "Riesgo por incendios forestales",
+  "catalog_url": "https://datos.gob.es/es/catalogo/a13002908-riesgo-por-incendios-forestales",
+  "resource_id": "spacm_riesgoiiff",
+  "resource_url": "https://idem.comunidad.madrid/recursos_cat_geo/Catalogo/recursos/ZonasRiesgo/PCivil/riesgo_3_1.zip",
+  "format": "GeoTIFF uint8 (ZIP)",
+  "file": "riesgo_3_1.zip",
+  "bytes": 18789134,
+  "sha256": "9388b85fddec144c02368c0d3d34eced0c796571d2b858929088a375501f8834",
+  "license_id": "CC-BY-4.0",
+  "license_title": "CC BY 4.0 Comunidad de Madrid",
+  "portal_metadata_modified": "2026-07-07",
+  "resource_last_modified": "2025-12-01",
+  "extracted_at": "2026-11-06T19:03:14+00:00",
+  "metadata_file": "spacm_riesgoiiff.iso19139.xml",
+  "metadata_sha256": "a2547dc67e9eda53d9c4a013ead44979b0b480d407a0dfcc11edacee3b40d7dd",
+  "iso_metadata": {
+    "metadata_date_stamp": "2026-07-07",
+    "citation_dates": {
+      "creation": "2018-12-12",
+      "revision": "2025-12-01",
+      "publication": "2008-06-01"
+    },
+    "crs_declared": "EPSG:25830",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/deed.es",
+    "license_title": "CC BY 4.0 Comunidad de Madrid",
+    "scale_denominator": 5000
+  },
+  "legend_url": "https://idem.comunidad.madrid/geoidem/ZonasRiesgo/wms?service=WMS&version=1.3.0&request=GetLegendGraphic&format=application/json&layer=riesgo_3_1",
+  "legend_file": "legend.json",
+  "legend_sha256": "da53d30a14b43f6f34d85758fadfa516035572c8346ebc9bdceb448badc6ad8b",
+  "legend_classes": [
+    {
+      "class_code": 0,
+      "class_label": "Sin Riesgo",
+      "color": "#EDFFBA",
+      "transparent_in_official_style": true
+    },
+    {
+      "class_code": 1,
+      "class_label": "Riesgo muy bajo",
+      "color": "#2C7BB6",
+      "transparent_in_official_style": false
+    },
+    {
+      "class_code": 2,
+      "class_label": "Riesgo bajo",
+      "color": "#ABD9E9",
+      "transparent_in_official_style": false
+    },
+    {
+      "class_code": 3,
+      "class_label": "Riesgo moderado",
+      "color": "#FFFFBF",
+      "transparent_in_official_style": false
+    },
+    {
+      "class_code": 4,
+      "class_label": "Riesgo alto",
+      "color": "#FDAE61",
+      "transparent_in_official_style": false
+    },
+    {
+      "class_code": 5,
+      "class_label": "Riesgo muy alto",
+      "color": "#D7191C",
+      "transparent_in_official_style": false
+    },
+    {
+      "class_code": 99,
+      "class_label": "Riesgo no calculado",
+      "color": "#DBDDDF",
+      "transparent_in_official_style": false
+    }
+  ]
+}

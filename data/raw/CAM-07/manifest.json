@@ -1,0 +1,17 @@
+{
+  "source_id": "CAM-07",
+  "ckan_id": "1101001",
+  "title": "Distribución de la superficie por usos",
+  "catalog_url": "https://datos.comunidad.madrid/dataset/1101001",
+  "resource_id": "b7b17279-b82c-4ccf-97be-72b80d4a6756",
+  "resource_url": "https://datos.comunidad.madrid/dataset/37b743ba-55aa-4096-a98b-2f05ce9d0370/resource/b7b17279-b82c-4ccf-97be-72b80d4a6756/download/distribucion-de-la-superficie-por-usos.csv",
+  "format": "CSV",
+  "file": "distribucion-de-la-superficie-por-usos.csv",
+  "bytes": 45347,
+  "sha256": "c046c1f3d7abf41283591a88492c5685cee457e771eca528e886bcdcbdbd8d4e",
+  "license_id": "cc-by",
+  "license_title": "Creative Commons Attribution",
+  "portal_metadata_modified": "2026-11-06T17:31:02.247548",
+  "resource_last_modified": "2026-11-06T17:31:01.872684",
+  "extracted_at": "2026-11-06T18:53:26+00:00"
+}

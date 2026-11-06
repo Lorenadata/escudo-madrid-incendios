@@ -1,0 +1,78 @@
+{
+  "source_id": "GEO-03",
+  "ckan_id": null,
+  "title": "Vulnerabilidad por incendios forestales",
+  "catalog_url": "https://datos.gob.es/es/catalogo/a13002908-vulnerabilidad-por-incendios-forestales",
+  "resource_id": "spacm_vulneraiiff",
+  "resource_url": "https://idem.comunidad.madrid/recursos_cat_geo/Catalogo/recursos/ZonasRiesgo/PCivil/vulnera_3_1.zip",
+  "format": "GeoTIFF uint8 (ZIP)",
+  "file": "vulnera_3_1.zip",
+  "bytes": 10113681,
+  "sha256": "c42cb86c80bf23d0010296a5da3523faaa739cbf6a31e8cc7637fa5081facfb6",
+  "license_id": "CC-BY-4.0",
+  "license_title": "CC BY 4.0 Comunidad de Madrid",
+  "portal_metadata_modified": "2026-07-07",
+  "resource_last_modified": "2025-12-01",
+  "extracted_at": "2026-11-06T19:03:16+00:00",
+  "metadata_file": "spacm_vulneraiiff.iso19139.xml",
+  "metadata_sha256": "915233981bc36f10f73a36a326b6341c4aa551f41fc4c3cdc1a0e3937ead0b9a",
+  "iso_metadata": {
+    "metadata_date_stamp": "2026-07-07",
+    "citation_dates": {
+      "creation": "2018-12-12",
+      "revision": "2025-12-01",
+      "publication": "2008-06-01"
+    },
+    "crs_declared": "EPSG:25830",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/deed.es",
+    "license_title": "CC BY 4.0 Comunidad de Madrid",
+    "scale_denominator": 5000
+  },
+  "legend_url": "https://idem.comunidad.madrid/geoidem/ZonasRiesgo/wms?service=WMS&version=1.3.0&request=GetLegendGraphic&format=application/json&layer=vulnera_3_1",
+  "legend_file": "legend.json",
+  "legend_sha256": "764d8f175e7f00baa2b241513017078ffc16c52588e22441a79b12dcbbc839a3",
+  "legend_classes": [
+    {
+      "class_code": 0,
+      "class_label": "Sin Vulnerabilidad",
+      "color": "#EDFFBA",
+      "transparent_in_official_style": true
+    },
+    {
+      "class_code": 1,
+      "class_label": "Vulnerabilidad muy baja",
+      "color": "#359420",
+      "transparent_in_official_style": false
+    },
+    {
+      "class_code": 2,
+      "class_label": "Vulnerabilidad baja",
+      "color": "#4CE600",
+      "transparent_in_official_style": false
+    },
+    {
+      "class_code": 3,
+      "class_label": "Vulnerabilidad moderada",
+      "color": "#FFA500",
+      "transparent_in_official_style": false
+    },
+    {
+      "class_code": 4,
+      "class_label": "Vulnerabilidad alta",
+      "color": "#FF0000",
+      "transparent_in_official_style": false
+    },
+    {
+      "class_code": 5,
+      "class_label": "Vulnerabilidad muy alta",
+      "color": "#800000",
+      "transparent_in_official_style": false
+    },
+    {
+      "class_code": 99,
+      "class_label": "Vulnerabilidad no calculada",
+      "color": "#DBDDDF",
+      "transparent_in_official_style": false
+    }
+  ]
+}

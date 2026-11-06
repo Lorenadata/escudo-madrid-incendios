@@ -1,0 +1,17 @@
+{
+  "source_id": "CAM-08",
+  "ckan_id": "secciones_censales",
+  "title": "Secciones censales",
+  "catalog_url": "https://datos.comunidad.madrid/dataset/secciones_censales",
+  "resource_id": "b53b766c-e013-444c-b3b0-0992c4a0dbfc",
+  "resource_url": "https://datos.comunidad.madrid/dataset/2c176a23-a6cd-4c18-b5df-b32a3a3a1219/resource/b53b766c-e013-444c-b3b0-0992c4a0dbfc/download/558.zip",
+  "format": "SHP",
+  "file": "558.zip",
+  "bytes": 9250149,
+  "sha256": "00198d017d032e83fdf5bcbb3327b1adbba21394264968c0c6508ba4473b09fc",
+  "license_id": "cc-by",
+  "license_title": "Creative Commons Attribution",
+  "portal_metadata_modified": "2025-02-07T09:42:18.651377",
+  "resource_last_modified": "2024-06-03T11:37:42.362056",
+  "extracted_at": "2026-11-06T18:53:28+00:00"
+}

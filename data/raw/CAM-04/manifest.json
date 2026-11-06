@@ -1,0 +1,17 @@
+{
+  "source_id": "CAM-04",
+  "ckan_id": "espacios_protegidos",
+  "title": "Espacios protegidos",
+  "catalog_url": "https://datos.comunidad.madrid/dataset/espacios_protegidos",
+  "resource_id": "d32cc438-fff0-4c88-b16f-bd4fef20e6dc",
+  "resource_url": "https://datos.comunidad.madrid/dataset/cd55d34c-64e2-4ad0-911d-d3e7bdf53a91/resource/d32cc438-fff0-4c88-b16f-bd4fef20e6dc/download/espacios_protegidos.csv",
+  "format": "CSV",
+  "file": "espacios_protegidos.csv",
+  "bytes": 31329,
+  "sha256": "cd93a0984e97842adf2e7c1268c89f1cff0513a9327674e869151f72d2eee736",
+  "license_id": "cc-by",
+  "license_title": "Creative Commons Attribution",
+  "portal_metadata_modified": "2026-01-13T11:27:31.078560",
+  "resource_last_modified": "2026-01-13T11:27:28.174414",
+  "extracted_at": "2026-11-06T18:53:25+00:00"
+}

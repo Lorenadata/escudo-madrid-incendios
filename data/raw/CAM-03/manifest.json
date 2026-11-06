@@ -1,0 +1,17 @@
+{
+  "source_id": "CAM-03",
+  "ckan_id": "101002",
+  "title": "Altitud. Municipios",
+  "catalog_url": "https://datos.comunidad.madrid/dataset/101002",
+  "resource_id": "5a0c8a8b-e503-4931-bbd2-0b3f9d414353",
+  "resource_url": "https://datos.comunidad.madrid/dataset/776a8af2-04da-47ce-a8b8-65ba7de1d382/resource/5a0c8a8b-e503-4931-bbd2-0b3f9d414353/download/altitud.-municipios.csv",
+  "format": "CSV",
+  "file": "altitud.-municipios.csv",
+  "bytes": 8147,
+  "sha256": "4d4ebfb93378ba8607765dc47cf25a1f9339216c50c82ca16fcddaf38a99126c",
+  "license_id": "cc-by",
+  "license_title": "Creative Commons Attribution",
+  "portal_metadata_modified": "2026-11-05T17:46:25.404949",
+  "resource_last_modified": "2026-11-05T17:46:24.977276",
+  "extracted_at": "2026-11-06T18:53:24+00:00"
+}

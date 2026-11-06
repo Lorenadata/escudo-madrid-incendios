@@ -1,0 +1,316 @@
+{
+  "generated_by": "escudo_pipelines.idem.transform",
+  "layers": {
+    "risk": {
+      "source_id": "GEO-01",
+      "title": "Riesgo por incendios forestales",
+      "license": "CC BY 4.0 Comunidad de Madrid",
+      "version_or_date": {
+        "revision": "2025-12-01",
+        "creation": "2018-12-12",
+        "metadata_date_stamp": "2026-07-07"
+      },
+      "raw_sha256": "9388b85fddec144c02368c0d3d34eced0c796571d2b858929088a375501f8834",
+      "crs_original": "EPSG:25830",
+      "raster": {
+        "width": 25970,
+        "height": 28409,
+        "resolution_m": [
+          5.0,
+          5.0
+        ],
+        "bounds_25830": [
+          365635.0,
+          4415270.0,
+          495485.0,
+          4557315.0
+        ],
+        "nodata": 255.0,
+        "dtype": "uint8"
+      },
+      "output_file": "risk.geojson",
+      "output_bytes": 5034354,
+      "n_features": 15149,
+      "n_invalid_fixed": 0,
+      "classes": [
+        {
+          "class_code": 0,
+          "class_label": "Sin Riesgo",
+          "color_suggestion": "#EDFFBA",
+          "transparent_in_official_style": true,
+          "present_in_raster": false,
+          "regional_area_ha": 0.0
+        },
+        {
+          "class_code": 1,
+          "class_label": "Riesgo muy bajo",
+          "color_suggestion": "#2C7BB6",
+          "transparent_in_official_style": false,
+          "present_in_raster": true,
+          "regional_area_ha": 134852.8
+        },
+        {
+          "class_code": 2,
+          "class_label": "Riesgo bajo",
+          "color_suggestion": "#ABD9E9",
+          "transparent_in_official_style": false,
+          "present_in_raster": true,
+          "regional_area_ha": 85791.4
+        },
+        {
+          "class_code": 3,
+          "class_label": "Riesgo moderado",
+          "color_suggestion": "#FFFFBF",
+          "transparent_in_official_style": false,
+          "present_in_raster": true,
+          "regional_area_ha": 142693.3
+        },
+        {
+          "class_code": 4,
+          "class_label": "Riesgo alto",
+          "color_suggestion": "#FDAE61",
+          "transparent_in_official_style": false,
+          "present_in_raster": true,
+          "regional_area_ha": 155417.5
+        },
+        {
+          "class_code": 5,
+          "class_label": "Riesgo muy alto",
+          "color_suggestion": "#D7191C",
+          "transparent_in_official_style": false,
+          "present_in_raster": true,
+          "regional_area_ha": 267018.7
+        },
+        {
+          "class_code": 99,
+          "class_label": "Riesgo no calculado",
+          "color_suggestion": "#DBDDDF",
+          "transparent_in_official_style": false,
+          "present_in_raster": true,
+          "regional_area_ha": 16773.8
+        }
+      ],
+      "simplification_tolerance_m": 40,
+      "web_generalization": {
+        "web_cell_m": 200,
+        "web_resampling": "mode",
+        "simplification_tolerance_m": 40,
+        "web_grid": [
+          649,
+          710
+        ],
+        "coord_decimals": 4
+      },
+      "pixels_with_data_outside_municipalities": 150065
+    },
+    "hazard": {
+      "source_id": "GEO-02",
+      "title": "Peligrosidad por incendios forestales",
+      "license": "CC BY 4.0 Comunidad de Madrid",
+      "version_or_date": {
+        "revision": "2025-12-01",
+        "creation": "2018-12-12",
+        "metadata_date_stamp": "2026-07-07"
+      },
+      "raw_sha256": "1e31036a4f9a9fd99322a663e3f68d95a5f909e0766a3cf1854b16ae1453acec",
+      "crs_original": "EPSG:25830",
+      "raster": {
+        "width": 25970,
+        "height": 28409,
+        "resolution_m": [
+          5.0,
+          5.0
+        ],
+        "bounds_25830": [
+          365635.0,
+          4415270.0,
+          495485.0,
+          4557315.0
+        ],
+        "nodata": 255.0,
+        "dtype": "uint8"
+      },
+      "output_file": "hazard.geojson",
+      "output_bytes": 5908839,
+      "n_features": 17696,
+      "n_invalid_fixed": 0,
+      "classes": [
+        {
+          "class_code": 0,
+          "class_label": "Sin peligro",
+          "color_suggestion": "#EDFFBA",
+          "transparent_in_official_style": true,
+          "present_in_raster": false,
+          "regional_area_ha": 0.0
+        },
+        {
+          "class_code": 1,
+          "class_label": "Peligrosidad muy baja",
+          "color_suggestion": "#2C7BB6",
+          "transparent_in_official_style": false,
+          "present_in_raster": true,
+          "regional_area_ha": 158542.0
+        },
+        {
+          "class_code": 2,
+          "class_label": "Peligrosidad baja",
+          "color_suggestion": "#ABD9E9",
+          "transparent_in_official_style": false,
+          "present_in_raster": true,
+          "regional_area_ha": 122318.6
+        },
+        {
+          "class_code": 3,
+          "class_label": "Peligrosidad moderada",
+          "color_suggestion": "#FFFFBF",
+          "transparent_in_official_style": false,
+          "present_in_raster": true,
+          "regional_area_ha": 206677.7
+        },
+        {
+          "class_code": 4,
+          "class_label": "Peligrosidad alta",
+          "color_suggestion": "#FDAE61",
+          "transparent_in_official_style": false,
+          "present_in_raster": true,
+          "regional_area_ha": 175484.6
+        },
+        {
+          "class_code": 5,
+          "class_label": "Peligrosidad muy alta",
+          "color_suggestion": "#D7191C",
+          "transparent_in_official_style": false,
+          "present_in_raster": true,
+          "regional_area_ha": 139524.6
+        },
+        {
+          "class_code": 99,
+          "class_label": "Peligrosidad no calculada",
+          "color_suggestion": "#DBDDDF",
+          "transparent_in_official_style": false,
+          "present_in_raster": false,
+          "regional_area_ha": 0.0
+        }
+      ],
+      "simplification_tolerance_m": 40,
+      "web_generalization": {
+        "web_cell_m": 200,
+        "web_resampling": "mode",
+        "simplification_tolerance_m": 40,
+        "web_grid": [
+          649,
+          710
+        ],
+        "coord_decimals": 4
+      },
+      "pixels_with_data_outside_municipalities": 150065
+    },
+    "vulnerability": {
+      "source_id": "GEO-03",
+      "title": "Vulnerabilidad por incendios forestales",
+      "license": "CC BY 4.0 Comunidad de Madrid",
+      "version_or_date": {
+        "revision": "2025-12-01",
+        "creation": "2018-12-12",
+        "metadata_date_stamp": "2026-07-07"
+      },
+      "raw_sha256": "c42cb86c80bf23d0010296a5da3523faaa739cbf6a31e8cc7637fa5081facfb6",
+      "crs_original": "EPSG:25830",
+      "raster": {
+        "width": 25970,
+        "height": 28409,
+        "resolution_m": [
+          5.0,
+          5.0
+        ],
+        "bounds_25830": [
+          365635.0,
+          4415270.0,
+          495485.0,
+          4557315.0
+        ],
+        "nodata": 255.0,
+        "dtype": "uint8"
+      },
+      "output_file": "vulnerability.geojson",
+      "output_bytes": 2637759,
+      "n_features": 6541,
+      "n_invalid_fixed": 0,
+      "classes": [
+        {
+          "class_code": 0,
+          "class_label": "Sin Vulnerabilidad",
+          "color_suggestion": "#EDFFBA",
+          "transparent_in_official_style": true,
+          "present_in_raster": true,
+          "regional_area_ha": 16773.8
+        },
+        {
+          "class_code": 1,
+          "class_label": "Vulnerabilidad muy baja",
+          "color_suggestion": "#359420",
+          "transparent_in_official_style": false,
+          "present_in_raster": true,
+          "regional_area_ha": 6818.8
+        },
+        {
+          "class_code": 2,
+          "class_label": "Vulnerabilidad baja",
+          "color_suggestion": "#4CE600",
+          "transparent_in_official_style": false,
+          "present_in_raster": true,
+          "regional_area_ha": 226316.9
+        },
+        {
+          "class_code": 3,
+          "class_label": "Vulnerabilidad moderada",
+          "color_suggestion": "#FFA500",
+          "transparent_in_official_style": false,
+          "present_in_raster": true,
+          "regional_area_ha": 99774.4
+        },
+        {
+          "class_code": 4,
+          "class_label": "Vulnerabilidad alta",
+          "color_suggestion": "#FF0000",
+          "transparent_in_official_style": false,
+          "present_in_raster": true,
+          "regional_area_ha": 11338.8
+        },
+        {
+          "class_code": 5,
+          "class_label": "Vulnerabilidad muy alta",
+          "color_suggestion": "#800000",
+          "transparent_in_official_style": false,
+          "present_in_raster": true,
+          "regional_area_ha": 441524.9
+        },
+        {
+          "class_code": 99,
+          "class_label": "Vulnerabilidad no calculada",
+          "color_suggestion": "#DBDDDF",
+          "transparent_in_official_style": false,
+          "present_in_raster": false,
+          "regional_area_ha": 0.0
+        }
+      ],
+      "simplification_tolerance_m": 40,
+      "web_generalization": {
+        "web_cell_m": 200,
+        "web_resampling": "mode",
+        "simplification_tolerance_m": 40,
+        "web_grid": [
+          649,
+          710
+        ],
+        "coord_decimals": 4
+      },
+      "pixels_with_data_outside_municipalities": 150065
+    }
+  },
+  "municipalities": {
+    "source": "data\\processed\\cam\\municipalities.geojson",
+    "n": 179,
+    "n_invalid_fixed": 0
+  }
+}

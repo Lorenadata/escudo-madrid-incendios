@@ -1,0 +1,17 @@
+{
+  "source_id": "CAM-05",
+  "ckan_id": "101019",
+  "title": "Incendios y superficie afectada",
+  "catalog_url": "https://datos.comunidad.madrid/dataset/101019",
+  "resource_id": "9b534df7-e7aa-42b3-9157-d874beb8b599",
+  "resource_url": "https://datos.comunidad.madrid/dataset/cde061a9-2777-4161-be9c-1c07ef0e48d3/resource/9b534df7-e7aa-42b3-9157-d874beb8b599/download/incendios-y-superficie-afectada.csv",
+  "format": "CSV",
+  "file": "incendios-y-superficie-afectada.csv",
+  "bytes": 23484,
+  "sha256": "edd4c15627a8847032a781cf1807e4139532338322cd02dbdaf8a96d53bf246a",
+  "license_id": "cc-by",
+  "license_title": "Creative Commons Attribution",
+  "portal_metadata_modified": "2026-11-05T17:46:35.591625",
+  "resource_last_modified": "2026-11-05T17:46:35.174783",
+  "extracted_at": "2026-11-06T18:53:25+00:00"
+}

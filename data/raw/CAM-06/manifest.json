@@ -1,0 +1,17 @@
+{
+  "source_id": "CAM-06",
+  "ckan_id": "repoblaciones_forestales",
+  "title": "Repoblaciones forestales",
+  "catalog_url": "https://datos.comunidad.madrid/dataset/repoblaciones_forestales",
+  "resource_id": "9e7a91d4-f1b1-4bac-836a-e1fdefc530b1",
+  "resource_url": "https://datos.comunidad.madrid/dataset/38e29d6f-110f-44cd-acc2-d795cfc28ff5/resource/9e7a91d4-f1b1-4bac-836a-e1fdefc530b1/download/repoblaciones_forestales.csv",
+  "format": "CSV",
+  "file": "repoblaciones_forestales.csv",
+  "bytes": 1336,
+  "sha256": "d77d6f73167932a747197010baa430e10e10a1b301e0f4636900a183af39a18f",
+  "license_id": "cc-by",
+  "license_title": "Creative Commons Attribution",
+  "portal_metadata_modified": "2025-11-11T17:42:59.796287",
+  "resource_last_modified": "2025-11-11T17:42:56.600152",
+  "extracted_at": "2026-11-06T18:53:25+00:00"
+}

@@ -1,0 +1,53 @@
+name: escudo-madrid
+
+services:
+  db:
+    image: postgis/postgis:16-3.4
+    shm_size: 512mb
+    environment:
+      POSTGRES_USER: escudo
+      POSTGRES_PASSWORD: escudo_dev_only
+      POSTGRES_DB: escudo
+    ports:
+      - "5433:5432"
+    volumes:
+      - escudo_pg:/var/lib/postgresql/data
+      - ./db/init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U escudo -d escudo"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  api:
+    build:
+      context: ..
+      dockerfile: infra/docker/api.Dockerfile
+    environment:
+      DATABASE_URL: postgresql+psycopg://escudo:escudo_dev_only@db:5432/escudo
+      ESCUDO_JWT_SECRET: ${ESCUDO_JWT_SECRET:-dev-only-change-me}
+      AEMET_API_KEY: ${AEMET_API_KEY:-}
+      ESCUDO_EVIDENCE_DIR: /var/lib/escudo/evidence
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8000:8000"
+    volumes:
+      - escudo_evidence:/var/lib/escudo/evidence
+    profiles: ["full"]
+
+  web:
+    build:
+      context: ../apps/web
+      dockerfile: ../../infra/docker/web.Dockerfile
+    environment:
+      NEXT_PUBLIC_API_URL: http://localhost:8000
+    depends_on: [api]
+    ports:
+      - "3000:3000"
+    profiles: ["full"]
+
+volumes:
+  escudo_pg:
+  escudo_evidence:

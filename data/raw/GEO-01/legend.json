@@ -1,0 +1,48 @@
+{"Legend": [{
+  "layerName": "riesgo_3_1",
+  "title": "R. por incendios forestales",
+  "rules": [{"symbolizers": [{"Raster":   {
+    "colormap":     {
+      "entries":       [
+                {
+          "label": "Sin Riesgo",
+          "quantity": "0",
+          "color": "#EDFFBA",
+          "opacity": "0.0"
+        },
+                {
+          "label": "Riesgo muy bajo",
+          "quantity": "1",
+          "color": "#2C7BB6"
+        },
+                {
+          "label": "Riesgo bajo",
+          "quantity": "2",
+          "color": "#ABD9E9"
+        },
+                {
+          "label": "Riesgo moderado",
+          "quantity": "3",
+          "color": "#FFFFBF"
+        },
+                {
+          "label": "Riesgo alto",
+          "quantity": "4",
+          "color": "#FDAE61"
+        },
+                {
+          "label": "Riesgo muy alto",
+          "quantity": "5",
+          "color": "#D7191C"
+        },
+                {
+          "label": "Riesgo no calculado",
+          "quantity": "99",
+          "color": "#DBDDDF"
+        }
+      ],
+      "type": "values"
+    },
+    "opacity": "1.0"
+  }}]}]
+}]}

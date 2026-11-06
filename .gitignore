@@ -1,0 +1,36 @@
+# Entornos y secretos
+.venv/
+.env
+*.env.local
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+htmlcov/
+.coverage
+
+# Datos crudos: se versiona solo manifest.json (URL + SHA-256); el binario se re-descarga con fetch
+data/raw/**/*
+!data/raw/**/
+!data/raw/**/manifest.json
+!data/raw/**/legend.json
+!data/raw/**/*.iso19139.xml
+
+# Almacenamiento local de evidencias (privado)
+var/
+var_*
+*.log
+
+# Web
+apps/web/node_modules/
+apps/web/.next/
+apps/web/out/
+apps/web/test-results/
+apps/web/playwright-report/
+node_modules/
+.gstack/
+
+# Herramientas locales
+.gstack/
+apps/web/tsconfig.tsbuildinfo

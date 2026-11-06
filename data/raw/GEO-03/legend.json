@@ -1,0 +1,48 @@
+{"Legend": [{
+  "layerName": "vulnera_3_1",
+  "title": "V. por incendios forestales",
+  "rules": [{"symbolizers": [{"Raster":   {
+    "colormap":     {
+      "entries":       [
+                {
+          "label": "Sin Vulnerabilidad",
+          "quantity": "0",
+          "color": "#EDFFBA",
+          "opacity": "0.0"
+        },
+                {
+          "label": "Vulnerabilidad muy baja",
+          "quantity": "1",
+          "color": "#359420"
+        },
+                {
+          "label": "Vulnerabilidad baja",
+          "quantity": "2",
+          "color": "#4CE600"
+        },
+                {
+          "label": "Vulnerabilidad moderada",
+          "quantity": "3",
+          "color": "#FFA500"
+        },
+                {
+          "label": "Vulnerabilidad alta",
+          "quantity": "4",
+          "color": "#FF0000"
+        },
+                {
+          "label": "Vulnerabilidad muy alta",
+          "quantity": "5",
+          "color": "#800000"
+        },
+                {
+          "label": "Vulnerabilidad no calculada",
+          "quantity": "99",
+          "color": "#DBDDDF"
+        }
+      ],
+      "type": "values"
+    },
+    "opacity": "1.0"
+  }}]}]
+}]}

@@ -1,0 +1,17 @@
+{
+  "source_id": "CAM-02",
+  "ckan_id": "1930748",
+  "title": "Densidad de población. Municipios",
+  "catalog_url": "https://datos.comunidad.madrid/dataset/1930748",
+  "resource_id": "58ffa899-970e-4559-9e8a-550e21b29b3c",
+  "resource_url": "https://datos.comunidad.madrid/dataset/81592bc2-a5c0-423a-88b2-82ced433f290/resource/58ffa899-970e-4559-9e8a-550e21b29b3c/download/densidad-de-poblacion.-municipios.csv",
+  "format": "CSV",
+  "file": "densidad-de-poblacion.-municipios.csv",
+  "bytes": 464475,
+  "sha256": "89d3248773adfcf27bb0e2aa1757b4d3ccd98246ca7a4acd6d017df5c70ffa7f",
+  "license_id": "cc-by",
+  "license_title": "Creative Commons Attribution",
+  "portal_metadata_modified": "2026-11-05T18:02:53.836874",
+  "resource_last_modified": "2026-11-05T18:02:53.355380",
+  "extracted_at": "2026-11-06T18:53:24+00:00"
+}

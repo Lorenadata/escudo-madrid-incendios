@@ -1,0 +1,48 @@
+{"Legend": [{
+  "layerName": "peligrosid_3_1",
+  "title": "P. por incendios forestales",
+  "rules": [{"symbolizers": [{"Raster":   {
+    "colormap":     {
+      "entries":       [
+                {
+          "label": "Sin peligro",
+          "quantity": "0",
+          "color": "#EDFFBA",
+          "opacity": "0.0"
+        },
+                {
+          "label": "Peligrosidad muy baja",
+          "quantity": "1",
+          "color": "#2C7BB6"
+        },
+                {
+          "label": "Peligrosidad baja",
+          "quantity": "2",
+          "color": "#ABD9E9"
+        },
+                {
+          "label": "Peligrosidad moderada",
+          "quantity": "3",
+          "color": "#FFFFBF"
+        },
+                {
+          "label": "Peligrosidad alta",
+          "quantity": "4",
+          "color": "#FDAE61"
+        },
+                {
+          "label": "Peligrosidad muy alta",
+          "quantity": "5",
+          "color": "#D7191C"
+        },
+                {
+          "label": "Peligrosidad no calculada",
+          "quantity": "99",
+          "color": "#DBDDDF"
+        }
+      ],
+      "type": "values"
+    },
+    "opacity": "1.0"
+  }}]}]
+}]}

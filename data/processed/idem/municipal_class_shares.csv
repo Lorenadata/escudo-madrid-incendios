@@ -1,0 +1,2940 @@
+ine_code,layer,class_label,class_code,area_ha,area_share
+28001,risk,Riesgo bajo,2,5.78,0.002643
+28001,risk,Riesgo moderado,3,26.72,0.012219
+28001,risk,Riesgo alto,4,969.75,0.443465
+28001,risk,Riesgo muy alto,5,1179.44,0.539352
+28001,risk,Riesgo no calculado,99,2.48,0.001136
+28002,risk,Riesgo muy bajo,1,1187.76,0.599397
+28002,risk,Riesgo bajo,2,449.74,0.226959
+28002,risk,Riesgo moderado,3,242.64,0.122446
+28002,risk,Riesgo alto,4,41.08,0.02073
+28002,risk,Riesgo muy alto,5,15.7,0.007923
+28002,risk,Riesgo no calculado,99,42.55,0.02147
+28003,risk,Riesgo muy bajo,1,26.51,0.010326
+28003,risk,Riesgo bajo,2,82.71,0.032217
+28003,risk,Riesgo moderado,3,302.76,0.117929
+28003,risk,Riesgo alto,4,1276.48,0.497201
+28003,risk,Riesgo muy alto,5,874.01,0.340433
+28003,risk,Riesgo no calculado,99,2.74,0.001066
+28004,risk,Riesgo muy bajo,1,1154.54,0.525489
+28004,risk,Riesgo bajo,2,567.65,0.258364
+28004,risk,Riesgo moderado,3,137.15,0.062421
+28004,risk,Riesgo alto,4,201.93,0.091907
+28004,risk,Riesgo muy alto,5,113.88,0.05183
+28004,risk,Riesgo no calculado,99,20.16,0.009174
+28005,risk,Riesgo muy bajo,1,3421.29,0.388222
+28005,risk,Riesgo bajo,2,1262.23,0.143228
+28005,risk,Riesgo moderado,3,1366.02,0.155005
+28005,risk,Riesgo alto,4,1221.32,0.138586
+28005,risk,Riesgo muy alto,5,1219.98,0.138434
+28005,risk,Riesgo no calculado,99,317.46,0.036023
+28006,risk,Riesgo muy bajo,1,1790.8,0.396244
+28006,risk,Riesgo bajo,2,1157.9,0.256206
+28006,risk,Riesgo moderado,3,443.45,0.098121
+28006,risk,Riesgo alto,4,419.65,0.092854
+28006,risk,Riesgo muy alto,5,386.98,0.085626
+28006,risk,Riesgo no calculado,99,317.24,0.070195
+28007,risk,Riesgo muy bajo,1,515.78,0.153546
+28007,risk,Riesgo bajo,2,883.72,0.263083
+28007,risk,Riesgo moderado,3,1248.37,0.371637
+28007,risk,Riesgo alto,4,216.76,0.064528
+28007,risk,Riesgo muy alto,5,245.44,0.073066
+28007,risk,Riesgo no calculado,99,248.03,0.07384
+28008,risk,Riesgo muy bajo,1,36.03,0.006978
+28008,risk,Riesgo bajo,2,97.63,0.018909
+28008,risk,Riesgo moderado,3,960.34,0.186005
+28008,risk,Riesgo alto,4,996.61,0.193029
+28008,risk,Riesgo muy alto,5,3032.34,0.587323
+28008,risk,Riesgo no calculado,99,37.42,0.007249
+28009,risk,Riesgo muy bajo,1,1561.84,0.411031
+28009,risk,Riesgo bajo,2,495.23,0.130331
+28009,risk,Riesgo moderado,3,854.48,0.224873
+28009,risk,Riesgo alto,4,320.95,0.084466
+28009,risk,Riesgo muy alto,5,343.43,0.090381
+28009,risk,Riesgo no calculado,99,222.53,0.058565
+28010,risk,Riesgo muy bajo,1,43.48,0.034361
+28010,risk,Riesgo bajo,2,126.73,0.100149
+28010,risk,Riesgo moderado,3,304.12,0.240329
+28010,risk,Riesgo alto,4,206.19,0.162937
+28010,risk,Riesgo muy alto,5,566.1,0.447349
+28010,risk,Riesgo no calculado,99,17.73,0.014007
+28011,risk,Riesgo muy bajo,1,380.84,0.147702
+28011,risk,Riesgo bajo,2,330.67,0.128245
+28011,risk,Riesgo moderado,3,302.75,0.117417
+28011,risk,Riesgo alto,4,183.71,0.071249
+28011,risk,Riesgo muy alto,5,1350.35,0.523706
+28011,risk,Riesgo no calculado,99,26.69,0.010352
+28012,risk,Riesgo muy bajo,1,1062.11,0.491858
+28012,risk,Riesgo bajo,2,109.75,0.050822
+28012,risk,Riesgo moderado,3,238.13,0.110278
+28012,risk,Riesgo alto,4,235.64,0.109124
+28012,risk,Riesgo muy alto,5,499.48,0.231307
+28012,risk,Riesgo no calculado,99,14.18,0.006566
+28013,risk,Riesgo muy bajo,1,6387.66,0.337819
+28013,risk,Riesgo bajo,2,2187.19,0.115672
+28013,risk,Riesgo moderado,3,3429.5,0.181373
+28013,risk,Riesgo alto,4,3553.43,0.187927
+28013,risk,Riesgo muy alto,5,2983.8,0.157802
+28013,risk,Riesgo no calculado,99,333.14,0.017619
+28014,risk,Riesgo muy bajo,1,30.59,0.00381
+28014,risk,Riesgo bajo,2,1045.72,0.130246
+28014,risk,Riesgo moderado,3,3500.86,0.436039
+28014,risk,Riesgo alto,4,452.73,0.056388
+28014,risk,Riesgo muy alto,5,2569.8,0.320074
+28014,risk,Riesgo no calculado,99,427.21,0.05321
+28015,risk,Riesgo muy bajo,1,455.33,0.21909
+28015,risk,Riesgo bajo,2,262.68,0.126393
+28015,risk,Riesgo moderado,3,633.1,0.304625
+28015,risk,Riesgo alto,4,408.28,0.196447
+28015,risk,Riesgo muy alto,5,242.83,0.11684
+28015,risk,Riesgo no calculado,99,71.62,0.034462
+28016,risk,Riesgo muy bajo,1,188.12,0.066132
+28016,risk,Riesgo bajo,2,79.75,0.028034
+28016,risk,Riesgo moderado,3,30.48,0.010713
+28016,risk,Riesgo alto,4,390.33,0.137214
+28016,risk,Riesgo muy alto,5,2147.67,0.754983
+28016,risk,Riesgo no calculado,99,3.13,0.001101
+28017,risk,Riesgo muy bajo,1,313.29,0.146549
+28017,risk,Riesgo bajo,2,175.49,0.082089
+28017,risk,Riesgo moderado,3,454.18,0.212456
+28017,risk,Riesgo alto,4,369.62,0.172903
+28017,risk,Riesgo muy alto,5,808.75,0.378314
+28017,risk,Riesgo no calculado,99,13.22,0.006185
+28018,risk,Riesgo muy bajo,1,2.38,0.000802
+28018,risk,Riesgo bajo,2,207.2,0.069858
+28018,risk,Riesgo moderado,3,221.35,0.074629
+28018,risk,Riesgo alto,4,639.77,0.215701
+28018,risk,Riesgo muy alto,5,1877.98,0.633166
+28018,risk,Riesgo no calculado,99,15.35,0.005174
+28019,risk,Riesgo muy bajo,1,1035.07,0.430874
+28019,risk,Riesgo bajo,2,424.52,0.176716
+28019,risk,Riesgo moderado,3,349.74,0.145587
+28019,risk,Riesgo alto,4,214.11,0.089129
+28019,risk,Riesgo muy alto,5,364.3,0.15165
+28019,risk,Riesgo no calculado,99,13.8,0.005747
+28020,risk,Riesgo muy bajo,1,22.23,0.015219
+28020,risk,Riesgo bajo,2,49.47,0.033865
+28020,risk,Riesgo moderado,3,58.07,0.039749
+28020,risk,Riesgo alto,4,452.88,0.310004
+28020,risk,Riesgo muy alto,5,869.57,0.59524
+28020,risk,Riesgo no calculado,99,7.82,0.005355
+28021,risk,Riesgo muy bajo,1,124.28,0.043677
+28021,risk,Riesgo bajo,2,92.74,0.032594
+28021,risk,Riesgo moderado,3,250.69,0.088103
+28021,risk,Riesgo alto,4,638.45,0.224379
+28021,risk,Riesgo muy alto,5,1717.44,0.603583
+28021,risk,Riesgo no calculado,99,18.67,0.006562
+28022,risk,Riesgo muy bajo,1,1.57,0.000331
+28022,risk,Riesgo bajo,2,1600.1,0.337647
+28022,risk,Riesgo moderado,3,525.69,0.11093
+28022,risk,Riesgo alto,4,478.6,0.100992
+28022,risk,Riesgo muy alto,5,1787.59,0.377213
+28022,risk,Riesgo no calculado,99,343.29,0.07244
+28023,risk,Riesgo muy bajo,1,14.13,0.003588
+28023,risk,Riesgo bajo,2,219.16,0.055638
+28023,risk,Riesgo moderado,3,340.7,0.086492
+28023,risk,Riesgo alto,4,1175.52,0.29842
+28023,risk,Riesgo muy alto,5,2148.41,0.5454
+28023,risk,Riesgo no calculado,99,36.27,0.009207
+28024,risk,Riesgo bajo,2,10.98,0.004407
+28024,risk,Riesgo moderado,3,122.68,0.049243
+28024,risk,Riesgo alto,4,1599.44,0.642011
+28024,risk,Riesgo muy alto,5,755.7,0.303336
+28024,risk,Riesgo no calculado,99,2.21,0.000888
+28025,risk,Riesgo bajo,2,2295.98,0.513884
+28025,risk,Riesgo moderado,3,481.23,0.107707
+28025,risk,Riesgo alto,4,464.56,0.103977
+28025,risk,Riesgo muy alto,5,1187.24,0.265728
+28025,risk,Riesgo no calculado,99,36.22,0.008107
+28026,risk,Riesgo muy bajo,1,0.5,0.000102
+28026,risk,Riesgo bajo,2,260.43,0.052969
+28026,risk,Riesgo moderado,3,2935.14,0.596982
+28026,risk,Riesgo alto,4,380.22,0.077333
+28026,risk,Riesgo muy alto,5,1256.16,0.255493
+28026,risk,Riesgo no calculado,99,83.01,0.016884
+28027,risk,Riesgo muy bajo,1,70.04,0.027005
+28027,risk,Riesgo bajo,2,139.96,0.053966
+28027,risk,Riesgo moderado,3,140.32,0.054104
+28027,risk,Riesgo alto,4,1467.28,0.565752
+28027,risk,Riesgo muy alto,5,755.76,0.291405
+28027,risk,Riesgo no calculado,99,16.71,0.006442
+28028,risk,Riesgo bajo,2,40.43,0.0072
+28028,risk,Riesgo moderado,3,550.52,0.098041
+28028,risk,Riesgo alto,4,1658.18,0.295304
+28028,risk,Riesgo muy alto,5,3328.71,0.592806
+28028,risk,Riesgo no calculado,99,35.54,0.006329
+28029,risk,Riesgo bajo,2,0.96,0.000694
+28029,risk,Riesgo moderado,3,139.87,0.101345
+28029,risk,Riesgo alto,4,383.88,0.278151
+28029,risk,Riesgo muy alto,5,804.89,0.583195
+28029,risk,Riesgo no calculado,99,49.42,0.035812
+28030,risk,Riesgo bajo,2,1.46,0.00066
+28030,risk,Riesgo moderado,3,198.28,0.089541
+28030,risk,Riesgo alto,4,153.18,0.069177
+28030,risk,Riesgo muy alto,5,1821.08,0.82239
+28030,risk,Riesgo no calculado,99,40.15,0.018129
+28031,risk,Riesgo muy bajo,1,2.62,0.000547
+28031,risk,Riesgo bajo,2,85.85,0.017941
+28031,risk,Riesgo moderado,3,1845.62,0.385702
+28031,risk,Riesgo alto,4,590.78,0.123462
+28031,risk,Riesgo muy alto,5,2227.4,0.465488
+28031,risk,Riesgo no calculado,99,29.4,0.006144
+28032,risk,Riesgo muy bajo,1,2284.01,0.649874
+28032,risk,Riesgo bajo,2,498.57,0.141861
+28032,risk,Riesgo moderado,3,273.61,0.077851
+28032,risk,Riesgo alto,4,163.33,0.046472
+28032,risk,Riesgo muy alto,5,274.46,0.078093
+28032,risk,Riesgo no calculado,99,20.14,0.00573
+28033,risk,Riesgo muy bajo,1,1147.66,0.185825
+28033,risk,Riesgo bajo,2,460.33,0.074535
+28033,risk,Riesgo moderado,3,2929.0,0.474252
+28033,risk,Riesgo alto,4,229.29,0.037126
+28033,risk,Riesgo muy alto,5,1361.78,0.220494
+28033,risk,Riesgo no calculado,99,45.97,0.007443
+28034,risk,Riesgo muy bajo,1,0.28,5.1e-05
+28034,risk,Riesgo bajo,2,30.07,0.005549
+28034,risk,Riesgo moderado,3,111.82,0.020633
+28034,risk,Riesgo alto,4,2083.7,0.384471
+28034,risk,Riesgo muy alto,5,3189.64,0.588532
+28034,risk,Riesgo no calculado,99,2.19,0.000404
+28035,risk,Riesgo muy bajo,1,174.49,0.03664
+28035,risk,Riesgo bajo,2,1355.4,0.284605
+28035,risk,Riesgo moderado,3,710.91,0.149276
+28035,risk,Riesgo alto,4,499.73,0.104932
+28035,risk,Riesgo muy alto,5,1977.23,0.415176
+28035,risk,Riesgo no calculado,99,42.78,0.008983
+28036,risk,Riesgo muy bajo,1,278.04,0.521668
+28036,risk,Riesgo bajo,2,105.89,0.198678
+28036,risk,Riesgo moderado,3,97.95,0.18379
+28036,risk,Riesgo alto,4,38.06,0.07142
+28036,risk,Riesgo muy alto,5,3.71,0.006952
+28036,risk,Riesgo no calculado,99,7.46,0.013988
+28037,risk,Riesgo muy bajo,1,16.61,0.002433
+28037,risk,Riesgo bajo,2,227.11,0.033273
+28037,risk,Riesgo moderado,3,1120.87,0.164215
+28037,risk,Riesgo alto,4,1238.69,0.181477
+28037,risk,Riesgo muy alto,5,4200.77,0.61544
+28037,risk,Riesgo no calculado,99,13.0,0.001904
+28038,risk,Riesgo muy bajo,1,7.58,0.001857
+28038,risk,Riesgo bajo,2,99.75,0.024454
+28038,risk,Riesgo moderado,3,960.28,0.235404
+28038,risk,Riesgo alto,4,2222.0,0.544704
+28038,risk,Riesgo muy alto,5,761.69,0.186723
+28038,risk,Riesgo no calculado,99,25.02,0.006132
+28039,risk,Riesgo muy bajo,1,348.6,0.302158
+28039,risk,Riesgo bajo,2,19.77,0.017134
+28039,risk,Riesgo moderado,3,13.29,0.011524
+28039,risk,Riesgo alto,4,294.06,0.25488
+28039,risk,Riesgo muy alto,5,474.39,0.411192
+28039,risk,Riesgo no calculado,99,0.43,0.000371
+28040,risk,Riesgo muy bajo,1,1817.26,0.367494
+28040,risk,Riesgo bajo,2,407.49,0.082404
+28040,risk,Riesgo moderado,3,1675.68,0.338864
+28040,risk,Riesgo alto,4,444.17,0.089822
+28040,risk,Riesgo muy alto,5,425.66,0.086079
+28040,risk,Riesgo no calculado,99,170.41,0.03446
+28041,risk,Riesgo muy bajo,1,1129.84,0.543587
+28041,risk,Riesgo bajo,2,274.68,0.132152
+28041,risk,Riesgo moderado,3,353.72,0.170183
+28041,risk,Riesgo alto,4,86.45,0.041594
+28041,risk,Riesgo muy alto,5,192.37,0.092552
+28041,risk,Riesgo no calculado,99,41.12,0.019786
+28042,risk,Riesgo muy bajo,1,82.22,0.01668
+28042,risk,Riesgo bajo,2,40.66,0.008249
+28042,risk,Riesgo moderado,3,439.94,0.089248
+28042,risk,Riesgo alto,4,875.05,0.17752
+28042,risk,Riesgo muy alto,5,3451.97,0.700291
+28042,risk,Riesgo no calculado,99,36.73,0.007451
+28043,risk,Riesgo muy bajo,1,1898.62,0.150346
+28043,risk,Riesgo bajo,2,1522.76,0.120583
+28043,risk,Riesgo moderado,3,5134.07,0.406553
+28043,risk,Riesgo alto,4,804.25,0.063687
+28043,risk,Riesgo muy alto,5,3100.33,0.245506
+28043,risk,Riesgo no calculado,99,156.21,0.01237
+28044,risk,Riesgo muy bajo,1,154.9,0.049178
+28044,risk,Riesgo bajo,2,101.01,0.032071
+28044,risk,Riesgo moderado,3,205.39,0.06521
+28044,risk,Riesgo alto,4,521.09,0.165441
+28044,risk,Riesgo muy alto,5,2141.93,0.680045
+28044,risk,Riesgo no calculado,99,24.38,0.007741
+28045,risk,Riesgo muy bajo,1,121.58,0.006649
+28045,risk,Riesgo bajo,2,915.59,0.05007
+28045,risk,Riesgo moderado,3,2006.14,0.109708
+28045,risk,Riesgo alto,4,8599.76,0.470287
+28045,risk,Riesgo muy alto,5,6382.9,0.349055
+28045,risk,Riesgo no calculado,99,254.96,0.013942
+28046,risk,Riesgo bajo,2,74.59,0.033617
+28046,risk,Riesgo moderado,3,304.99,0.13746
+28046,risk,Riesgo alto,4,523.19,0.235808
+28046,risk,Riesgo muy alto,5,1306.59,0.588894
+28046,risk,Riesgo no calculado,99,8.99,0.004053
+28047,risk,Riesgo muy bajo,1,177.12,0.070359
+28047,risk,Riesgo bajo,2,379.33,0.150682
+28047,risk,Riesgo moderado,3,397.54,0.157913
+28047,risk,Riesgo alto,4,636.51,0.252838
+28047,risk,Riesgo muy alto,5,882.94,0.350727
+28047,risk,Riesgo no calculado,99,43.82,0.017405
+28048,risk,Riesgo muy bajo,1,1330.23,0.512412
+28048,risk,Riesgo bajo,2,121.11,0.046654
+28048,risk,Riesgo moderado,3,406.32,0.156517
+28048,risk,Riesgo alto,4,182.52,0.070307
+28048,risk,Riesgo muy alto,5,552.38,0.212782
+28048,risk,Riesgo no calculado,99,2.59,0.000999
+28049,risk,Riesgo muy bajo,1,750.83,0.626009
+28049,risk,Riesgo bajo,2,204.59,0.170575
+28049,risk,Riesgo moderado,3,47.16,0.039316
+28049,risk,Riesgo alto,4,44.48,0.03709
+28049,risk,Riesgo muy alto,5,6.64,0.00554
+28049,risk,Riesgo no calculado,99,144.83,0.120751
+28050,risk,Riesgo muy bajo,1,626.78,0.485952
+28050,risk,Riesgo bajo,2,351.91,0.27284
+28050,risk,Riesgo moderado,3,190.92,0.148021
+28050,risk,Riesgo alto,4,80.46,0.062382
+28050,risk,Riesgo muy alto,5,12.03,0.009327
+28050,risk,Riesgo no calculado,99,25.89,0.020069
+28051,risk,Riesgo muy bajo,1,0.1,3.9e-05
+28051,risk,Riesgo bajo,2,17.33,0.00678
+28051,risk,Riesgo moderado,3,211.82,0.082885
+28051,risk,Riesgo alto,4,116.93,0.045754
+28051,risk,Riesgo muy alto,5,2182.98,0.854201
+28051,risk,Riesgo no calculado,99,26.39,0.010326
+28052,risk,Riesgo muy bajo,1,102.54,0.00886
+28052,risk,Riesgo bajo,2,321.25,0.027759
+28052,risk,Riesgo moderado,3,5594.78,0.483439
+28052,risk,Riesgo alto,4,666.07,0.057554
+28052,risk,Riesgo muy alto,5,4769.32,0.412112
+28052,risk,Riesgo no calculado,99,118.65,0.010252
+28053,risk,Riesgo muy bajo,1,2840.21,0.654236
+28053,risk,Riesgo bajo,2,705.34,0.162474
+28053,risk,Riesgo moderado,3,426.02,0.098132
+28053,risk,Riesgo alto,4,207.01,0.047684
+28053,risk,Riesgo muy alto,5,135.89,0.031302
+28053,risk,Riesgo no calculado,99,24.88,0.005731
+28054,risk,Riesgo muy bajo,1,83.88,0.012192
+28054,risk,Riesgo bajo,2,348.79,0.050699
+28054,risk,Riesgo moderado,3,606.51,0.088161
+28054,risk,Riesgo alto,4,960.51,0.139617
+28054,risk,Riesgo muy alto,5,4801.2,0.697887
+28054,risk,Riesgo no calculado,99,75.55,0.010982
+28055,risk,Riesgo muy bajo,1,3078.0,0.388902
+28055,risk,Riesgo bajo,2,2696.93,0.340755
+28055,risk,Riesgo moderado,3,401.86,0.050774
+28055,risk,Riesgo alto,4,808.16,0.102111
+28055,risk,Riesgo muy alto,5,838.16,0.1059
+28055,risk,Riesgo no calculado,99,82.6,0.010437
+28056,risk,Riesgo bajo,2,2.73,0.000965
+28056,risk,Riesgo moderado,3,66.59,0.02351
+28056,risk,Riesgo alto,4,111.66,0.039419
+28056,risk,Riesgo muy alto,5,2632.21,0.929269
+28056,risk,Riesgo no calculado,99,18.46,0.006519
+28057,risk,Riesgo muy bajo,1,1870.11,0.588666
+28057,risk,Riesgo bajo,2,480.03,0.151102
+28057,risk,Riesgo moderado,3,147.69,0.046491
+28057,risk,Riesgo alto,4,285.92,0.09
+28057,risk,Riesgo muy alto,5,382.4,0.120371
+28057,risk,Riesgo no calculado,99,8.99,0.002829
+28058,risk,Riesgo muy bajo,1,1727.84,0.44027
+28058,risk,Riesgo bajo,2,1155.18,0.294353
+28058,risk,Riesgo moderado,3,627.68,0.15994
+28058,risk,Riesgo alto,4,179.04,0.045622
+28058,risk,Riesgo muy alto,5,26.54,0.006763
+28058,risk,Riesgo no calculado,99,203.04,0.051737
+28059,risk,Riesgo muy bajo,1,2010.97,0.607012
+28059,risk,Riesgo bajo,2,269.44,0.08133
+28059,risk,Riesgo moderado,3,639.72,0.193099
+28059,risk,Riesgo alto,4,245.42,0.07408
+28059,risk,Riesgo muy alto,5,90.87,0.027428
+28059,risk,Riesgo no calculado,99,56.36,0.017012
+28060,risk,Riesgo muy bajo,1,1360.37,0.226137
+28060,risk,Riesgo bajo,2,1380.78,0.229529
+28060,risk,Riesgo moderado,3,900.99,0.149773
+28060,risk,Riesgo alto,4,647.98,0.107715
+28060,risk,Riesgo muy alto,5,1645.72,0.27357
+28060,risk,Riesgo no calculado,99,77.36,0.01286
+28061,risk,Riesgo muy bajo,1,90.31,0.013857
+28061,risk,Riesgo bajo,2,654.15,0.100374
+28061,risk,Riesgo moderado,3,809.32,0.124184
+28061,risk,Riesgo alto,4,1780.3,0.273173
+28061,risk,Riesgo muy alto,5,3101.9,0.475963
+28061,risk,Riesgo no calculado,99,78.95,0.012115
+28062,risk,Riesgo muy bajo,1,40.58,0.010061
+28062,risk,Riesgo bajo,2,64.68,0.016036
+28062,risk,Riesgo moderado,3,199.39,0.049434
+28062,risk,Riesgo alto,4,1701.67,0.421882
+28062,risk,Riesgo muy alto,5,2002.22,0.496395
+28062,risk,Riesgo no calculado,99,23.7,0.005876
+28063,risk,Riesgo muy bajo,1,114.22,0.04727
+28063,risk,Riesgo bajo,2,100.67,0.041666
+28063,risk,Riesgo moderado,3,310.24,0.128397
+28063,risk,Riesgo alto,4,970.48,0.401645
+28063,risk,Riesgo muy alto,5,904.66,0.374406
+28063,risk,Riesgo no calculado,99,15.52,0.006421
+28064,risk,Riesgo muy bajo,1,0.01,7e-06
+28064,risk,Riesgo bajo,2,3.78,0.001882
+28064,risk,Riesgo moderado,3,216.01,0.107607
+28064,risk,Riesgo alto,4,1168.12,0.581894
+28064,risk,Riesgo muy alto,5,610.58,0.304155
+28064,risk,Riesgo no calculado,99,8.57,0.004269
+28065,risk,Riesgo muy bajo,1,3050.32,0.388142
+28065,risk,Riesgo bajo,2,1606.34,0.2044
+28065,risk,Riesgo moderado,3,1308.26,0.166472
+28065,risk,Riesgo alto,4,676.49,0.086081
+28065,risk,Riesgo muy alto,5,539.86,0.068695
+28065,risk,Riesgo no calculado,99,676.98,0.086143
+28066,risk,Riesgo muy bajo,1,895.0,0.524483
+28066,risk,Riesgo bajo,2,266.08,0.155926
+28066,risk,Riesgo moderado,3,255.59,0.149782
+28066,risk,Riesgo alto,4,206.54,0.121035
+28066,risk,Riesgo muy alto,5,54.09,0.031699
+28066,risk,Riesgo no calculado,99,29.09,0.01705
+28067,risk,Riesgo muy bajo,1,296.6,0.049236
+28067,risk,Riesgo bajo,2,135.19,0.022442
+28067,risk,Riesgo moderado,3,518.41,0.086057
+28067,risk,Riesgo alto,4,2628.91,0.436407
+28067,risk,Riesgo muy alto,5,2407.99,0.399733
+28067,risk,Riesgo no calculado,99,36.34,0.006033
+28068,risk,Riesgo muy bajo,1,17.01,0.002975
+28068,risk,Riesgo bajo,2,215.44,0.03767
+28068,risk,Riesgo moderado,3,665.61,0.11638
+28068,risk,Riesgo alto,4,1349.95,0.236037
+28068,risk,Riesgo muy alto,5,3370.99,0.58941
+28068,risk,Riesgo no calculado,99,96.53,0.016877
+28069,risk,Riesgo bajo,2,4.47,0.00261
+28069,risk,Riesgo moderado,3,13.12,0.007669
+28069,risk,Riesgo alto,4,417.43,0.243897
+28069,risk,Riesgo muy alto,5,1271.38,0.742856
+28069,risk,Riesgo no calculado,99,0.38,0.000219
+28070,risk,Riesgo bajo,2,1.11,0.000525
+28070,risk,Riesgo moderado,3,152.19,0.071781
+28070,risk,Riesgo alto,4,417.07,0.196719
+28070,risk,Riesgo muy alto,5,1527.82,0.720617
+28070,risk,Riesgo no calculado,99,19.02,0.008972
+28071,risk,Riesgo bajo,2,1.5,0.000629
+28071,risk,Riesgo moderado,3,7.11,0.00298
+28071,risk,Riesgo alto,4,735.17,0.308197
+28071,risk,Riesgo muy alto,5,1639.37,0.687251
+28071,risk,Riesgo no calculado,99,0.51,0.000214
+28072,risk,Riesgo muy bajo,1,26.43,0.00584
+28072,risk,Riesgo bajo,2,273.84,0.060514
+28072,risk,Riesgo moderado,3,340.71,0.075289
+28072,risk,Riesgo alto,4,1486.37,0.328457
+28072,risk,Riesgo muy alto,5,2373.21,0.52443
+28072,risk,Riesgo no calculado,99,23.81,0.005261
+28073,risk,Riesgo muy bajo,1,1277.83,0.648932
+28073,risk,Riesgo bajo,2,291.66,0.148115
+28073,risk,Riesgo moderado,3,259.95,0.132011
+28073,risk,Riesgo alto,4,78.4,0.039813
+28073,risk,Riesgo muy alto,5,12.9,0.00655
+28073,risk,Riesgo no calculado,99,47.03,0.023886
+28074,risk,Riesgo muy bajo,1,2329.64,0.539314
+28074,risk,Riesgo bajo,2,960.21,0.222289
+28074,risk,Riesgo moderado,3,400.32,0.092675
+28074,risk,Riesgo alto,4,295.2,0.068339
+28074,risk,Riesgo muy alto,5,13.63,0.003156
+28074,risk,Riesgo no calculado,99,320.63,0.074227
+28075,risk,Riesgo muy bajo,1,954.94,0.21543
+28075,risk,Riesgo bajo,2,329.75,0.07439
+28075,risk,Riesgo moderado,3,1505.98,0.339742
+28075,risk,Riesgo alto,4,253.14,0.057108
+28075,risk,Riesgo muy alto,5,1241.96,0.28018
+28075,risk,Riesgo no calculado,99,146.81,0.03312
+28076,risk,Riesgo muy bajo,1,267.43,0.046353
+28076,risk,Riesgo bajo,2,116.35,0.020166
+28076,risk,Riesgo moderado,3,205.96,0.035697
+28076,risk,Riesgo alto,4,1905.96,0.33035
+28076,risk,Riesgo muy alto,5,3263.9,0.565715
+28076,risk,Riesgo no calculado,99,7.48,0.001296
+28078,risk,Riesgo bajo,2,2.9,0.003398
+28078,risk,Riesgo moderado,3,49.15,0.057484
+28078,risk,Riesgo alto,4,163.79,0.191585
+28078,risk,Riesgo muy alto,5,637.55,0.745729
+28078,risk,Riesgo no calculado,99,0.68,0.000792
+28079,risk,Riesgo muy bajo,1,22866.69,0.378304
+28079,risk,Riesgo bajo,2,9127.22,0.151
+28079,risk,Riesgo moderado,3,5960.94,0.098617
+28079,risk,Riesgo alto,4,13190.86,0.218228
+28079,risk,Riesgo muy alto,5,6837.73,0.113123
+28079,risk,Riesgo no calculado,99,2457.62,0.040659
+28080,risk,Riesgo muy bajo,1,437.77,0.113654
+28080,risk,Riesgo bajo,2,747.67,0.194108
+28080,risk,Riesgo moderado,3,1028.5,0.267016
+28080,risk,Riesgo alto,4,470.04,0.122031
+28080,risk,Riesgo muy alto,5,1086.28,0.282016
+28080,risk,Riesgo no calculado,99,81.31,0.021109
+28082,risk,Riesgo muy bajo,1,1478.12,0.115175
+28082,risk,Riesgo bajo,2,556.12,0.043332
+28082,risk,Riesgo moderado,3,2887.49,0.224992
+28082,risk,Riesgo alto,4,3861.6,0.300895
+28082,risk,Riesgo muy alto,5,4028.88,0.313929
+28082,risk,Riesgo no calculado,99,21.28,0.001658
+28083,risk,Riesgo muy bajo,1,2183.7,0.624876
+28083,risk,Riesgo bajo,2,443.82,0.127001
+28083,risk,Riesgo moderado,3,401.88,0.115001
+28083,risk,Riesgo alto,4,249.69,0.071449
+28083,risk,Riesgo muy alto,5,73.08,0.020914
+28083,risk,Riesgo no calculado,99,139.78,0.039997
+28084,risk,Riesgo muy bajo,1,805.64,0.450002
+28084,risk,Riesgo bajo,2,210.95,0.117831
+28084,risk,Riesgo moderado,3,299.01,0.167018
+28084,risk,Riesgo alto,4,209.75,0.117162
+28084,risk,Riesgo muy alto,5,172.55,0.096379
+28084,risk,Riesgo no calculado,99,90.66,0.050639
+28085,risk,Riesgo muy bajo,1,7.31,0.001296
+28085,risk,Riesgo bajo,2,54.02,0.009581
+28085,risk,Riesgo moderado,3,287.6,0.051004
+28085,risk,Riesgo alto,4,2398.2,0.425317
+28085,risk,Riesgo muy alto,5,2708.02,0.480262
+28085,risk,Riesgo no calculado,99,183.15,0.03248
+28086,risk,Riesgo muy bajo,1,733.22,0.146136
+28086,risk,Riesgo bajo,2,308.26,0.061438
+28086,risk,Riesgo moderado,3,1238.81,0.246903
+28086,risk,Riesgo alto,4,648.91,0.129334
+28086,risk,Riesgo muy alto,5,1961.03,0.390847
+28086,risk,Riesgo no calculado,99,123.35,0.024584
+28087,risk,Riesgo muy bajo,1,0.16,8.2e-05
+28087,risk,Riesgo bajo,2,20.05,0.01046
+28087,risk,Riesgo moderado,3,385.57,0.201105
+28087,risk,Riesgo alto,4,651.48,0.339791
+28087,risk,Riesgo muy alto,5,857.68,0.447343
+28087,risk,Riesgo no calculado,99,2.29,0.001194
+28088,risk,Riesgo bajo,2,2.23,0.000694
+28088,risk,Riesgo moderado,3,40.1,0.012463
+28088,risk,Riesgo alto,4,1185.52,0.368426
+28088,risk,Riesgo muy alto,5,1981.47,0.615788
+28088,risk,Riesgo no calculado,99,4.48,0.001392
+28089,risk,Riesgo muy bajo,1,1828.11,0.585768
+28089,risk,Riesgo bajo,2,248.87,0.079742
+28089,risk,Riesgo moderado,3,730.16,0.233961
+28089,risk,Riesgo alto,4,155.49,0.049823
+28089,risk,Riesgo muy alto,5,59.48,0.019058
+28089,risk,Riesgo no calculado,99,97.41,0.031212
+28090,risk,Riesgo muy bajo,1,2.69,0.000617
+28090,risk,Riesgo bajo,2,298.85,0.068633
+28090,risk,Riesgo moderado,3,239.17,0.054928
+28090,risk,Riesgo alto,4,1070.18,0.245773
+28090,risk,Riesgo muy alto,5,2731.9,0.627399
+28090,risk,Riesgo no calculado,99,11.54,0.00265
+28091,risk,Riesgo muy bajo,1,0.04,8e-06
+28091,risk,Riesgo bajo,2,201.6,0.044506
+28091,risk,Riesgo moderado,3,2548.91,0.562711
+28091,risk,Riesgo alto,4,249.88,0.055165
+28091,risk,Riesgo muy alto,5,1350.56,0.298156
+28091,risk,Riesgo no calculado,99,177.74,0.039238
+28092,risk,Riesgo muy bajo,1,6.3,0.001403
+28092,risk,Riesgo bajo,2,1448.74,0.322836
+28092,risk,Riesgo moderado,3,2219.89,0.494678
+28092,risk,Riesgo alto,4,191.94,0.042771
+28092,risk,Riesgo muy alto,5,479.13,0.10677
+28092,risk,Riesgo no calculado,99,139.85,0.031165
+28093,risk,Riesgo muy bajo,1,28.77,0.010461
+28093,risk,Riesgo bajo,2,177.99,0.064723
+28093,risk,Riesgo moderado,3,172.69,0.062798
+28093,risk,Riesgo alto,4,1252.73,0.455536
+28093,risk,Riesgo muy alto,5,1099.87,0.399953
+28093,risk,Riesgo no calculado,99,17.91,0.006511
+28094,risk,Riesgo bajo,2,29.68,0.024365
+28094,risk,Riesgo moderado,3,199.79,0.164041
+28094,risk,Riesgo alto,4,240.76,0.197678
+28094,risk,Riesgo muy alto,5,726.83,0.596764
+28094,risk,Riesgo no calculado,99,20.56,0.016883
+28095,risk,Riesgo muy bajo,1,124.57,0.016436
+28095,risk,Riesgo bajo,2,64.42,0.008499
+28095,risk,Riesgo moderado,3,846.9,0.111737
+28095,risk,Riesgo alto,4,1997.04,0.263482
+28095,risk,Riesgo muy alto,5,4437.95,0.585527
+28095,risk,Riesgo no calculado,99,105.83,0.013962
+28096,risk,Riesgo muy bajo,1,2052.57,0.203575
+28096,risk,Riesgo bajo,2,1939.31,0.192341
+28096,risk,Riesgo moderado,3,3150.68,0.312487
+28096,risk,Riesgo alto,4,1183.06,0.117337
+28096,risk,Riesgo muy alto,5,1523.81,0.151132
+28096,risk,Riesgo no calculado,99,230.0,0.022811
+28097,risk,Riesgo muy bajo,1,3.18,0.001118
+28097,risk,Riesgo bajo,2,17.01,0.005978
+28097,risk,Riesgo moderado,3,586.32,0.206013
+28097,risk,Riesgo alto,4,1159.16,0.407291
+28097,risk,Riesgo muy alto,5,1075.33,0.377836
+28097,risk,Riesgo no calculado,99,4.36,0.00153
+28099,risk,Riesgo muy bajo,1,30.57,0.006045
+28099,risk,Riesgo bajo,2,75.59,0.01495
+28099,risk,Riesgo moderado,3,324.95,0.064267
+28099,risk,Riesgo alto,4,957.93,0.189454
+28099,risk,Riesgo muy alto,5,3633.64,0.718639
+28099,risk,Riesgo no calculado,99,32.46,0.00642
+28100,risk,Riesgo muy bajo,1,856.89,0.427088
+28100,risk,Riesgo bajo,2,646.06,0.322008
+28100,risk,Riesgo moderado,3,110.44,0.055048
+28100,risk,Riesgo alto,4,89.19,0.044456
+28100,risk,Riesgo muy alto,5,284.62,0.141862
+28100,risk,Riesgo no calculado,99,17.61,0.008776
+28101,risk,Riesgo muy bajo,1,652.48,0.394628
+28101,risk,Riesgo bajo,2,277.35,0.167744
+28101,risk,Riesgo moderado,3,157.31,0.09514
+28101,risk,Riesgo alto,4,138.19,0.083579
+28101,risk,Riesgo muy alto,5,423.01,0.255839
+28101,risk,Riesgo no calculado,99,4.57,0.002761
+28102,risk,Riesgo muy bajo,1,259.8,0.121481
+28102,risk,Riesgo bajo,2,367.97,0.17206
+28102,risk,Riesgo moderado,3,375.58,0.175618
+28102,risk,Riesgo alto,4,206.85,0.096722
+28102,risk,Riesgo muy alto,5,881.51,0.412185
+28102,risk,Riesgo no calculado,99,46.61,0.021794
+28104,risk,Riesgo muy bajo,1,1369.51,0.312469
+28104,risk,Riesgo bajo,2,538.3,0.12282
+28104,risk,Riesgo moderado,3,964.62,0.220089
+28104,risk,Riesgo alto,4,415.14,0.094719
+28104,risk,Riesgo muy alto,5,816.45,0.186281
+28104,risk,Riesgo no calculado,99,277.65,0.063349
+28106,risk,Riesgo muy bajo,1,1361.19,0.545712
+28106,risk,Riesgo bajo,2,737.96,0.295852
+28106,risk,Riesgo moderado,3,138.02,0.055332
+28106,risk,Riesgo alto,4,130.72,0.052407
+28106,risk,Riesgo muy alto,5,10.08,0.004042
+28106,risk,Riesgo no calculado,99,115.4,0.046264
+28107,risk,Riesgo muy bajo,1,161.29,0.045944
+28107,risk,Riesgo bajo,2,55.61,0.01584
+28107,risk,Riesgo moderado,3,266.75,0.075986
+28107,risk,Riesgo alto,4,906.97,0.258357
+28107,risk,Riesgo muy alto,5,2109.57,0.600929
+28107,risk,Riesgo no calculado,99,4.43,0.001263
+28108,risk,Riesgo muy bajo,1,124.14,0.043526
+28108,risk,Riesgo bajo,2,52.07,0.018256
+28108,risk,Riesgo moderado,3,380.9,0.133551
+28108,risk,Riesgo alto,4,848.21,0.297397
+28108,risk,Riesgo muy alto,5,1353.77,0.474655
+28108,risk,Riesgo no calculado,99,92.42,0.032403
+28109,risk,Riesgo bajo,2,9.4,0.012431
+28109,risk,Riesgo moderado,3,219.9,0.290794
+28109,risk,Riesgo alto,4,99.85,0.132047
+28109,risk,Riesgo muy alto,5,402.77,0.532635
+28109,risk,Riesgo no calculado,99,24.04,0.031791
+28110,risk,Riesgo muy bajo,1,40.84,0.008328
+28110,risk,Riesgo bajo,2,509.64,0.10394
+28110,risk,Riesgo moderado,3,1413.06,0.288189
+28110,risk,Riesgo alto,4,668.03,0.136242
+28110,risk,Riesgo muy alto,5,2214.13,0.451565
+28110,risk,Riesgo no calculado,99,57.59,0.011746
+28111,risk,Riesgo muy bajo,1,1942.38,0.466524
+28111,risk,Riesgo bajo,2,112.12,0.026929
+28111,risk,Riesgo moderado,3,546.34,0.131221
+28111,risk,Riesgo alto,4,294.13,0.070645
+28111,risk,Riesgo muy alto,5,1251.52,0.300592
+28111,risk,Riesgo no calculado,99,14.61,0.00351
+28112,risk,Riesgo muy bajo,1,67.89,0.026667
+28112,risk,Riesgo bajo,2,30.76,0.012083
+28112,risk,Riesgo moderado,3,264.88,0.104036
+28112,risk,Riesgo alto,4,1276.38,0.501323
+28112,risk,Riesgo muy alto,5,904.46,0.355245
+28112,risk,Riesgo no calculado,99,1.04,0.000407
+28113,risk,Riesgo muy bajo,1,1117.85,0.180425
+28113,risk,Riesgo bajo,2,1204.44,0.194401
+28113,risk,Riesgo moderado,3,3218.75,0.519518
+28113,risk,Riesgo alto,4,206.01,0.033252
+28113,risk,Riesgo muy alto,5,188.7,0.030457
+28113,risk,Riesgo no calculado,99,257.46,0.041555
+28114,risk,Riesgo muy bajo,1,49.27,0.026996
+28114,risk,Riesgo bajo,2,35.11,0.019237
+28114,risk,Riesgo moderado,3,204.44,0.11202
+28114,risk,Riesgo alto,4,603.61,0.330745
+28114,risk,Riesgo muy alto,5,921.58,0.504978
+28114,risk,Riesgo no calculado,99,9.92,0.005437
+28115,risk,Riesgo muy bajo,1,921.91,0.213646
+28115,risk,Riesgo bajo,2,1180.3,0.273525
+28115,risk,Riesgo moderado,3,721.43,0.167187
+28115,risk,Riesgo alto,4,775.25,0.179658
+28115,risk,Riesgo muy alto,5,404.19,0.093668
+28115,risk,Riesgo no calculado,99,312.02,0.072308
+28116,risk,Riesgo muy bajo,1,2009.4,0.650162
+28116,risk,Riesgo bajo,2,453.25,0.146655
+28116,risk,Riesgo moderado,3,147.75,0.047807
+28116,risk,Riesgo alto,4,400.34,0.129533
+28116,risk,Riesgo muy alto,5,63.39,0.020511
+28116,risk,Riesgo no calculado,99,16.06,0.005196
+28117,risk,Riesgo bajo,2,6.13,0.00272
+28117,risk,Riesgo moderado,3,116.81,0.051836
+28117,risk,Riesgo alto,4,767.38,0.340532
+28117,risk,Riesgo muy alto,5,1359.51,0.603293
+28117,risk,Riesgo no calculado,99,3.58,0.001591
+28118,risk,Riesgo bajo,2,227.98,0.040226
+28118,risk,Riesgo moderado,3,76.9,0.013569
+28118,risk,Riesgo alto,4,1863.18,0.328748
+28118,risk,Riesgo muy alto,5,3496.56,0.61695
+28118,risk,Riesgo no calculado,99,1.19,0.00021
+28119,risk,Riesgo muy bajo,1,158.97,0.061972
+28119,risk,Riesgo bajo,2,141.85,0.055297
+28119,risk,Riesgo moderado,3,962.13,0.375074
+28119,risk,Riesgo alto,4,361.63,0.140979
+28119,risk,Riesgo muy alto,5,674.15,0.262811
+28119,risk,Riesgo no calculado,99,265.65,0.103561
+28120,risk,Riesgo muy bajo,1,189.1,0.01267
+28120,risk,Riesgo bajo,2,111.54,0.007473
+28120,risk,Riesgo moderado,3,1893.05,0.12683
+28120,risk,Riesgo alto,4,7975.78,0.534362
+28120,risk,Riesgo muy alto,5,4698.36,0.314781
+28120,risk,Riesgo no calculado,99,42.6,0.002854
+28121,risk,Riesgo bajo,2,7.08,0.005435
+28121,risk,Riesgo moderado,3,232.81,0.178704
+28121,risk,Riesgo alto,4,211.93,0.162676
+28121,risk,Riesgo muy alto,5,843.51,0.647492
+28121,risk,Riesgo no calculado,99,6.44,0.004942
+28122,risk,Riesgo muy bajo,1,1648.87,0.512935
+28122,risk,Riesgo bajo,2,208.08,0.06473
+28122,risk,Riesgo moderado,3,406.45,0.126441
+28122,risk,Riesgo alto,4,259.52,0.080733
+28122,risk,Riesgo muy alto,5,677.2,0.210664
+28122,risk,Riesgo no calculado,99,7.77,0.002417
+28123,risk,Riesgo muy bajo,1,497.58,0.073791
+28123,risk,Riesgo bajo,2,203.63,0.030198
+28123,risk,Riesgo moderado,3,2590.5,0.384172
+28123,risk,Riesgo alto,4,1111.77,0.164876
+28123,risk,Riesgo muy alto,5,1862.82,0.276256
+28123,risk,Riesgo no calculado,99,474.99,0.07044
+28124,risk,Riesgo muy bajo,1,50.71,0.024114
+28124,risk,Riesgo bajo,2,35.81,0.017029
+28124,risk,Riesgo moderado,3,25.82,0.012278
+28124,risk,Riesgo alto,4,567.75,0.269992
+28124,risk,Riesgo muy alto,5,1419.52,0.675055
+28124,risk,Riesgo no calculado,99,2.97,0.001412
+28125,risk,Riesgo bajo,2,26.84,0.00285
+28125,risk,Riesgo moderado,3,1562.88,0.165931
+28125,risk,Riesgo alto,4,398.94,0.042356
+28125,risk,Riesgo muy alto,5,7390.35,0.784637
+28125,risk,Riesgo no calculado,99,36.06,0.003829
+28126,risk,Riesgo bajo,2,31.35,0.017104
+28126,risk,Riesgo moderado,3,52.8,0.028805
+28126,risk,Riesgo alto,4,636.88,0.347451
+28126,risk,Riesgo muy alto,5,1105.27,0.602982
+28126,risk,Riesgo no calculado,99,5.6,0.003054
+28127,risk,Riesgo muy bajo,1,549.28,0.094248
+28127,risk,Riesgo bajo,2,1539.96,0.264233
+28127,risk,Riesgo moderado,3,935.41,0.160502
+28127,risk,Riesgo alto,4,1039.59,0.178377
+28127,risk,Riesgo muy alto,5,1641.77,0.281701
+28127,risk,Riesgo no calculado,99,121.77,0.020893
+28128,risk,Riesgo muy bajo,1,22.98,0.007782
+28128,risk,Riesgo bajo,2,34.36,0.011638
+28128,risk,Riesgo moderado,3,262.79,0.088999
+28128,risk,Riesgo alto,4,781.8,0.264775
+28128,risk,Riesgo muy alto,5,1842.56,0.624024
+28128,risk,Riesgo no calculado,99,5.84,0.001978
+28129,risk,Riesgo muy bajo,1,310.78,0.08134
+28129,risk,Riesgo bajo,2,201.4,0.052713
+28129,risk,Riesgo moderado,3,815.46,0.21343
+28129,risk,Riesgo alto,4,1011.24,0.264671
+28129,risk,Riesgo muy alto,5,1455.29,0.380894
+28129,risk,Riesgo no calculado,99,26.39,0.006907
+28130,risk,Riesgo muy bajo,1,1540.69,0.39639
+28130,risk,Riesgo bajo,2,478.84,0.123196
+28130,risk,Riesgo moderado,3,820.41,0.211075
+28130,risk,Riesgo alto,4,434.04,0.11167
+28130,risk,Riesgo muy alto,5,210.92,0.054265
+28130,risk,Riesgo no calculado,99,401.07,0.103187
+28131,risk,Riesgo muy bajo,1,7.8,0.001385
+28131,risk,Riesgo bajo,2,146.51,0.025994
+28131,risk,Riesgo moderado,3,535.36,0.094985
+28131,risk,Riesgo alto,4,1859.22,0.329865
+28131,risk,Riesgo muy alto,5,3038.74,0.539137
+28131,risk,Riesgo no calculado,99,46.83,0.008309
+28132,risk,Riesgo muy bajo,1,77.45,0.007368
+28132,risk,Riesgo bajo,2,526.52,0.050093
+28132,risk,Riesgo moderado,3,4476.39,0.425884
+28132,risk,Riesgo alto,4,731.06,0.069553
+28132,risk,Riesgo muy alto,5,4396.4,0.418274
+28132,risk,Riesgo no calculado,99,302.98,0.028825
+28133,risk,Riesgo muy bajo,1,477.87,0.041036
+28133,risk,Riesgo bajo,2,373.73,0.032094
+28133,risk,Riesgo moderado,3,2123.97,0.182392
+28133,risk,Riesgo alto,4,2060.59,0.17695
+28133,risk,Riesgo muy alto,5,6375.15,0.547454
+28133,risk,Riesgo no calculado,99,226.44,0.019446
+28134,risk,Riesgo muy bajo,1,1722.08,0.291068
+28134,risk,Riesgo bajo,2,898.37,0.151844
+28134,risk,Riesgo moderado,3,1224.61,0.206986
+28134,risk,Riesgo alto,4,1042.02,0.176124
+28134,risk,Riesgo muy alto,5,639.61,0.108107
+28134,risk,Riesgo no calculado,99,389.82,0.065889
+28135,risk,Riesgo muy bajo,1,8.09,0.001068
+28135,risk,Riesgo bajo,2,60.02,0.007929
+28135,risk,Riesgo moderado,3,1068.07,0.141109
+28135,risk,Riesgo alto,4,2243.3,0.296375
+28135,risk,Riesgo muy alto,5,4157.82,0.549313
+28135,risk,Riesgo no calculado,99,21.96,0.002902
+28136,risk,Riesgo muy bajo,1,1619.66,0.573332
+28136,risk,Riesgo bajo,2,321.81,0.113917
+28136,risk,Riesgo moderado,3,394.49,0.139643
+28136,risk,Riesgo alto,4,209.31,0.074091
+28136,risk,Riesgo muy alto,5,266.81,0.094446
+28136,risk,Riesgo no calculado,99,10.05,0.003558
+28137,risk,Riesgo muy bajo,1,931.78,0.267609
+28137,risk,Riesgo bajo,2,421.52,0.121061
+28137,risk,Riesgo moderado,3,569.27,0.163497
+28137,risk,Riesgo alto,4,387.44,0.111273
+28137,risk,Riesgo muy alto,5,1132.09,0.325137
+28137,risk,Riesgo no calculado,99,36.53,0.010493
+28138,risk,Riesgo bajo,2,1.05,0.00191
+28138,risk,Riesgo moderado,3,57.74,0.105006
+28138,risk,Riesgo alto,4,151.87,0.276192
+28138,risk,Riesgo muy alto,5,329.03,0.598377
+28138,risk,Riesgo no calculado,99,10.19,0.018523
+28140,risk,Riesgo muy bajo,1,770.87,0.580409
+28140,risk,Riesgo bajo,2,117.39,0.088388
+28140,risk,Riesgo moderado,3,216.31,0.162864
+28140,risk,Riesgo alto,4,135.97,0.102378
+28140,risk,Riesgo muy alto,5,68.67,0.051707
+28140,risk,Riesgo no calculado,99,17.06,0.012843
+28141,risk,Riesgo bajo,2,72.3,0.029212
+28141,risk,Riesgo moderado,3,780.76,0.315485
+28141,risk,Riesgo alto,4,505.67,0.204328
+28141,risk,Riesgo muy alto,5,1091.87,0.441192
+28141,risk,Riesgo no calculado,99,22.36,0.009034
+28143,risk,Riesgo bajo,2,3.87,0.001895
+28143,risk,Riesgo moderado,3,61.41,0.03009
+28143,risk,Riesgo alto,4,326.53,0.160002
+28143,risk,Riesgo muy alto,5,1644.59,0.805863
+28143,risk,Riesgo no calculado,99,3.78,0.001851
+28144,risk,Riesgo muy bajo,1,110.0,0.025646
+28144,risk,Riesgo bajo,2,226.52,0.052814
+28144,risk,Riesgo moderado,3,417.38,0.097312
+28144,risk,Riesgo alto,4,2495.97,0.581942
+28144,risk,Riesgo muy alto,5,1001.39,0.233478
+28144,risk,Riesgo no calculado,99,37.81,0.008817
+28145,risk,Riesgo muy bajo,1,1404.24,0.364884
+28145,risk,Riesgo bajo,2,333.67,0.086703
+28145,risk,Riesgo moderado,3,1470.98,0.382224
+28145,risk,Riesgo alto,4,215.4,0.05597
+28145,risk,Riesgo muy alto,5,398.31,0.103499
+28145,risk,Riesgo no calculado,99,21.7,0.005639
+28146,risk,Riesgo muy bajo,1,14.78,0.005552
+28146,risk,Riesgo bajo,2,696.59,0.261699
+28146,risk,Riesgo moderado,3,513.87,0.193053
+28146,risk,Riesgo alto,4,326.2,0.122548
+28146,risk,Riesgo muy alto,5,1089.96,0.409484
+28146,risk,Riesgo no calculado,99,20.34,0.007643
+28147,risk,Riesgo muy bajo,1,22.02,0.021778
+28147,risk,Riesgo bajo,2,47.78,0.047247
+28147,risk,Riesgo moderado,3,439.04,0.434118
+28147,risk,Riesgo alto,4,110.44,0.109207
+28147,risk,Riesgo muy alto,5,374.19,0.36999
+28147,risk,Riesgo no calculado,99,17.85,0.01765
+28148,risk,Riesgo muy bajo,1,1118.82,0.34597
+28148,risk,Riesgo bajo,2,1272.85,0.393602
+28148,risk,Riesgo moderado,3,322.79,0.099815
+28148,risk,Riesgo alto,4,104.63,0.032354
+28148,risk,Riesgo muy alto,5,24.82,0.007675
+28148,risk,Riesgo no calculado,99,389.9,0.120568
+28149,risk,Riesgo muy bajo,1,427.28,0.476626
+28149,risk,Riesgo bajo,2,276.67,0.308618
+28149,risk,Riesgo moderado,3,67.5,0.075293
+28149,risk,Riesgo alto,4,68.58,0.076498
+28149,risk,Riesgo muy alto,5,2.31,0.002582
+28149,risk,Riesgo no calculado,99,52.96,0.059079
+28150,risk,Riesgo muy bajo,1,644.68,0.123455
+28150,risk,Riesgo bajo,2,3338.25,0.639265
+28150,risk,Riesgo moderado,3,556.27,0.106525
+28150,risk,Riesgo alto,4,293.58,0.056219
+28150,risk,Riesgo muy alto,5,213.85,0.040951
+28150,risk,Riesgo no calculado,99,171.76,0.032892
+28151,risk,Riesgo muy bajo,1,0.01,2e-06
+28151,risk,Riesgo bajo,2,117.27,0.027248
+28151,risk,Riesgo moderado,3,2003.3,0.465497
+28151,risk,Riesgo alto,4,284.59,0.066128
+28151,risk,Riesgo muy alto,5,1875.39,0.435777
+28151,risk,Riesgo no calculado,99,21.89,0.005086
+28152,risk,Riesgo muy bajo,1,52.15,0.024027
+28152,risk,Riesgo bajo,2,350.26,0.16137
+28152,risk,Riesgo moderado,3,419.62,0.193326
+28152,risk,Riesgo alto,4,312.94,0.144178
+28152,risk,Riesgo muy alto,5,962.48,0.443425
+28152,risk,Riesgo no calculado,99,73.11,0.033684
+28153,risk,Riesgo muy bajo,1,16.52,0.008765
+28153,risk,Riesgo bajo,2,56.05,0.029727
+28153,risk,Riesgo moderado,3,1132.8,0.600815
+28153,risk,Riesgo alto,4,192.61,0.102158
+28153,risk,Riesgo muy alto,5,460.07,0.244014
+28153,risk,Riesgo no calculado,99,24.56,0.013027
+28154,risk,Riesgo muy bajo,1,2226.12,0.513756
+28154,risk,Riesgo bajo,2,239.07,0.055173
+28154,risk,Riesgo moderado,3,709.65,0.163776
+28154,risk,Riesgo alto,4,346.62,0.079994
+28154,risk,Riesgo muy alto,5,779.17,0.179821
+28154,risk,Riesgo no calculado,99,28.95,0.00668
+28155,risk,Riesgo muy bajo,1,179.09,0.028054
+28155,risk,Riesgo bajo,2,3087.14,0.483578
+28155,risk,Riesgo moderado,3,752.22,0.11783
+28155,risk,Riesgo alto,4,570.55,0.089372
+28155,risk,Riesgo muy alto,5,1779.81,0.278794
+28155,risk,Riesgo no calculado,99,15.09,0.002364
+28156,risk,Riesgo muy bajo,1,1139.4,0.609083
+28156,risk,Riesgo bajo,2,343.91,0.18384
+28156,risk,Riesgo moderado,3,92.28,0.049331
+28156,risk,Riesgo alto,4,77.73,0.04155
+28156,risk,Riesgo muy alto,5,206.74,0.110516
+28156,risk,Riesgo no calculado,99,9.0,0.004812
+28157,risk,Riesgo muy bajo,1,87.56,0.020706
+28157,risk,Riesgo bajo,2,137.04,0.032409
+28157,risk,Riesgo moderado,3,1395.78,0.330084
+28157,risk,Riesgo alto,4,347.23,0.082115
+28157,risk,Riesgo muy alto,5,2225.62,0.526333
+28157,risk,Riesgo no calculado,99,35.27,0.00834
+28158,risk,Riesgo bajo,2,2.77,0.001556
+28158,risk,Riesgo moderado,3,281.26,0.158138
+28158,risk,Riesgo alto,4,164.42,0.092442
+28158,risk,Riesgo muy alto,5,1314.24,0.738916
+28158,risk,Riesgo no calculado,99,15.58,0.008758
+28159,risk,Riesgo bajo,2,17.07,0.003296
+28159,risk,Riesgo moderado,3,891.4,0.172129
+28159,risk,Riesgo alto,4,807.67,0.155961
+28159,risk,Riesgo muy alto,5,3436.28,0.663545
+28159,risk,Riesgo no calculado,99,5.68,0.001096
+28160,risk,Riesgo muy bajo,1,357.5,0.038112
+28160,risk,Riesgo bajo,2,287.06,0.030602
+28160,risk,Riesgo moderado,3,1069.12,0.113974
+28160,risk,Riesgo alto,4,1031.82,0.109997
+28160,risk,Riesgo muy alto,5,6382.66,0.680425
+28160,risk,Riesgo no calculado,99,251.13,0.026772
+28161,risk,Riesgo muy bajo,1,1391.23,0.216916
+28161,risk,Riesgo bajo,2,1067.17,0.166389
+28161,risk,Riesgo moderado,3,1285.3,0.200398
+28161,risk,Riesgo alto,4,1000.79,0.156039
+28161,risk,Riesgo muy alto,5,1333.87,0.207972
+28161,risk,Riesgo no calculado,99,334.25,0.052114
+28162,risk,Riesgo muy bajo,1,1571.5,0.607397
+28162,risk,Riesgo bajo,2,378.43,0.146267
+28162,risk,Riesgo moderado,3,258.64,0.099967
+28162,risk,Riesgo alto,4,182.96,0.070715
+28162,risk,Riesgo muy alto,5,159.98,0.061834
+28162,risk,Riesgo no calculado,99,35.67,0.013788
+28163,risk,Riesgo muy bajo,1,575.63,0.326183
+28163,risk,Riesgo bajo,2,239.4,0.135658
+28163,risk,Riesgo moderado,3,700.86,0.397147
+28163,risk,Riesgo alto,4,96.37,0.05461
+28163,risk,Riesgo muy alto,5,136.78,0.077508
+28163,risk,Riesgo no calculado,99,14.27,0.008086
+28164,risk,Riesgo muy bajo,1,1986.25,0.565909
+28164,risk,Riesgo bajo,2,279.98,0.079771
+28164,risk,Riesgo moderado,3,679.85,0.193699
+28164,risk,Riesgo alto,4,311.09,0.088633
+28164,risk,Riesgo muy alto,5,194.97,0.055549
+28164,risk,Riesgo no calculado,99,57.75,0.016453
+28165,risk,Riesgo muy bajo,1,1366.25,0.320919
+28165,risk,Riesgo bajo,2,1243.73,0.292141
+28165,risk,Riesgo moderado,3,572.03,0.134365
+28165,risk,Riesgo alto,4,407.87,0.095805
+28165,risk,Riesgo muy alto,5,616.0,0.144691
+28165,risk,Riesgo no calculado,99,51.42,0.012079
+28166,risk,Riesgo muy bajo,1,501.98,0.364999
+28166,risk,Riesgo bajo,2,75.03,0.054554
+28166,risk,Riesgo moderado,3,271.51,0.197421
+28166,risk,Riesgo alto,4,77.59,0.056417
+28166,risk,Riesgo muy alto,5,432.0,0.314115
+28166,risk,Riesgo no calculado,99,15.22,0.011065
+28167,risk,Riesgo muy bajo,1,74.9,0.05199
+28167,risk,Riesgo bajo,2,169.78,0.117855
+28167,risk,Riesgo moderado,3,611.87,0.424731
+28167,risk,Riesgo alto,4,308.11,0.213873
+28167,risk,Riesgo muy alto,5,151.23,0.104975
+28167,risk,Riesgo no calculado,99,124.72,0.086578
+28168,risk,Riesgo muy bajo,1,3.79,0.001129
+28168,risk,Riesgo bajo,2,57.9,0.017278
+28168,risk,Riesgo moderado,3,1030.08,0.307376
+28168,risk,Riesgo alto,4,523.48,0.156208
+28168,risk,Riesgo muy alto,5,1698.59,0.506863
+28168,risk,Riesgo no calculado,99,37.32,0.011137
+28169,risk,Riesgo bajo,2,34.81,0.034027
+28169,risk,Riesgo moderado,3,332.95,0.325482
+28169,risk,Riesgo alto,4,193.98,0.189629
+28169,risk,Riesgo muy alto,5,436.01,0.426231
+28169,risk,Riesgo no calculado,99,25.19,0.024623
+28170,risk,Riesgo muy bajo,1,697.45,0.20947
+28170,risk,Riesgo bajo,2,281.4,0.084515
+28170,risk,Riesgo moderado,3,1610.54,0.4837
+28170,risk,Riesgo alto,4,143.04,0.04296
+28170,risk,Riesgo muy alto,5,570.41,0.171314
+28170,risk,Riesgo no calculado,99,26.75,0.008035
+28171,risk,Riesgo muy bajo,1,735.44,0.095171
+28171,risk,Riesgo bajo,2,386.55,0.050022
+28171,risk,Riesgo moderado,3,1477.77,0.191233
+28171,risk,Riesgo alto,4,935.33,0.121038
+28171,risk,Riesgo muy alto,5,4141.2,0.5359
+28171,risk,Riesgo no calculado,99,43.44,0.005621
+28172,risk,Riesgo muy bajo,1,1018.51,0.293733
+28172,risk,Riesgo bajo,2,499.06,0.143925
+28172,risk,Riesgo moderado,3,745.42,0.214974
+28172,risk,Riesgo alto,4,246.38,0.071055
+28172,risk,Riesgo muy alto,5,827.3,0.238588
+28172,risk,Riesgo no calculado,99,130.76,0.037712
+28173,risk,Riesgo muy bajo,1,1911.9,0.646249
+28173,risk,Riesgo bajo,2,292.6,0.098904
+28173,risk,Riesgo moderado,3,238.92,0.080759
+28173,risk,Riesgo alto,4,176.66,0.059715
+28173,risk,Riesgo muy alto,5,317.6,0.107353
+28173,risk,Riesgo no calculado,99,16.53,0.005587
+28174,risk,Riesgo muy bajo,1,592.94,0.093734
+28174,risk,Riesgo bajo,2,1428.8,0.22587
+28174,risk,Riesgo moderado,3,572.27,0.090467
+28174,risk,Riesgo alto,4,973.18,0.153845
+28174,risk,Riesgo muy alto,5,2725.16,0.430806
+28174,risk,Riesgo no calculado,99,27.35,0.004324
+28175,risk,Riesgo muy bajo,1,7.79,0.003257
+28175,risk,Riesgo bajo,2,244.42,0.102223
+28175,risk,Riesgo moderado,3,126.94,0.053089
+28175,risk,Riesgo alto,4,696.78,0.291408
+28175,risk,Riesgo muy alto,5,1291.39,0.540091
+28175,risk,Riesgo no calculado,99,23.72,0.009921
+28176,risk,Riesgo muy bajo,1,10.99,0.003163
+28176,risk,Riesgo bajo,2,674.16,0.193935
+28176,risk,Riesgo moderado,3,977.73,0.28126
+28176,risk,Riesgo alto,4,628.64,0.18084
+28176,risk,Riesgo muy alto,5,1009.6,0.290427
+28176,risk,Riesgo no calculado,99,174.52,0.050204
+28177,risk,Riesgo muy bajo,1,36.75,0.014452
+28177,risk,Riesgo bajo,2,217.06,0.085352
+28177,risk,Riesgo moderado,3,1210.02,0.4758
+28177,risk,Riesgo alto,4,161.84,0.063638
+28177,risk,Riesgo muy alto,5,828.48,0.325773
+28177,risk,Riesgo no calculado,99,89.02,0.035003
+28178,risk,Riesgo muy bajo,1,62.4,0.019869
+28178,risk,Riesgo bajo,2,404.34,0.128749
+28178,risk,Riesgo moderado,3,696.14,0.221666
+28178,risk,Riesgo alto,4,1180.35,0.375844
+28178,risk,Riesgo muy alto,5,749.41,0.238628
+28178,risk,Riesgo no calculado,99,47.87,0.015242
+28179,risk,Riesgo muy bajo,1,868.68,0.313022
+28179,risk,Riesgo bajo,2,378.65,0.136445
+28179,risk,Riesgo moderado,3,168.63,0.060765
+28179,risk,Riesgo alto,4,607.31,0.218838
+28179,risk,Riesgo muy alto,5,747.13,0.269223
+28179,risk,Riesgo no calculado,99,4.73,0.001704
+28180,risk,Riesgo muy bajo,1,4223.05,0.354863
+28180,risk,Riesgo bajo,2,2364.59,0.198696
+28180,risk,Riesgo moderado,3,977.72,0.082158
+28180,risk,Riesgo alto,4,1819.85,0.152922
+28180,risk,Riesgo muy alto,5,2445.74,0.205516
+28180,risk,Riesgo no calculado,99,67.68,0.005687
+28181,risk,Riesgo muy bajo,1,1.01,0.000149
+28181,risk,Riesgo bajo,2,648.56,0.095082
+28181,risk,Riesgo moderado,3,1865.2,0.273449
+28181,risk,Riesgo alto,4,1304.92,0.19131
+28181,risk,Riesgo muy alto,5,2756.2,0.404076
+28181,risk,Riesgo no calculado,99,244.98,0.035915
+28182,risk,Riesgo muy bajo,1,0.86,0.00037
+28182,risk,Riesgo bajo,2,30.31,0.013019
+28182,risk,Riesgo moderado,3,604.23,0.25951
+28182,risk,Riesgo alto,4,983.23,0.42229
+28182,risk,Riesgo muy alto,5,700.15,0.300711
+28182,risk,Riesgo no calculado,99,8.8,0.00378
+28183,risk,Riesgo bajo,2,33.69,0.016707
+28183,risk,Riesgo moderado,3,411.92,0.20429
+28183,risk,Riesgo alto,4,258.51,0.128207
+28183,risk,Riesgo muy alto,5,1289.94,0.639746
+28183,risk,Riesgo no calculado,99,22.31,0.011065
+28901,risk,Riesgo bajo,2,97.6,0.018978
+28901,risk,Riesgo moderado,3,234.81,0.045661
+28901,risk,Riesgo alto,4,2019.76,0.392748
+28901,risk,Riesgo muy alto,5,2747.3,0.534221
+28901,risk,Riesgo no calculado,99,42.68,0.008299
+28902,risk,Riesgo muy bajo,1,227.34,0.038829
+28902,risk,Riesgo bajo,2,152.82,0.026102
+28902,risk,Riesgo moderado,3,87.72,0.014983
+28902,risk,Riesgo alto,4,3539.61,0.604562
+28902,risk,Riesgo muy alto,5,1836.84,0.313731
+28902,risk,Riesgo no calculado,99,10.49,0.001792
+28903,risk,Riesgo muy bajo,1,406.27,0.107058
+28903,risk,Riesgo bajo,2,526.81,0.138823
+28903,risk,Riesgo moderado,3,559.04,0.147318
+28903,risk,Riesgo alto,4,1515.87,0.399457
+28903,risk,Riesgo muy alto,5,707.91,0.186547
+28903,risk,Riesgo no calculado,99,78.85,0.020779
+28001,hazard,Peligrosidad baja,2,660.39,0.301996
+28001,hazard,Peligrosidad moderada,3,314.0,0.143591
+28001,hazard,Peligrosidad alta,4,837.92,0.383176
+28001,hazard,Peligrosidad muy alta,5,371.87,0.170052
+28002,hazard,Peligrosidad muy baja,1,1234.26,0.622863
+28002,hazard,Peligrosidad baja,2,422.37,0.213147
+28002,hazard,Peligrosidad moderada,3,272.69,0.137611
+28002,hazard,Peligrosidad alta,4,44.73,0.022572
+28002,hazard,Peligrosidad muy alta,5,5.42,0.002733
+28003,hazard,Peligrosidad muy baja,1,221.32,0.086207
+28003,hazard,Peligrosidad baja,2,216.96,0.084506
+28003,hazard,Peligrosidad moderada,3,1230.83,0.479418
+28003,hazard,Peligrosidad alta,4,485.79,0.189218
+28003,hazard,Peligrosidad muy alta,5,410.32,0.159824
+28004,hazard,Peligrosidad muy baja,1,1196.4,0.544542
+28004,hazard,Peligrosidad baja,2,681.4,0.310141
+28004,hazard,Peligrosidad moderada,3,178.71,0.08134
+28004,hazard,Peligrosidad alta,4,123.06,0.056008
+28004,hazard,Peligrosidad muy alta,5,15.72,0.007155
+28005,hazard,Peligrosidad muy baja,1,4165.22,0.472637
+28005,hazard,Peligrosidad baja,2,1270.61,0.144179
+28005,hazard,Peligrosidad moderada,3,1898.55,0.215432
+28005,hazard,Peligrosidad alta,4,1102.27,0.125077
+28005,hazard,Peligrosidad muy alta,5,371.65,0.042173
+28006,hazard,Peligrosidad muy baja,1,2549.45,0.564109
+28006,hazard,Peligrosidad baja,2,794.95,0.175896
+28006,hazard,Peligrosidad moderada,3,666.42,0.147456
+28006,hazard,Peligrosidad alta,4,397.25,0.087898
+28006,hazard,Peligrosidad muy alta,5,107.95,0.023886
+28007,hazard,Peligrosidad muy baja,1,583.8,0.173796
+28007,hazard,Peligrosidad baja,2,842.62,0.250845
+28007,hazard,Peligrosidad moderada,3,1435.29,0.427284
+28007,hazard,Peligrosidad alta,4,460.2,0.137001
+28007,hazard,Peligrosidad muy alta,5,36.19,0.010773
+28008,hazard,Peligrosidad muy baja,1,6.77,0.001311
+28008,hazard,Peligrosidad baja,2,351.36,0.068053
+28008,hazard,Peligrosidad moderada,3,1435.69,0.278075
+28008,hazard,Peligrosidad alta,4,1853.12,0.358924
+28008,hazard,Peligrosidad muy alta,5,1513.43,0.293131
+28009,hazard,Peligrosidad muy baja,1,1844.05,0.4853
+28009,hazard,Peligrosidad baja,2,402.0,0.105796
+28009,hazard,Peligrosidad moderada,3,899.3,0.236669
+28009,hazard,Peligrosidad alta,4,533.12,0.140301
+28009,hazard,Peligrosidad muy alta,5,120.0,0.03158
+28010,hazard,Peligrosidad muy baja,1,54.16,0.042803
+28010,hazard,Peligrosidad baja,2,41.38,0.032696
+28010,hazard,Peligrosidad moderada,3,271.46,0.21452
+28010,hazard,Peligrosidad alta,4,596.24,0.471167
+28010,hazard,Peligrosidad muy alta,5,301.11,0.237946
+28011,hazard,Peligrosidad muy baja,1,401.71,0.155795
+28011,hazard,Peligrosidad baja,2,387.11,0.150133
+28011,hazard,Peligrosidad moderada,3,249.68,0.096832
+28011,hazard,Peligrosidad alta,4,700.19,0.271555
+28011,hazard,Peligrosidad muy alta,5,836.34,0.324357
+28012,hazard,Peligrosidad muy baja,1,1105.83,0.512104
+28012,hazard,Peligrosidad baja,2,133.04,0.061612
+28012,hazard,Peligrosidad moderada,3,399.27,0.184899
+28012,hazard,Peligrosidad alta,4,388.12,0.179737
+28012,hazard,Peligrosidad muy alta,5,133.02,0.061601
+28013,hazard,Peligrosidad muy baja,1,6700.95,0.354388
+28013,hazard,Peligrosidad baja,2,3198.18,0.16914
+28013,hazard,Peligrosidad moderada,3,5476.6,0.289637
+28013,hazard,Peligrosidad alta,4,2815.95,0.148925
+28013,hazard,Peligrosidad muy alta,5,683.04,0.036123
+28014,hazard,Peligrosidad baja,2,1133.5,0.14118
+28014,hazard,Peligrosidad moderada,3,3536.94,0.440533
+28014,hazard,Peligrosidad alta,4,1680.68,0.209332
+28014,hazard,Peligrosidad muy alta,5,1675.79,0.208722
+28015,hazard,Peligrosidad muy baja,1,639.46,0.307681
+28015,hazard,Peligrosidad baja,2,497.09,0.239181
+28015,hazard,Peligrosidad moderada,3,525.03,0.252627
+28015,hazard,Peligrosidad alta,4,336.37,0.161847
+28015,hazard,Peligrosidad muy alta,5,75.9,0.036521
+28016,hazard,Peligrosidad muy baja,1,21.15,0.007436
+28016,hazard,Peligrosidad baja,2,541.14,0.190232
+28016,hazard,Peligrosidad moderada,3,113.73,0.03998
+28016,hazard,Peligrosidad alta,4,1766.48,0.620983
+28016,hazard,Peligrosidad muy alta,5,396.96,0.139546
+28017,hazard,Peligrosidad muy baja,1,339.86,0.158978
+28017,hazard,Peligrosidad baja,2,228.43,0.106856
+28017,hazard,Peligrosidad moderada,3,572.72,0.267908
+28017,hazard,Peligrosidad alta,4,428.87,0.200617
+28017,hazard,Peligrosidad muy alta,5,564.66,0.264139
+28018,hazard,Peligrosidad baja,2,177.06,0.059695
+28018,hazard,Peligrosidad moderada,3,665.55,0.224393
+28018,hazard,Peligrosidad alta,4,1558.77,0.525545
+28018,hazard,Peligrosidad muy alta,5,562.64,0.189697
+28019,hazard,Peligrosidad muy baja,1,1086.76,0.452393
+28019,hazard,Peligrosidad baja,2,526.87,0.219324
+28019,hazard,Peligrosidad moderada,3,353.21,0.147032
+28019,hazard,Peligrosidad alta,4,253.07,0.105346
+28019,hazard,Peligrosidad muy alta,5,181.63,0.075608
+28020,hazard,Peligrosidad baja,2,311.72,0.213378
+28020,hazard,Peligrosidad moderada,3,249.52,0.170802
+28020,hazard,Peligrosidad alta,4,765.92,0.524292
+28020,hazard,Peligrosidad muy alta,5,132.88,0.090958
+28021,hazard,Peligrosidad baja,2,225.01,0.079079
+28021,hazard,Peligrosidad moderada,3,688.17,0.241854
+28021,hazard,Peligrosidad alta,4,1475.74,0.518638
+28021,hazard,Peligrosidad muy alta,5,453.35,0.159327
+28022,hazard,Peligrosidad baja,2,826.93,0.174496
+28022,hazard,Peligrosidad moderada,3,1565.86,0.330423
+28022,hazard,Peligrosidad alta,4,1515.72,0.319843
+28022,hazard,Peligrosidad muy alta,5,828.32,0.17479
+28023,hazard,Peligrosidad muy baja,1,92.45,0.02347
+28023,hazard,Peligrosidad baja,2,242.65,0.0616
+28023,hazard,Peligrosidad moderada,3,1126.65,0.286016
+28023,hazard,Peligrosidad alta,4,1801.49,0.457332
+28023,hazard,Peligrosidad muy alta,5,670.94,0.170327
+28024,hazard,Peligrosidad baja,2,1024.47,0.411219
+28024,hazard,Peligrosidad moderada,3,641.76,0.257602
+28024,hazard,Peligrosidad alta,4,658.68,0.264395
+28024,hazard,Peligrosidad muy alta,5,166.09,0.06667
+28025,hazard,Peligrosidad baja,2,2500.21,0.559594
+28025,hazard,Peligrosidad moderada,3,680.59,0.152329
+28025,hazard,Peligrosidad alta,4,299.73,0.067085
+28025,hazard,Peligrosidad muy alta,5,984.7,0.220394
+28026,hazard,Peligrosidad baja,2,240.57,0.048929
+28026,hazard,Peligrosidad moderada,3,2795.29,0.568537
+28026,hazard,Peligrosidad alta,4,1230.72,0.250319
+28026,hazard,Peligrosidad muy alta,5,648.88,0.131977
+28027,hazard,Peligrosidad baja,2,400.4,0.154385
+28027,hazard,Peligrosidad moderada,3,1356.13,0.522896
+28027,hazard,Peligrosidad alta,4,696.89,0.268706
+28027,hazard,Peligrosidad muy alta,5,136.64,0.052686
+28028,hazard,Peligrosidad baja,2,44.55,0.007934
+28028,hazard,Peligrosidad moderada,3,1806.72,0.321757
+28028,hazard,Peligrosidad alta,4,1467.99,0.261433
+28028,hazard,Peligrosidad muy alta,5,2294.11,0.408556
+28029,hazard,Peligrosidad baja,2,32.39,0.023471
+28029,hazard,Peligrosidad moderada,3,427.94,0.310071
+28029,hazard,Peligrosidad alta,4,405.35,0.293703
+28029,hazard,Peligrosidad muy alta,5,513.34,0.371951
+28030,hazard,Peligrosidad baja,2,0.07,3.2e-05
+28030,hazard,Peligrosidad moderada,3,141.76,0.06402
+28030,hazard,Peligrosidad alta,4,656.63,0.296532
+28030,hazard,Peligrosidad muy alta,5,1415.67,0.639313
+28031,hazard,Peligrosidad muy baja,1,2.75,0.000575
+28031,hazard,Peligrosidad baja,2,76.49,0.015986
+28031,hazard,Peligrosidad moderada,3,1334.32,0.27885
+28031,hazard,Peligrosidad alta,4,1284.13,0.268361
+28031,hazard,Peligrosidad muy alta,5,2083.97,0.435514
+28032,hazard,Peligrosidad muy baja,1,2372.98,0.675189
+28032,hazard,Peligrosidad baja,2,502.13,0.142872
+28032,hazard,Peligrosidad moderada,3,318.95,0.090752
+28032,hazard,Peligrosidad alta,4,260.17,0.074028
+28032,hazard,Peligrosidad muy alta,5,59.88,0.017039
+28033,hazard,Peligrosidad muy baja,1,1162.47,0.188223
+28033,hazard,Peligrosidad baja,2,573.1,0.092794
+28033,hazard,Peligrosidad moderada,3,2648.07,0.428765
+28033,hazard,Peligrosidad alta,4,915.54,0.148241
+28033,hazard,Peligrosidad muy alta,5,874.86,0.141653
+28034,hazard,Peligrosidad baja,2,1.42,0.000262
+28034,hazard,Peligrosidad moderada,3,2163.87,0.399262
+28034,hazard,Peligrosidad alta,4,1058.22,0.195255
+28034,hazard,Peligrosidad muy alta,5,2194.2,0.404859
+28035,hazard,Peligrosidad muy baja,1,183.43,0.038516
+28035,hazard,Peligrosidad baja,2,1466.03,0.307835
+28035,hazard,Peligrosidad moderada,3,853.35,0.179186
+28035,hazard,Peligrosidad alta,4,701.88,0.147379
+28035,hazard,Peligrosidad muy alta,5,1555.85,0.326696
+28036,hazard,Peligrosidad muy baja,1,282.77,0.530557
+28036,hazard,Peligrosidad baja,2,127.43,0.239088
+28036,hazard,Peligrosidad moderada,3,113.42,0.212801
+28036,hazard,Peligrosidad alta,4,6.14,0.011525
+28036,hazard,Peligrosidad muy alta,5,1.34,0.002524
+28037,hazard,Peligrosidad muy baja,1,163.06,0.023889
+28037,hazard,Peligrosidad baja,2,526.81,0.077182
+28037,hazard,Peligrosidad moderada,3,1466.76,0.21489
+28037,hazard,Peligrosidad alta,4,2075.36,0.304055
+28037,hazard,Peligrosidad muy alta,5,2585.05,0.378726
+28038,hazard,Peligrosidad muy baja,1,486.37,0.119228
+28038,hazard,Peligrosidad baja,2,1735.39,0.425416
+28038,hazard,Peligrosidad moderada,3,624.19,0.153015
+28038,hazard,Peligrosidad alta,4,789.42,0.19352
+28038,hazard,Peligrosidad muy alta,5,440.95,0.108095
+28039,hazard,Peligrosidad baja,2,467.67,0.405368
+28039,hazard,Peligrosidad moderada,3,203.08,0.176025
+28039,hazard,Peligrosidad alta,4,439.67,0.381091
+28039,hazard,Peligrosidad muy alta,5,40.12,0.034775
+28040,hazard,Peligrosidad muy baja,1,1984.91,0.401398
+28040,hazard,Peligrosidad baja,2,558.36,0.112914
+28040,hazard,Peligrosidad moderada,3,1848.79,0.373871
+28040,hazard,Peligrosidad alta,4,380.6,0.076966
+28040,hazard,Peligrosidad muy alta,5,168.0,0.033974
+28041,hazard,Peligrosidad muy baja,1,1164.1,0.560069
+28041,hazard,Peligrosidad baja,2,301.27,0.144949
+28041,hazard,Peligrosidad moderada,3,380.29,0.182966
+28041,hazard,Peligrosidad alta,4,152.85,0.073538
+28041,hazard,Peligrosidad muy alta,5,79.67,0.038331
+28042,hazard,Peligrosidad muy baja,1,250.21,0.050758
+28042,hazard,Peligrosidad baja,2,160.32,0.032524
+28042,hazard,Peligrosidad moderada,3,792.25,0.16072
+28042,hazard,Peligrosidad alta,4,1918.33,0.389167
+28042,hazard,Peligrosidad muy alta,5,1805.46,0.366269
+28043,hazard,Peligrosidad muy baja,1,1985.57,0.157232
+28043,hazard,Peligrosidad baja,2,1618.94,0.1282
+28043,hazard,Peligrosidad moderada,3,4925.94,0.390071
+28043,hazard,Peligrosidad alta,4,2376.76,0.188209
+28043,hazard,Peligrosidad muy alta,5,1709.03,0.135333
+28044,hazard,Peligrosidad muy baja,1,44.0,0.013969
+28044,hazard,Peligrosidad baja,2,192.95,0.06126
+28044,hazard,Peligrosidad moderada,3,491.01,0.155892
+28044,hazard,Peligrosidad alta,4,1233.31,0.391565
+28044,hazard,Peligrosidad muy alta,5,1187.43,0.376999
+28045,hazard,Peligrosidad muy baja,1,1492.34,0.08161
+28045,hazard,Peligrosidad baja,2,1582.84,0.086559
+28045,hazard,Peligrosidad moderada,3,8451.76,0.462193
+28045,hazard,Peligrosidad alta,4,5307.27,0.290234
+28045,hazard,Peligrosidad muy alta,5,1446.73,0.079116
+28046,hazard,Peligrosidad baja,2,79.54,0.035848
+28046,hazard,Peligrosidad moderada,3,449.2,0.202458
+28046,hazard,Peligrosidad alta,4,947.23,0.426925
+28046,hazard,Peligrosidad muy alta,5,742.39,0.334601
+28047,hazard,Peligrosidad muy baja,1,186.78,0.074193
+28047,hazard,Peligrosidad baja,2,235.95,0.093726
+28047,hazard,Peligrosidad moderada,3,782.22,0.310718
+28047,hazard,Peligrosidad alta,4,929.63,0.369273
+28047,hazard,Peligrosidad muy alta,5,382.69,0.152014
+28048,hazard,Peligrosidad muy baja,1,1363.04,0.52505
+28048,hazard,Peligrosidad baja,2,129.24,0.049785
+28048,hazard,Peligrosidad moderada,3,505.96,0.194899
+28048,hazard,Peligrosidad alta,4,414.68,0.159738
+28048,hazard,Peligrosidad muy alta,5,182.24,0.070199
+28049,hazard,Peligrosidad muy baja,1,877.61,0.731713
+28049,hazard,Peligrosidad baja,2,268.51,0.223873
+28049,hazard,Peligrosidad moderada,3,43.16,0.035983
+28049,hazard,Peligrosidad alta,4,8.69,0.007245
+28049,hazard,Peligrosidad muy alta,5,0.56,0.000467
+28050,hazard,Peligrosidad muy baja,1,676.14,0.524221
+28050,hazard,Peligrosidad baja,2,338.96,0.262802
+28050,hazard,Peligrosidad moderada,3,245.26,0.190157
+28050,hazard,Peligrosidad alta,4,21.18,0.016421
+28050,hazard,Peligrosidad muy alta,5,6.43,0.004989
+28051,hazard,Peligrosidad baja,2,18.13,0.007095
+28051,hazard,Peligrosidad moderada,3,105.09,0.041124
+28051,hazard,Peligrosidad alta,4,958.64,0.375116
+28051,hazard,Peligrosidad muy alta,5,1473.68,0.576651
+28052,hazard,Peligrosidad muy baja,1,97.94,0.008463
+28052,hazard,Peligrosidad baja,2,354.75,0.030654
+28052,hazard,Peligrosidad moderada,3,4879.17,0.421604
+28052,hazard,Peligrosidad alta,4,3057.49,0.264195
+28052,hazard,Peligrosidad muy alta,5,3183.24,0.275061
+28053,hazard,Peligrosidad muy baja,1,2898.86,0.667746
+28053,hazard,Peligrosidad baja,2,768.28,0.176971
+28053,hazard,Peligrosidad moderada,3,441.06,0.101597
+28053,hazard,Peligrosidad alta,4,200.27,0.046132
+28053,hazard,Peligrosidad muy alta,5,30.88,0.007112
+28054,hazard,Peligrosidad muy baja,1,227.06,0.033004
+28054,hazard,Peligrosidad baja,2,138.26,0.020097
+28054,hazard,Peligrosidad moderada,3,1092.97,0.158871
+28054,hazard,Peligrosidad alta,4,2315.89,0.33663
+28054,hazard,Peligrosidad muy alta,5,3102.27,0.450936
+28055,hazard,Peligrosidad muy baja,1,3188.71,0.402891
+28055,hazard,Peligrosidad baja,2,3021.59,0.381776
+28055,hazard,Peligrosidad moderada,3,812.19,0.10262
+28055,hazard,Peligrosidad alta,4,438.1,0.055354
+28055,hazard,Peligrosidad muy alta,5,445.11,0.056239
+28056,hazard,Peligrosidad baja,2,0.39,0.000138
+28056,hazard,Peligrosidad moderada,3,89.15,0.031474
+28056,hazard,Peligrosidad alta,4,1130.73,0.399189
+28056,hazard,Peligrosidad muy alta,5,1611.39,0.56888
+28057,hazard,Peligrosidad muy baja,1,1898.81,0.597702
+28057,hazard,Peligrosidad baja,2,595.02,0.1873
+28057,hazard,Peligrosidad moderada,3,225.64,0.071026
+28057,hazard,Peligrosidad alta,4,323.36,0.101785
+28057,hazard,Peligrosidad muy alta,5,132.3,0.041646
+28058,hazard,Peligrosidad muy baja,1,1921.93,0.489727
+28058,hazard,Peligrosidad baja,2,1309.54,0.333683
+28058,hazard,Peligrosidad moderada,3,596.2,0.151918
+28058,hazard,Peligrosidad alta,4,81.5,0.020766
+28058,hazard,Peligrosidad muy alta,5,10.16,0.00259
+28059,hazard,Peligrosidad muy baja,1,2123.11,0.640863
+28059,hazard,Peligrosidad baja,2,230.68,0.069629
+28059,hazard,Peligrosidad moderada,3,796.63,0.240463
+28059,hazard,Peligrosidad alta,4,146.32,0.044168
+28059,hazard,Peligrosidad muy alta,5,16.03,0.004839
+28060,hazard,Peligrosidad muy baja,1,1474.78,0.245154
+28060,hazard,Peligrosidad baja,2,1412.41,0.234787
+28060,hazard,Peligrosidad moderada,3,1372.9,0.22822
+28060,hazard,Peligrosidad alta,4,733.43,0.121919
+28060,hazard,Peligrosidad muy alta,5,1019.69,0.169505
+28061,hazard,Peligrosidad muy baja,1,363.89,0.055837
+28061,hazard,Peligrosidad baja,2,574.46,0.088146
+28061,hazard,Peligrosidad moderada,3,1892.72,0.290424
+28061,hazard,Peligrosidad alta,4,2355.39,0.361418
+28061,hazard,Peligrosidad muy alta,5,1328.45,0.203841
+28062,hazard,Peligrosidad baja,2,401.94,0.099651
+28062,hazard,Peligrosidad moderada,3,1537.42,0.381161
+28062,hazard,Peligrosidad alta,4,1110.75,0.275379
+28062,hazard,Peligrosidad muy alta,5,982.13,0.243493
+28063,hazard,Peligrosidad baja,2,332.5,0.137607
+28063,hazard,Peligrosidad moderada,3,950.35,0.393315
+28063,hazard,Peligrosidad alta,4,745.51,0.308538
+28063,hazard,Peligrosidad muy alta,5,387.44,0.160345
+28064,hazard,Peligrosidad muy baja,1,18.27,0.009101
+28064,hazard,Peligrosidad baja,2,669.72,0.333618
+28064,hazard,Peligrosidad moderada,3,550.47,0.274214
+28064,hazard,Peligrosidad alta,4,665.99,0.331759
+28064,hazard,Peligrosidad muy alta,5,102.62,0.051122
+28065,hazard,Peligrosidad muy baja,1,3820.23,0.48611
+28065,hazard,Peligrosidad baja,2,2119.35,0.26968
+28065,hazard,Peligrosidad moderada,3,1260.68,0.160418
+28065,hazard,Peligrosidad alta,4,488.27,0.06213
+28065,hazard,Peligrosidad muy alta,5,169.71,0.021595
+28066,hazard,Peligrosidad muy baja,1,941.6,0.551786
+28066,hazard,Peligrosidad baja,2,278.43,0.16316
+28066,hazard,Peligrosidad moderada,3,397.81,0.233124
+28066,hazard,Peligrosidad alta,4,88.01,0.051576
+28066,hazard,Peligrosidad muy alta,5,0.56,0.000328
+28067,hazard,Peligrosidad muy baja,1,98.44,0.016341
+28067,hazard,Peligrosidad baja,2,535.94,0.088967
+28067,hazard,Peligrosidad moderada,3,2776.79,0.460955
+28067,hazard,Peligrosidad alta,4,2075.51,0.34454
+28067,hazard,Peligrosidad muy alta,5,536.77,0.089105
+28068,hazard,Peligrosidad muy baja,1,17.69,0.003093
+28068,hazard,Peligrosidad baja,2,7.62,0.001332
+28068,hazard,Peligrosidad moderada,3,1452.79,0.254018
+28068,hazard,Peligrosidad alta,4,2432.69,0.425352
+28068,hazard,Peligrosidad muy alta,5,1804.74,0.315555
+28069,hazard,Peligrosidad baja,2,238.65,0.139438
+28069,hazard,Peligrosidad moderada,3,185.8,0.10856
+28069,hazard,Peligrosidad alta,4,855.91,0.500101
+28069,hazard,Peligrosidad muy alta,5,426.42,0.249153
+28070,hazard,Peligrosidad baja,2,32.03,0.015109
+28070,hazard,Peligrosidad moderada,3,460.42,0.217163
+28070,hazard,Peligrosidad alta,4,623.56,0.294109
+28070,hazard,Peligrosidad muy alta,5,1001.21,0.472233
+28071,hazard,Peligrosidad moderada,3,735.61,0.308378
+28071,hazard,Peligrosidad alta,4,450.44,0.188834
+28071,hazard,Peligrosidad muy alta,5,1197.61,0.502058
+28072,hazard,Peligrosidad muy baja,1,161.94,0.035784
+28072,hazard,Peligrosidad baja,2,201.25,0.044472
+28072,hazard,Peligrosidad moderada,3,1540.06,0.34032
+28072,hazard,Peligrosidad alta,4,2015.24,0.445326
+28072,hazard,Peligrosidad muy alta,5,605.89,0.133889
+28073,hazard,Peligrosidad muy baja,1,1366.66,0.694042
+28073,hazard,Peligrosidad baja,2,299.43,0.152061
+28073,hazard,Peligrosidad moderada,3,269.96,0.137095
+28073,hazard,Peligrosidad alta,4,31.15,0.015818
+28073,hazard,Peligrosidad muy alta,5,0.57,0.000292
+28074,hazard,Peligrosidad muy baja,1,2827.39,0.654545
+28074,hazard,Peligrosidad baja,2,1246.25,0.288509
+28074,hazard,Peligrosidad moderada,3,210.7,0.048777
+28074,hazard,Peligrosidad alta,4,25.36,0.00587
+28074,hazard,Peligrosidad muy alta,5,9.93,0.002298
+28075,hazard,Peligrosidad muy baja,1,1143.17,0.257893
+28075,hazard,Peligrosidad baja,2,288.65,0.065118
+28075,hazard,Peligrosidad moderada,3,1512.71,0.341261
+28075,hazard,Peligrosidad alta,4,630.61,0.142261
+28075,hazard,Peligrosidad muy alta,5,857.46,0.193437
+28076,hazard,Peligrosidad muy baja,1,7.24,0.001255
+28076,hazard,Peligrosidad baja,2,1246.91,0.21612
+28076,hazard,Peligrosidad moderada,3,1075.82,0.186466
+28076,hazard,Peligrosidad alta,4,1903.68,0.329955
+28076,hazard,Peligrosidad muy alta,5,1533.43,0.265781
+28078,hazard,Peligrosidad moderada,3,161.97,0.189453
+28078,hazard,Peligrosidad alta,4,309.12,0.361577
+28078,hazard,Peligrosidad muy alta,5,382.98,0.447958
+28079,hazard,Peligrosidad muy baja,1,28305.56,0.468284
+28079,hazard,Peligrosidad baja,2,11773.5,0.194779
+28079,hazard,Peligrosidad moderada,3,12502.69,0.206843
+28079,hazard,Peligrosidad alta,4,6351.36,0.105076
+28079,hazard,Peligrosidad muy alta,5,1507.96,0.024948
+28080,hazard,Peligrosidad muy baja,1,464.7,0.120645
+28080,hazard,Peligrosidad baja,2,607.7,0.157769
+28080,hazard,Peligrosidad moderada,3,1167.5,0.303104
+28080,hazard,Peligrosidad alta,4,887.16,0.230323
+28080,hazard,Peligrosidad muy alta,5,724.5,0.188093
+28082,hazard,Peligrosidad muy baja,1,3406.28,0.265417
+28082,hazard,Peligrosidad baja,2,1465.16,0.114165
+28082,hazard,Peligrosidad moderada,3,3458.66,0.269498
+28082,hazard,Peligrosidad alta,4,3152.01,0.245604
+28082,hazard,Peligrosidad muy alta,5,1351.36,0.105298
+28083,hazard,Peligrosidad muy baja,1,2576.7,0.737338
+28083,hazard,Peligrosidad baja,2,417.92,0.119589
+28083,hazard,Peligrosidad moderada,3,388.32,0.11112
+28083,hazard,Peligrosidad alta,4,93.66,0.026801
+28083,hazard,Peligrosidad muy alta,5,15.34,0.00439
+28084,hazard,Peligrosidad muy baja,1,950.26,0.53078
+28084,hazard,Peligrosidad baja,2,227.25,0.126931
+28084,hazard,Peligrosidad moderada,3,363.29,0.202921
+28084,hazard,Peligrosidad alta,4,169.14,0.094476
+28084,hazard,Peligrosidad muy alta,5,78.64,0.043923
+28085,hazard,Peligrosidad muy baja,1,0.14,2.5e-05
+28085,hazard,Peligrosidad baja,2,966.85,0.171469
+28085,hazard,Peligrosidad moderada,3,1664.26,0.295153
+28085,hazard,Peligrosidad alta,4,1852.06,0.328458
+28085,hazard,Peligrosidad muy alta,5,1154.99,0.204835
+28086,hazard,Peligrosidad muy baja,1,796.76,0.1588
+28086,hazard,Peligrosidad baja,2,322.97,0.06437
+28086,hazard,Peligrosidad moderada,3,1473.03,0.293585
+28086,hazard,Peligrosidad alta,4,1500.21,0.299003
+28086,hazard,Peligrosidad muy alta,5,920.61,0.183483
+28087,hazard,Peligrosidad muy baja,1,22.97,0.01198
+28087,hazard,Peligrosidad baja,2,7.38,0.003849
+28087,hazard,Peligrosidad moderada,3,627.91,0.327503
+28087,hazard,Peligrosidad alta,4,817.0,0.426123
+28087,hazard,Peligrosidad muy alta,5,441.97,0.23052
+28088,hazard,Peligrosidad baja,2,1.4,0.000434
+28088,hazard,Peligrosidad moderada,3,1189.03,0.369517
+28088,hazard,Peligrosidad alta,4,583.66,0.181386
+28088,hazard,Peligrosidad muy alta,5,1439.72,0.447426
+28089,hazard,Peligrosidad muy baja,1,1954.41,0.626238
+28089,hazard,Peligrosidad baja,2,240.57,0.077084
+28089,hazard,Peligrosidad moderada,3,803.16,0.257351
+28089,hazard,Peligrosidad alta,4,104.08,0.033351
+28089,hazard,Peligrosidad muy alta,5,17.29,0.005539
+28090,hazard,Peligrosidad muy baja,1,60.38,0.013867
+28090,hazard,Peligrosidad baja,2,255.26,0.058622
+28090,hazard,Peligrosidad moderada,3,1107.17,0.254268
+28090,hazard,Peligrosidad alta,4,1986.99,0.456326
+28090,hazard,Peligrosidad muy alta,5,944.52,0.216916
+28091,hazard,Peligrosidad baja,2,235.95,0.052089
+28091,hazard,Peligrosidad moderada,3,2558.37,0.564798
+28091,hazard,Peligrosidad alta,4,837.96,0.184992
+28091,hazard,Peligrosidad muy alta,5,896.45,0.197905
+28092,hazard,Peligrosidad baja,2,1087.12,0.242252
+28092,hazard,Peligrosidad moderada,3,2415.04,0.538165
+28092,hazard,Peligrosidad alta,4,877.67,0.19558
+28092,hazard,Peligrosidad muy alta,5,106.02,0.023626
+28093,hazard,Peligrosidad baja,2,994.7,0.361708
+28093,hazard,Peligrosidad moderada,3,471.0,0.171271
+28093,hazard,Peligrosidad alta,4,857.75,0.311907
+28093,hazard,Peligrosidad muy alta,5,426.51,0.155094
+28094,hazard,Peligrosidad baja,2,18.62,0.015286
+28094,hazard,Peligrosidad moderada,3,314.12,0.257908
+28094,hazard,Peligrosidad alta,4,459.11,0.376953
+28094,hazard,Peligrosidad muy alta,5,425.77,0.349583
+28095,hazard,Peligrosidad muy baja,1,798.81,0.105392
+28095,hazard,Peligrosidad baja,2,225.62,0.029767
+28095,hazard,Peligrosidad moderada,3,1924.28,0.253883
+28095,hazard,Peligrosidad alta,4,2543.27,0.33555
+28095,hazard,Peligrosidad muy alta,5,2084.72,0.275051
+28096,hazard,Peligrosidad muy baja,1,2195.76,0.217777
+28096,hazard,Peligrosidad baja,2,2373.04,0.23536
+28096,hazard,Peligrosidad moderada,3,2410.77,0.239102
+28096,hazard,Peligrosidad alta,4,2559.32,0.253834
+28096,hazard,Peligrosidad muy alta,5,540.54,0.053611
+28097,hazard,Peligrosidad muy baja,1,502.31,0.176497
+28097,hazard,Peligrosidad baja,2,236.31,0.083032
+28097,hazard,Peligrosidad moderada,3,977.21,0.343357
+28097,hazard,Peligrosidad alta,4,893.11,0.31381
+28097,hazard,Peligrosidad muy alta,5,236.42,0.08307
+28099,hazard,Peligrosidad baja,2,415.83,0.082241
+28099,hazard,Peligrosidad moderada,3,791.23,0.156485
+28099,hazard,Peligrosidad alta,4,1964.91,0.388608
+28099,hazard,Peligrosidad muy alta,5,1883.17,0.372442
+28100,hazard,Peligrosidad muy baja,1,870.81,0.434026
+28100,hazard,Peligrosidad baja,2,687.55,0.342685
+28100,hazard,Peligrosidad moderada,3,147.26,0.073395
+28100,hazard,Peligrosidad alta,4,152.63,0.076074
+28100,hazard,Peligrosidad muy alta,5,146.58,0.073057
+28101,hazard,Peligrosidad muy baja,1,672.84,0.406942
+28101,hazard,Peligrosidad baja,2,323.92,0.19591
+28101,hazard,Peligrosidad moderada,3,187.38,0.113332
+28101,hazard,Peligrosidad alta,4,182.62,0.11045
+28101,hazard,Peligrosidad muy alta,5,286.13,0.173056
+28102,hazard,Peligrosidad muy baja,1,284.02,0.132803
+28102,hazard,Peligrosidad baja,2,467.49,0.218594
+28102,hazard,Peligrosidad moderada,3,303.11,0.141728
+28102,hazard,Peligrosidad alta,4,313.39,0.14654
+28102,hazard,Peligrosidad muy alta,5,770.32,0.360194
+28104,hazard,Peligrosidad muy baja,1,1544.18,0.352321
+28104,hazard,Peligrosidad baja,2,622.31,0.141987
+28104,hazard,Peligrosidad moderada,3,991.95,0.226325
+28104,hazard,Peligrosidad alta,4,904.66,0.206409
+28104,hazard,Peligrosidad muy alta,5,318.57,0.072686
+28106,hazard,Peligrosidad muy baja,1,1482.12,0.594192
+28106,hazard,Peligrosidad baja,2,877.24,0.351693
+28106,hazard,Peligrosidad moderada,3,104.52,0.041904
+28106,hazard,Peligrosidad alta,4,23.57,0.009451
+28106,hazard,Peligrosidad muy alta,5,5.91,0.002368
+28107,hazard,Peligrosidad muy baja,1,146.32,0.041681
+28107,hazard,Peligrosidad baja,2,272.23,0.077546
+28107,hazard,Peligrosidad moderada,3,819.37,0.233403
+28107,hazard,Peligrosidad alta,4,1593.81,0.45401
+28107,hazard,Peligrosidad muy alta,5,672.89,0.19168
+28108,hazard,Peligrosidad muy baja,1,142.85,0.050088
+28108,hazard,Peligrosidad baja,2,194.61,0.068234
+28108,hazard,Peligrosidad moderada,3,971.01,0.340455
+28108,hazard,Peligrosidad alta,4,1022.1,0.358368
+28108,hazard,Peligrosidad muy alta,5,520.92,0.182643
+28109,hazard,Peligrosidad baja,2,6.74,0.008916
+28109,hazard,Peligrosidad moderada,3,49.97,0.066081
+28109,hazard,Peligrosidad alta,4,162.17,0.214457
+28109,hazard,Peligrosidad muy alta,5,537.08,0.710243
+28110,hazard,Peligrosidad muy baja,1,44.28,0.009031
+28110,hazard,Peligrosidad baja,2,593.96,0.121137
+28110,hazard,Peligrosidad moderada,3,1658.04,0.338151
+28110,hazard,Peligrosidad alta,4,1053.71,0.214901
+28110,hazard,Peligrosidad muy alta,5,1553.3,0.316791
+28111,hazard,Peligrosidad muy baja,1,2004.47,0.481437
+28111,hazard,Peligrosidad baja,2,148.03,0.035555
+28111,hazard,Peligrosidad moderada,3,686.18,0.164808
+28111,hazard,Peligrosidad alta,4,548.08,0.131639
+28111,hazard,Peligrosidad muy alta,5,774.34,0.185981
+28112,hazard,Peligrosidad muy baja,1,150.23,0.059007
+28112,hazard,Peligrosidad baja,2,240.2,0.094344
+28112,hazard,Peligrosidad moderada,3,1217.36,0.478141
+28112,hazard,Peligrosidad alta,4,515.17,0.202343
+28112,hazard,Peligrosidad muy alta,5,422.45,0.165926
+28113,hazard,Peligrosidad muy baja,1,1251.2,0.201949
+28113,hazard,Peligrosidad baja,2,1215.84,0.196241
+28113,hazard,Peligrosidad moderada,3,3290.48,0.531095
+28113,hazard,Peligrosidad alta,4,369.99,0.059717
+28113,hazard,Peligrosidad muy alta,5,65.7,0.010604
+28114,hazard,Peligrosidad baja,2,145.78,0.079879
+28114,hazard,Peligrosidad moderada,3,599.25,0.328362
+28114,hazard,Peligrosidad alta,4,825.44,0.4523
+28114,hazard,Peligrosidad muy alta,5,253.44,0.138874
+28115,hazard,Peligrosidad muy baja,1,1159.14,0.268622
+28115,hazard,Peligrosidad baja,2,1279.64,0.296547
+28115,hazard,Peligrosidad moderada,3,918.97,0.212964
+28115,hazard,Peligrosidad alta,4,718.67,0.166547
+28115,hazard,Peligrosidad muy alta,5,238.67,0.055311
+28116,hazard,Peligrosidad muy baja,1,2060.02,0.666541
+28116,hazard,Peligrosidad baja,2,727.06,0.235248
+28116,hazard,Peligrosidad moderada,3,236.32,0.076465
+28116,hazard,Peligrosidad alta,4,54.71,0.017703
+28116,hazard,Peligrosidad muy alta,5,12.07,0.003907
+28117,hazard,Peligrosidad baja,2,16.4,0.007277
+28117,hazard,Peligrosidad moderada,3,806.96,0.358096
+28117,hazard,Peligrosidad alta,4,632.14,0.280516
+28117,hazard,Peligrosidad muy alta,5,797.92,0.354084
+28118,hazard,Peligrosidad baja,2,1622.05,0.286201
+28118,hazard,Peligrosidad moderada,3,501.42,0.088472
+28118,hazard,Peligrosidad alta,4,1843.53,0.325281
+28118,hazard,Peligrosidad muy alta,5,1698.83,0.29975
+28119,hazard,Peligrosidad muy baja,1,454.37,0.177128
+28119,hazard,Peligrosidad baja,2,121.55,0.047386
+28119,hazard,Peligrosidad moderada,3,1174.86,0.458002
+28119,hazard,Peligrosidad alta,4,521.92,0.203463
+28119,hazard,Peligrosidad muy alta,5,291.7,0.113715
+28120,hazard,Peligrosidad muy baja,1,1380.56,0.092495
+28120,hazard,Peligrosidad baja,2,4479.79,0.300137
+28120,hazard,Peligrosidad moderada,3,3821.62,0.256041
+28120,hazard,Peligrosidad alta,4,3805.55,0.254964
+28120,hazard,Peligrosidad muy alta,5,1422.91,0.095332
+28121,hazard,Peligrosidad baja,2,18.04,0.013844
+28121,hazard,Peligrosidad moderada,3,369.29,0.283469
+28121,hazard,Peligrosidad alta,4,428.64,0.329031
+28121,hazard,Peligrosidad muy alta,5,485.8,0.372904
+28122,hazard,Peligrosidad muy baja,1,1704.73,0.530313
+28122,hazard,Peligrosidad baja,2,249.23,0.077532
+28122,hazard,Peligrosidad moderada,3,511.01,0.158966
+28122,hazard,Peligrosidad alta,4,383.65,0.119349
+28122,hazard,Peligrosidad muy alta,5,359.26,0.111761
+28123,hazard,Peligrosidad muy baja,1,380.1,0.056369
+28123,hazard,Peligrosidad baja,2,1940.27,0.287742
+28123,hazard,Peligrosidad moderada,3,2264.92,0.335888
+28123,hazard,Peligrosidad alta,4,1666.76,0.247181
+28123,hazard,Peligrosidad muy alta,5,489.25,0.072555
+28124,hazard,Peligrosidad baja,2,368.28,0.175136
+28124,hazard,Peligrosidad moderada,3,300.5,0.142905
+28124,hazard,Peligrosidad alta,4,1212.81,0.576754
+28124,hazard,Peligrosidad muy alta,5,220.97,0.105085
+28125,hazard,Peligrosidad baja,2,87.01,0.009238
+28125,hazard,Peligrosidad moderada,3,258.38,0.027433
+28125,hazard,Peligrosidad alta,4,2929.09,0.310983
+28125,hazard,Peligrosidad muy alta,5,6140.59,0.651949
+28126,hazard,Peligrosidad baja,2,484.58,0.264366
+28126,hazard,Peligrosidad moderada,3,180.8,0.098637
+28126,hazard,Peligrosidad alta,4,738.73,0.403017
+28126,hazard,Peligrosidad muy alta,5,427.78,0.233376
+28127,hazard,Peligrosidad muy baja,1,643.59,0.110429
+28127,hazard,Peligrosidad baja,2,1502.93,0.257879
+28127,hazard,Peligrosidad moderada,3,1337.32,0.229463
+28127,hazard,Peligrosidad alta,4,1513.72,0.25973
+28127,hazard,Peligrosidad muy alta,5,830.21,0.142451
+28128,hazard,Peligrosidad muy baja,1,146.15,0.049498
+28128,hazard,Peligrosidad baja,2,215.38,0.072942
+28128,hazard,Peligrosidad moderada,3,659.16,0.22324
+28128,hazard,Peligrosidad alta,4,1271.15,0.430505
+28128,hazard,Peligrosidad muy alta,5,658.48,0.22301
+28129,hazard,Peligrosidad muy baja,1,619.85,0.162234
+28129,hazard,Peligrosidad baja,2,354.88,0.092884
+28129,hazard,Peligrosidad moderada,3,1254.69,0.328391
+28129,hazard,Peligrosidad alta,4,1062.93,0.278201
+28129,hazard,Peligrosidad muy alta,5,528.2,0.138245
+28130,hazard,Peligrosidad muy baja,1,2100.12,0.54032
+28130,hazard,Peligrosidad baja,2,539.13,0.138707
+28130,hazard,Peligrosidad moderada,3,884.92,0.227674
+28130,hazard,Peligrosidad alta,4,300.36,0.077276
+28130,hazard,Peligrosidad muy alta,5,61.44,0.015806
+28131,hazard,Peligrosidad muy baja,1,98.58,0.01749
+28131,hazard,Peligrosidad baja,2,156.13,0.027701
+28131,hazard,Peligrosidad moderada,3,1871.13,0.331979
+28131,hazard,Peligrosidad alta,4,1668.04,0.295946
+28131,hazard,Peligrosidad muy alta,5,1840.58,0.326558
+28132,hazard,Peligrosidad muy baja,1,2.01,0.000191
+28132,hazard,Peligrosidad baja,2,1049.05,0.099807
+28132,hazard,Peligrosidad moderada,3,4477.06,0.425948
+28132,hazard,Peligrosidad alta,4,2098.26,0.199628
+28132,hazard,Peligrosidad muy alta,5,2884.41,0.274423
+28133,hazard,Peligrosidad muy baja,1,54.64,0.004692
+28133,hazard,Peligrosidad baja,2,1445.8,0.124155
+28133,hazard,Peligrosidad moderada,3,2010.94,0.172686
+28133,hazard,Peligrosidad alta,4,3135.49,0.269255
+28133,hazard,Peligrosidad muy alta,5,4990.89,0.428584
+28134,hazard,Peligrosidad muy baja,1,2148.74,0.363183
+28134,hazard,Peligrosidad baja,2,863.5,0.145949
+28134,hazard,Peligrosidad moderada,3,1741.51,0.294353
+28134,hazard,Peligrosidad alta,4,961.57,0.162525
+28134,hazard,Peligrosidad muy alta,5,201.2,0.034007
+28135,hazard,Peligrosidad muy baja,1,520.4,0.068753
+28135,hazard,Peligrosidad baja,2,671.03,0.088653
+28135,hazard,Peligrosidad moderada,3,1689.26,0.223178
+28135,hazard,Peligrosidad alta,4,1976.05,0.261068
+28135,hazard,Peligrosidad muy alta,5,2702.51,0.357044
+28136,hazard,Peligrosidad muy baja,1,1746.52,0.618239
+28136,hazard,Peligrosidad baja,2,388.18,0.13741
+28136,hazard,Peligrosidad moderada,3,390.89,0.13837
+28136,hazard,Peligrosidad alta,4,223.63,0.079162
+28136,hazard,Peligrosidad muy alta,5,72.91,0.025807
+28137,hazard,Peligrosidad muy baja,1,1003.25,0.288136
+28137,hazard,Peligrosidad baja,2,493.43,0.141713
+28137,hazard,Peligrosidad moderada,3,722.55,0.207518
+28137,hazard,Peligrosidad alta,4,767.23,0.220348
+28137,hazard,Peligrosidad muy alta,5,492.18,0.141354
+28138,hazard,Peligrosidad baja,2,4.0,0.007279
+28138,hazard,Peligrosidad moderada,3,155.04,0.281962
+28138,hazard,Peligrosidad alta,4,318.9,0.57995
+28138,hazard,Peligrosidad muy alta,5,71.93,0.130817
+28140,hazard,Peligrosidad muy baja,1,832.43,0.626765
+28140,hazard,Peligrosidad baja,2,122.4,0.092159
+28140,hazard,Peligrosidad moderada,3,278.63,0.209791
+28140,hazard,Peligrosidad alta,4,78.25,0.058913
+28140,hazard,Peligrosidad muy alta,5,14.56,0.010963
+28141,hazard,Peligrosidad baja,2,104.52,0.042235
+28141,hazard,Peligrosidad moderada,3,704.34,0.284602
+28141,hazard,Peligrosidad alta,4,1159.56,0.468543
+28141,hazard,Peligrosidad muy alta,5,504.55,0.203872
+28143,hazard,Peligrosidad baja,2,11.38,0.005579
+28143,hazard,Peligrosidad moderada,3,315.7,0.154697
+28143,hazard,Peligrosidad alta,4,419.75,0.205678
+28143,hazard,Peligrosidad muy alta,5,1293.34,0.633748
+28144,hazard,Peligrosidad muy baja,1,45.18,0.010534
+28144,hazard,Peligrosidad baja,2,465.38,0.108504
+28144,hazard,Peligrosidad moderada,3,2406.46,0.561073
+28144,hazard,Peligrosidad alta,4,1219.46,0.28432
+28144,hazard,Peligrosidad muy alta,5,152.59,0.035577
+28145,hazard,Peligrosidad muy baja,1,1484.06,0.385623
+28145,hazard,Peligrosidad baja,2,278.23,0.072296
+28145,hazard,Peligrosidad moderada,3,1537.66,0.399551
+28145,hazard,Peligrosidad alta,4,357.73,0.092953
+28145,hazard,Peligrosidad muy alta,5,186.63,0.048495
+28146,hazard,Peligrosidad muy baja,1,14.66,0.005507
+28146,hazard,Peligrosidad baja,2,788.92,0.296388
+28146,hazard,Peligrosidad moderada,3,590.93,0.222003
+28146,hazard,Peligrosidad alta,4,414.8,0.155835
+28146,hazard,Peligrosidad muy alta,5,852.43,0.320247
+28147,hazard,Peligrosidad baja,2,83.42,0.082487
+28147,hazard,Peligrosidad moderada,3,474.08,0.468768
+28147,hazard,Peligrosidad alta,4,279.62,0.276485
+28147,hazard,Peligrosidad muy alta,5,174.2,0.17225
+28148,hazard,Peligrosidad muy baja,1,2045.0,0.632373
+28148,hazard,Peligrosidad baja,2,790.87,0.24456
+28148,hazard,Peligrosidad moderada,3,313.57,0.096966
+28148,hazard,Peligrosidad alta,4,79.39,0.024551
+28148,hazard,Peligrosidad muy alta,5,4.96,0.001533
+28149,hazard,Peligrosidad muy baja,1,454.82,0.507355
+28149,hazard,Peligrosidad baja,2,312.81,0.348943
+28149,hazard,Peligrosidad moderada,3,112.38,0.125362
+28149,hazard,Peligrosidad alta,4,8.24,0.009192
+28149,hazard,Peligrosidad muy alta,5,7.03,0.007845
+28150,hazard,Peligrosidad muy baja,1,658.06,0.126017
+28150,hazard,Peligrosidad baja,2,3519.17,0.67391
+28150,hazard,Peligrosidad moderada,3,708.24,0.135626
+28150,hazard,Peligrosidad alta,4,115.38,0.022095
+28150,hazard,Peligrosidad muy alta,5,217.54,0.041659
+28151,hazard,Peligrosidad baja,2,86.87,0.020186
+28151,hazard,Peligrosidad moderada,3,1950.17,0.453153
+28151,hazard,Peligrosidad alta,4,978.13,0.227285
+28151,hazard,Peligrosidad muy alta,5,1287.26,0.299115
+28152,hazard,Peligrosidad muy baja,1,60.88,0.028048
+28152,hazard,Peligrosidad baja,2,336.88,0.155206
+28152,hazard,Peligrosidad moderada,3,259.69,0.119643
+28152,hazard,Peligrosidad alta,4,1050.54,0.483999
+28152,hazard,Peligrosidad muy alta,5,462.57,0.213114
+28153,hazard,Peligrosidad muy baja,1,18.84,0.009994
+28153,hazard,Peligrosidad baja,2,30.83,0.01635
+28153,hazard,Peligrosidad moderada,3,1079.39,0.572489
+28153,hazard,Peligrosidad alta,4,496.32,0.26324
+28153,hazard,Peligrosidad muy alta,5,257.24,0.136432
+28154,hazard,Peligrosidad muy baja,1,2313.86,0.534003
+28154,hazard,Peligrosidad baja,2,288.02,0.066471
+28154,hazard,Peligrosidad moderada,3,884.21,0.204062
+28154,hazard,Peligrosidad alta,4,518.94,0.119763
+28154,hazard,Peligrosidad muy alta,5,324.55,0.074902
+28155,hazard,Peligrosidad muy baja,1,183.12,0.028685
+28155,hazard,Peligrosidad baja,2,3237.35,0.507108
+28155,hazard,Peligrosidad moderada,3,1058.28,0.165773
+28155,hazard,Peligrosidad alta,4,747.45,0.117082
+28155,hazard,Peligrosidad muy alta,5,1157.69,0.181344
+28156,hazard,Peligrosidad muy baja,1,1162.11,0.621221
+28156,hazard,Peligrosidad baja,2,378.0,0.202064
+28156,hazard,Peligrosidad moderada,3,106.33,0.056843
+28156,hazard,Peligrosidad alta,4,167.25,0.089406
+28156,hazard,Peligrosidad muy alta,5,55.37,0.029599
+28157,hazard,Peligrosidad muy baja,1,104.68,0.024756
+28157,hazard,Peligrosidad baja,2,184.55,0.043643
+28157,hazard,Peligrosidad moderada,3,1116.86,0.264124
+28157,hazard,Peligrosidad alta,4,1218.73,0.288215
+28157,hazard,Peligrosidad muy alta,5,1603.67,0.379249
+28158,hazard,Peligrosidad moderada,3,239.37,0.134585
+28158,hazard,Peligrosidad alta,4,347.17,0.195194
+28158,hazard,Peligrosidad muy alta,5,1191.72,0.670032
+28159,hazard,Peligrosidad muy baja,1,0.05,1e-05
+28159,hazard,Peligrosidad baja,2,220.48,0.042575
+28159,hazard,Peligrosidad moderada,3,587.89,0.113522
+28159,hazard,Peligrosidad alta,4,1065.29,0.205707
+28159,hazard,Peligrosidad muy alta,5,3284.38,0.634214
+28160,hazard,Peligrosidad muy baja,1,60.77,0.006478
+28160,hazard,Peligrosidad baja,2,427.7,0.045595
+28160,hazard,Peligrosidad moderada,3,1262.58,0.134597
+28160,hazard,Peligrosidad alta,4,2603.12,0.277506
+28160,hazard,Peligrosidad muy alta,5,5025.13,0.535705
+28161,hazard,Peligrosidad muy baja,1,1523.33,0.237512
+28161,hazard,Peligrosidad baja,2,1206.04,0.188041
+28161,hazard,Peligrosidad moderada,3,2009.36,0.313291
+28161,hazard,Peligrosidad alta,4,1249.4,0.194802
+28161,hazard,Peligrosidad muy alta,5,424.47,0.066182
+28162,hazard,Peligrosidad muy baja,1,1617.24,0.625075
+28162,hazard,Peligrosidad baja,2,423.73,0.163776
+28162,hazard,Peligrosidad moderada,3,340.25,0.131507
+28162,hazard,Peligrosidad alta,4,146.42,0.056593
+28162,hazard,Peligrosidad muy alta,5,59.55,0.023017
+28163,hazard,Peligrosidad muy baja,1,592.52,0.335754
+28163,hazard,Peligrosidad baja,2,291.69,0.165289
+28163,hazard,Peligrosidad moderada,3,704.42,0.399161
+28163,hazard,Peligrosidad alta,4,114.84,0.065073
+28163,hazard,Peligrosidad muy alta,5,59.85,0.033916
+28164,hazard,Peligrosidad muy baja,1,2149.11,0.612308
+28164,hazard,Peligrosidad baja,2,290.55,0.08278
+28164,hazard,Peligrosidad moderada,3,814.52,0.232067
+28164,hazard,Peligrosidad alta,4,235.47,0.067088
+28164,hazard,Peligrosidad muy alta,5,20.25,0.00577
+28165,hazard,Peligrosidad muy baja,1,1445.09,0.339436
+28165,hazard,Peligrosidad baja,2,1551.64,0.364466
+28165,hazard,Peligrosidad moderada,3,501.82,0.117872
+28165,hazard,Peligrosidad alta,4,307.04,0.07212
+28165,hazard,Peligrosidad muy alta,5,451.73,0.106106
+28166,hazard,Peligrosidad muy baja,1,510.8,0.371407
+28166,hazard,Peligrosidad baja,2,91.57,0.066584
+28166,hazard,Peligrosidad moderada,3,286.89,0.2086
+28166,hazard,Peligrosidad alta,4,246.1,0.178947
+28166,hazard,Peligrosidad muy alta,5,237.97,0.173033
+28167,hazard,Peligrosidad muy baja,1,20.86,0.014477
+28167,hazard,Peligrosidad baja,2,426.3,0.295916
+28167,hazard,Peligrosidad moderada,3,787.72,0.546801
+28167,hazard,Peligrosidad alta,4,134.04,0.093046
+28167,hazard,Peligrosidad muy alta,5,71.69,0.049762
+28168,hazard,Peligrosidad muy baja,1,3.87,0.001153
+28168,hazard,Peligrosidad baja,2,51.58,0.015392
+28168,hazard,Peligrosidad moderada,3,1141.0,0.340476
+28168,hazard,Peligrosidad alta,4,1147.99,0.342563
+28168,hazard,Peligrosidad muy alta,5,1006.72,0.300408
+28169,hazard,Peligrosidad baja,2,6.9,0.006748
+28169,hazard,Peligrosidad moderada,3,308.11,0.301197
+28169,hazard,Peligrosidad alta,4,345.09,0.337353
+28169,hazard,Peligrosidad muy alta,5,362.83,0.354695
+28170,hazard,Peligrosidad muy baja,1,732.85,0.2201
+28170,hazard,Peligrosidad baja,2,336.13,0.100952
+28170,hazard,Peligrosidad moderada,3,1605.26,0.482115
+28170,hazard,Peligrosidad alta,4,333.48,0.100155
+28170,hazard,Peligrosidad muy alta,5,321.88,0.096673
+28171,hazard,Peligrosidad muy baja,1,880.05,0.113885
+28171,hazard,Peligrosidad baja,2,512.8,0.06636
+28171,hazard,Peligrosidad moderada,3,1683.37,0.217839
+28171,hazard,Peligrosidad alta,4,1741.57,0.22537
+28171,hazard,Peligrosidad muy alta,5,2901.94,0.37553
+28172,hazard,Peligrosidad muy baja,1,1338.75,0.386088
+28172,hazard,Peligrosidad baja,2,450.79,0.130004
+28172,hazard,Peligrosidad moderada,3,686.31,0.197929
+28172,hazard,Peligrosidad alta,4,492.82,0.142126
+28172,hazard,Peligrosidad muy alta,5,498.76,0.14384
+28173,hazard,Peligrosidad muy baja,1,1943.84,0.657045
+28173,hazard,Peligrosidad baja,2,385.92,0.130446
+28173,hazard,Peligrosidad moderada,3,258.06,0.087227
+28173,hazard,Peligrosidad alta,4,283.99,0.095991
+28173,hazard,Peligrosidad muy alta,5,82.42,0.027857
+28174,hazard,Peligrosidad muy baja,1,664.24,0.105006
+28174,hazard,Peligrosidad baja,2,1782.03,0.281711
+28174,hazard,Peligrosidad moderada,3,1042.49,0.164801
+28174,hazard,Peligrosidad alta,4,1824.11,0.288363
+28174,hazard,Peligrosidad muy alta,5,1006.83,0.159164
+28175,hazard,Peligrosidad baja,2,686.62,0.287158
+28175,hazard,Peligrosidad moderada,3,371.84,0.155513
+28175,hazard,Peligrosidad alta,4,793.68,0.331934
+28175,hazard,Peligrosidad muy alta,5,538.91,0.225385
+28176,hazard,Peligrosidad muy baja,1,11.64,0.003349
+28176,hazard,Peligrosidad baja,2,557.14,0.16027
+28176,hazard,Peligrosidad moderada,3,1385.85,0.398664
+28176,hazard,Peligrosidad alta,4,711.06,0.204549
+28176,hazard,Peligrosidad muy alta,5,809.96,0.232997
+28177,hazard,Peligrosidad muy baja,1,44.86,0.01764
+28177,hazard,Peligrosidad baja,2,165.47,0.065064
+28177,hazard,Peligrosidad moderada,3,1158.76,0.455647
+28177,hazard,Peligrosidad alta,4,586.75,0.23072
+28177,hazard,Peligrosidad muy alta,5,587.33,0.230947
+28178,hazard,Peligrosidad muy baja,1,435.21,0.13858
+28178,hazard,Peligrosidad baja,2,876.88,0.279216
+28178,hazard,Peligrosidad moderada,3,1027.31,0.327116
+28178,hazard,Peligrosidad alta,4,492.65,0.156871
+28178,hazard,Peligrosidad muy alta,5,308.45,0.098215
+28179,hazard,Peligrosidad muy baja,1,898.53,0.323777
+28179,hazard,Peligrosidad baja,2,717.18,0.25843
+28179,hazard,Peligrosidad moderada,3,354.17,0.127622
+28179,hazard,Peligrosidad alta,4,308.99,0.111343
+28179,hazard,Peligrosidad muy alta,5,496.27,0.178826
+28180,hazard,Peligrosidad muy baja,1,4469.5,0.375573
+28180,hazard,Peligrosidad baja,2,3032.79,0.254846
+28180,hazard,Peligrosidad moderada,3,1782.38,0.149773
+28180,hazard,Peligrosidad alta,4,1657.6,0.139288
+28180,hazard,Peligrosidad muy alta,5,956.35,0.080362
+28181,hazard,Peligrosidad baja,2,649.98,0.095291
+28181,hazard,Peligrosidad moderada,3,2194.99,0.321797
+28181,hazard,Peligrosidad alta,4,2715.47,0.398103
+28181,hazard,Peligrosidad muy alta,5,1260.45,0.184789
+28182,hazard,Peligrosidad muy baja,1,563.66,0.242088
+28182,hazard,Peligrosidad baja,2,414.85,0.178176
+28182,hazard,Peligrosidad moderada,3,591.05,0.25385
+28182,hazard,Peligrosidad alta,4,633.51,0.272087
+28182,hazard,Peligrosidad muy alta,5,124.52,0.053478
+28183,hazard,Peligrosidad baja,2,34.6,0.01716
+28183,hazard,Peligrosidad moderada,3,291.53,0.144584
+28183,hazard,Peligrosidad alta,4,768.08,0.380929
+28183,hazard,Peligrosidad muy alta,5,922.15,0.457342
+28901,hazard,Peligrosidad baja,2,527.91,0.102654
+28901,hazard,Peligrosidad moderada,3,1692.36,0.329085
+28901,hazard,Peligrosidad alta,4,1745.16,0.339352
+28901,hazard,Peligrosidad muy alta,5,1176.71,0.228816
+28902,hazard,Peligrosidad baja,2,2070.42,0.353625
+28902,hazard,Peligrosidad moderada,3,1921.41,0.328175
+28902,hazard,Peligrosidad alta,4,1203.42,0.205543
+28902,hazard,Peligrosidad muy alta,5,659.58,0.112655
+28903,hazard,Peligrosidad muy baja,1,810.57,0.213599
+28903,hazard,Peligrosidad baja,2,650.92,0.171528
+28903,hazard,Peligrosidad moderada,3,1486.49,0.391716
+28903,hazard,Peligrosidad alta,4,722.91,0.1905
+28903,hazard,Peligrosidad muy alta,5,123.85,0.032637
+28001,vulnerability,Sin Vulnerabilidad,0,2.48,0.001136
+28001,vulnerability,Vulnerabilidad baja,2,26.78,0.012248
+28001,vulnerability,Vulnerabilidad moderada,3,8.83,0.004038
+28001,vulnerability,Vulnerabilidad alta,4,2.9,0.001327
+28001,vulnerability,Vulnerabilidad muy alta,5,2143.18,0.980066
+28002,vulnerability,Sin Vulnerabilidad,0,42.55,0.02147
+28002,vulnerability,Vulnerabilidad baja,2,1438.43,0.725899
+28002,vulnerability,Vulnerabilidad moderada,3,382.62,0.193088
+28002,vulnerability,Vulnerabilidad alta,4,5.61,0.002832
+28002,vulnerability,Vulnerabilidad muy alta,5,110.25,0.055636
+28003,vulnerability,Sin Vulnerabilidad,0,2.74,0.001066
+28003,vulnerability,Vulnerabilidad muy baja,1,0.93,0.000363
+28003,vulnerability,Vulnerabilidad baja,2,175.44,0.068335
+28003,vulnerability,Vulnerabilidad moderada,3,27.6,0.010749
+28003,vulnerability,Vulnerabilidad alta,4,2.14,0.000835
+28003,vulnerability,Vulnerabilidad muy alta,5,2356.36,0.917824
+28004,vulnerability,Sin Vulnerabilidad,0,20.16,0.009174
+28004,vulnerability,Vulnerabilidad muy baja,1,0.04,2e-05
+28004,vulnerability,Vulnerabilidad baja,2,1562.51,0.711175
+28004,vulnerability,Vulnerabilidad moderada,3,261.66,0.119093
+28004,vulnerability,Vulnerabilidad alta,4,12.48,0.005681
+28004,vulnerability,Vulnerabilidad muy alta,5,338.44,0.154042
+28005,vulnerability,Sin Vulnerabilidad,0,317.46,0.036023
+28005,vulnerability,Vulnerabilidad muy baja,1,23.73,0.002693
+28005,vulnerability,Vulnerabilidad baja,2,2389.7,0.271165
+28005,vulnerability,Vulnerabilidad moderada,3,2857.01,0.324192
+28005,vulnerability,Vulnerabilidad alta,4,234.67,0.026629
+28005,vulnerability,Vulnerabilidad muy alta,5,2985.72,0.338796
+28006,vulnerability,Sin Vulnerabilidad,0,317.24,0.070195
+28006,vulnerability,Vulnerabilidad muy baja,1,0.26,5.7e-05
+28006,vulnerability,Vulnerabilidad baja,2,641.54,0.141951
+28006,vulnerability,Vulnerabilidad moderada,3,2443.76,0.540722
+28006,vulnerability,Vulnerabilidad alta,4,207.35,0.045879
+28006,vulnerability,Vulnerabilidad muy alta,5,905.88,0.200442
+28007,vulnerability,Sin Vulnerabilidad,0,248.03,0.07384
+28007,vulnerability,Vulnerabilidad muy baja,1,1.38,0.000409
+28007,vulnerability,Vulnerabilidad baja,2,1042.1,0.310231
+28007,vulnerability,Vulnerabilidad moderada,3,1285.69,0.382749
+28007,vulnerability,Vulnerabilidad alta,4,243.69,0.072545
+28007,vulnerability,Vulnerabilidad muy alta,5,537.21,0.159926
+28008,vulnerability,Sin Vulnerabilidad,0,37.42,0.007249
+28008,vulnerability,Vulnerabilidad muy baja,1,38.75,0.007506
+28008,vulnerability,Vulnerabilidad baja,2,893.38,0.173035
+28008,vulnerability,Vulnerabilidad moderada,3,146.82,0.028437
+28008,vulnerability,Vulnerabilidad alta,4,21.67,0.004197
+28008,vulnerability,Vulnerabilidad muy alta,5,4022.32,0.77907
+28009,vulnerability,Sin Vulnerabilidad,0,222.53,0.058565
+28009,vulnerability,Vulnerabilidad muy baja,1,23.67,0.006229
+28009,vulnerability,Vulnerabilidad baja,2,2018.67,0.531256
+28009,vulnerability,Vulnerabilidad moderada,3,705.77,0.185739
+28009,vulnerability,Vulnerabilidad alta,4,55.52,0.014611
+28009,vulnerability,Vulnerabilidad muy alta,5,772.3,0.203247
+28010,vulnerability,Sin Vulnerabilidad,0,17.73,0.014007
+28010,vulnerability,Vulnerabilidad muy baja,1,0.55,0.000437
+28010,vulnerability,Vulnerabilidad baja,2,1.69,0.001336
+28010,vulnerability,Vulnerabilidad moderada,3,435.19,0.343899
+28010,vulnerability,Vulnerabilidad alta,4,17.91,0.014157
+28010,vulnerability,Vulnerabilidad muy alta,5,791.28,0.625297
+28011,vulnerability,Sin Vulnerabilidad,0,26.69,0.010352
+28011,vulnerability,Vulnerabilidad muy baja,1,1.94,0.000752
+28011,vulnerability,Vulnerabilidad baja,2,898.22,0.348358
+28011,vulnerability,Vulnerabilidad moderada,3,95.27,0.03695
+28011,vulnerability,Vulnerabilidad alta,4,7.83,0.003037
+28011,vulnerability,Vulnerabilidad muy alta,5,1545.06,0.599223
+28012,vulnerability,Sin Vulnerabilidad,0,14.18,0.006566
+28012,vulnerability,Vulnerabilidad baja,2,1319.02,0.610829
+28012,vulnerability,Vulnerabilidad moderada,3,55.1,0.025519
+28012,vulnerability,Vulnerabilidad alta,4,3.72,0.001724
+28012,vulnerability,Vulnerabilidad muy alta,5,767.26,0.355316
+28013,vulnerability,Sin Vulnerabilidad,0,333.14,0.017619
+28013,vulnerability,Vulnerabilidad muy baja,1,191.88,0.010148
+28013,vulnerability,Vulnerabilidad baja,2,10116.56,0.535026
+28013,vulnerability,Vulnerabilidad moderada,3,1318.22,0.069716
+28013,vulnerability,Vulnerabilidad alta,4,247.12,0.013069
+28013,vulnerability,Vulnerabilidad muy alta,5,6667.82,0.352636
+28014,vulnerability,Sin Vulnerabilidad,0,427.21,0.05321
+28014,vulnerability,Vulnerabilidad muy baja,1,32.41,0.004036
+28014,vulnerability,Vulnerabilidad baja,2,3135.11,0.390484
+28014,vulnerability,Vulnerabilidad moderada,3,1378.66,0.171714
+28014,vulnerability,Vulnerabilidad alta,4,158.18,0.019701
+28014,vulnerability,Vulnerabilidad muy alta,5,2895.35,0.360622
+28015,vulnerability,Sin Vulnerabilidad,0,71.62,0.034462
+28015,vulnerability,Vulnerabilidad muy baja,1,1.46,0.000701
+28015,vulnerability,Vulnerabilidad baja,2,488.39,0.234996
+28015,vulnerability,Vulnerabilidad moderada,3,813.89,0.391611
+28015,vulnerability,Vulnerabilidad alta,4,81.31,0.039122
+28015,vulnerability,Vulnerabilidad muy alta,5,617.18,0.296964
+28016,vulnerability,Sin Vulnerabilidad,0,3.13,0.001101
+28016,vulnerability,Vulnerabilidad muy baja,1,209.37,0.073601
+28016,vulnerability,Vulnerabilidad baja,2,77.7,0.027313
+28016,vulnerability,Vulnerabilidad moderada,3,4.68,0.001646
+28016,vulnerability,Vulnerabilidad alta,4,1.64,0.000575
+28016,vulnerability,Vulnerabilidad muy alta,5,2542.95,0.89394
+28017,vulnerability,Sin Vulnerabilidad,0,13.22,0.006185
+28017,vulnerability,Vulnerabilidad muy baja,1,4.26,0.001992
+28017,vulnerability,Vulnerabilidad baja,2,756.3,0.353782
+28017,vulnerability,Vulnerabilidad moderada,3,150.43,0.070366
+28017,vulnerability,Vulnerabilidad alta,4,10.93,0.005113
+28017,vulnerability,Vulnerabilidad muy alta,5,1199.41,0.56106
+28018,vulnerability,Sin Vulnerabilidad,0,15.35,0.005174
+28018,vulnerability,Vulnerabilidad muy baja,1,2.54,0.000856
+28018,vulnerability,Vulnerabilidad baja,2,56.25,0.018966
+28018,vulnerability,Vulnerabilidad moderada,3,333.45,0.112425
+28018,vulnerability,Vulnerabilidad alta,4,28.95,0.00976
+28018,vulnerability,Vulnerabilidad muy alta,5,2527.49,0.85215
+28019,vulnerability,Sin Vulnerabilidad,0,13.8,0.005747
+28019,vulnerability,Vulnerabilidad muy baja,1,0.01,5e-06
+28019,vulnerability,Vulnerabilidad baja,2,1698.77,0.707158
+28019,vulnerability,Vulnerabilidad moderada,3,64.33,0.026779
+28019,vulnerability,Vulnerabilidad alta,4,3.83,0.001593
+28019,vulnerability,Vulnerabilidad muy alta,5,620.79,0.258421
+28020,vulnerability,Sin Vulnerabilidad,0,7.82,0.005355
+28020,vulnerability,Vulnerabilidad muy baja,1,24.0,0.016429
+28020,vulnerability,Vulnerabilidad baja,2,91.73,0.062793
+28020,vulnerability,Vulnerabilidad moderada,3,12.93,0.008847
+28020,vulnerability,Vulnerabilidad alta,4,0.58,0.0004
+28020,vulnerability,Vulnerabilidad muy alta,5,1322.97,0.905606
+28021,vulnerability,Sin Vulnerabilidad,0,18.67,0.006562
+28021,vulnerability,Vulnerabilidad muy baja,1,173.57,0.061002
+28021,vulnerability,Vulnerabilidad baja,2,231.27,0.081277
+28021,vulnerability,Vulnerabilidad moderada,3,72.86,0.025605
+28021,vulnerability,Vulnerabilidad alta,4,5.4,0.001899
+28021,vulnerability,Vulnerabilidad muy alta,5,2340.5,0.822552
+28022,vulnerability,Sin Vulnerabilidad,0,343.29,0.07244
+28022,vulnerability,Vulnerabilidad muy baja,1,0.88,0.000186
+28022,vulnerability,Vulnerabilidad baja,2,189.53,0.039994
+28022,vulnerability,Vulnerabilidad moderada,3,1820.18,0.384089
+28022,vulnerability,Vulnerabilidad alta,4,78.13,0.016487
+28022,vulnerability,Vulnerabilidad muy alta,5,2304.83,0.486358
+28023,vulnerability,Sin Vulnerabilidad,0,36.27,0.009207
+28023,vulnerability,Vulnerabilidad muy baja,1,0.09,2.2e-05
+28023,vulnerability,Vulnerabilidad baja,2,45.95,0.011665
+28023,vulnerability,Vulnerabilidad moderada,3,404.81,0.102765
+28023,vulnerability,Vulnerabilidad alta,4,51.12,0.012977
+28023,vulnerability,Vulnerabilidad muy alta,5,3395.96,0.862108
+28024,vulnerability,Sin Vulnerabilidad,0,2.21,0.000888
+28024,vulnerability,Vulnerabilidad baja,2,116.77,0.046872
+28024,vulnerability,Vulnerabilidad moderada,3,18.23,0.007319
+28024,vulnerability,Vulnerabilidad alta,4,2.86,0.001148
+28024,vulnerability,Vulnerabilidad muy alta,5,2350.93,0.943658
+28025,vulnerability,Sin Vulnerabilidad,0,36.22,0.008107
+28025,vulnerability,Vulnerabilidad muy baja,1,0.02,5e-06
+28025,vulnerability,Vulnerabilidad baja,2,2619.59,0.586313
+28025,vulnerability,Vulnerabilidad moderada,3,142.55,0.031905
+28025,vulnerability,Vulnerabilidad alta,4,18.15,0.004062
+28025,vulnerability,Vulnerabilidad muy alta,5,1648.7,0.36901
+28026,vulnerability,Sin Vulnerabilidad,0,83.01,0.016884
+28026,vulnerability,Vulnerabilidad muy baja,1,0.22,4.4e-05
+28026,vulnerability,Vulnerabilidad baja,2,2854.92,0.580666
+28026,vulnerability,Vulnerabilidad moderada,3,324.64,0.066028
+28026,vulnerability,Vulnerabilidad alta,4,47.22,0.009604
+28026,vulnerability,Vulnerabilidad muy alta,5,1605.46,0.326537
+28027,vulnerability,Sin Vulnerabilidad,0,16.71,0.006442
+28027,vulnerability,Vulnerabilidad muy baja,1,174.88,0.067431
+28027,vulnerability,Vulnerabilidad baja,2,104.48,0.040285
+28027,vulnerability,Vulnerabilidad moderada,3,59.97,0.023122
+28027,vulnerability,Vulnerabilidad alta,4,36.95,0.014247
+28027,vulnerability,Vulnerabilidad muy alta,5,2197.07,0.847145
+28028,vulnerability,Sin Vulnerabilidad,0,35.54,0.006329
+28028,vulnerability,Vulnerabilidad muy baja,1,0.07,1.2e-05
+28028,vulnerability,Vulnerabilidad baja,2,471.14,0.083904
+28028,vulnerability,Vulnerabilidad moderada,3,140.96,0.025103
+28028,vulnerability,Vulnerabilidad alta,4,15.32,0.002729
+28028,vulnerability,Vulnerabilidad muy alta,5,4950.35,0.881603
+28029,vulnerability,Sin Vulnerabilidad,0,49.42,0.035812
+28029,vulnerability,Vulnerabilidad muy baja,1,0.12,8.7e-05
+28029,vulnerability,Vulnerabilidad baja,2,121.92,0.088339
+28029,vulnerability,Vulnerabilidad moderada,3,41.81,0.030292
+28029,vulnerability,Vulnerabilidad alta,4,1.02,0.000743
+28029,vulnerability,Vulnerabilidad muy alta,5,1164.73,0.843924
+28030,vulnerability,Sin Vulnerabilidad,0,40.15,0.018129
+28030,vulnerability,Vulnerabilidad muy baja,1,0.04,1.6e-05
+28030,vulnerability,Vulnerabilidad baja,2,109.75,0.04956
+28030,vulnerability,Vulnerabilidad moderada,3,102.7,0.046378
+28030,vulnerability,Vulnerabilidad alta,4,14.5,0.006548
+28030,vulnerability,Vulnerabilidad muy alta,5,1947.02,0.879266
+28031,vulnerability,Sin Vulnerabilidad,0,29.4,0.006144
+28031,vulnerability,Vulnerabilidad muy baja,1,1.9,0.000397
+28031,vulnerability,Vulnerabilidad baja,2,1605.18,0.335455
+28031,vulnerability,Vulnerabilidad moderada,3,357.79,0.074771
+28031,vulnerability,Vulnerabilidad alta,4,28.06,0.005864
+28031,vulnerability,Vulnerabilidad muy alta,5,2759.34,0.576654
+28032,vulnerability,Sin Vulnerabilidad,0,20.14,0.00573
+28032,vulnerability,Vulnerabilidad muy baja,1,0.05,1.4e-05
+28032,vulnerability,Vulnerabilidad baja,2,2653.56,0.755023
+28032,vulnerability,Vulnerabilidad moderada,3,360.42,0.10255
+28032,vulnerability,Vulnerabilidad alta,4,24.92,0.00709
+28032,vulnerability,Vulnerabilidad muy alta,5,455.04,0.129474
+28033,vulnerability,Sin Vulnerabilidad,0,45.97,0.007443
+28033,vulnerability,Vulnerabilidad muy baja,1,0.03,5e-06
+28033,vulnerability,Vulnerabilidad baja,2,4253.31,0.68868
+28033,vulnerability,Vulnerabilidad moderada,3,297.36,0.048148
+28033,vulnerability,Vulnerabilidad alta,4,4.11,0.000666
+28033,vulnerability,Vulnerabilidad muy alta,5,1573.25,0.254735
+28034,vulnerability,Sin Vulnerabilidad,0,2.19,0.000404
+28034,vulnerability,Vulnerabilidad muy baja,1,0.54,9.9e-05
+28034,vulnerability,Vulnerabilidad baja,2,99.46,0.018351
+28034,vulnerability,Vulnerabilidad moderada,3,44.45,0.008203
+28034,vulnerability,Vulnerabilidad alta,4,2.31,0.000426
+28034,vulnerability,Vulnerabilidad muy alta,5,5268.76,0.972156
+28035,vulnerability,Sin Vulnerabilidad,0,42.78,0.008983
+28035,vulnerability,Vulnerabilidad muy baja,1,0.11,2.4e-05
+28035,vulnerability,Vulnerabilidad baja,2,2084.39,0.437678
+28035,vulnerability,Vulnerabilidad moderada,3,148.88,0.031261
+28035,vulnerability,Vulnerabilidad alta,4,26.2,0.005501
+28035,vulnerability,Vulnerabilidad muy alta,5,2458.18,0.516166
+28036,vulnerability,Sin Vulnerabilidad,0,7.46,0.013988
+28036,vulnerability,Vulnerabilidad muy baja,1,0.05,9.4e-05
+28036,vulnerability,Vulnerabilidad baja,2,372.18,0.698304
+28036,vulnerability,Vulnerabilidad moderada,3,101.13,0.189742
+28036,vulnerability,Vulnerabilidad alta,4,7.25,0.013603
+28036,vulnerability,Vulnerabilidad muy alta,5,43.05,0.080764
+28037,vulnerability,Sin Vulnerabilidad,0,13.0,0.001904
+28037,vulnerability,Vulnerabilidad muy baja,1,0.77,0.000113
+28037,vulnerability,Vulnerabilidad baja,2,1115.72,0.16346
+28037,vulnerability,Vulnerabilidad moderada,3,108.71,0.015926
+28037,vulnerability,Vulnerabilidad alta,4,19.29,0.002826
+28037,vulnerability,Vulnerabilidad muy alta,5,5559.55,0.814511
+28038,vulnerability,Sin Vulnerabilidad,0,25.02,0.006132
+28038,vulnerability,Vulnerabilidad muy baja,1,9.27,0.002272
+28038,vulnerability,Vulnerabilidad baja,2,223.16,0.054705
+28038,vulnerability,Vulnerabilidad moderada,3,328.96,0.080642
+28038,vulnerability,Vulnerabilidad alta,4,22.61,0.005543
+28038,vulnerability,Vulnerabilidad muy alta,5,3467.3,0.849979
+28039,vulnerability,Sin Vulnerabilidad,0,0.43,0.000371
+28039,vulnerability,Vulnerabilidad muy baja,1,353.12,0.306074
+28039,vulnerability,Vulnerabilidad baja,2,7.8,0.006765
+28039,vulnerability,Vulnerabilidad moderada,3,11.57,0.010033
+28039,vulnerability,Vulnerabilidad alta,4,2.25,0.001948
+28039,vulnerability,Vulnerabilidad muy alta,5,775.37,0.672068
+28040,vulnerability,Sin Vulnerabilidad,0,170.41,0.03446
+28040,vulnerability,Vulnerabilidad muy baja,1,74.78,0.015123
+28040,vulnerability,Vulnerabilidad baja,2,3018.74,0.610464
+28040,vulnerability,Vulnerabilidad moderada,3,715.41,0.144673
+28040,vulnerability,Vulnerabilidad alta,4,51.27,0.010369
+28040,vulnerability,Vulnerabilidad muy alta,5,910.05,0.184035
+28041,vulnerability,Sin Vulnerabilidad,0,41.12,0.019786
+28041,vulnerability,Vulnerabilidad muy baja,1,0.02,1e-05
+28041,vulnerability,Vulnerabilidad baja,2,1556.53,0.748879
+28041,vulnerability,Vulnerabilidad moderada,3,181.77,0.087454
+28041,vulnerability,Vulnerabilidad alta,4,15.19,0.007307
+28041,vulnerability,Vulnerabilidad muy alta,5,283.54,0.136418
+28042,vulnerability,Sin Vulnerabilidad,0,36.73,0.007451
+28042,vulnerability,Vulnerabilidad muy baja,1,8.58,0.001741
+28042,vulnerability,Vulnerabilidad baja,2,292.11,0.05926
+28042,vulnerability,Vulnerabilidad moderada,3,106.55,0.021615
+28042,vulnerability,Vulnerabilidad alta,4,5.61,0.001137
+28042,vulnerability,Vulnerabilidad muy alta,5,4476.99,0.908235
+28043,vulnerability,Sin Vulnerabilidad,0,156.21,0.01237
+28043,vulnerability,Vulnerabilidad muy baja,1,27.11,0.002147
+28043,vulnerability,Vulnerabilidad baja,2,7719.16,0.611259
+28043,vulnerability,Vulnerabilidad moderada,3,765.58,0.060624
+28043,vulnerability,Vulnerabilidad alta,4,59.42,0.004705
+28043,vulnerability,Vulnerabilidad muy alta,5,3888.76,0.30794
+28044,vulnerability,Sin Vulnerabilidad,0,24.38,0.007741
+28044,vulnerability,Vulnerabilidad muy baja,1,162.44,0.051573
+28044,vulnerability,Vulnerabilidad baja,2,19.94,0.00633
+28044,vulnerability,Vulnerabilidad moderada,3,273.93,0.086969
+28044,vulnerability,Vulnerabilidad alta,4,19.91,0.00632
+28044,vulnerability,Vulnerabilidad muy alta,5,2648.1,0.840753
+28045,vulnerability,Sin Vulnerabilidad,0,254.96,0.013942
+28045,vulnerability,Vulnerabilidad muy baja,1,8.59,0.00047
+28045,vulnerability,Vulnerabilidad baja,2,440.97,0.024115
+28045,vulnerability,Vulnerabilidad moderada,3,1145.51,0.062643
+28045,vulnerability,Vulnerabilidad alta,4,89.32,0.004884
+28045,vulnerability,Vulnerabilidad muy alta,5,16341.6,0.893657
+28046,vulnerability,Sin Vulnerabilidad,0,8.99,0.004053
+28046,vulnerability,Vulnerabilidad baja,2,106.55,0.048022
+28046,vulnerability,Vulnerabilidad moderada,3,275.39,0.124121
+28046,vulnerability,Vulnerabilidad alta,4,5.68,0.002562
+28046,vulnerability,Vulnerabilidad muy alta,5,1821.73,0.821074
+28047,vulnerability,Sin Vulnerabilidad,0,43.82,0.017405
+28047,vulnerability,Vulnerabilidad muy baja,1,0.48,0.000192
+28047,vulnerability,Vulnerabilidad baja,2,10.82,0.004299
+28047,vulnerability,Vulnerabilidad moderada,3,879.18,0.349235
+28047,vulnerability,Vulnerabilidad alta,4,49.14,0.019521
+28047,vulnerability,Vulnerabilidad muy alta,5,1533.81,0.609272
+28048,vulnerability,Sin Vulnerabilidad,0,2.59,0.000999
+28048,vulnerability,Vulnerabilidad baja,2,1788.57,0.688967
+28048,vulnerability,Vulnerabilidad moderada,3,53.19,0.020488
+28048,vulnerability,Vulnerabilidad alta,4,0.12,4.8e-05
+28048,vulnerability,Vulnerabilidad muy alta,5,750.69,0.28917
+28049,vulnerability,Sin Vulnerabilidad,0,144.83,0.120751
+28049,vulnerability,Vulnerabilidad muy baja,1,0.02,1.5e-05
+28049,vulnerability,Vulnerabilidad baja,2,11.82,0.009859
+28049,vulnerability,Vulnerabilidad moderada,3,889.87,0.741935
+28049,vulnerability,Vulnerabilidad alta,4,60.94,0.050807
+28049,vulnerability,Vulnerabilidad muy alta,5,91.05,0.075914
+28050,vulnerability,Sin Vulnerabilidad,0,25.89,0.020069
+28050,vulnerability,Vulnerabilidad muy baja,1,0.19,0.000145
+28050,vulnerability,Vulnerabilidad baja,2,871.13,0.675401
+28050,vulnerability,Vulnerabilidad moderada,3,269.04,0.208592
+28050,vulnerability,Vulnerabilidad alta,4,17.05,0.013221
+28050,vulnerability,Vulnerabilidad muy alta,5,104.68,0.081162
+28051,vulnerability,Sin Vulnerabilidad,0,26.39,0.010326
+28051,vulnerability,Vulnerabilidad muy baja,1,0.55,0.000213
+28051,vulnerability,Vulnerabilidad baja,2,99.38,0.038885
+28051,vulnerability,Vulnerabilidad moderada,3,145.35,0.056877
+28051,vulnerability,Vulnerabilidad alta,4,5.77,0.002257
+28051,vulnerability,Vulnerabilidad muy alta,5,2278.11,0.891426
+28052,vulnerability,Sin Vulnerabilidad,0,118.65,0.010252
+28052,vulnerability,Vulnerabilidad muy baja,1,12.46,0.001076
+28052,vulnerability,Vulnerabilidad baja,2,5522.4,0.477185
+28052,vulnerability,Vulnerabilidad moderada,3,503.27,0.043487
+28052,vulnerability,Vulnerabilidad alta,4,42.98,0.003714
+28052,vulnerability,Vulnerabilidad muy alta,5,5372.84,0.464261
+28053,vulnerability,Sin Vulnerabilidad,0,24.88,0.005731
+28053,vulnerability,Vulnerabilidad muy baja,1,2.99,0.000689
+28053,vulnerability,Vulnerabilidad baja,2,3640.47,0.838573
+28053,vulnerability,Vulnerabilidad moderada,3,272.19,0.062698
+28053,vulnerability,Vulnerabilidad alta,4,24.37,0.005613
+28053,vulnerability,Vulnerabilidad muy alta,5,374.45,0.086254
+28054,vulnerability,Sin Vulnerabilidad,0,75.55,0.010982
+28054,vulnerability,Vulnerabilidad muy baja,1,103.93,0.015107
+28054,vulnerability,Vulnerabilidad baja,2,22.54,0.003276
+28054,vulnerability,Vulnerabilidad moderada,3,719.18,0.104537
+28054,vulnerability,Vulnerabilidad alta,4,61.28,0.008908
+28054,vulnerability,Vulnerabilidad muy alta,5,5893.95,0.856727
+28055,vulnerability,Sin Vulnerabilidad,0,82.6,0.010437
+28055,vulnerability,Vulnerabilidad muy baja,1,11.26,0.001422
+28055,vulnerability,Vulnerabilidad baja,2,5959.81,0.753017
+28055,vulnerability,Vulnerabilidad moderada,3,147.72,0.018664
+28055,vulnerability,Vulnerabilidad alta,4,11.23,0.001419
+28055,vulnerability,Vulnerabilidad muy alta,5,1693.09,0.213921
+28056,vulnerability,Sin Vulnerabilidad,0,18.46,0.006519
+28056,vulnerability,Vulnerabilidad muy baja,1,1.44,0.000507
+28056,vulnerability,Vulnerabilidad baja,2,9.9,0.003495
+28056,vulnerability,Vulnerabilidad moderada,3,66.36,0.023428
+28056,vulnerability,Vulnerabilidad alta,4,2.8,0.000988
+28056,vulnerability,Vulnerabilidad muy alta,5,2732.7,0.964745
+28057,vulnerability,Sin Vulnerabilidad,0,8.99,0.002829
+28057,vulnerability,Vulnerabilidad muy baja,1,0.76,0.00024
+28057,vulnerability,Vulnerabilidad baja,2,2137.74,0.672909
+28057,vulnerability,Vulnerabilidad moderada,3,290.36,0.091397
+28057,vulnerability,Vulnerabilidad alta,4,4.09,0.001289
+28057,vulnerability,Vulnerabilidad muy alta,5,733.2,0.230794
+28058,vulnerability,Sin Vulnerabilidad,0,203.04,0.051737
+28058,vulnerability,Vulnerabilidad muy baja,1,0.06,1.6e-05
+28058,vulnerability,Vulnerabilidad baja,2,1566.32,0.399114
+28058,vulnerability,Vulnerabilidad moderada,3,1560.08,0.397523
+28058,vulnerability,Vulnerabilidad alta,4,263.63,0.067175
+28058,vulnerability,Vulnerabilidad muy alta,5,326.2,0.08312
+28059,vulnerability,Sin Vulnerabilidad,0,56.36,0.017012
+28059,vulnerability,Vulnerabilidad muy baja,1,10.49,0.003168
+28059,vulnerability,Vulnerabilidad baja,2,2469.68,0.745474
+28059,vulnerability,Vulnerabilidad moderada,3,350.51,0.105802
+28059,vulnerability,Vulnerabilidad alta,4,16.35,0.004935
+28059,vulnerability,Vulnerabilidad muy alta,5,409.38,0.123571
+28060,vulnerability,Sin Vulnerabilidad,0,77.36,0.01286
+28060,vulnerability,Vulnerabilidad muy baja,1,20.55,0.003416
+28060,vulnerability,Vulnerabilidad baja,2,3192.57,0.530706
+28060,vulnerability,Vulnerabilidad moderada,3,332.06,0.055198
+28060,vulnerability,Vulnerabilidad alta,4,27.29,0.004536
+28060,vulnerability,Vulnerabilidad muy alta,5,2363.38,0.392868
+28061,vulnerability,Sin Vulnerabilidad,0,78.95,0.012115
+28061,vulnerability,Vulnerabilidad muy baja,1,13.41,0.002058
+28061,vulnerability,Vulnerabilidad baja,2,24.91,0.003823
+28061,vulnerability,Vulnerabilidad moderada,3,1118.66,0.17165
+28061,vulnerability,Vulnerabilidad alta,4,37.49,0.005753
+28061,vulnerability,Vulnerabilidad muy alta,5,5241.49,0.804268
+28062,vulnerability,Sin Vulnerabilidad,0,23.7,0.005876
+28062,vulnerability,Vulnerabilidad muy baja,1,77.12,0.01912
+28062,vulnerability,Vulnerabilidad baja,2,179.96,0.044616
+28062,vulnerability,Vulnerabilidad moderada,3,48.78,0.012094
+28062,vulnerability,Vulnerabilidad alta,4,6.98,0.00173
+28062,vulnerability,Vulnerabilidad muy alta,5,3695.7,0.916247
+28063,vulnerability,Sin Vulnerabilidad,0,15.52,0.006421
+28063,vulnerability,Vulnerabilidad muy baja,1,155.11,0.064193
+28063,vulnerability,Vulnerabilidad baja,2,292.58,0.121087
+28063,vulnerability,Vulnerabilidad moderada,3,79.78,0.033016
+28063,vulnerability,Vulnerabilidad alta,4,6.45,0.002667
+28063,vulnerability,Vulnerabilidad muy alta,5,1866.37,0.772421
+28064,vulnerability,Sin Vulnerabilidad,0,8.57,0.004269
+28064,vulnerability,Vulnerabilidad muy baja,1,0.02,1e-05
+28064,vulnerability,Vulnerabilidad baja,2,188.22,0.093763
+28064,vulnerability,Vulnerabilidad moderada,3,16.21,0.008077
+28064,vulnerability,Vulnerabilidad alta,4,5.27,0.002624
+28064,vulnerability,Vulnerabilidad muy alta,5,1788.78,0.89107
+28065,vulnerability,Sin Vulnerabilidad,0,676.98,0.086143
+28065,vulnerability,Vulnerabilidad muy baja,1,44.75,0.005694
+28065,vulnerability,Vulnerabilidad baja,2,2785.44,0.354437
+28065,vulnerability,Vulnerabilidad moderada,3,2648.59,0.337023
+28065,vulnerability,Vulnerabilidad alta,4,277.8,0.035349
+28065,vulnerability,Vulnerabilidad muy alta,5,1424.7,0.181288
+28066,vulnerability,Sin Vulnerabilidad,0,29.09,0.01705
+28066,vulnerability,Vulnerabilidad muy baja,1,0.13,7.8e-05
+28066,vulnerability,Vulnerabilidad baja,2,974.25,0.57092
+28066,vulnerability,Vulnerabilidad moderada,3,386.9,0.226726
+28066,vulnerability,Vulnerabilidad alta,4,22.43,0.013144
+28066,vulnerability,Vulnerabilidad muy alta,5,293.61,0.172056
+28067,vulnerability,Sin Vulnerabilidad,0,36.34,0.006033
+28067,vulnerability,Vulnerabilidad muy baja,1,307.75,0.051088
+28067,vulnerability,Vulnerabilidad baja,2,330.32,0.054835
+28067,vulnerability,Vulnerabilidad moderada,3,235.61,0.039112
+28067,vulnerability,Vulnerabilidad alta,4,9.56,0.001587
+28067,vulnerability,Vulnerabilidad muy alta,5,5103.85,0.847254
+28068,vulnerability,Sin Vulnerabilidad,0,96.53,0.016877
+28068,vulnerability,Vulnerabilidad muy baja,1,57.93,0.010129
+28068,vulnerability,Vulnerabilidad baja,2,167.38,0.029266
+28068,vulnerability,Vulnerabilidad moderada,3,660.5,0.115487
+28068,vulnerability,Vulnerabilidad alta,4,41.7,0.007292
+28068,vulnerability,Vulnerabilidad muy alta,5,4691.49,0.820299
+28069,vulnerability,Sin Vulnerabilidad,0,0.38,0.000219
+28069,vulnerability,Vulnerabilidad baja,2,14.57,0.008515
+28069,vulnerability,Vulnerabilidad moderada,3,2.76,0.001613
+28069,vulnerability,Vulnerabilidad alta,4,2.72,0.001588
+28069,vulnerability,Vulnerabilidad muy alta,5,1686.35,0.985317
+28070,vulnerability,Sin Vulnerabilidad,0,19.02,0.008972
+28070,vulnerability,Vulnerabilidad baja,2,139.18,0.065647
+28070,vulnerability,Vulnerabilidad moderada,3,21.62,0.010197
+28070,vulnerability,Vulnerabilidad alta,4,2.14,0.001011
+28070,vulnerability,Vulnerabilidad muy alta,5,1935.25,0.912786
+28071,vulnerability,Sin Vulnerabilidad,0,0.51,0.000214
+28071,vulnerability,Vulnerabilidad baja,2,3.28,0.001376
+28071,vulnerability,Vulnerabilidad moderada,3,3.91,0.001638
+28071,vulnerability,Vulnerabilidad alta,4,2.06,0.000866
+28071,vulnerability,Vulnerabilidad muy alta,5,2373.89,0.995177
+28072,vulnerability,Sin Vulnerabilidad,0,23.81,0.005261
+28072,vulnerability,Vulnerabilidad muy baja,1,0.75,0.000166
+28072,vulnerability,Vulnerabilidad baja,2,50.69,0.011202
+28072,vulnerability,Vulnerabilidad moderada,3,367.63,0.08124
+28072,vulnerability,Vulnerabilidad alta,4,20.48,0.004525
+28072,vulnerability,Vulnerabilidad muy alta,5,4061.0,0.897397
+28073,vulnerability,Sin Vulnerabilidad,0,47.03,0.023886
+28073,vulnerability,Vulnerabilidad muy baja,1,0.06,2.8e-05
+28073,vulnerability,Vulnerabilidad baja,2,1249.38,0.634484
+28073,vulnerability,Vulnerabilidad moderada,3,503.49,0.25569
+28073,vulnerability,Vulnerabilidad alta,4,30.62,0.015553
+28073,vulnerability,Vulnerabilidad muy alta,5,137.18,0.069667
+28074,vulnerability,Sin Vulnerabilidad,0,320.63,0.074227
+28074,vulnerability,Vulnerabilidad muy baja,1,1.46,0.000337
+28074,vulnerability,Vulnerabilidad baja,2,1289.32,0.298478
+28074,vulnerability,Vulnerabilidad moderada,3,1667.69,0.386074
+28074,vulnerability,Vulnerabilidad alta,4,486.18,0.112551
+28074,vulnerability,Vulnerabilidad muy alta,5,554.35,0.128332
+28075,vulnerability,Sin Vulnerabilidad,0,146.81,0.03312
+28075,vulnerability,Vulnerabilidad muy baja,1,2.17,0.000488
+28075,vulnerability,Vulnerabilidad baja,2,2279.85,0.514323
+28075,vulnerability,Vulnerabilidad moderada,3,431.61,0.097368
+28075,vulnerability,Vulnerabilidad alta,4,57.77,0.013032
+28075,vulnerability,Vulnerabilidad muy alta,5,1514.39,0.341639
+28076,vulnerability,Sin Vulnerabilidad,0,7.48,0.001296
+28076,vulnerability,Vulnerabilidad muy baja,1,355.88,0.061684
+28076,vulnerability,Vulnerabilidad baja,2,167.79,0.029082
+28076,vulnerability,Vulnerabilidad moderada,3,66.03,0.011444
+28076,vulnerability,Vulnerabilidad alta,4,5.47,0.000948
+28076,vulnerability,Vulnerabilidad muy alta,5,5164.43,0.895123
+28078,vulnerability,Sin Vulnerabilidad,0,0.68,0.000792
+28078,vulnerability,Vulnerabilidad muy baja,1,3.35,0.003916
+28078,vulnerability,Vulnerabilidad baja,2,44.55,0.052112
+28078,vulnerability,Vulnerabilidad moderada,3,9.2,0.010758
+28078,vulnerability,Vulnerabilidad alta,4,0.18,0.000213
+28078,vulnerability,Vulnerabilidad muy alta,5,796.11,0.931196
+28079,vulnerability,Sin Vulnerabilidad,0,2457.62,0.040659
+28079,vulnerability,Vulnerabilidad muy baja,1,420.64,0.006959
+28079,vulnerability,Vulnerabilidad baja,2,2872.43,0.047521
+28079,vulnerability,Vulnerabilidad moderada,3,26027.97,0.430604
+28079,vulnerability,Vulnerabilidad alta,4,3961.52,0.065539
+28079,vulnerability,Vulnerabilidad muy alta,5,24700.88,0.408649
+28080,vulnerability,Sin Vulnerabilidad,0,81.31,0.021109
+28080,vulnerability,Vulnerabilidad baja,2,947.74,0.246049
+28080,vulnerability,Vulnerabilidad moderada,3,1175.74,0.305243
+28080,vulnerability,Vulnerabilidad alta,4,71.3,0.018509
+28080,vulnerability,Vulnerabilidad muy alta,5,1575.49,0.409024
+28082,vulnerability,Sin Vulnerabilidad,0,21.28,0.001658
+28082,vulnerability,Vulnerabilidad muy baja,1,911.33,0.071011
+28082,vulnerability,Vulnerabilidad baja,2,924.77,0.072058
+28082,vulnerability,Vulnerabilidad moderada,3,359.64,0.028023
+28082,vulnerability,Vulnerabilidad alta,4,329.25,0.025655
+28082,vulnerability,Vulnerabilidad muy alta,5,10287.2,0.801577
+28083,vulnerability,Sin Vulnerabilidad,0,139.78,0.039997
+28083,vulnerability,Vulnerabilidad muy baja,1,0.1,2.9e-05
+28083,vulnerability,Vulnerabilidad baja,2,2343.12,0.670495
+28083,vulnerability,Vulnerabilidad moderada,3,472.43,0.135189
+28083,vulnerability,Vulnerabilidad alta,4,51.45,0.014723
+28083,vulnerability,Vulnerabilidad muy alta,5,485.07,0.138805
+28084,vulnerability,Sin Vulnerabilidad,0,90.66,0.050639
+28084,vulnerability,Vulnerabilidad muy baja,1,4.59,0.002564
+28084,vulnerability,Vulnerabilidad baja,2,715.58,0.399699
+28084,vulnerability,Vulnerabilidad moderada,3,560.38,0.313007
+28084,vulnerability,Vulnerabilidad alta,4,25.38,0.014175
+28084,vulnerability,Vulnerabilidad muy alta,5,391.98,0.218946
+28085,vulnerability,Sin Vulnerabilidad,0,183.15,0.03248
+28085,vulnerability,Vulnerabilidad muy baja,1,7.99,0.001416
+28085,vulnerability,Vulnerabilidad baja,2,235.71,0.041803
+28085,vulnerability,Vulnerabilidad moderada,3,188.25,0.033386
+28085,vulnerability,Vulnerabilidad alta,4,11.87,0.002106
+28085,vulnerability,Vulnerabilidad muy alta,5,5011.33,0.888749
+28086,vulnerability,Sin Vulnerabilidad,0,123.35,0.024584
+28086,vulnerability,Vulnerabilidad muy baja,1,11.96,0.002384
+28086,vulnerability,Vulnerabilidad baja,2,2014.21,0.401447
+28086,vulnerability,Vulnerabilidad moderada,3,217.35,0.043319
+28086,vulnerability,Vulnerabilidad alta,4,13.95,0.00278
+28086,vulnerability,Vulnerabilidad muy alta,5,2632.76,0.524728
+28087,vulnerability,Sin Vulnerabilidad,0,2.29,0.001194
+28087,vulnerability,Vulnerabilidad muy baja,1,0.85,0.000446
+28087,vulnerability,Vulnerabilidad baja,2,62.41,0.032553
+28087,vulnerability,Vulnerabilidad moderada,3,286.73,0.14955
+28087,vulnerability,Vulnerabilidad alta,4,13.77,0.007183
+28087,vulnerability,Vulnerabilidad muy alta,5,1551.17,0.809049
+28088,vulnerability,Sin Vulnerabilidad,0,4.48,0.001392
+28088,vulnerability,Vulnerabilidad muy baja,1,1.22,0.00038
+28088,vulnerability,Vulnerabilidad baja,2,24.83,0.007716
+28088,vulnerability,Vulnerabilidad moderada,3,16.48,0.00512
+28088,vulnerability,Vulnerabilidad alta,4,3.44,0.001068
+28088,vulnerability,Vulnerabilidad muy alta,5,3163.36,0.983085
+28089,vulnerability,Sin Vulnerabilidad,0,97.41,0.031212
+28089,vulnerability,Vulnerabilidad muy baja,1,0.01,3e-06
+28089,vulnerability,Vulnerabilidad baja,2,2476.46,0.793516
+28089,vulnerability,Vulnerabilidad moderada,3,251.34,0.080534
+28089,vulnerability,Vulnerabilidad alta,4,42.99,0.013774
+28089,vulnerability,Vulnerabilidad muy alta,5,251.31,0.080525
+28090,vulnerability,Sin Vulnerabilidad,0,11.54,0.00265
+28090,vulnerability,Vulnerabilidad muy baja,1,0.25,5.7e-05
+28090,vulnerability,Vulnerabilidad baja,2,62.7,0.014399
+28090,vulnerability,Vulnerabilidad moderada,3,394.9,0.090691
+28090,vulnerability,Vulnerabilidad alta,4,25.21,0.00579
+28090,vulnerability,Vulnerabilidad muy alta,5,3859.73,0.886412
+28091,vulnerability,Sin Vulnerabilidad,0,177.74,0.039238
+28091,vulnerability,Vulnerabilidad muy baja,1,0.78,0.000172
+28091,vulnerability,Vulnerabilidad baja,2,2376.32,0.524609
+28091,vulnerability,Vulnerabilidad moderada,3,429.56,0.094831
+28091,vulnerability,Vulnerabilidad alta,4,29.7,0.006556
+28091,vulnerability,Vulnerabilidad muy alta,5,1514.63,0.334377
+28092,vulnerability,Sin Vulnerabilidad,0,139.85,0.031165
+28092,vulnerability,Vulnerabilidad muy baja,1,3.92,0.000873
+28092,vulnerability,Vulnerabilidad baja,2,1896.42,0.422597
+28092,vulnerability,Vulnerabilidad moderada,3,1511.37,0.336793
+28092,vulnerability,Vulnerabilidad alta,4,273.81,0.061016
+28092,vulnerability,Vulnerabilidad muy alta,5,660.47,0.147178
+28093,vulnerability,Sin Vulnerabilidad,0,17.91,0.006511
+28093,vulnerability,Vulnerabilidad muy baja,1,84.23,0.03063
+28093,vulnerability,Vulnerabilidad baja,2,131.77,0.047915
+28093,vulnerability,Vulnerabilidad moderada,3,152.75,0.055546
+28093,vulnerability,Vulnerabilidad alta,4,20.49,0.007451
+28093,vulnerability,Vulnerabilidad muy alta,5,2342.81,0.851928
+28094,vulnerability,Sin Vulnerabilidad,0,20.56,0.016883
+28094,vulnerability,Vulnerabilidad baja,2,145.84,0.119739
+28094,vulnerability,Vulnerabilidad moderada,3,84.53,0.0694
+28094,vulnerability,Vulnerabilidad alta,4,2.17,0.001778
+28094,vulnerability,Vulnerabilidad muy alta,5,964.53,0.791931
+28095,vulnerability,Sin Vulnerabilidad,0,105.83,0.013962
+28095,vulnerability,Vulnerabilidad muy baja,1,13.58,0.001791
+28095,vulnerability,Vulnerabilidad baja,2,287.86,0.03798
+28095,vulnerability,Vulnerabilidad moderada,3,101.38,0.013375
+28095,vulnerability,Vulnerabilidad alta,4,19.41,0.00256
+28095,vulnerability,Vulnerabilidad muy alta,5,7048.66,0.929974
+28096,vulnerability,Sin Vulnerabilidad,0,230.0,0.022811
+28096,vulnerability,Vulnerabilidad muy baja,1,5.75,0.000571
+28096,vulnerability,Vulnerabilidad baja,2,6297.24,0.624564
+28096,vulnerability,Vulnerabilidad moderada,3,708.08,0.070228
+28096,vulnerability,Vulnerabilidad alta,4,73.59,0.007299
+28096,vulnerability,Vulnerabilidad muy alta,5,2764.76,0.274211
+28097,vulnerability,Sin Vulnerabilidad,0,4.36,0.00153
+28097,vulnerability,Vulnerabilidad baja,2,75.75,0.026615
+28097,vulnerability,Vulnerabilidad moderada,3,29.52,0.010371
+28097,vulnerability,Vulnerabilidad alta,4,3.18,0.001118
+28097,vulnerability,Vulnerabilidad muy alta,5,2732.57,0.960131
+28099,vulnerability,Sin Vulnerabilidad,0,32.46,0.00642
+28099,vulnerability,Vulnerabilidad muy baja,1,39.13,0.007739
+28099,vulnerability,Vulnerabilidad baja,2,265.23,0.052455
+28099,vulnerability,Vulnerabilidad moderada,3,125.8,0.02488
+28099,vulnerability,Vulnerabilidad alta,4,8.16,0.001614
+28099,vulnerability,Vulnerabilidad muy alta,5,4584.37,0.906668
+28100,vulnerability,Sin Vulnerabilidad,0,17.61,0.008776
+28100,vulnerability,Vulnerabilidad baja,2,938.75,0.467888
+28100,vulnerability,Vulnerabilidad moderada,3,646.82,0.322383
+28100,vulnerability,Vulnerabilidad alta,4,8.78,0.004375
+28100,vulnerability,Vulnerabilidad muy alta,5,392.88,0.195815
+28101,vulnerability,Sin Vulnerabilidad,0,4.57,0.002761
+28101,vulnerability,Vulnerabilidad muy baja,1,0.01,6e-06
+28101,vulnerability,Vulnerabilidad baja,2,1039.95,0.628971
+28101,vulnerability,Vulnerabilidad moderada,3,29.23,0.017682
+28101,vulnerability,Vulnerabilidad alta,4,3.29,0.001987
+28101,vulnerability,Vulnerabilidad muy alta,5,575.86,0.348285
+28102,vulnerability,Sin Vulnerabilidad,0,46.61,0.021794
+28102,vulnerability,Vulnerabilidad muy baja,1,0.65,0.000305
+28102,vulnerability,Vulnerabilidad baja,2,875.61,0.409424
+28102,vulnerability,Vulnerabilidad moderada,3,120.83,0.056498
+28102,vulnerability,Vulnerabilidad alta,4,6.79,0.003173
+28102,vulnerability,Vulnerabilidad muy alta,5,1087.85,0.508666
+28104,vulnerability,Sin Vulnerabilidad,0,277.65,0.063349
+28104,vulnerability,Vulnerabilidad muy baja,1,34.92,0.007969
+28104,vulnerability,Vulnerabilidad baja,2,1954.48,0.445936
+28104,vulnerability,Vulnerabilidad moderada,3,748.77,0.170839
+28104,vulnerability,Vulnerabilidad alta,4,25.33,0.005779
+28104,vulnerability,Vulnerabilidad muy alta,5,1340.53,0.305856
+28106,vulnerability,Sin Vulnerabilidad,0,115.4,0.046264
+28106,vulnerability,Vulnerabilidad muy baja,1,0.84,0.000339
+28106,vulnerability,Vulnerabilidad baja,2,1186.58,0.475709
+28106,vulnerability,Vulnerabilidad moderada,3,853.74,0.342271
+28106,vulnerability,Vulnerabilidad alta,4,131.86,0.052865
+28106,vulnerability,Vulnerabilidad muy alta,5,204.94,0.082162
+28107,vulnerability,Sin Vulnerabilidad,0,4.43,0.001263
+28107,vulnerability,Vulnerabilidad muy baja,1,125.98,0.035887
+28107,vulnerability,Vulnerabilidad baja,2,215.31,0.061334
+28107,vulnerability,Vulnerabilidad moderada,3,54.31,0.015471
+28107,vulnerability,Vulnerabilidad alta,4,7.23,0.00206
+28107,vulnerability,Vulnerabilidad muy alta,5,3097.34,0.882304
+28108,vulnerability,Sin Vulnerabilidad,0,92.42,0.032403
+28108,vulnerability,Vulnerabilidad muy baja,1,98.09,0.034393
+28108,vulnerability,Vulnerabilidad baja,2,211.15,0.074031
+28108,vulnerability,Vulnerabilidad moderada,3,136.28,0.047782
+28108,vulnerability,Vulnerabilidad alta,4,6.79,0.00238
+28108,vulnerability,Vulnerabilidad muy alta,5,2306.78,0.808798
+28109,vulnerability,Sin Vulnerabilidad,0,24.04,0.031791
+28109,vulnerability,Vulnerabilidad muy baja,1,1.42,0.001871
+28109,vulnerability,Vulnerabilidad baja,2,35.08,0.046391
+28109,vulnerability,Vulnerabilidad moderada,3,197.38,0.261023
+28109,vulnerability,Vulnerabilidad alta,4,5.62,0.007432
+28109,vulnerability,Vulnerabilidad muy alta,5,492.42,0.651191
+28110,vulnerability,Sin Vulnerabilidad,0,57.59,0.011746
+28110,vulnerability,Vulnerabilidad muy baja,1,0.36,7.3e-05
+28110,vulnerability,Vulnerabilidad baja,2,1797.48,0.36659
+28110,vulnerability,Vulnerabilidad moderada,3,185.6,0.037853
+28110,vulnerability,Vulnerabilidad alta,4,19.52,0.003981
+28110,vulnerability,Vulnerabilidad muy alta,5,2842.74,0.579767
+28111,vulnerability,Sin Vulnerabilidad,0,14.61,0.00351
+28111,vulnerability,Vulnerabilidad baja,2,2471.72,0.593662
+28111,vulnerability,Vulnerabilidad moderada,3,80.29,0.019284
+28111,vulnerability,Vulnerabilidad alta,4,0.8,0.000191
+28111,vulnerability,Vulnerabilidad muy alta,5,1593.68,0.382773
+28112,vulnerability,Sin Vulnerabilidad,0,1.04,0.000407
+28112,vulnerability,Vulnerabilidad muy baja,1,62.1,0.024393
+28112,vulnerability,Vulnerabilidad baja,2,144.67,0.056822
+28112,vulnerability,Vulnerabilidad moderada,3,16.55,0.0065
+28112,vulnerability,Vulnerabilidad alta,4,0.3,0.000119
+28112,vulnerability,Vulnerabilidad muy alta,5,2320.75,0.91152
+28113,vulnerability,Sin Vulnerabilidad,0,257.46,0.041555
+28113,vulnerability,Vulnerabilidad muy baja,1,1.47,0.000237
+28113,vulnerability,Vulnerabilidad baja,2,4241.7,0.684625
+28113,vulnerability,Vulnerabilidad moderada,3,1066.04,0.172063
+28113,vulnerability,Vulnerabilidad alta,4,110.63,0.017856
+28113,vulnerability,Vulnerabilidad muy alta,5,515.91,0.08327
+28114,vulnerability,Sin Vulnerabilidad,0,9.92,0.005437
+28114,vulnerability,Vulnerabilidad muy baja,1,80.79,0.044269
+28114,vulnerability,Vulnerabilidad baja,2,190.09,0.104163
+28114,vulnerability,Vulnerabilidad moderada,3,26.52,0.014534
+28114,vulnerability,Vulnerabilidad alta,4,4.35,0.002384
+28114,vulnerability,Vulnerabilidad muy alta,5,1512.23,0.828627
+28115,vulnerability,Sin Vulnerabilidad,0,312.02,0.072308
+28115,vulnerability,Vulnerabilidad muy baja,1,1.22,0.000283
+28115,vulnerability,Vulnerabilidad baja,2,85.66,0.01985
+28115,vulnerability,Vulnerabilidad moderada,3,2271.51,0.526406
+28115,vulnerability,Vulnerabilidad alta,4,174.18,0.040365
+28115,vulnerability,Vulnerabilidad muy alta,5,1470.51,0.34078
+28116,vulnerability,Sin Vulnerabilidad,0,16.06,0.005196
+28116,vulnerability,Vulnerabilidad muy baja,1,0.03,1e-05
+28116,vulnerability,Vulnerabilidad baja,2,2519.26,0.81513
+28116,vulnerability,Vulnerabilidad moderada,3,52.1,0.016859
+28116,vulnerability,Vulnerabilidad alta,4,1.01,0.000327
+28116,vulnerability,Vulnerabilidad muy alta,5,501.74,0.162343
+28117,vulnerability,Sin Vulnerabilidad,0,3.58,0.001591
+28117,vulnerability,Vulnerabilidad muy baja,1,1.33,0.00059
+28117,vulnerability,Vulnerabilidad baja,2,110.47,0.049021
+28117,vulnerability,Vulnerabilidad moderada,3,17.09,0.007582
+28117,vulnerability,Vulnerabilidad alta,4,5.86,0.002602
+28117,vulnerability,Vulnerabilidad muy alta,5,2115.09,0.938588
+28118,vulnerability,Sin Vulnerabilidad,0,1.19,0.00021
+28118,vulnerability,Vulnerabilidad baja,2,299.12,0.052777
+28118,vulnerability,Vulnerabilidad moderada,3,6.47,0.001142
+28118,vulnerability,Vulnerabilidad alta,4,1.82,0.000322
+28118,vulnerability,Vulnerabilidad muy alta,5,5357.22,0.945252
+28119,vulnerability,Sin Vulnerabilidad,0,265.65,0.103561
+28119,vulnerability,Vulnerabilidad muy baja,1,1.11,0.000433
+28119,vulnerability,Vulnerabilidad baja,2,894.18,0.348586
+28119,vulnerability,Vulnerabilidad moderada,3,160.77,0.062675
+28119,vulnerability,Vulnerabilidad alta,4,11.5,0.004483
+28119,vulnerability,Vulnerabilidad muy alta,5,1231.17,0.479957
+28120,vulnerability,Sin Vulnerabilidad,0,42.6,0.002854
+28120,vulnerability,Vulnerabilidad muy baja,1,11.51,0.000771
+28120,vulnerability,Vulnerabilidad baja,2,853.73,0.057198
+28120,vulnerability,Vulnerabilidad moderada,3,145.81,0.009769
+28120,vulnerability,Vulnerabilidad alta,4,19.93,0.001335
+28120,vulnerability,Vulnerabilidad muy alta,5,13836.84,0.927041
+28121,vulnerability,Sin Vulnerabilidad,0,6.44,0.004942
+28121,vulnerability,Vulnerabilidad baja,2,227.65,0.174749
+28121,vulnerability,Vulnerabilidad moderada,3,14.78,0.011341
+28121,vulnerability,Vulnerabilidad alta,4,0.8,0.000614
+28121,vulnerability,Vulnerabilidad muy alta,5,1052.1,0.807602
+28122,vulnerability,Sin Vulnerabilidad,0,7.77,0.002417
+28122,vulnerability,Vulnerabilidad muy baja,1,1.62,0.000505
+28122,vulnerability,Vulnerabilidad baja,2,2066.12,0.642735
+28122,vulnerability,Vulnerabilidad moderada,3,138.69,0.043145
+28122,vulnerability,Vulnerabilidad alta,4,0.96,0.000299
+28122,vulnerability,Vulnerabilidad muy alta,5,992.72,0.30882
+28123,vulnerability,Sin Vulnerabilidad,0,474.99,0.07044
+28123,vulnerability,Vulnerabilidad muy baja,1,334.24,0.049568
+28123,vulnerability,Vulnerabilidad baja,2,1567.02,0.232389
+28123,vulnerability,Vulnerabilidad moderada,3,1203.9,0.178539
+28123,vulnerability,Vulnerabilidad alta,4,247.42,0.036693
+28123,vulnerability,Vulnerabilidad muy alta,5,2913.72,0.432104
+28124,vulnerability,Sin Vulnerabilidad,0,2.97,0.001412
+28124,vulnerability,Vulnerabilidad muy baja,1,53.39,0.025388
+28124,vulnerability,Vulnerabilidad baja,2,41.67,0.019815
+28124,vulnerability,Vulnerabilidad moderada,3,16.42,0.007809
+28124,vulnerability,Vulnerabilidad alta,4,1.68,0.000799
+28124,vulnerability,Vulnerabilidad muy alta,5,1986.45,0.944657
+28125,vulnerability,Sin Vulnerabilidad,0,36.06,0.003829
+28125,vulnerability,Vulnerabilidad muy baja,1,1.78,0.000189
+28125,vulnerability,Vulnerabilidad baja,2,1184.73,0.125784
+28125,vulnerability,Vulnerabilidad moderada,3,408.52,0.043373
+28125,vulnerability,Vulnerabilidad alta,4,41.87,0.004445
+28125,vulnerability,Vulnerabilidad muy alta,5,7742.11,0.821983
+28126,vulnerability,Sin Vulnerabilidad,0,5.6,0.003054
+28126,vulnerability,Vulnerabilidad baja,2,71.58,0.039053
+28126,vulnerability,Vulnerabilidad moderada,3,18.56,0.010127
+28126,vulnerability,Vulnerabilidad alta,4,0.13,7.1e-05
+28126,vulnerability,Vulnerabilidad muy alta,5,1736.03,0.947092
+28127,vulnerability,Sin Vulnerabilidad,0,121.77,0.020893
+28127,vulnerability,Vulnerabilidad muy baja,1,0.49,8.4e-05
+28127,vulnerability,Vulnerabilidad baja,2,446.77,0.07666
+28127,vulnerability,Vulnerabilidad moderada,3,2294.49,0.393697
+28127,vulnerability,Vulnerabilidad alta,4,88.12,0.01512
+28127,vulnerability,Vulnerabilidad muy alta,5,2876.14,0.4935
+28128,vulnerability,Sin Vulnerabilidad,0,5.84,0.001978
+28128,vulnerability,Vulnerabilidad muy baja,1,24.62,0.008339
+28128,vulnerability,Vulnerabilidad baja,2,86.52,0.0293
+28128,vulnerability,Vulnerabilidad moderada,3,66.43,0.022497
+28128,vulnerability,Vulnerabilidad alta,4,4.66,0.001579
+28128,vulnerability,Vulnerabilidad muy alta,5,2762.26,0.935501
+28129,vulnerability,Sin Vulnerabilidad,0,26.39,0.006907
+28129,vulnerability,Vulnerabilidad muy baja,1,0.16,4.2e-05
+28129,vulnerability,Vulnerabilidad baja,2,700.55,0.183356
+28129,vulnerability,Vulnerabilidad moderada,3,297.96,0.077985
+28129,vulnerability,Vulnerabilidad alta,4,24.7,0.006465
+28129,vulnerability,Vulnerabilidad muy alta,5,2770.79,0.725199
+28130,vulnerability,Sin Vulnerabilidad,0,401.07,0.103187
+28130,vulnerability,Vulnerabilidad muy baja,1,13.89,0.003575
+28130,vulnerability,Vulnerabilidad baja,2,1771.86,0.455866
+28130,vulnerability,Vulnerabilidad moderada,3,803.47,0.206716
+28130,vulnerability,Vulnerabilidad alta,4,130.72,0.033632
+28130,vulnerability,Vulnerabilidad muy alta,5,764.95,0.196808
+28131,vulnerability,Sin Vulnerabilidad,0,46.83,0.008309
+28131,vulnerability,Vulnerabilidad muy baja,1,5.18,0.000919
+28131,vulnerability,Vulnerabilidad baja,2,106.54,0.018903
+28131,vulnerability,Vulnerabilidad moderada,3,456.31,0.08096
+28131,vulnerability,Vulnerabilidad alta,4,42.52,0.007544
+28131,vulnerability,Vulnerabilidad muy alta,5,4977.07,0.883039
+28132,vulnerability,Sin Vulnerabilidad,0,302.98,0.028825
+28132,vulnerability,Vulnerabilidad muy baja,1,100.85,0.009595
+28132,vulnerability,Vulnerabilidad baja,2,3840.68,0.365403
+28132,vulnerability,Vulnerabilidad moderada,3,1096.84,0.104353
+28132,vulnerability,Vulnerabilidad alta,4,94.08,0.008951
+28132,vulnerability,Vulnerabilidad muy alta,5,5075.36,0.48287
+28133,vulnerability,Sin Vulnerabilidad,0,226.44,0.019446
+28133,vulnerability,Vulnerabilidad muy baja,1,541.61,0.046509
+28133,vulnerability,Vulnerabilidad baja,2,2141.66,0.183911
+28133,vulnerability,Vulnerabilidad moderada,3,329.06,0.028257
+28133,vulnerability,Vulnerabilidad alta,4,56.02,0.004811
+28133,vulnerability,Vulnerabilidad muy alta,5,8342.98,0.716438
+28134,vulnerability,Sin Vulnerabilidad,0,389.82,0.065889
+28134,vulnerability,Vulnerabilidad muy baja,1,0.77,0.000129
+28134,vulnerability,Vulnerabilidad baja,2,1835.06,0.310164
+28134,vulnerability,Vulnerabilidad moderada,3,1723.39,0.29129
+28134,vulnerability,Vulnerabilidad alta,4,151.53,0.025613
+28134,vulnerability,Vulnerabilidad muy alta,5,1815.93,0.306932
+28135,vulnerability,Sin Vulnerabilidad,0,21.96,0.002902
+28135,vulnerability,Vulnerabilidad muy baja,1,11.43,0.00151
+28135,vulnerability,Vulnerabilidad baja,2,478.6,0.06323
+28135,vulnerability,Vulnerabilidad moderada,3,147.36,0.019469
+28135,vulnerability,Vulnerabilidad alta,4,7.64,0.001009
+28135,vulnerability,Vulnerabilidad muy alta,5,6892.26,0.910576
+28136,vulnerability,Sin Vulnerabilidad,0,10.05,0.003558
+28136,vulnerability,Vulnerabilidad baja,2,2047.06,0.724625
+28136,vulnerability,Vulnerabilidad moderada,3,72.65,0.025718
+28136,vulnerability,Vulnerabilidad alta,4,1.3,0.000462
+28136,vulnerability,Vulnerabilidad muy alta,5,691.07,0.244625
+28137,vulnerability,Sin Vulnerabilidad,0,36.53,0.010493
+28137,vulnerability,Vulnerabilidad muy baja,1,3.33,0.000958
+28137,vulnerability,Vulnerabilidad baja,2,1732.3,0.497517
+28137,vulnerability,Vulnerabilidad moderada,3,115.94,0.033297
+28137,vulnerability,Vulnerabilidad alta,4,21.37,0.006137
+28137,vulnerability,Vulnerabilidad muy alta,5,1569.17,0.450667
+28138,vulnerability,Sin Vulnerabilidad,0,10.19,0.018523
+28138,vulnerability,Vulnerabilidad muy baja,1,0.01,1.8e-05
+28138,vulnerability,Vulnerabilidad baja,2,50.71,0.092226
+28138,vulnerability,Vulnerabilidad moderada,3,14.45,0.026274
+28138,vulnerability,Vulnerabilidad alta,4,3.67,0.006674
+28138,vulnerability,Vulnerabilidad muy alta,5,470.85,0.856292
+28140,vulnerability,Sin Vulnerabilidad,0,17.06,0.012843
+28140,vulnerability,Vulnerabilidad muy baja,1,0.61,0.000461
+28140,vulnerability,Vulnerabilidad baja,2,921.12,0.693535
+28140,vulnerability,Vulnerabilidad moderada,3,143.17,0.107799
+28140,vulnerability,Vulnerabilidad alta,4,11.52,0.008672
+28140,vulnerability,Vulnerabilidad muy alta,5,232.8,0.17528
+28141,vulnerability,Sin Vulnerabilidad,0,22.36,0.009034
+28141,vulnerability,Vulnerabilidad muy baja,1,0.01,3e-06
+28141,vulnerability,Vulnerabilidad baja,2,623.99,0.252138
+28141,vulnerability,Vulnerabilidad moderada,3,217.7,0.087967
+28141,vulnerability,Vulnerabilidad alta,4,21.52,0.008695
+28141,vulnerability,Vulnerabilidad muy alta,5,1587.38,0.641415
+28143,vulnerability,Sin Vulnerabilidad,0,3.78,0.001851
+28143,vulnerability,Vulnerabilidad baja,2,55.85,0.027367
+28143,vulnerability,Vulnerabilidad moderada,3,13.16,0.006447
+28143,vulnerability,Vulnerabilidad alta,4,2.0,0.000979
+28143,vulnerability,Vulnerabilidad muy alta,5,1965.39,0.963058
+28144,vulnerability,Sin Vulnerabilidad,0,37.81,0.008817
+28144,vulnerability,Vulnerabilidad muy baja,1,111.0,0.025881
+28144,vulnerability,Vulnerabilidad baja,2,19.05,0.004443
+28144,vulnerability,Vulnerabilidad moderada,3,554.5,0.129285
+28144,vulnerability,Vulnerabilidad alta,4,12.9,0.003008
+28144,vulnerability,Vulnerabilidad muy alta,5,3553.79,0.828576
+28145,vulnerability,Sin Vulnerabilidad,0,21.7,0.005639
+28145,vulnerability,Vulnerabilidad muy baja,1,0.01,2e-06
+28145,vulnerability,Vulnerabilidad baja,2,2927.19,0.76061
+28145,vulnerability,Vulnerabilidad moderada,3,268.77,0.069839
+28145,vulnerability,Vulnerabilidad alta,4,5.87,0.001526
+28145,vulnerability,Vulnerabilidad muy alta,5,620.77,0.161302
+28146,vulnerability,Sin Vulnerabilidad,0,20.34,0.007643
+28146,vulnerability,Vulnerabilidad muy baja,1,0.58,0.000217
+28146,vulnerability,Vulnerabilidad baja,2,1131.9,0.42524
+28146,vulnerability,Vulnerabilidad moderada,3,82.94,0.031161
+28146,vulnerability,Vulnerabilidad alta,4,14.64,0.0055
+28146,vulnerability,Vulnerabilidad muy alta,5,1411.33,0.530218
+28147,vulnerability,Sin Vulnerabilidad,0,17.85,0.01765
+28147,vulnerability,Vulnerabilidad muy baja,1,24.41,0.024139
+28147,vulnerability,Vulnerabilidad baja,2,429.48,0.42466
+28147,vulnerability,Vulnerabilidad moderada,3,52.54,0.051953
+28147,vulnerability,Vulnerabilidad alta,4,6.73,0.006657
+28147,vulnerability,Vulnerabilidad muy alta,5,480.31,0.47493
+28148,vulnerability,Sin Vulnerabilidad,0,389.9,0.120568
+28148,vulnerability,Vulnerabilidad muy baja,1,0.61,0.00019
+28148,vulnerability,Vulnerabilidad baja,2,463.67,0.14338
+28148,vulnerability,Vulnerabilidad moderada,3,2038.95,0.630502
+28148,vulnerability,Vulnerabilidad alta,4,137.99,0.04267
+28148,vulnerability,Vulnerabilidad muy alta,5,202.68,0.062674
+28149,vulnerability,Sin Vulnerabilidad,0,52.96,0.059079
+28149,vulnerability,Vulnerabilidad muy baja,1,0.09,9.5e-05
+28149,vulnerability,Vulnerabilidad baja,2,474.2,0.528965
+28149,vulnerability,Vulnerabilidad moderada,3,255.29,0.28478
+28149,vulnerability,Vulnerabilidad alta,4,22.7,0.025327
+28149,vulnerability,Vulnerabilidad muy alta,5,90.05,0.10045
+28150,vulnerability,Sin Vulnerabilidad,0,171.76,0.032892
+28150,vulnerability,Vulnerabilidad muy baja,1,0.29,5.5e-05
+28150,vulnerability,Vulnerabilidad baja,2,4281.78,0.819949
+28150,vulnerability,Vulnerabilidad moderada,3,228.8,0.043815
+28150,vulnerability,Vulnerabilidad alta,4,46.18,0.008843
+28150,vulnerability,Vulnerabilidad muy alta,5,489.58,0.093754
+28151,vulnerability,Sin Vulnerabilidad,0,21.89,0.005086
+28151,vulnerability,Vulnerabilidad muy baja,1,0.01,3e-06
+28151,vulnerability,Vulnerabilidad baja,2,1962.71,0.456065
+28151,vulnerability,Vulnerabilidad moderada,3,163.89,0.038082
+28151,vulnerability,Vulnerabilidad alta,4,17.15,0.003985
+28151,vulnerability,Vulnerabilidad muy alta,5,2136.79,0.496517
+28152,vulnerability,Sin Vulnerabilidad,0,73.11,0.033684
+28152,vulnerability,Vulnerabilidad muy baja,1,0.07,3.5e-05
+28152,vulnerability,Vulnerabilidad baja,2,11.81,0.005442
+28152,vulnerability,Vulnerabilidad moderada,3,759.33,0.349834
+28152,vulnerability,Vulnerabilidad alta,4,57.98,0.026713
+28152,vulnerability,Vulnerabilidad muy alta,5,1268.26,0.584302
+28153,vulnerability,Sin Vulnerabilidad,0,24.56,0.013027
+28153,vulnerability,Vulnerabilidad baja,2,1125.72,0.597059
+28153,vulnerability,Vulnerabilidad moderada,3,81.14,0.043038
+28153,vulnerability,Vulnerabilidad alta,4,76.94,0.040809
+28153,vulnerability,Vulnerabilidad muy alta,5,574.25,0.304572
+28154,vulnerability,Sin Vulnerabilidad,0,28.95,0.00668
+28154,vulnerability,Vulnerabilidad muy baja,1,0.83,0.000192
+28154,vulnerability,Vulnerabilidad baja,2,2730.13,0.630073
+28154,vulnerability,Vulnerabilidad moderada,3,382.5,0.088275
+28154,vulnerability,Vulnerabilidad alta,4,18.18,0.004197
+28154,vulnerability,Vulnerabilidad muy alta,5,1168.98,0.269784
+28155,vulnerability,Sin Vulnerabilidad,0,15.09,0.002364
+28155,vulnerability,Vulnerabilidad muy baja,1,0.03,5e-06
+28155,vulnerability,Vulnerabilidad baja,2,3951.58,0.618988
+28155,vulnerability,Vulnerabilidad moderada,3,59.6,0.009336
+28155,vulnerability,Vulnerabilidad alta,4,12.62,0.001976
+28155,vulnerability,Vulnerabilidad muy alta,5,2344.98,0.367325
+28156,vulnerability,Sin Vulnerabilidad,0,9.0,0.004812
+28156,vulnerability,Vulnerabilidad muy baja,1,0.04,2.4e-05
+28156,vulnerability,Vulnerabilidad baja,2,1391.75,0.74398
+28156,vulnerability,Vulnerabilidad moderada,3,154.62,0.082654
+28156,vulnerability,Vulnerabilidad alta,4,1.65,0.000879
+28156,vulnerability,Vulnerabilidad muy alta,5,312.0,0.166782
+28157,vulnerability,Sin Vulnerabilidad,0,35.27,0.00834
+28157,vulnerability,Vulnerabilidad baja,2,1546.49,0.365726
+28157,vulnerability,Vulnerabilidad moderada,3,80.88,0.019128
+28157,vulnerability,Vulnerabilidad alta,4,2.75,0.00065
+28157,vulnerability,Vulnerabilidad muy alta,5,2563.11,0.606143
+28158,vulnerability,Sin Vulnerabilidad,0,15.58,0.008758
+28158,vulnerability,Vulnerabilidad muy baja,1,1.07,0.000604
+28158,vulnerability,Vulnerabilidad baja,2,198.77,0.111758
+28158,vulnerability,Vulnerabilidad moderada,3,111.75,0.062829
+28158,vulnerability,Vulnerabilidad alta,4,3.25,0.00183
+28158,vulnerability,Vulnerabilidad muy alta,5,1447.84,0.814032
+28159,vulnerability,Sin Vulnerabilidad,0,5.68,0.001096
+28159,vulnerability,Vulnerabilidad muy baja,1,2.4,0.000462
+28159,vulnerability,Vulnerabilidad baja,2,833.89,0.161025
+28159,vulnerability,Vulnerabilidad moderada,3,77.12,0.014892
+28159,vulnerability,Vulnerabilidad alta,4,12.55,0.002424
+28159,vulnerability,Vulnerabilidad muy alta,5,4226.45,0.816128
+28160,vulnerability,Sin Vulnerabilidad,0,251.13,0.026772
+28160,vulnerability,Vulnerabilidad muy baja,1,501.48,0.05346
+28160,vulnerability,Vulnerabilidad baja,2,286.35,0.030527
+28160,vulnerability,Vulnerabilidad moderada,3,914.2,0.097458
+28160,vulnerability,Vulnerabilidad alta,4,16.54,0.001763
+28160,vulnerability,Vulnerabilidad muy alta,5,7409.6,0.789902
+28161,vulnerability,Sin Vulnerabilidad,0,334.25,0.052114
+28161,vulnerability,Vulnerabilidad muy baja,1,0.04,6e-06
+28161,vulnerability,Vulnerabilidad baja,2,2237.61,0.348878
+28161,vulnerability,Vulnerabilidad moderada,3,1246.18,0.1943
+28161,vulnerability,Vulnerabilidad alta,4,186.91,0.029142
+28161,vulnerability,Vulnerabilidad muy alta,5,2407.63,0.375387
+28162,vulnerability,Sin Vulnerabilidad,0,35.67,0.013788
+28162,vulnerability,Vulnerabilidad muy baja,1,0.06,2.4e-05
+28162,vulnerability,Vulnerabilidad baja,2,1910.65,0.738484
+28162,vulnerability,Vulnerabilidad moderada,3,230.34,0.089026
+28162,vulnerability,Vulnerabilidad alta,4,7.34,0.002838
+28162,vulnerability,Vulnerabilidad muy alta,5,403.12,0.155808
+28163,vulnerability,Sin Vulnerabilidad,0,14.27,0.008086
+28163,vulnerability,Vulnerabilidad baja,2,1459.47,0.827018
+28163,vulnerability,Vulnerabilidad moderada,3,47.55,0.026947
+28163,vulnerability,Vulnerabilidad alta,4,0.41,0.000234
+28163,vulnerability,Vulnerabilidad muy alta,5,241.61,0.136908
+28164,vulnerability,Sin Vulnerabilidad,0,57.75,0.016453
+28164,vulnerability,Vulnerabilidad muy baja,1,1.28,0.000366
+28164,vulnerability,Vulnerabilidad baja,2,2393.16,0.681841
+28164,vulnerability,Vulnerabilidad moderada,3,437.21,0.124567
+28164,vulnerability,Vulnerabilidad alta,4,7.43,0.002117
+28164,vulnerability,Vulnerabilidad muy alta,5,613.06,0.174669
+28165,vulnerability,Sin Vulnerabilidad,0,51.42,0.012079
+28165,vulnerability,Vulnerabilidad muy baja,1,0.01,4e-06
+28165,vulnerability,Vulnerabilidad baja,2,2847.78,0.668916
+28165,vulnerability,Vulnerabilidad moderada,3,317.46,0.074569
+28165,vulnerability,Vulnerabilidad alta,4,10.23,0.002404
+28165,vulnerability,Vulnerabilidad muy alta,5,1030.39,0.24203
+28166,vulnerability,Sin Vulnerabilidad,0,15.22,0.011065
+28166,vulnerability,Vulnerabilidad muy baja,1,0.01,7e-06
+28166,vulnerability,Vulnerabilidad baja,2,823.4,0.59871
+28166,vulnerability,Vulnerabilidad moderada,3,21.19,0.015409
+28166,vulnerability,Vulnerabilidad alta,4,0.15,0.000111
+28166,vulnerability,Vulnerabilidad muy alta,5,513.36,0.373268
+28167,vulnerability,Sin Vulnerabilidad,0,124.72,0.086578
+28167,vulnerability,Vulnerabilidad muy baja,1,68.67,0.047666
+28167,vulnerability,Vulnerabilidad baja,2,504.22,0.350005
+28167,vulnerability,Vulnerabilidad moderada,3,276.82,0.192158
+28167,vulnerability,Vulnerabilidad alta,4,8.84,0.006136
+28167,vulnerability,Vulnerabilidad muy alta,5,457.33,0.31746
+28168,vulnerability,Sin Vulnerabilidad,0,37.32,0.011137
+28168,vulnerability,Vulnerabilidad muy baja,1,0.01,1e-06
+28168,vulnerability,Vulnerabilidad baja,2,998.95,0.298089
+28168,vulnerability,Vulnerabilidad moderada,3,97.05,0.02896
+28168,vulnerability,Vulnerabilidad alta,4,3.2,0.000955
+28168,vulnerability,Vulnerabilidad muy alta,5,2214.63,0.660849
+28169,vulnerability,Sin Vulnerabilidad,0,25.19,0.024623
+28169,vulnerability,Vulnerabilidad muy baja,1,0.04,3.7e-05
+28169,vulnerability,Vulnerabilidad baja,2,192.02,0.187716
+28169,vulnerability,Vulnerabilidad moderada,3,180.67,0.176618
+28169,vulnerability,Vulnerabilidad alta,4,4.02,0.003932
+28169,vulnerability,Vulnerabilidad muy alta,5,621.0,0.607067
+28170,vulnerability,Sin Vulnerabilidad,0,26.75,0.008035
+28170,vulnerability,Vulnerabilidad muy baja,1,0.01,2e-06
+28170,vulnerability,Vulnerabilidad baja,2,2462.32,0.739521
+28170,vulnerability,Vulnerabilidad moderada,3,105.5,0.031686
+28170,vulnerability,Vulnerabilidad alta,4,17.48,0.00525
+28170,vulnerability,Vulnerabilidad muy alta,5,717.53,0.2155
+28171,vulnerability,Sin Vulnerabilidad,0,43.44,0.005621
+28171,vulnerability,Vulnerabilidad muy baja,1,6.89,0.000892
+28171,vulnerability,Vulnerabilidad baja,2,2111.61,0.273257
+28171,vulnerability,Vulnerabilidad moderada,3,346.01,0.044776
+28171,vulnerability,Vulnerabilidad alta,4,86.27,0.011163
+28171,vulnerability,Vulnerabilidad muy alta,5,5125.51,0.663276
+28172,vulnerability,Sin Vulnerabilidad,0,130.76,0.037712
+28172,vulnerability,Vulnerabilidad muy baja,1,0.13,3.8e-05
+28172,vulnerability,Vulnerabilidad baja,2,1580.23,0.455728
+28172,vulnerability,Vulnerabilidad moderada,3,647.7,0.186791
+28172,vulnerability,Vulnerabilidad alta,4,22.26,0.00642
+28172,vulnerability,Vulnerabilidad muy alta,5,1086.35,0.313296
+28173,vulnerability,Sin Vulnerabilidad,0,16.53,0.005587
+28173,vulnerability,Vulnerabilidad muy baja,1,12.95,0.004377
+28173,vulnerability,Vulnerabilidad baja,2,2335.61,0.789467
+28173,vulnerability,Vulnerabilidad moderada,3,70.22,0.023735
+28173,vulnerability,Vulnerabilidad alta,4,1.37,0.000464
+28173,vulnerability,Vulnerabilidad muy alta,5,517.54,0.174936
+28174,vulnerability,Sin Vulnerabilidad,0,27.35,0.004324
+28174,vulnerability,Vulnerabilidad muy baja,1,9.41,0.001488
+28174,vulnerability,Vulnerabilidad baja,2,2388.97,0.377658
+28174,vulnerability,Vulnerabilidad moderada,3,118.69,0.018763
+28174,vulnerability,Vulnerabilidad alta,4,4.21,0.000666
+28174,vulnerability,Vulnerabilidad muy alta,5,3771.07,0.596147
+28175,vulnerability,Sin Vulnerabilidad,0,23.72,0.009921
+28175,vulnerability,Vulnerabilidad muy baja,1,20.89,0.008738
+28175,vulnerability,Vulnerabilidad baja,2,289.64,0.121135
+28175,vulnerability,Vulnerabilidad moderada,3,65.75,0.027499
+28175,vulnerability,Vulnerabilidad alta,4,0.95,0.000399
+28175,vulnerability,Vulnerabilidad muy alta,5,1990.08,0.832297
+28176,vulnerability,Sin Vulnerabilidad,0,174.52,0.050204
+28176,vulnerability,Vulnerabilidad muy baja,1,0.08,2.4e-05
+28176,vulnerability,Vulnerabilidad baja,2,655.91,0.188683
+28176,vulnerability,Vulnerabilidad moderada,3,866.31,0.249209
+28176,vulnerability,Vulnerabilidad alta,4,100.28,0.028849
+28176,vulnerability,Vulnerabilidad muy alta,5,1678.54,0.482861
+28177,vulnerability,Sin Vulnerabilidad,0,89.02,0.035003
+28177,vulnerability,Vulnerabilidad muy baja,1,1.62,0.000637
+28177,vulnerability,Vulnerabilidad baja,2,1138.9,0.447837
+28177,vulnerability,Vulnerabilidad moderada,3,296.02,0.116403
+28177,vulnerability,Vulnerabilidad alta,4,20.27,0.007972
+28177,vulnerability,Vulnerabilidad muy alta,5,997.33,0.392167
+28178,vulnerability,Sin Vulnerabilidad,0,47.87,0.015242
+28178,vulnerability,Vulnerabilidad muy baja,1,0.02,6e-06
+28178,vulnerability,Vulnerabilidad baja,2,714.4,0.227478
+28178,vulnerability,Vulnerabilidad moderada,3,79.33,0.02526
+28178,vulnerability,Vulnerabilidad alta,4,6.53,0.002078
+28178,vulnerability,Vulnerabilidad muy alta,5,2292.37,0.729933
+28179,vulnerability,Sin Vulnerabilidad,0,4.73,0.001704
+28179,vulnerability,Vulnerabilidad baja,2,1230.66,0.443458
+28179,vulnerability,Vulnerabilidad moderada,3,151.94,0.054751
+28179,vulnerability,Vulnerabilidad alta,4,6.51,0.002348
+28179,vulnerability,Vulnerabilidad muy alta,5,1381.3,0.497738
+28180,vulnerability,Sin Vulnerabilidad,0,67.68,0.005687
+28180,vulnerability,Vulnerabilidad muy baja,1,6.29,0.000528
+28180,vulnerability,Vulnerabilidad baja,2,7016.8,0.589622
+28180,vulnerability,Vulnerabilidad moderada,3,303.5,0.025503
+28180,vulnerability,Vulnerabilidad alta,4,16.48,0.001385
+28180,vulnerability,Vulnerabilidad muy alta,5,4487.88,0.377117
+28181,vulnerability,Sin Vulnerabilidad,0,244.98,0.035915
+28181,vulnerability,Vulnerabilidad muy baja,1,5.44,0.000797
+28181,vulnerability,Vulnerabilidad baja,2,1414.86,0.207426
+28181,vulnerability,Vulnerabilidad moderada,3,1003.97,0.147188
+28181,vulnerability,Vulnerabilidad alta,4,119.6,0.017534
+28181,vulnerability,Vulnerabilidad muy alta,5,4032.03,0.59112
+28182,vulnerability,Sin Vulnerabilidad,0,8.8,0.00378
+28182,vulnerability,Vulnerabilidad muy baja,1,0.31,0.000133
+28182,vulnerability,Vulnerabilidad baja,2,13.89,0.005967
+28182,vulnerability,Vulnerabilidad moderada,3,47.09,0.020227
+28182,vulnerability,Vulnerabilidad alta,4,1.37,0.000589
+28182,vulnerability,Vulnerabilidad muy alta,5,2256.12,0.968983
+28183,vulnerability,Sin Vulnerabilidad,0,22.31,0.011065
+28183,vulnerability,Vulnerabilidad muy baja,1,0.01,2e-06
+28183,vulnerability,Vulnerabilidad baja,2,382.96,0.18993
+28183,vulnerability,Vulnerabilidad moderada,3,76.17,0.037774
+28183,vulnerability,Vulnerabilidad alta,4,9.39,0.004658
+28183,vulnerability,Vulnerabilidad muy alta,5,1525.53,0.756585
+28901,vulnerability,Sin Vulnerabilidad,0,42.68,0.008299
+28901,vulnerability,Vulnerabilidad muy baja,1,0.11,2.1e-05
+28901,vulnerability,Vulnerabilidad baja,2,170.38,0.03313
+28901,vulnerability,Vulnerabilidad moderada,3,156.16,0.030367
+28901,vulnerability,Vulnerabilidad alta,4,6.24,0.001212
+28901,vulnerability,Vulnerabilidad muy alta,5,4766.58,0.926877
+28902,vulnerability,Sin Vulnerabilidad,0,10.49,0.001792
+28902,vulnerability,Vulnerabilidad muy baja,1,256.25,0.043767
+28902,vulnerability,Vulnerabilidad baja,2,147.21,0.025143
+28902,vulnerability,Vulnerabilidad moderada,3,54.05,0.009232
+28902,vulnerability,Vulnerabilidad alta,4,6.75,0.001152
+28902,vulnerability,Vulnerabilidad muy alta,5,5380.09,0.918914
+28903,vulnerability,Sin Vulnerabilidad,0,78.85,0.020779
+28903,vulnerability,Vulnerabilidad muy baja,1,0.01,4e-06
+28903,vulnerability,Vulnerabilidad baja,2,84.69,0.022319
+28903,vulnerability,Vulnerabilidad moderada,3,867.39,0.228572
+28903,vulnerability,Vulnerabilidad alta,4,131.51,0.034656
+28903,vulnerability,Vulnerabilidad muy alta,5,2632.28,0.693651
