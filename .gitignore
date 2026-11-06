@@ -34,3 +34,4 @@ node_modules/
 # Herramientas locales
 .gstack/
 apps/web/tsconfig.tsbuildinfo
+*.egg-info/

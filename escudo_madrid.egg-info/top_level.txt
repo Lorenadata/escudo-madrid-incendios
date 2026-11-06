@@ -1,4 +1,0 @@
-escudo_api
-escudo_optimizer
-escudo_pipelines
-escudo_reporting
