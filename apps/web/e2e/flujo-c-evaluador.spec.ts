@@ -89,3 +89,16 @@ test("área privada: login demo y aislamiento visible del ámbito ficticio", asy
   await expect(page.getByText("organización B", { exact: false })).toHaveCount(0);
   await assertSafeLanguage(page);
 });
+
+test("análisis municipal: filtros sobre datos CAM y capa oficial, sin índice propio", async ({ page }) => {
+  await page.goto("/analisis");
+  await expect(page.getByRole("heading", { name: "Análisis municipal" })).toBeVisible();
+  const count = page.getByText(/^\d+ municipios$/);
+  await expect(count).toBeVisible();
+  const before = Number((await count.innerText()).split(" ")[0]);
+  await page.getByLabel("Máx. densidad (hab/km²)").fill("20");
+  await expect.poll(async () => Number((await count.innerText()).split(" ")[0])).toBeLessThan(before);
+  await page.getByText("Ver método y fuentes").click();
+  await expect(page.getByText("No es un índice de riesgo propio", { exact: false })).toBeVisible();
+  await assertSafeLanguage(page);
+});

@@ -239,3 +239,53 @@ def export_municipalities_csv(session: Session = Depends(get_session)):
                     m.density_hab_km2, m.density_year, "CAM-02", m.altitude_m, "CAM-03", m.area_km2, "CAM-08"])
     return Response(buf.getvalue(), media_type="text/csv; charset=utf-8",
                     headers={"Content-Disposition": 'attachment; filename="escudo-municipios.csv"'})
+
+
+@router.get("/v1/analysis/municipal-matrix", tags=["análisis"])
+def municipal_matrix(
+    layer: str = Query("risk", pattern="^(risk|hazard|vulnerability)$"),
+    min_high_share: float = Query(0, ge=0, le=1),
+    max_density: float | None = Query(None, ge=0),
+    min_age65_share: float = Query(0, ge=0, le=1),
+    sort: str = Query("high_share", pattern="^(high_share|density|age65|population)$"),
+    session: Session = Depends(get_session),
+) -> dict[str, Any]:
+    """Matriz municipal reproducible: datos CAM (CAM-01/02) junto al reparto de la capa oficial elegida.
+
+    `high_share` = suma LITERAL de la proporción de superficie municipal en las clases oficiales 4 y 5
+    («alto» y «muy alto»). No es un índice propio ni una probabilidad: es un filtro sobre valores publicados.
+    """
+    from ..models import OfficialLayerMunicipalShare as S
+
+    high = dict(session.execute(
+        select(S.ine_code, func.sum(S.area_share)).where(S.layer == layer, S.class_code.in_(["4", "5"]))
+        .group_by(S.ine_code)).all())
+    has_layer = bool(session.scalar(select(func.count()).select_from(S).where(S.layer == layer)))
+    rows = []
+    for m in session.scalars(select(Municipality)):
+        hs = high.get(m.ine_code, 0.0 if has_layer else None)
+        if hs is not None and hs < min_high_share:
+            continue
+        if max_density is not None and (m.density_hab_km2 is None or m.density_hab_km2 > max_density):
+            continue
+        if min_age65_share and (m.age_65_plus_share is None or m.age_65_plus_share < min_age65_share):
+            continue
+        rows.append({"ine_code": m.ine_code, "name": m.name,
+                     "high_share": round(hs, 4) if hs is not None else None,
+                     "density_hab_km2": m.density_hab_km2, "density_year": m.density_year,
+                     "age_65_plus_share": m.age_65_plus_share, "population_total": m.population_total,
+                     "population_year": m.population_year})
+    key = {"high_share": "high_share", "density": "density_hab_km2", "age65": "age_65_plus_share",
+           "population": "population_total"}[sort]
+    rows.sort(key=lambda r: (r[key] is None, -(r[key] or 0), r["ine_code"]))
+    src = OFFICIAL_LAYERS[layer]["source_id"]
+    return {
+        "layer": layer, "layer_source_id": src, "status": "derived" if has_layer else "unavailable",
+        "sources": ["CAM-01", "CAM-02", src],
+        "definition": (f"high_share: proporción de superficie municipal en clases 4 y 5 de {src} (suma literal de "
+                       "clases oficiales, calculada sobre el ráster de 5 m). Densidad y % ≥65 del Portal CAM."),
+        "caveat": ("Filtro comparativo a escala municipal. No es un índice de riesgo propio ni prioriza "
+                   "actuaciones: la priorización corresponde a personal técnico."),
+        "filters": {"min_high_share": min_high_share, "max_density": max_density, "min_age65_share": min_age65_share},
+        "count": len(rows), "rows": rows,
+    }

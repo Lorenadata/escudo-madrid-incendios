@@ -224,3 +224,13 @@ def test_area_geojson_export_is_private(client, auth_a, auth_b):
         assert layer["status"] in ("derived", "unavailable")  # nunca «official»: es la generalización web de 200 m
     assert client.get(f"/v1/areas/{area['id']}.geojson", headers=auth_b).status_code == 404
     assert client.get(f"/v1/areas/{area['id']}.geojson").status_code == 401
+
+
+def test_municipal_matrix_is_reproducible_filter(client):
+    """Función analítica CAM × capa oficial: el filtro por densidad (CAM-02) y ≥65 (CAM-01) se aplica de verdad."""
+    allm = client.get("/v1/analysis/municipal-matrix").json()
+    assert allm["count"] == 179 and set(allm["sources"]) >= {"CAM-01", "CAM-02"}
+    f = client.get("/v1/analysis/municipal-matrix", params={"max_density": 100, "min_age65_share": 0.25}).json()
+    assert 0 < f["count"] < 179
+    assert all(r["density_hab_km2"] <= 100 and r["age_65_plus_share"] >= 0.25 for r in f["rows"])
+    assert "No es un índice de riesgo propio" in f["caveat"]

@@ -10,6 +10,7 @@
 | ≥1 dataset del Portal CAM usado efectivamente (admisión) | 8 datasets CAM ingeridos (CAM-01…08) con manifest y SHA-256 | `DATA_CATALOG.md`; `GET /v1/sources`; `pipelines/tests/test_cam.py::test_T01…` | ✅ |
 | Función analítica (a): ficha municipal demográfica con año y unidades | `/v1/municipalities/{ine}/profile` (CAM-01/02/03/08) con `Indicator` trazable | `tests/integration/test_api.py::test_profile_values_trace_to_processed_cam_data` | ✅ API · ✅ UI (`artifacts/demo-screenshots/02-ficha-riesgo-oficial.png`) |
 | Función analítica (b): filtro/comparador regional reproducible | `/v1/municipalities?min_density=` y `/v1/compare` (CAM-02) | `test_density_filter_changes_with_cam02` | ✅ API · ✅ UI (filtro de densidad y `/comparar`) |
+| Función analítica (c): matriz municipal CAM-01/02 × capa oficial (filtro reproducible, sin índice propio) | `/v1/analysis/municipal-matrix` + página `/analisis` | `test_municipal_matrix_is_reproducible_filter`; e2e `análisis municipal` | ✅ |
 | El resultado cambia al actualizar el recurso | Pipeline fetch→transform→load idempotente con versión por SHA-256 (`dataset_versions`) | `test_dataset_version_tracking_on_source_update` | ✅ |
 | Lineage por indicador | Tabla `indicator_definitions` + `/v1/indicators` (PRD §4.5) | `GET /v1/indicators` | ✅ |
 | Geometría municipal propia del Portal CAM | CAM-08 secciones censales disueltas a 179 municipios | `test_T02_processed_outputs` | ✅ |
@@ -51,7 +52,7 @@
 |---|---|---|
 | Licencia abierta | `LICENSE` EUPL-1.2 (pendiente confirmación del equipo) | 🟡 |
 | ETL reproducible con checksums | `fetch` + manifests versionados | ✅ |
-| Tests y CI | 65 tests pytest + 5 Playwright; `.github/workflows/ci.yml` | ✅ local · ⬜ CI ejecutada en GitHub |
+| Tests y CI | 67 tests pytest + 6 Playwright; `.github/workflows/ci.yml` | ✅ local · ⬜ CI ejecutada en GitHub |
 | Contrato OpenAPI | `packages/contracts/openapi.json` (35 rutas) | ✅ |
 | Procedencia del trabajo asistido por IA | `PROVENANCE.md` | ✅ |
 

@@ -25,7 +25,7 @@ Estructura **obligatoria**: máximo 3 diapositivas de contenido + 4.ª con una c
 
 ## Diapositiva 3 — Resultados, impacto, viabilidad y enlaces
 
-- **Resultados verificables:** 179 municipios con indicadores trazables · reparto exacto de las clases oficiales de riesgo por municipio · optimizador determinista validado contra la solución exacta en 200 instancias · 65 tests automáticos + 5 de navegador.
+- **Resultados verificables:** 179 municipios con indicadores trazables · reparto exacto de las clases oficiales de riesgo por municipio · optimizador determinista validado contra la solución exacta en 200 instancias · 67 tests automáticos + 6 de navegador.
 - **Caso guiado (datos ficticios):** con el mismo presupuesto, la optimización cubre el 90,1 % de la prioridad técnica frente al 84,2 % (priorización manual) y el 85,1 % (menor coste).
 - **Impacto que medimos:** cobertura de prioridades bajo presupuesto, actuaciones documentadas con evidencia, plazos vencidos, reproducibilidad. **No** afirmamos incendios evitados ni reducción de riesgo.
 - **Viabilidad:** software libre (EUPL-1.2, pendiente de confirmar), Docker, datos abiertos, multiusuario aislado, modo degradado si AEMET cae.

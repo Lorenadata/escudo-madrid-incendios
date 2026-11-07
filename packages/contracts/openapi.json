@@ -615,6 +615,105 @@
         }
       }
     },
+    "/v1/analysis/municipal-matrix": {
+      "get": {
+        "tags": [
+          "análisis"
+        ],
+        "summary": "Municipal Matrix",
+        "description": "Matriz municipal reproducible: datos CAM (CAM-01/02) junto al reparto de la capa oficial elegida.\n\n`high_share` = suma LITERAL de la proporción de superficie municipal en las clases oficiales 4 y 5\n(«alto» y «muy alto»). No es un índice propio ni una probabilidad: es un filtro sobre valores publicados.",
+        "operationId": "municipal_matrix_v1_analysis_municipal_matrix_get",
+        "parameters": [
+          {
+            "name": "layer",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "pattern": "^(risk|hazard|vulnerability)$",
+              "default": "risk",
+              "title": "Layer"
+            }
+          },
+          {
+            "name": "min_high_share",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "maximum": 1,
+              "minimum": 0,
+              "default": 0,
+              "title": "Min High Share"
+            }
+          },
+          {
+            "name": "max_density",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "number",
+                  "minimum": 0
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Max Density"
+            }
+          },
+          {
+            "name": "min_age65_share",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "maximum": 1,
+              "minimum": 0,
+              "default": 0,
+              "title": "Min Age65 Share"
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "pattern": "^(high_share|density|age65|population)$",
+              "default": "high_share",
+              "title": "Sort"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Municipal Matrix V1 Analysis Municipal Matrix Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/auth/login": {
       "post": {
         "tags": [

@@ -16,3 +16,6 @@ Formato: fecha · agente · artefacto · cómo verificar · criterio(s). Solo he
 | 06/11/2026 | A9 (A0) | e2e Playwright del Flujo C: 5 tests contra web + API reales, incluida comprobación de lenguaje prohibido | `cd apps/web && npm run e2e` | D15, D10 |
 | 06/11/2026 | A0 | Versionado: un nuevo SHA-256 de un recurso CAM crea versión nueva, recarga idempotente | `test_dataset_version_tracking_on_source_update` | D25 |
 | 06/11/2026 | A11 (A0) | Guion de demo 5 min con plan B, contenido 3+1 y resumen de 93 palabras | `docs/demo-script.md`, `docs/pitch/`, `scripts/count_words.py` | D5 |
+| 07/11/2026 | A0 | Matriz municipal CAM-01/02 × capa oficial (95 municipios con ≥50 % en riesgo alto/muy alto según GEO-01) | `GET /v1/analysis/municipal-matrix?min_high_share=0.5`; test de integración | D25 |
+| 07/11/2026 | A0 | Bug corregido: crear áreas con geometría fallaba; reparto por ámbito marcado «derived» (capa 200 m) | `test_area_geojson_export_is_private` | D15 |
+| 07/11/2026 | A10 (A0) | Imagen Docker de la API verificada dentro de la red de Compose | `docker compose --profile full build api` + humo `/health` | D10 |

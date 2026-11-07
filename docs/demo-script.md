@@ -17,9 +17,10 @@ Formato de las bases (ap. 8–9): exposición de **5 min** y **5 min** de pregun
 | 0:40–1:30 | `/fuentes` | Ocho conjuntos del **Portal de Datos Abiertos de la CAM**, cada uno con licencia, fecha y huella SHA-256; cartografía oficial del IDEM y AEMET como complemento. Descargar el CSV: cualquiera reproduce las cifras. |
 | 1:30–2:15 | `/` explorador | Coropleta de densidad (CAM-02) sobre los 179 municipios. Buscar **San Lorenzo de El Escorial**: población 18.942 (CAM-01, 2025), 20,8 % ≥65, serie 2021–2025. Aviso de escala municipal. «Superficie forestal municipal: no disponible» — el portal solo la publica a escala regional y no la inventamos. |
 | 2:15–2:45 | capa de riesgo | Activar **Riesgo oficial (GEO-01)**: clases literales; 53,9 % de la superficie municipal en «Riesgo muy alto». Peligrosidad y vulnerabilidad son capas distintas y no se mezclan. AEMET con fecha de emisión. |
+| (opcional, si sobra tiempo) | `/analisis` | Con un clic: municipios con ≥50 % de superficie en riesgo alto o muy alto (GEO-01) y densidad < 20 hab/km² (CAM-02). Es un filtro sobre valores publicados, no un índice nuestro. |
 | 2:45–3:45 | `/demo` | Caso guiado con urbanización **ficticia** etiquetada: inspección → 11 medidas del catálogo ligado al INFOMA → presupuesto de demo 30.000 €. El optimizador CP-SAT cubre el **90,1 %** de la prioridad técnica frente a **84,2 %** (manual) y **85,1 %** (menor coste), sin superar el presupuesto. Mostrar sensibilidad. Insistir: es una función objetivo acordada, **no reducción de riesgo**. |
 | 3:45–4:20 | plan + PDF | Plan con responsables, vencimientos, historial y evidencias; informe PDF con fuentes, método, supuestos y «validación profesional pendiente». |
-| 4:20–5:00 | Diapositiva 3 | 65 tests automáticos + 5 de navegador, código abierto, ETL reproducible, multiusuario aislado. Siguiente paso: validar con técnicos y una urbanización real. |
+| 4:20–5:00 | Diapositiva 3 | 67 tests automáticos + 6 de navegador, código abierto, ETL reproducible, multiusuario aislado. Siguiente paso: validar con técnicos y una urbanización real. |
 
 ## Preguntas previsibles (PRD §10.3)
 
