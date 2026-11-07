@@ -60,7 +60,7 @@
 
 | Requisito | Evidencia | Estado |
 |---|---|---|
-| 3 diapositivas + 4.ª captura | Capturas reales en `artifacts/demo-screenshots/` | 🟡 faltan las diapositivas (A11) |
+| 3 diapositivas + 4.ª captura | Presentación diseñada (`artifacts/slides/`) con captura real | 🟡 faltan integrantes y enlaces |
 | Guion demo 5 min + backup | `docs/demo-script.md` (plan B con capturas y PDF) + `npm run e2e` | ✅ pendiente de ensayo cronometrado |
 | Resumen ≤100 palabras antes del 24/11 | `docs/pitch/resumen-preseleccion.md`: 93 palabras (`scripts/count_words.py`), sin promesas inexistentes | ✅ texto · ⬜ envío (humano) |
 

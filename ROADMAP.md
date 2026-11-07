@@ -38,7 +38,7 @@ Fechas del PRD §8. Estado a 06/11/2026. ✅ hecho y verificado · 🟡 en curso
 | 14 | — | Migraciones Alembic formales | A6 | — | 20 nov | ✅ |
 | 15 | — | CI en GitHub (requiere repo remoto — decisión humana) | A10 | — | 20 nov | 🟡 workflow escrito |
 | 16 | — | e2e Playwright (T10) | A9 | 3 | 22 nov | ✅ 6 tests (`apps/web/e2e`) |
-| 17 | — | Pitch 3+1, guion, capturas | A11 | 3,9 | 24 nov | 🟡 contenido, guion, resumen (93 palabras) y capturas listos · ⬜ diseño de diapositivas e integrantes |
+| 17 | — | Pitch 3+1, guion, capturas | A11 | 3,9 | 24 nov | 🟡 presentación 3+1 diseñada (`artifacts/slides/`), guion y resumen listos · ⬜ integrantes y enlaces |
 
 ## P1 (tras asegurar P0)
 

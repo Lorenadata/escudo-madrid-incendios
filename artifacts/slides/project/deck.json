@@ -1,0 +1,19 @@
+{
+  "v": 4,
+  "createdOnFiles": {"v": 1, "at": "2026-11-07T00:30:00Z"},
+  "lists": "css",
+  "title": "ESCUDO MADRID — DATAMAD 2026",
+  "order": ["proyecto", "datos", "resultados", "captura"],
+  "sections": {
+    "s1": {"description": "Quiénes somos y qué hace ESCUDO MADRID", "start": "proyecto"},
+    "s2": {"description": "El problema y los datos abiertos que usamos", "start": "datos"},
+    "s3": {"description": "Resultados verificables, impacto y viabilidad", "start": "resultados"},
+    "s4": {"description": "Captura del sistema real", "start": "captura"}
+  },
+  "cover": "proyecto",
+  "faces": {
+    "libre-baskerville": {"family": "Libre Baskerville", "href": "https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Public+Sans:wght@400;600;700&display=swap"},
+    "public-sans": {"family": "Public Sans", "href": "https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Public+Sans:wght@400;600;700&display=swap"}
+  },
+  "designSystems": []
+}
