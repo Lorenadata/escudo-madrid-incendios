@@ -34,6 +34,10 @@ cd apps/web && npm install && npm run dev               # http://localhost:3000
 
 **Demo local** (datos ficticios): `gestor@demo.escudo.local` / `demo-escudo-2026`. Recorrido público sin credenciales: `GET /v1/demo/guided`.
 
+## Demo pública (Hugging Face Space)
+
+`infra/docker/space.Dockerfile` clona este repositorio en un commit fijo y ejecuta PostGIS, la API (interna, publicada como `/api`) y la web (puerto 7860) en un único contenedor mediante `scripts/space-entrypoint.sh`. La ficha del Space está en `infra/docker/hf-space/README.md`. El disco es efímero: cada reinicio recarga los datos reales y restaura la demo ficticia. `AEMET_API_KEY` y `ESCUDO_JWT_SECRET` se configuran como *secrets* del Space, nunca en el repositorio.
+
 ## Tests
 
 ```bash
