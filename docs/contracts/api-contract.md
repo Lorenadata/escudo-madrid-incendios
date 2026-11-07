@@ -58,6 +58,10 @@ Base URL dev: `http://localhost:8000`. JSON UTF-8. Fechas ISO 8601. Geometrías 
 | GET | `/v1/reports/scenario/{scenario_id}.pdf` | 🔒 | PDF |
 | GET | `/v1/impact` | 🔒 | KPIs operativos de la organización |
 | GET | `/v1/audit?entity=` | 🔒 | `AuditEvent[]` |
+| GET | `/v1/municipal/overview` | 🔒 rol `municipal` | Flujo B: municipio propio, fuentes, ámbitos **compartidos** con estado de inspecciones, acciones y presupuesto |
+| GET | `/v1/municipal/areas/{id}` · `/report.pdf` | 🔒 rol `municipal` | Expediente de solo lectura de un ámbito compartido; 404 si no está autorizado |
+| PATCH | `/v1/areas/{id}/sharing` | 🔒 gestor/admin | `{shared_with_municipality: bool}`: autoriza o revoca que el ayuntamiento lo consulte |
+| GET | `/v1/analysis/municipal-matrix` | P | Matriz CAM-01/02 × capa oficial (filtros y orden) |
 | GET | `/v1/demo/guided` | P | Caso guiado público de solo lectura (Flujo C), todo etiquetado `synthetic` salvo los datos oficiales |
 
 ## Tipos principales

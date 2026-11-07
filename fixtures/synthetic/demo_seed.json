@@ -8,8 +8,18 @@
       "name": "Comunidad de propietarios DEMO (ficticia)",
       "kind": "urbanizacion",
       "users": [
-        {"email": "gestor@demo.escudo.local", "full_name": "Gestora Demo (ficticia)", "role": "gestor", "password": "demo-escudo-2026"},
-        {"email": "tecnico@demo.escudo.local", "full_name": "Técnico Demo (ficticio, cualificación NO verificada)", "role": "tecnico", "password": "demo-escudo-2026"}
+        {
+          "email": "gestor@demo.escudo.local",
+          "full_name": "Gestora Demo (ficticia)",
+          "role": "gestor",
+          "password": "demo-escudo-2026"
+        },
+        {
+          "email": "tecnico@demo.escudo.local",
+          "full_name": "Técnico Demo (ficticio, cualificación NO verificada)",
+          "role": "tecnico",
+          "password": "demo-escudo-2026"
+        }
       ]
     },
     {
@@ -17,7 +27,39 @@
       "name": "Organización DEMO B — aislamiento (ficticia)",
       "kind": "urbanizacion",
       "users": [
-        {"email": "gestor-b@demo.escudo.local", "full_name": "Gestor B Demo (ficticio)", "role": "gestor", "password": "demo-escudo-2026"}
+        {
+          "email": "gestor-b@demo.escudo.local",
+          "full_name": "Gestor B Demo (ficticio)",
+          "role": "gestor",
+          "password": "demo-escudo-2026"
+        }
+      ]
+    },
+    {
+      "key": "demo_muni",
+      "name": "Responsable municipal DEMO (ficticio) · término 28131",
+      "kind": "municipio",
+      "municipality_code": "28131",
+      "users": [
+        {
+          "email": "municipal@demo.escudo.local",
+          "full_name": "Técnica municipal Demo (ficticia)",
+          "role": "municipal",
+          "password": "demo-escudo-2026"
+        }
+      ]
+    },
+    {
+      "key": "demo_c",
+      "name": "Urbanización DEMO C — no comparte (ficticia)",
+      "kind": "urbanizacion",
+      "users": [
+        {
+          "email": "gestor-c@demo.escudo.local",
+          "full_name": "Gestor C Demo (ficticio)",
+          "role": "gestor",
+          "password": "demo-escudo-2026"
+        }
       ]
     }
   ],
@@ -27,7 +69,8 @@
       "key": "area_a",
       "name": "Urbanización Ejemplo Los Pinos (FICTICIA)",
       "municipality_code": "28131",
-      "description": "Ámbito ficticio de demostración situado administrativamente en un municipio real. Sin geometría."
+      "description": "Ámbito ficticio de demostración situado administrativamente en un municipio real. Sin geometría.",
+      "shared_with_municipality": true
     },
     {
       "org": "demo_b",
@@ -35,6 +78,14 @@
       "name": "Ámbito privado de la organización B (FICTICIO)",
       "municipality_code": "28093",
       "description": "Existe solo para comprobar que la organización A no puede verlo (test T08)."
+    },
+    {
+      "org": "demo_c",
+      "key": "area_c",
+      "name": "Ámbito C no compartido (FICTICIO)",
+      "municipality_code": "28131",
+      "description": "Mismo término que el ámbito A, pero su organización NO autoriza compartirlo: el ayuntamiento no debe verlo.",
+      "shared_with_municipality": false
     }
   ],
   "inspections": [
@@ -43,13 +94,41 @@
       "inspected_on": "2026-11-05",
       "inspector_name": "Técnico Demo (ficticio)",
       "items": [
-        {"checklist_code": "franja_perimetral", "answer": "parcial", "observation": "Ejemplo ficticio: franja incompleta en el lindero norte."},
-        {"checklist_code": "vegetacion_viviendas", "answer": "no", "observation": "Ejemplo ficticio: setos en contacto con fachadas."},
-        {"checklist_code": "restos_vegetales", "answer": "no", "observation": "Ejemplo ficticio: acopio de restos de poda."},
-        {"checklist_code": "hidrantes", "answer": "parcial", "observation": "Ejemplo ficticio: dos hidrantes sin señalizar."},
-        {"checklist_code": "accesos", "answer": "si", "observation": ""},
-        {"checklist_code": "plan_autoproteccion", "answer": "no", "observation": "Ejemplo ficticio: sin PAIF redactado."},
-        {"checklist_code": "informacion_vecinal", "answer": "no", "observation": ""}
+        {
+          "checklist_code": "franja_perimetral",
+          "answer": "parcial",
+          "observation": "Ejemplo ficticio: franja incompleta en el lindero norte."
+        },
+        {
+          "checklist_code": "vegetacion_viviendas",
+          "answer": "no",
+          "observation": "Ejemplo ficticio: setos en contacto con fachadas."
+        },
+        {
+          "checklist_code": "restos_vegetales",
+          "answer": "no",
+          "observation": "Ejemplo ficticio: acopio de restos de poda."
+        },
+        {
+          "checklist_code": "hidrantes",
+          "answer": "parcial",
+          "observation": "Ejemplo ficticio: dos hidrantes sin señalizar."
+        },
+        {
+          "checklist_code": "accesos",
+          "answer": "si",
+          "observation": ""
+        },
+        {
+          "checklist_code": "plan_autoproteccion",
+          "answer": "no",
+          "observation": "Ejemplo ficticio: sin PAIF redactado."
+        },
+        {
+          "checklist_code": "informacion_vecinal",
+          "answer": "no",
+          "observation": ""
+        }
       ]
     }
   ],
@@ -60,22 +139,112 @@
       "budget_eur": 30000,
       "is_demo_budget": true,
       "options": [
-        {"measure_code": "DELIM-PLANO", "quantity": 1, "unit_cost_eur": 0, "technical_priority": 5, "coverage_weight": 1, "manual_rank": 1},
-        {"measure_code": "FAJA-30", "quantity": 18000, "unit_cost_eur": 0.6, "technical_priority": 5, "coverage_weight": 3, "manual_rank": 2},
-        {"measure_code": "PAIF-RED", "quantity": 1, "unit_cost_eur": 4500, "technical_priority": 4, "coverage_weight": 2, "manual_rank": 3},
-        {"measure_code": "HIDR-REV", "quantity": 12, "unit_cost_eur": 90, "technical_priority": 4, "coverage_weight": 1, "manual_rank": 4},
-        {"measure_code": "PODA-GALIBO", "quantity": 2500, "unit_cost_eur": 2.2, "technical_priority": 3, "coverage_weight": 1.5, "manual_rank": 5},
-        {"measure_code": "RESTOS-TRIT", "quantity": 18000, "unit_cost_eur": 0.25, "technical_priority": 3, "coverage_weight": 1, "manual_rank": 6},
-        {"measure_code": "RESTOS-QUEMA", "quantity": 18000, "unit_cost_eur": 0.12, "technical_priority": 2, "coverage_weight": 1, "manual_rank": 7},
-        {"measure_code": "VIAL-LIMP", "quantity": 3200, "unit_cost_eur": 1.1, "technical_priority": 3, "coverage_weight": 1, "manual_rank": 8},
-        {"measure_code": "CUBIERTAS-LIMP", "quantity": 60, "unit_cost_eur": 80, "technical_priority": 2, "coverage_weight": 1, "manual_rank": 9},
-        {"measure_code": "SENAL-CALLES", "quantity": 6, "unit_cost_eur": 150, "technical_priority": 2, "coverage_weight": 0.5, "manual_rank": 10},
-        {"measure_code": "INFO-POB", "quantity": 2, "unit_cost_eur": 400, "technical_priority": 3, "coverage_weight": 1, "manual_rank": 11}
+        {
+          "measure_code": "DELIM-PLANO",
+          "quantity": 1,
+          "unit_cost_eur": 0,
+          "technical_priority": 5,
+          "coverage_weight": 1,
+          "manual_rank": 1
+        },
+        {
+          "measure_code": "FAJA-30",
+          "quantity": 18000,
+          "unit_cost_eur": 0.6,
+          "technical_priority": 5,
+          "coverage_weight": 3,
+          "manual_rank": 2
+        },
+        {
+          "measure_code": "PAIF-RED",
+          "quantity": 1,
+          "unit_cost_eur": 4500,
+          "technical_priority": 4,
+          "coverage_weight": 2,
+          "manual_rank": 3
+        },
+        {
+          "measure_code": "HIDR-REV",
+          "quantity": 12,
+          "unit_cost_eur": 90,
+          "technical_priority": 4,
+          "coverage_weight": 1,
+          "manual_rank": 4
+        },
+        {
+          "measure_code": "PODA-GALIBO",
+          "quantity": 2500,
+          "unit_cost_eur": 2.2,
+          "technical_priority": 3,
+          "coverage_weight": 1.5,
+          "manual_rank": 5
+        },
+        {
+          "measure_code": "RESTOS-TRIT",
+          "quantity": 18000,
+          "unit_cost_eur": 0.25,
+          "technical_priority": 3,
+          "coverage_weight": 1,
+          "manual_rank": 6
+        },
+        {
+          "measure_code": "RESTOS-QUEMA",
+          "quantity": 18000,
+          "unit_cost_eur": 0.12,
+          "technical_priority": 2,
+          "coverage_weight": 1,
+          "manual_rank": 7
+        },
+        {
+          "measure_code": "VIAL-LIMP",
+          "quantity": 3200,
+          "unit_cost_eur": 1.1,
+          "technical_priority": 3,
+          "coverage_weight": 1,
+          "manual_rank": 8
+        },
+        {
+          "measure_code": "CUBIERTAS-LIMP",
+          "quantity": 60,
+          "unit_cost_eur": 80,
+          "technical_priority": 2,
+          "coverage_weight": 1,
+          "manual_rank": 9
+        },
+        {
+          "measure_code": "SENAL-CALLES",
+          "quantity": 6,
+          "unit_cost_eur": 150,
+          "technical_priority": 2,
+          "coverage_weight": 0.5,
+          "manual_rank": 10
+        },
+        {
+          "measure_code": "INFO-POB",
+          "quantity": 2,
+          "unit_cost_eur": 400,
+          "technical_priority": 3,
+          "coverage_weight": 1,
+          "manual_rank": 11
+        }
       ]
     }
   ],
   "plan_updates": [
-    {"measure_code": "DELIM-PLANO", "status": "done", "responsible": "Gestora Demo (ficticia)", "due_date": "2026-12-15", "actual_cost_eur": 0, "note": "Ejemplo ficticio"},
-    {"measure_code": "FAJA-30", "status": "in_progress", "responsible": "Empresa ejemplo (ficticia)", "due_date": "2027-04-30", "note": "Ejemplo ficticio"}
+    {
+      "measure_code": "DELIM-PLANO",
+      "status": "done",
+      "responsible": "Gestora Demo (ficticia)",
+      "due_date": "2026-12-15",
+      "actual_cost_eur": 0,
+      "note": "Ejemplo ficticio"
+    },
+    {
+      "measure_code": "FAJA-30",
+      "status": "in_progress",
+      "responsible": "Empresa ejemplo (ficticia)",
+      "due_date": "2027-04-30",
+      "note": "Ejemplo ficticio"
+    }
   ]
 }

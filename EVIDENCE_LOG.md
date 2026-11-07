@@ -19,3 +19,5 @@ Formato: fecha · agente · artefacto · cómo verificar · criterio(s). Solo he
 | 07/11/2026 | A0 | Matriz municipal CAM-01/02 × capa oficial (95 municipios con ≥50 % en riesgo alto/muy alto según GEO-01) | `GET /v1/analysis/municipal-matrix?min_high_share=0.5`; test de integración | D25 |
 | 07/11/2026 | A0 | Bug corregido: crear áreas con geometría fallaba; reparto por ámbito marcado «derived» (capa 200 m) | `test_area_geojson_export_is_private` | D15 |
 | 07/11/2026 | A10 (A0) | Imagen Docker de la API verificada dentro de la red de Compose | `docker compose --profile full build api` + humo `/health` | D10 |
+| 07/11/2026 | A0 | Flujo B (PRD §3.2): panel municipal; solo ámbitos con autorización expresa; revocación inmediata; expediente e informe | `test_flow_B_municipal_sees_only_authorized_areas`, e2e «Flujo B», captura 07 | D20, V15, I25 |
+| 07/11/2026 | A0 | ROADMAP completo hasta el 25/11 con acciones humanas, fases, calendario y riesgos | `ROADMAP.md` | P5 |

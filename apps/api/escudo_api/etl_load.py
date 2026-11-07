@@ -290,7 +290,8 @@ def seed_demo(session: Session) -> dict:
 
     orgs, areas = {}, {}
     for o in seed["organizations"]:
-        org = Organization(name=o["name"], kind=o["kind"], record_status="synthetic")
+        org = Organization(name=o["name"], kind=o["kind"], municipality_code=o.get("municipality_code"),
+                           record_status="synthetic")
         session.add(org)
         session.flush()
         orgs[o["key"]] = org
@@ -303,7 +304,8 @@ def seed_demo(session: Session) -> dict:
                                    technical_qualification_verified=False))
     for a in seed["areas"]:
         area = AreaOfInterest(organization_id=orgs[a["org"]].id, name=a["name"], municipality_code=a["municipality_code"],
-                              description=a["description"], record_status="synthetic")
+                              description=a["description"], record_status="synthetic",
+                              shared_with_municipality=a.get("shared_with_municipality", False))
         session.add(area)
         session.flush()
         areas[a["key"]] = area

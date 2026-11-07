@@ -7,12 +7,13 @@ import { useSessionToken } from "@/lib/browser-store";
 import { MunicipalityProfileView } from "@/components/ProfilePanels";
 import { Empty, ErrorState, Loading } from "@/components/States";
 import { SyntheticBadge } from "@/components/StatusBadge";
-import { ApiError, setToken } from "@/lib/api";
+import { ApiError, apiFetch, setToken } from "@/lib/api";
 import type { AreaDetail, Area, Measure, MunicipalitySummary, User } from "@/lib/api-types";
 import { useApi } from "@/lib/useApi";
 import { AreaForm } from "./AreaForm";
 import { AuditPanel, ImpactPanel } from "./ImpactPanel";
 import { InspectionsPanel } from "./InspectionsPanel";
+import { MunicipalPanel } from "./MunicipalPanel";
 import { ScenariosPanel } from "./ScenariosPanel";
 
 const TABS = [
@@ -27,9 +28,13 @@ export default function WorkspacePage() {
   const hasToken = token === undefined ? null : !!token;
 
   const me = useApi<User>(hasToken ? "/v1/me" : null);
-  const areas = useApi<Area[]>(hasToken ? "/v1/areas" : null);
-  const measures = useApi<Measure[]>(hasToken ? "/v1/measures" : null);
-  const munis = useApi<MunicipalitySummary[]>(hasToken ? "/v1/municipalities?sort=name" : null);
+  const isMunicipal = !!me.data?.memberships.some((m) => m.role === "municipal");
+  const isManager = !!me.data?.memberships.some((m) => m.role === "gestor" || m.role === "admin");
+  const orgReady = hasToken && !!me.data && !isMunicipal;
+  const areas = useApi<Area[]>(orgReady ? "/v1/areas" : null);
+  const measures = useApi<Measure[]>(orgReady ? "/v1/measures" : null);
+  const munis = useApi<MunicipalitySummary[]>(orgReady ? "/v1/municipalities?sort=name" : null);
+  const [shareMsg, setShareMsg] = useState<string | null>(null);
   const [pickedArea, setAreaId] = useState<string | null>(null);
   const [tab, setTab] = useState<(typeof TABS)[number]["id"]>("contexto");
   const [showNewArea, setShowNewArea] = useState(false);
@@ -75,7 +80,8 @@ export default function WorkspacePage() {
       </header>
       {!!me.error && !(me.error instanceof ApiError && me.error.status === 401) && <ErrorState error={me.error} onRetry={me.reload} />}
 
-      <div className="mt-5 grid gap-6 lg:grid-cols-[17rem_1fr]">
+      {isMunicipal && <MunicipalPanel />}
+      {orgReady && <div className="mt-5 grid gap-6 lg:grid-cols-[17rem_1fr]">
         <aside aria-label="Ámbitos de la organización" className="space-y-3">
           <div className="flex items-center justify-between">
             <h2 className="font-cond text-lg font-semibold">Ámbitos</h2>
@@ -135,6 +141,31 @@ export default function WorkspacePage() {
                 )}
               </div>
               {area.data.description && <p className="text-sm text-ink-600">{area.data.description}</p>}
+              {isManager && (
+                <div className="mt-2 flex flex-wrap items-center gap-2 text-sm">
+                  <label className="inline-flex items-center gap-2">
+                    <input
+                      type="checkbox"
+                      checked={!!area.data.shared_with_municipality}
+                      onChange={async (e) => {
+                        setShareMsg(null);
+                        try {
+                          await apiFetch(`/v1/areas/${area.data!.id}/sharing`, {
+                            method: "PATCH",
+                            body: JSON.stringify({ shared_with_municipality: e.target.checked }),
+                          });
+                          setShareMsg(e.target.checked ? "El ayuntamiento del término puede consultar este ámbito (solo lectura)." : "Autorización retirada.");
+                          area.reload();
+                        } catch (err) {
+                          setShareMsg(err instanceof Error ? err.message : "No se pudo cambiar la autorización.");
+                        }
+                      }}
+                    />
+                    Autorizar al ayuntamiento del término a consultar este ámbito
+                  </label>
+                  {shareMsg && <span role="status" className="text-xs text-ink-600">{shareMsg}</span>}
+                </div>
+              )}
               <div role="tablist" aria-label="Secciones del ámbito" className="mt-4 flex gap-1 border-b border-line">
                 {TABS.map((t) => (
                   <button
@@ -172,7 +203,7 @@ export default function WorkspacePage() {
             ¿Buscas el contexto regional? Abre el <Link href="/" className="underline">explorador</Link>.
           </p>
         </section>
-      </div>
+      </div>}
     </div>
   );
 }

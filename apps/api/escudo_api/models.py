@@ -203,6 +203,8 @@ class Organization(Base, TimestampMixin):
     id: Mapped[str] = mapped_column(String(36), primary_key=True, default=_uuid)
     name: Mapped[str] = mapped_column(Text)
     kind: Mapped[str] = mapped_column(String(32))  # urbanizacion | municipio | otro
+    # Solo organizaciones de tipo «municipio»: término municipal sobre el que tienen competencia (Flujo B)
+    municipality_code: Mapped[str | None] = mapped_column(String(5), nullable=True)
     record_status: Mapped[str] = mapped_column(String(16), default="active")  # active | synthetic
 
 
@@ -237,6 +239,8 @@ class AreaOfInterest(Base, TimestampMixin):
     municipality_code: Mapped[str] = mapped_column(ForeignKey("municipalities.ine_code"))
     description: Mapped[str] = mapped_column(Text, default="")
     geom = mapped_column(Geometry("MULTIPOLYGON", srid=4326), nullable=True)
+    # Autorización EXPRESA de la organización propietaria para que el ayuntamiento del término la consulte
+    shared_with_municipality: Mapped[bool] = mapped_column(Boolean, default=False, server_default="false")
     record_status: Mapped[str] = mapped_column(String(16), default="active")
 
 

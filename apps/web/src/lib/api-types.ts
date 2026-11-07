@@ -178,6 +178,8 @@ export interface FireHistory {
 export interface Membership {
   organization_id: number | string;
   organization_name?: string;
+  organization_kind?: string;
+  municipality_code?: string | null;
   role: string;
 }
 
@@ -203,6 +205,7 @@ export interface Area {
   has_geometry: boolean;
   geometry?: GeoJSON.Geometry | null;
   record_status: "active" | "synthetic" | string;
+  shared_with_municipality?: boolean;
 }
 
 export interface AreaDetail extends Area {

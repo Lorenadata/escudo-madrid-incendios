@@ -58,7 +58,8 @@ class LoginIn(BaseModel):
 def _user_dict(u: User) -> dict[str, Any]:
     return {"id": u.id, "email": u.email, "full_name": u.full_name, "record_status": u.record_status,
             "memberships": [{"organization_id": m.organization_id, "organization_name": m.organization.name,
-                             "organization_status": m.organization.record_status, "role": m.role,
+                             "organization_status": m.organization.record_status, "organization_kind": m.organization.kind,
+                             "municipality_code": m.organization.municipality_code, "role": m.role,
                              "technical_qualification_verified": m.technical_qualification_verified}
                             for m in u.memberships]}
 
@@ -102,7 +103,8 @@ def _area_geojson(session: Session, a: AreaOfInterest) -> dict:
 def area_dict(session: Session, a: AreaOfInterest, *, detail: bool = False) -> dict[str, Any]:
     d: dict[str, Any] = {"id": a.id, "organization_id": a.organization_id, "name": a.name,
                          "municipality_code": a.municipality_code, "description": a.description,
-                         "has_geometry": a.geom is not None, "record_status": a.record_status}
+                         "has_geometry": a.geom is not None, "record_status": a.record_status,
+                         "shared_with_municipality": a.shared_with_municipality}
     if a.geom is not None:
         d["geometry"] = _area_geojson(session, a)
     if detail:

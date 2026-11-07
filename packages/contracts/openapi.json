@@ -1851,6 +1851,190 @@
         }
       }
     },
+    "/v1/municipal/overview": {
+      "get": {
+        "tags": [
+          "municipal"
+        ],
+        "summary": "Overview",
+        "operationId": "overview_v1_municipal_overview_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object",
+                  "title": "Response Overview V1 Municipal Overview Get"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/v1/municipal/areas/{area_id}": {
+      "get": {
+        "tags": [
+          "municipal"
+        ],
+        "summary": "Area File",
+        "description": "Expediente de solo lectura de un ámbito compartido.",
+        "operationId": "area_file_v1_municipal_areas__area_id__get",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "area_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Area Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Area File V1 Municipal Areas  Area Id  Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/municipal/areas/{area_id}/report.pdf": {
+      "get": {
+        "tags": [
+          "municipal"
+        ],
+        "summary": "Area Report",
+        "operationId": "area_report_v1_municipal_areas__area_id__report_pdf_get",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "area_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Area Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/areas/{area_id}/sharing": {
+      "patch": {
+        "tags": [
+          "municipal",
+          "ámbitos"
+        ],
+        "summary": "Set Sharing",
+        "description": "La organización propietaria autoriza (o revoca) que el ayuntamiento del término consulte el ámbito.",
+        "operationId": "set_sharing_v1_areas__area_id__sharing_patch",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "area_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Area Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ShareIn"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Set Sharing V1 Areas  Area Id  Sharing Patch"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/demo/guided": {
       "get": {
         "tags": [
@@ -2304,6 +2488,19 @@
           "options"
         ],
         "title": "ScenarioIn"
+      },
+      "ShareIn": {
+        "properties": {
+          "shared_with_municipality": {
+            "type": "boolean",
+            "title": "Shared With Municipality"
+          }
+        },
+        "type": "object",
+        "required": [
+          "shared_with_municipality"
+        ],
+        "title": "ShareIn"
       },
       "ValidationError": {
         "properties": {

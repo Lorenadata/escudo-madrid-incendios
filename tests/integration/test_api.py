@@ -234,3 +234,46 @@ def test_municipal_matrix_is_reproducible_filter(client):
     assert 0 < f["count"] < 179
     assert all(r["density_hab_km2"] <= 100 and r["age_65_plus_share"] >= 0.25 for r in f["rows"])
     assert "No es un índice de riesgo propio" in f["caveat"]
+
+
+def _auth(client, email: str) -> dict:
+    r = client.post("/v1/auth/login", json={"email": email, "password": "demo-escudo-2026"})
+    assert r.status_code == 200, r.text
+    return {"Authorization": f"Bearer {r.json()['access_token']}"}
+
+
+def test_flow_B_municipal_sees_only_authorized_areas(client, auth_a):
+    """Flujo B: el ayuntamiento ve solo ámbitos de su término COMPARTIDOS por su organización; solo lectura."""
+    muni = _auth(client, "municipal@demo.escudo.local")
+    ov = client.get("/v1/municipal/overview", headers=muni)
+    assert ov.status_code == 200, ov.text
+    d = ov.json()
+    assert d["municipality"]["ine_code"] == "28131"
+    names = [a["name"] for a in d["areas"]]
+    assert "Urbanización Ejemplo Los Pinos (FICTICIA)" in names
+    assert not any("no compartido" in n for n in names)          # mismo municipio, sin autorización
+    assert not any("organización B" in n for n in names)          # otro municipio
+    assert "population" not in json.dumps(d["areas"])             # T04: sin población de ámbito
+    a = next(x for x in d["areas"] if x["name"].startswith("Urbanización Ejemplo"))
+    assert a["actions_total"] > 0 and a["scenario"]["is_demo_budget"] is True
+    file = client.get(f"/v1/municipal/areas/{a['area_id']}", headers=muni)
+    assert file.status_code == 200 and file.json()["plan"]["actions"]
+    pdf = client.get(f"/v1/municipal/areas/{a['area_id']}/report.pdf", headers=muni)
+    assert pdf.status_code == 200 and pdf.content.startswith(b"%PDF")
+    # el ámbito no compartido no es accesible ni por id
+    c = _auth(client, "gestor-c@demo.escudo.local")
+    c_area = client.get("/v1/areas", headers=c).json()[0]
+    assert client.get(f"/v1/municipal/areas/{c_area['id']}", headers=muni).status_code == 404
+    # sin rol municipal → 403; el municipal no accede a las rutas privadas de la organización
+    assert client.get("/v1/municipal/overview", headers=auth_a).status_code == 403
+    assert client.get(f"/v1/areas/{a['area_id']}", headers=muni).status_code == 404
+    # revocar la autorización la retira al instante; volver a autorizar la restablece
+    assert client.patch(f"/v1/areas/{a['area_id']}/sharing", headers=auth_a,
+                        json={"shared_with_municipality": False}).status_code == 200
+    assert client.get(f"/v1/municipal/areas/{a['area_id']}", headers=muni).status_code == 404
+    assert client.patch(f"/v1/areas/{a['area_id']}/sharing", headers=auth_a,
+                        json={"shared_with_municipality": True}).status_code == 200
+    # solo la gestión de la organización puede autorizar
+    tech = _auth(client, "tecnico@demo.escudo.local")
+    assert client.patch(f"/v1/areas/{a['area_id']}/sharing", headers=tech,
+                        json={"shared_with_municipality": False}).status_code == 403

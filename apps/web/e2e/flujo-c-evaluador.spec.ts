@@ -102,3 +102,19 @@ test("análisis municipal: filtros sobre datos CAM y capa oficial, sin índice p
   await expect(page.getByText("No es un índice de riesgo propio", { exact: false })).toBeVisible();
   await assertSafeLanguage(page);
 });
+
+test("Flujo B: responsable municipal ve solo ámbitos autorizados y abre el expediente", async ({ page }) => {
+  await page.goto("/login");
+  await page.getByLabel("Correo electrónico").fill("municipal@demo.escudo.local");
+  await page.getByLabel("Contraseña").fill("demo-escudo-2026");
+  await page.getByRole("button", { name: "Iniciar sesión" }).click();
+  await expect(page).toHaveURL(/\/app/, { timeout: 30_000 });
+  await expect(page.getByRole("heading", { name: "San Lorenzo de El Escorial" })).toBeVisible();
+  await expect(page.getByText("únicamente los ámbitos cuya organización ha autorizado", { exact: false })).toBeVisible();
+  await expect(page.getByRole("rowheader", { name: /Urbanización Ejemplo Los Pinos/ })).toBeVisible();
+  await expect(page.getByText("no compartido", { exact: false })).toHaveCount(0);
+  await page.getByRole("button", { name: "Abrir expediente" }).first().click();
+  await expect(page.getByRole("heading", { name: "Expediente (solo lectura)" })).toBeVisible();
+  await expect(page.getByRole("button", { name: "Descargar informe PDF" })).toBeVisible();
+  await assertSafeLanguage(page);
+});

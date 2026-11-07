@@ -14,7 +14,7 @@ from sqlalchemy.orm import Session
 from .config import settings
 from .db import get_session
 from .models import ActionPlan, AreaOfInterest, Inspection, Organization, Scenario
-from .routers import private, public
+from .routers import municipal, private, public
 
 logging.basicConfig(level=logging.INFO, format='{"ts":"%(asctime)s","lvl":"%(levelname)s","logger":"%(name)s","msg":%(message)r}')
 log = logging.getLogger("escudo.api")
@@ -41,6 +41,7 @@ async def access_log(request: Request, call_next):  # M22 observabilidad: latenc
 
 app.include_router(public.router)
 app.include_router(private.router)
+app.include_router(municipal.router)
 
 
 def _demo_scenario(session: Session) -> Scenario:
