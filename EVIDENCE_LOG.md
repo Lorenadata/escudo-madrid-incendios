@@ -24,3 +24,4 @@ Formato: fecha · agente · artefacto · cómo verificar · criterio(s). Solo he
 | 07/11/2026 | A0 | M05 dibujo del ámbito en el mapa + clases oficiales orientativas marcadas «derivado»; revisión técnica cubierta por e2e | `npm run e2e` (9 ✔) | D20, V15 |
 | 07/11/2026 | A0 | Flujo A completo en UI (login → ámbito → inspección con foto → medidas → optimizar → plan → evidencia → PDF) en 6–12 s automatizado | `apps/web/e2e/flujo-a-gestor.spec.ts` | V15, D20 |
 | 07/11/2026 | A10 (A0) | Demo en un comando (31 s) y 3 arranques en frío consecutivos con 10/10 e2e cada uno | `bash scripts/demo.sh` · `bash scripts/demo.sh check` | V15, R10, P5 |
+| 07/11/2026 | A10 (A0) | Código abierto publicado en GitHub (cuenta de la participante, EUPL-1.2 detectada) con revisión previa de secretos y CI verde | https://github.com/Lorenadata/escudo-madrid-incendios · run 42368698348 | D5, R10, P5 |

@@ -29,7 +29,7 @@ Estructura **obligatoria**: máximo 3 diapositivas de contenido + 4.ª con una c
 - **Caso guiado (datos ficticios):** con el mismo presupuesto, la optimización cubre el 90,1 % de la prioridad técnica frente al 84,2 % (priorización manual) y el 85,1 % (menor coste).
 - **Impacto que medimos:** cobertura de prioridades bajo presupuesto, actuaciones documentadas con evidencia, plazos vencidos, reproducibilidad. **No** afirmamos incendios evitados ni reducción de riesgo.
 - **Viabilidad:** software libre (EUPL-1.2), Docker, datos abiertos, multiusuario aislado, modo degradado si AEMET cae.
-- Enlaces: **demo [COMPLETAR]** · **repositorio [COMPLETAR]** (requieren publicación autorizada).
+- Enlaces: **demo [COMPLETAR]** (requiere despliegue autorizado) · **repositorio: https://github.com/Lorenadata/escudo-madrid-incendios** (EUPL-1.2).
 
 ## Diapositiva 4 — Captura del sistema
 

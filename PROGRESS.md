@@ -23,7 +23,7 @@ Actualizado: 06/11/2026 (A0). Solo se marca ✅ lo verificado con test o ejecuci
 | COMPLIANCE (25 normas), COMPETITORS | ✅ | ficheros raíz | A1 |
 | Contrato OpenAPI exportado | ✅ | `packages/contracts/openapi.json` | A0 |
 | Docker Compose (db) | ✅ db · 🟡 perfil `full` (api/web) sin construir | `infra/docker-compose.yml` | A10 (A0) |
-| CI GitHub Actions | 🟡 escrito, no ejecutado (no hay remoto) | `.github/workflows/ci.yml` | A10 (A0) |
+| CI GitHub Actions | ✅ verde en GitHub (python 1m14s, web 1m03s; run 42368698348) | `.github/workflows/ci.yml` | A10 (A0) |
 
 | Web Next.js 16 + MapLibre: explorador (coropletas CAM-01/02/03, capas oficiales GEO-01/02/03 con leyenda literal, mapa base IGN), ficha municipal con series 2021–2025 y AEMET, comparador, fuentes con SHA-256 y CSV, caso guiado público, login y área de trabajo (áreas, inspecciones, escenarios, plan, KPIs) | ✅ lint + tipos + build; verificado en navegador contra la API real (capturas en `artifacts/demo-screenshots/`) | A7 (verificación A0) |
 
@@ -43,7 +43,7 @@ Actualizado: 06/11/2026 (A0). Solo se marca ✅ lo verificado con test o ejecuci
 2. **Asistencia** (bases vs web): escribir a madrid.datamad@urjc.es (C22 en `COMPLIANCE.md`).
 3. **Clave AEMET OpenData** (gratuita, registro con email): necesaria para el mapa oficial de peligro de incendios. Sin ella funciona la predicción municipal pública.
 4. **Licencia del código**: propuesta EUPL-1.2 (ADR-0004), confirmar.
-5. **Repositorio remoto público y despliegue**: no realizados (requieren autorización).
+5. **Repositorio público**: ✅ https://github.com/Lorenadata/escudo-madrid-incendios (EUPL-1.2, 07/11/2026). **Despliegue de la demo**: no realizado (requiere autorización).
 6. **Validación profesional y experimento de utilidad**: requieren personas (criterio de impacto).
 7. **Costes reales** de medidas: no hay base de precios pública aplicable; hacen falta presupuestos reales o se mantienen como escenario.
 8. Web oficial DATAMAD generada con JS: verificar en navegador límite de palabras y preselección.
