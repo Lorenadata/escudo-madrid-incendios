@@ -50,7 +50,7 @@
 
 | Requisito | Evidencia | Estado |
 |---|---|---|
-| Licencia abierta | `LICENSE` EUPL-1.2 (pendiente confirmación del equipo) | 🟡 |
+| Licencia abierta | `LICENSE` EUPL-1.2 (confirmada) | ✅ · ⬜ repositorio público |
 | ETL reproducible con checksums | `fetch` + manifests versionados | ✅ |
 | Tests y CI | 67 tests pytest + 6 Playwright; `.github/workflows/ci.yml` | ✅ local · ⬜ CI ejecutada en GitHub |
 | Contrato OpenAPI | `packages/contracts/openapi.json` (35 rutas) | ✅ |
@@ -60,7 +60,7 @@
 
 | Requisito | Evidencia | Estado |
 |---|---|---|
-| 3 diapositivas + 4.ª captura | Presentación diseñada (`artifacts/slides/`) con captura real | 🟡 faltan integrantes y enlaces |
+| 3 diapositivas + 4.ª captura | Presentación diseñada (`artifacts/slides/`) con captura real | 🟡 faltan enlaces de demo y repositorio |
 | Guion demo 5 min + backup | `docs/demo-script.md` (plan B con capturas y PDF) + `npm run e2e` | ✅ pendiente de ensayo cronometrado |
 | Resumen ≤100 palabras antes del 24/11 | `docs/pitch/resumen-preseleccion.md`: 93 palabras (`scripts/count_words.py`), sin promesas inexistentes | ✅ texto · ⬜ envío (humano) |
 

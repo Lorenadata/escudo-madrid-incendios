@@ -57,4 +57,4 @@ cd apps/web && npm install && npm run dev               # http://localhost:3000
 
 ## Licencia
 
-Código: EUPL-1.2 (`LICENSE`, pendiente de confirmación del equipo). Datos: licencias de origen (CC-BY Portal CAM, CC BY 4.0 IDEM, nota legal AEMET).
+Código: EUPL-1.2 (`LICENSE`). Autora: Lorena Marcos. Datos: licencias de origen (CC-BY Portal CAM, CC BY 4.0 IDEM, nota legal AEMET).

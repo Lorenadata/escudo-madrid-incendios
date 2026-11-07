@@ -34,10 +34,10 @@ Sin estas, el proyecto pierde puntos que ningún agente puede recuperar.
 
 | # | Acción | Por qué | Límite |
 |---|---|---|---|
-| H1 | Confirmar integrantes inscritos y asistencia; escribir a **madrid.datamad@urjc.es** (bases vs web: todos o al menos uno presencial) | Admisión | **09/11** |
+| H1 | ✅ Participante única: **Lorena Marcos**; asistencia presencial el 26/11 (con una persona, bases y web coinciden) | Admisión | hecho 07/11 |
 | H2 | Decidir si se consulta a la organización el inicio del repo el 06/11 (declarado en `PROVENANCE.md`) | Cumplimiento | 09/11 |
 | H3 | Registrar clave gratuita **AEMET OpenData** y ponerla en `.env` (nunca en el repo) | Mapa oficial de peligro de incendios en la ficha (D20/V15) | 10/11 |
-| H4 | Confirmar licencia **EUPL-1.2** y autorizar **repositorio público** (GitHub) | R10 (10 pts) exige repositorio público | 12/11 |
+| H4 | ✅ Licencia **EUPL-1.2** y repositorio público en GitHub autorizados (07/11); falta iniciar sesión con la cuenta elegida | R10 (10 pts) | 12/11 |
 | H5 | Autorizar **despliegue público** de la demo y elegir proveedor europeo (coste estimado 0–15 €/mes) | Enlace de demo en diapositiva 3; T10 | 14/11 |
 | H6 | Conseguir **≥1 técnico** (forestal / protección civil) y **≥1 gestor** (urbanización o ayuntamiento) para entrevista de 30 min y sesión de prueba | I25 (25 pts): sin esto el impacto es solo hipótesis | contactos **12/11**, sesiones **14–20/11** |
 | H7 | Revisión técnica del catálogo de 16 medidas (o declarar explícitamente que sigue pendiente) | Credibilidad ante jurado | 20/11 |

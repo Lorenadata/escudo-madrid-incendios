@@ -12,7 +12,7 @@ Bases DATAMAD §1.2.5–1.2.6 (PRD): el uso de IA generativa está permitido; el
 ## Trabajo asistido por IA
 
 - Código, documentación y análisis generados con **Claude Code** (Anthropic) actuando como orquestador (A0) y como agentes especializados (A1 bases/research, A3 GIS, A4 AEMET, A5 optimización, A7 frontend), bajo instrucciones del PRD maestro redactado por el equipo.
-- Las personas participantes inscritas son las autoras y responsables del proyecto; los agentes son herramientas.
+- La participante inscrita, **Lorena Marcos** (única integrante), es la autora y responsable del proyecto; los agentes son herramientas.
 - **Revisión humana pendiente** de: metodología del optimizador, catálogo de medidas (todas `pending_technical_review`), textos públicos y pitch.
 
 ## Recursos de terceros
@@ -23,7 +23,7 @@ Bases DATAMAD §1.2.5–1.2.6 (PRD): el uso de IA generativa está permitido; el
 | Cartografía IDEM GEO-01…03 | CC BY 4.0 Comunidad de Madrid | Capas oficiales |
 | AEMET predicción municipal | Nota legal AEMET (cita obligatoria) | Contexto meteorológico |
 | FastAPI, SQLAlchemy, GeoAlchemy2, Shapely, pyproj, pyshp, rasterio, OR-Tools, ReportLab, Next.js, MapLibre GL JS | Licencias abiertas (MIT/BSD/Apache-2.0/LGPL según paquete) | Dependencias |
-| Texto `LICENSE` EUPL-1.2 | Obtenido de `api.github.com/licenses/eupl-1.2` | Licencia del proyecto (pendiente confirmación del equipo) |
+| Texto `LICENSE` EUPL-1.2 | Obtenido de `api.github.com/licenses/eupl-1.2` | Licencia del proyecto (confirmada por Lorena Marcos el 07/11/2026) |
 
 ## Datos ficticios
 

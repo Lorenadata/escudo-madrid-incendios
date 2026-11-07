@@ -6,7 +6,7 @@ Estructura **obligatoria**: máximo 3 diapositivas de contenido + 4.ª con una c
 
 - **ESCUDO MADRID**
 - *Del mapa al plan; del plan a la ejecución comprobable.*
-- Integrantes: **[COMPLETAR con las personas inscritas — acción humana]**
+- Participante: **Lorena Marcos**
 - Plataforma abierta de planificación preventiva de incendios forestales para municipios y urbanizaciones de la Comunidad de Madrid: contexto oficial → inspección → actuaciones bajo presupuesto → plan con evidencias → informe trazable.
 - Pie: herramienta de apoyo; no sustituye a ASEM 112, AEMET, INFOMA ni a personal técnico.
 
@@ -28,7 +28,7 @@ Estructura **obligatoria**: máximo 3 diapositivas de contenido + 4.ª con una c
 - **Resultados verificables:** 179 municipios con indicadores trazables · reparto exacto de las clases oficiales de riesgo por municipio · optimizador determinista validado contra la solución exacta en 200 instancias · 67 tests automáticos + 6 de navegador.
 - **Caso guiado (datos ficticios):** con el mismo presupuesto, la optimización cubre el 90,1 % de la prioridad técnica frente al 84,2 % (priorización manual) y el 85,1 % (menor coste).
 - **Impacto que medimos:** cobertura de prioridades bajo presupuesto, actuaciones documentadas con evidencia, plazos vencidos, reproducibilidad. **No** afirmamos incendios evitados ni reducción de riesgo.
-- **Viabilidad:** software libre (EUPL-1.2, pendiente de confirmar), Docker, datos abiertos, multiusuario aislado, modo degradado si AEMET cae.
+- **Viabilidad:** software libre (EUPL-1.2), Docker, datos abiertos, multiusuario aislado, modo degradado si AEMET cae.
 - Enlaces: **demo [COMPLETAR]** · **repositorio [COMPLETAR]** (requieren publicación autorizada).
 
 ## Diapositiva 4 — Captura del sistema
