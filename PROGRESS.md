@@ -54,7 +54,7 @@ Actualizado: 06/11/2026 (A0). Solo se marca ✅ lo verificado con test o ejecuci
 ## Próximas tareas
 
 1. Integrar y verificar la web (A7) contra la API; capturas para el pitch.
-2. Export GeoJSON de áreas autorizadas y endpoint de calendario preventivo (M16, P1).
+2. Calendario preventivo (M16, P1) y colaboración (M17, P1).
 3. Construcción de imágenes Docker (`--profile full`) e instalación limpia (T11).
 4. A11: ensayo cronometrado del guion y diseño de las diapositivas (contenido, guion y resumen de 93 palabras ya listos).
 5. P1: calendario preventivo, colaboración, asistente documental con citas.

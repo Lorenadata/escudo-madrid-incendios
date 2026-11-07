@@ -1,0 +1,18 @@
+.git
+.venv
+**/__pycache__
+**/*.pyc
+.pytest_cache
+.ruff_cache
+*.egg-info
+var
+var_*
+.gstack
+apps/web/node_modules
+apps/web/.next
+apps/web/test-results
+artifacts
+# Crudos pesados: el contenedor usa data/processed (versionado) y los manifests
+data/raw/**/*.zip
+data/raw/**/*.csv
+data/raw/**/extracted

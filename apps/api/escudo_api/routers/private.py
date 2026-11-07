@@ -94,12 +94,17 @@ class AreaIn(BaseModel):
     organization_id: str | None = None
 
 
+def _area_geojson(session: Session, a: AreaOfInterest) -> dict:
+    """Geometría leída de la columna en BD (nunca el valor en memoria, que puede ser WKT de texto)."""
+    return json.loads(session.scalar(select(func.ST_AsGeoJSON(AreaOfInterest.geom, 6)).where(AreaOfInterest.id == a.id)))
+
+
 def area_dict(session: Session, a: AreaOfInterest, *, detail: bool = False) -> dict[str, Any]:
     d: dict[str, Any] = {"id": a.id, "organization_id": a.organization_id, "name": a.name,
                          "municipality_code": a.municipality_code, "description": a.description,
                          "has_geometry": a.geom is not None, "record_status": a.record_status}
     if a.geom is not None:
-        d["geometry"] = json.loads(session.scalar(select(func.ST_AsGeoJSON(a.geom, 6))))
+        d["geometry"] = _area_geojson(session, a)
     if detail:
         m = session.get(Municipality, a.municipality_code)
         d["municipality_profile"] = municipality_profile(session, m) if m else None
@@ -111,18 +116,23 @@ def area_dict(session: Session, a: AreaOfInterest, *, detail: bool = False) -> d
 
 
 def _area_official_layers(session: Session, a: AreaOfInterest) -> dict[str, Any]:
-    """Clases oficiales que intersecan la geometría autorizada del área (solo clases, sin recalcular)."""
+    """Reparto ORIENTATIVO de clases oficiales en el área (capa web 200 m). Status derived, nunca official."""
     from ..models import OfficialLayerPolygon
 
     out: dict[str, Any] = {}
     for layer in ("risk", "hazard", "vulnerability"):
         rows = session.execute(
             select(OfficialLayerPolygon.class_label,
-                   func.sum(func.ST_Area(func.ST_Transform(func.ST_Intersection(OfficialLayerPolygon.geom, a.geom), 25830))))
-            .where(OfficialLayerPolygon.layer == layer, func.ST_Intersects(OfficialLayerPolygon.geom, a.geom))
+                   func.sum(func.ST_Area(func.ST_Transform(func.ST_Intersection(OfficialLayerPolygon.geom, AreaOfInterest.geom), 25830))))
+            .join(AreaOfInterest, func.ST_Intersects(OfficialLayerPolygon.geom, AreaOfInterest.geom))
+            .where(OfficialLayerPolygon.layer == layer, AreaOfInterest.id == a.id)
             .group_by(OfficialLayerPolygon.class_label)).all()
         total = sum(r[1] or 0 for r in rows)
-        out[layer] = {"status": "official" if rows else "unavailable",
+        out[layer] = {"status": "derived" if rows else "unavailable",
+                      "resolution": "generalización web de 200 m (ADR-0003)",
+                      "caveat": ("Reparto orientativo calculado sobre la capa web generalizada a 200 m: sirve para "
+                                 "visualizar, no para consultar una parcela. Las clases son literales de la fuente; "
+                                 "el reparto exacto a 5 m solo está disponible a escala municipal."),
                       "classes": [{"class_label": lbl, "area_share": round((ar or 0) / total, 4) if total else None}
                                   for lbl, ar in sorted(rows, key=lambda r: -(r[1] or 0))]}
     return out
@@ -171,6 +181,26 @@ def create_area(body: AreaIn, p: Principal = Depends(current_principal), session
     audit(session, org_id=org, user_id=p.user.id, action="create", entity="area", entity_id=a.id)
     session.commit()
     return area_dict(session, a)
+
+
+@router.get("/areas/{area_id}.geojson", tags=["exportación"])
+def export_area_geojson(area_id: str, p: Principal = Depends(current_principal),
+                        session: Session = Depends(get_session)) -> Response:
+    """Export M10 de un ámbito autorizado. Datos privados de la organización: no se expone población."""
+    a = _get_area(session, p, area_id)
+    feature = {
+        "type": "Feature",
+        "geometry": _area_geojson(session, a) if a.geom is not None else None,
+        "properties": {"id": a.id, "name": a.name, "municipality_code": a.municipality_code,
+                       "record_status": a.record_status, "official_layers": _area_official_layers(session, a) if a.geom is not None else None,
+                       "notice": "Ámbito registrado por la organización. Las clases oficiales se muestran sin recalcular; no es aprobación administrativa."},
+    }
+    audit(session, org_id=a.organization_id, user_id=p.user.id, action="export", entity="area", entity_id=a.id)
+    session.commit()
+    body = json.dumps({"type": "FeatureCollection", "features": [feature]}, ensure_ascii=False)
+    return Response(body, media_type="application/geo+json",
+                    headers={"Content-Disposition": f'attachment; filename="escudo-ambito-{a.id[:8]}.geojson"',
+                             "Cache-Control": "private, no-store"})
 
 
 @router.get("/areas/{area_id}", tags=["ámbitos"])

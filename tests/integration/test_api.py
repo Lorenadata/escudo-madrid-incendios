@@ -209,3 +209,18 @@ def test_dataset_version_tracking_on_source_update(loaded_db, tmp_path, monkeypa
         etl_load.load_sources(s, run)  # idempotente
         assert versions(s) == before + 1
         s.rollback()  # no contaminar el resto de tests
+
+
+def test_area_geojson_export_is_private(client, auth_a, auth_b):
+    poly = {"type": "Polygon", "coordinates": [[[-4.15, 40.58], [-4.14, 40.58], [-4.14, 40.59], [-4.15, 40.59], [-4.15, 40.58]]]}
+    area = client.post("/v1/areas", headers=auth_a, json={"name": "Ámbito con geometría (ficticio, test)",
+                                                          "municipality_code": "28131", "geometry": poly}).json()
+    r = client.get(f"/v1/areas/{area['id']}.geojson", headers=auth_a)
+    assert r.status_code == 200 and r.headers["content-type"].startswith("application/geo+json")
+    fc = r.json()
+    assert fc["features"][0]["geometry"]["type"] == "MultiPolygon"
+    assert "population" not in json.dumps(fc)
+    for layer in fc["features"][0]["properties"]["official_layers"].values():
+        assert layer["status"] in ("derived", "unavailable")  # nunca «official»: es la generalización web de 200 m
+    assert client.get(f"/v1/areas/{area['id']}.geojson", headers=auth_b).status_code == 404
+    assert client.get(f"/v1/areas/{area['id']}.geojson").status_code == 401

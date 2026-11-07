@@ -791,6 +791,52 @@
         ]
       }
     },
+    "/v1/areas/{area_id}.geojson": {
+      "get": {
+        "tags": [
+          "exportación"
+        ],
+        "summary": "Export Area Geojson",
+        "description": "Export M10 de un ámbito autorizado. Datos privados de la organización: no se expone población.",
+        "operationId": "export_area_geojson_v1_areas__area_id__geojson_get",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "area_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Area Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/areas/{area_id}": {
       "get": {
         "tags": [
