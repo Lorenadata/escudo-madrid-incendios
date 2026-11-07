@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { PolygonDrawMap, type Polygon } from "@/components/PolygonDrawMap";
 import { apiFetch } from "@/lib/api";
 import type { Area, MunicipalitySummary } from "@/lib/api-types";
 
@@ -8,6 +9,8 @@ export function AreaForm({ municipalities, onCreated }: { municipalities: Munici
   const [name, setName] = useState("");
   const [code, setCode] = useState("");
   const [description, setDescription] = useState("");
+  const [geometry, setGeometry] = useState<Polygon | null>(null);
+  const [withGeometry, setWithGeometry] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
 
@@ -18,7 +21,7 @@ export function AreaForm({ municipalities, onCreated }: { municipalities: Munici
     try {
       const a = await apiFetch<Area>("/v1/areas", {
         method: "POST",
-        body: JSON.stringify({ name, municipality_code: code, description }),
+        body: JSON.stringify({ name, municipality_code: code, description, ...(withGeometry && geometry ? { geometry } : {}) }),
       });
       onCreated(a);
     } catch (err) {
@@ -45,9 +48,14 @@ export function AreaForm({ municipalities, onCreated }: { municipalities: Munici
         <label htmlFor="ad" className="label">Descripción</label>
         <textarea id="ad" className="field" rows={2} value={description} onChange={(e) => setDescription(e.target.value)} />
       </div>
+      <label className="flex items-center gap-2 text-sm">
+        <input type="checkbox" checked={withGeometry} disabled={!code} onChange={(e) => { setWithGeometry(e.target.checked); if (!e.target.checked) setGeometry(null); }} />
+        Dibujar el perímetro del ámbito (opcional)
+      </label>
+      {withGeometry && code && <PolygonDrawMap municipalityCode={code} value={geometry} onChange={setGeometry} />}
       <p className="text-xs text-ink-500">No incluyas direcciones exactas ni datos personales.</p>
       {error && <p role="alert" className="text-sm text-rust">{error}</p>}
-      <button type="submit" className="btn-primary" disabled={busy || name.length < 2 || !code}>
+      <button type="submit" className="btn-primary" disabled={busy || name.length < 2 || !code || (withGeometry && !geometry)}>
         {busy ? "Guardando…" : "Guardar ámbito"}
       </button>
     </form>

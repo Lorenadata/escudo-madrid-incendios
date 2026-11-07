@@ -47,7 +47,7 @@ export function classLegend(labels: string[]): { label: string; color: string }[
   }));
 }
 
-const BASEMAP_IGN =
+export const BASEMAP_IGN =
   "https://www.ign.es/wmts/ign-base?service=WMTS&request=GetTile&version=1.0.0&layer=IGNBaseTodo&style=default&tilematrixset=GoogleMapsCompatible&tilematrix={z}&tilerow={y}&tilecol={x}&format=image/jpeg";
 
 /** Lee el valor de una propiedad aceptando nombres alternativos y objetos Indicator anidados. */

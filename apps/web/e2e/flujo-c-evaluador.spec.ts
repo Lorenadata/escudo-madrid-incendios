@@ -118,3 +118,42 @@ test("Flujo B: responsable municipal ve solo ámbitos autorizados y abre el expe
   await expect(page.getByRole("button", { name: "Descargar informe PDF" })).toBeVisible();
   await assertSafeLanguage(page);
 });
+
+test("revisión técnica: bloqueada sin cualificación verificada, con el motivo visible", async ({ page }) => {
+  await page.goto("/login");
+  await page.getByLabel("Correo electrónico").fill("tecnico@demo.escudo.local");
+  await page.getByLabel("Contraseña").fill("demo-escudo-2026");
+  await page.getByRole("button", { name: "Iniciar sesión" }).click();
+  await expect(page).toHaveURL(/\/app/, { timeout: 30_000 });
+  await page.getByRole("tab", { name: "Inspecciones" }).click();
+  await page.getByText("Registrar revisión técnica").first().click();
+  await page.getByRole("button", { name: "Registrar revisión" }).first().click();
+  await expect(page.getByText("cualificación verificada", { exact: false }).last()).toBeVisible();
+  await expect(page.getByText("Pendiente de revisión técnica").first()).toBeVisible();
+});
+
+test("M05: dibujar el ámbito en el mapa y ver sus clases oficiales orientativas (derivado)", async ({ page }) => {
+  await page.goto("/login");
+  await page.getByLabel("Correo electrónico").fill("gestor@demo.escudo.local");
+  await page.getByLabel("Contraseña").fill("demo-escudo-2026");
+  await page.getByRole("button", { name: "Iniciar sesión" }).click();
+  await expect(page).toHaveURL(/\/app/, { timeout: 30_000 });
+  await page.getByRole("button", { name: "Añadir ámbito" }).click();
+  const name = `Ámbito dibujado e2e ${Date.now()} (ficticio)`;
+  await page.getByLabel("Nombre del ámbito").fill(name);
+  await page.getByLabel("Municipio").selectOption({ label: "San Lorenzo de El Escorial" });
+  await page.getByLabel("Dibujar el perímetro del ámbito (opcional)").check();
+  const map = page.getByRole("region", { name: "Mapa para dibujar el ámbito" });
+  await expect(map.locator("canvas")).toBeVisible();
+  await page.waitForTimeout(1500); // encuadre al municipio
+  const box = (await map.boundingBox())!;
+  for (const [fx, fy] of [[0.45, 0.45], [0.58, 0.45], [0.58, 0.58], [0.45, 0.58]]) {
+    await page.mouse.click(box.x + box.width * fx, box.y + box.height * fy);
+  }
+  await page.getByRole("button", { name: "Cerrar polígono" }).click();
+  await expect(page.getByText("Polígono cerrado (4 vértices)")).toBeVisible();
+  await page.getByRole("button", { name: "Guardar ámbito" }).click();
+  await expect(page.getByRole("heading", { name })).toBeVisible({ timeout: 20_000 });
+  await expect(page.getByRole("heading", { name: "Clases oficiales dentro del ámbito dibujado" })).toBeVisible();
+  await expect(page.getByText("no para consultar una parcela", { exact: false })).toBeVisible();
+});

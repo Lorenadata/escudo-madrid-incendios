@@ -14,6 +14,8 @@ Actualizado: 06/11/2026 (A0). Solo se marca ✅ lo verificado con test o ejecuci
 | API FastAPI (37 rutas): fuentes, municipios, comparador, capas, meteo, histórico, auth, áreas, inspecciones, evidencias, revisión técnica, medidas, escenarios, planes, informe PDF, KPIs, auditoría, export CSV, demo guiada | ✅ | `tests/integration/test_api.py` (12 ✔) | A6 (A0) |
 | Análisis municipal: matriz CAM-01/02 × GEO-01/02/03 (filtros y orden reproducibles, sin índice propio) | ✅ | `test_municipal_matrix_is_reproducible_filter`, e2e | A0 |
 | Flujo B: panel municipal con ámbitos compartidos por autorización expresa, expediente de solo lectura e informe | ✅ | integración + e2e + `artifacts/demo-screenshots/07-panel-municipal.png` | A0 |
+| M05: dibujo o pegado GeoJSON del perímetro del ámbito; clases oficiales dentro del ámbito como «derivado» (capa 200 m) | ✅ | e2e «M05» | A0 |
+| Revisión técnica desde la UI (bloqueada sin cualificación verificada) | ✅ | e2e «revisión técnica» | A7/A0 |
 | Informe PDF trazable (T09) | ✅ | `test_T09_report_text` | A6 (A0) |
 | Catálogo de 16 medidas con citas INFOMA verificadas (costes `null`/escenario) | ✅ (revisión técnica humana pendiente) | `data/reference/measures_catalog.json` | A1 |
 | COMPLIANCE (25 normas), COMPETITORS | ✅ | ficheros raíz | A1 |
@@ -31,7 +33,7 @@ Actualizado: 06/11/2026 (A0). Solo se marca ✅ lo verificado con test o ejecuci
 
 ## Pruebas ejecutadas (06/11/2026)
 
-`pytest -m "not network"`: **62 passed** antes de añadir 2 tests nuevos; integración posterior **12/12 passed**; `ruff check` limpio. Pruebas PRD cubiertas: T01, T02, T03, T04, T05, T06, T07, T08, T09. Después: **65 passed** (`pytest -m "not network"`) y **7 passed** Playwright (`npm run e2e`, T10). Pendientes: T11 (instalación limpia en máquina ajena), T12 (entrega).
+`pytest -m "not network"`: **62 passed** antes de añadir 2 tests nuevos; integración posterior **12/12 passed**; `ruff check` limpio. Pruebas PRD cubiertas: T01, T02, T03, T04, T05, T06, T07, T08, T09. Después: **65 passed** (`pytest -m "not network"`) y **9 passed** Playwright (`npm run e2e`, T10). Pendientes: T11 (instalación limpia en máquina ajena), T12 (entrega).
 
 ## Bloqueos y decisiones humanas
 

@@ -6,7 +6,8 @@ import { useEffect, useState } from "react";
 import { useSessionToken } from "@/lib/browser-store";
 import { MunicipalityProfileView } from "@/components/ProfilePanels";
 import { Empty, ErrorState, Loading } from "@/components/States";
-import { SyntheticBadge } from "@/components/StatusBadge";
+import { StatusBadge, SyntheticBadge } from "@/components/StatusBadge";
+import { fmtShare } from "@/lib/format";
 import { ApiError, apiFetch, setToken } from "@/lib/api";
 import type { AreaDetail, Area, Measure, MunicipalitySummary, User } from "@/lib/api-types";
 import { useApi } from "@/lib/useApi";
@@ -21,6 +22,39 @@ const TABS = [
   { id: "inspecciones", label: "Inspecciones" },
   { id: "escenarios", label: "Escenarios y plan" },
 ] as const;
+
+type AreaLayersData = Record<string, { status: string; resolution?: string; caveat?: string; classes: { class_label: string; area_share: number | null }[] }>;
+
+const LAYER_NAMES: Record<string, string> = { risk: "Riesgo (GEO-01)", hazard: "Peligrosidad (GEO-02)", vulnerability: "Vulnerabilidad (GEO-03)" };
+
+function AreaLayers({ layers }: { layers: AreaLayersData }) {
+  const caveat = Object.values(layers).find((l) => l.caveat)?.caveat;
+  return (
+    <section aria-labelledby="area-layers-h" className="rounded border border-line bg-granite/40 p-3">
+      <div className="flex flex-wrap items-center gap-2">
+        <h3 id="area-layers-h" className="font-cond text-base font-semibold">Clases oficiales dentro del ámbito dibujado</h3>
+        <StatusBadge status="derived" />
+      </div>
+      <div className="mt-2 grid gap-3 sm:grid-cols-3">
+        {Object.entries(layers).map(([k, l]) => (
+          <div key={k} className="text-sm">
+            <p className="font-medium">{LAYER_NAMES[k] ?? k}</p>
+            {l.status === "unavailable" || l.classes.length === 0 ? (
+              <p className="text-ink-500">Sin intersección con la capa</p>
+            ) : (
+              <ul>
+                {l.classes.slice(0, 3).map((c) => (
+                  <li key={c.class_label} className="flex justify-between gap-2"><span>{c.class_label}</span><span className="tabular-nums">{fmtShare(c.area_share)}</span></li>
+                ))}
+              </ul>
+            )}
+          </div>
+        ))}
+      </div>
+      {caveat && <p className="mt-2 text-xs text-ink-600">{caveat}</p>}
+    </section>
+  );
+}
 
 export default function WorkspacePage() {
   const router = useRouter();
@@ -187,6 +221,7 @@ export default function WorkspacePage() {
                   area.data.municipality_profile ? (
                     <div className="panel max-w-2xl space-y-3">
                       {area.data.population_notice && <p className="text-xs text-ink-600">{area.data.population_notice}</p>}
+                      {area.data.has_geometry && area.data.official_layers_area && <AreaLayers layers={area.data.official_layers_area as AreaLayersData} />}
                       <MunicipalityProfileView profile={area.data.municipality_profile} />
                     </div>
                   ) : (

@@ -5,7 +5,7 @@ Formato de las bases (ap. 8–9): exposición de **5 min** y **5 min** de pregun
 ## Preparación (T-30 min)
 
 1. `docker compose -f infra/docker-compose.yml up -d db` → `python -m escudo_api.etl_load` → API en :8000 → `npm run build && npm run start` en `apps/web` (reiniciar `start` tras cada build).
-2. `cd apps/web && npm run e2e` en verde (T10). Si falla, usar el **plan B**.
+2. `cd apps/web && npm run e2e` en verde (T10). Si falla, usar el **plan B**. Después, volver a ejecutar `python -m escudo_api.etl_load --skip-idem` para borrar los ámbitos creados por los tests.
 3. Abrir pestañas: `/` (explorador), `/demo`, `/fuentes`, y el PDF `/v1/demo/report.pdf` ya descargado.
 4. **Plan B sin red ni servidor:** capturas `artifacts/demo-screenshots/01…06` y el PDF descargado. AEMET puede estar caído: la ficha mostrará «No disponible» — es el comportamiento correcto y se puede enseñar (pregunta «¿Y si AEMET falla?»).
 
