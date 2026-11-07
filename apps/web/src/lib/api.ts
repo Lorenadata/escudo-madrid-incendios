@@ -53,10 +53,19 @@ export async function apiFetch<T>(path: string, init: RequestInit & { auth?: boo
     if (t) headers.set("Authorization", `Bearer ${t}`);
   }
   let res: Response;
+  const isRead = !init.method || init.method.toUpperCase() === "GET";
   try {
     res = await fetch(`${API_URL}${path}`, { ...init, headers });
   } catch {
-    throw new ApiError(0, `No se puede conectar con la API (${API_URL}). Comprueba que el servidor está en marcha.`);
+    // Un fallo de red transitorio (p. ej. API recién arrancada) en una LECTURA se reintenta una vez.
+    // Las escrituras nunca se reintentan: podrían duplicar inspecciones, escenarios o evidencias.
+    if (!isRead) throw new ApiError(0, `No se puede conectar con la API (${API_URL}). Comprueba que el servidor está en marcha.`);
+    await new Promise((r) => setTimeout(r, 600));
+    try {
+      res = await fetch(`${API_URL}${path}`, { ...init, headers });
+    } catch {
+      throw new ApiError(0, `No se puede conectar con la API (${API_URL}). Comprueba que el servidor está en marcha.`);
+    }
   }
   if (!res.ok) throw await parseError(res);
   if (res.status === 204) return undefined as T;

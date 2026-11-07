@@ -30,7 +30,7 @@ docker compose -f infra/docker-compose.yml up -d db
 cd apps/web && npm install && npm run dev               # http://localhost:3000
 ```
 
-O bien `bash scripts/dev.sh`. Documentación interactiva de la API: http://localhost:8000/docs.
+**Demo en un comando:** `bash scripts/demo.sh` (BD, migraciones, datos, API en :8000, web en :3000, cachés calentadas); `bash scripts/demo.sh check` ejecuta los 10 e2e y restaura la demo; `bash scripts/demo.sh stop` la detiene. Para desarrollo: `bash scripts/dev.sh`. Documentación interactiva de la API: http://localhost:8000/docs.
 
 **Demo local** (datos ficticios): `gestor@demo.escudo.local` / `demo-escudo-2026`. Recorrido público sin credenciales: `GET /v1/demo/guided`.
 

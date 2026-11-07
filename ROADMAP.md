@@ -55,9 +55,9 @@ Sin estas, el proyecto pierde puntos que ningún agente puede recuperar.
 | 1.1 | ✅ **Flujo B: panel del responsable municipal** — municipio propio, ámbitos de organizaciones que **autorizan** compartir con el ayuntamiento, estado de inspecciones y acciones, cobertura presupuestaria, expediente de solo lectura, informe | A6+A7 | D20, V15, I25 | API + UI + e2e; un ámbito no autorizado nunca aparece (test de privacidad) |
 | 1.2 | ✅ Dibujar/importar la geometría de un ámbito en el mapa (M05) y mostrar sus clases oficiales **orientativas** (capa 200 m, `derived`) | A7 | D20 | UI + e2e; aviso de resolución visible |
 | 1.3 | ✅ Revisión técnica desde la UI (solo técnico con cualificación verificada; resto ve el motivo del bloqueo) | A7 | V15 | e2e |
-| 1.4 | Recorrido «Flujo A» completo desde cero en la UI (login → ámbito → inspección con foto → medidas → presupuesto → optimizar → comparar → plan → asignar → evidencia → PDF) en < 3 min | A7+A9 | V15, P5 | e2e cronometrado |
-| 1.5 | Modo demo robusto: arranque en un comando (`scripts/demo.sh`), datos precargados, AEMET cacheada con su fecha real, plan B offline | A10 | V15, P5 | ensayo con red cortada |
-| 1.6 | Investigar el fallo intermitente del primer e2e tras arranque | A9 | V15 | causa documentada o 10 ejecuciones verdes |
+| 1.4 | ✅ Recorrido «Flujo A» completo desde cero en la UI (login → ámbito → inspección con foto → medidas → presupuesto → optimizar → comparar → plan → asignar → evidencia → PDF) en < 3 min | A7+A9 | V15, P5 | e2e cronometrado |
+| 1.5 | ✅ Modo demo robusto: arranque en un comando (`scripts/demo.sh`), datos precargados, AEMET cacheada con su fecha real, plan B offline | A10 | V15, P5 | ensayo con red cortada |
+| 1.6 | 🟡 Investigar el fallo intermitente del primer e2e tras arranque | A9 | V15 | causa documentada o 10 ejecuciones verdes |
 
 ### Fase 2 — Intensidad de datos CAM (10–16/11) · gate **G-Datos** (refuerza el desempate)
 

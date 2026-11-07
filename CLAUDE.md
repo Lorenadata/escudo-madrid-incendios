@@ -53,6 +53,8 @@ docker compose -f infra/docker-compose.yml up -d db
 .venv/Scripts/python -m uvicorn escudo_api.main:app --reload --port 8000
 # Web
 cd apps/web && npm install && npm run dev                  # http://localhost:3000
+# Demo completa en un comando
+bash scripts/demo.sh            # start | stop | check (e2e + restaurar demo)
 # Tests
 .venv/Scripts/python -m pytest                             # unit + integración (requiere db) + pipelines
 cd apps/web && npm run lint && npm run build

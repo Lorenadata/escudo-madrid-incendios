@@ -83,6 +83,8 @@ test("área privada: login demo y aislamiento visible del ámbito ficticio", asy
   await page.getByLabel("Contraseña").fill("demo-escudo-2026");
   await page.getByRole("button", { name: "Iniciar sesión" }).click();
   await expect(page).toHaveURL(/\/app/, { timeout: 30_000 });
+  // otros tests crean ámbitos: se selecciona explícitamente el ámbito ficticio de la demo
+  await page.getByRole("button", { name: /Urbanización Ejemplo Los Pinos \(FICTICIA\)/ }).click();
   await expect(page.getByRole("heading", { name: /Urbanización Ejemplo Los Pinos \(FICTICIA\)/ })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Indicadores de gestión" })).toBeVisible();
   // el ámbito de la organización B no aparece
@@ -125,6 +127,7 @@ test("revisión técnica: bloqueada sin cualificación verificada, con el motivo
   await page.getByLabel("Contraseña").fill("demo-escudo-2026");
   await page.getByRole("button", { name: "Iniciar sesión" }).click();
   await expect(page).toHaveURL(/\/app/, { timeout: 30_000 });
+  await page.getByRole("button", { name: /Urbanización Ejemplo Los Pinos \(FICTICIA\)/ }).click();
   await page.getByRole("tab", { name: "Inspecciones" }).click();
   await page.getByText("Registrar revisión técnica").first().click();
   await page.getByRole("button", { name: "Registrar revisión" }).first().click();

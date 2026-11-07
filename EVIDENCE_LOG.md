@@ -22,3 +22,5 @@ Formato: fecha · agente · artefacto · cómo verificar · criterio(s). Solo he
 | 07/11/2026 | A0 | Flujo B (PRD §3.2): panel municipal; solo ámbitos con autorización expresa; revocación inmediata; expediente e informe | `test_flow_B_municipal_sees_only_authorized_areas`, e2e «Flujo B», captura 07 | D20, V15, I25 |
 | 07/11/2026 | A0 | ROADMAP completo hasta el 25/11 con acciones humanas, fases, calendario y riesgos | `ROADMAP.md` | P5 |
 | 07/11/2026 | A0 | M05 dibujo del ámbito en el mapa + clases oficiales orientativas marcadas «derivado»; revisión técnica cubierta por e2e | `npm run e2e` (9 ✔) | D20, V15 |
+| 07/11/2026 | A0 | Flujo A completo en UI (login → ámbito → inspección con foto → medidas → optimizar → plan → evidencia → PDF) en 6–12 s automatizado | `apps/web/e2e/flujo-a-gestor.spec.ts` | V15, D20 |
+| 07/11/2026 | A10 (A0) | Demo en un comando (31 s) y 3 arranques en frío consecutivos con 10/10 e2e cada uno | `bash scripts/demo.sh` · `bash scripts/demo.sh check` | V15, R10, P5 |
