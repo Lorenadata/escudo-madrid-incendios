@@ -172,7 +172,26 @@ def load_municipalities(session: Session) -> int:
     for r in _csv(CAM / "municipal_density_series.csv"):
         session.add(MunicipalSeries(ine_code=r["ine_code"], indicator_id="municipality_density", year=int(r["year"]),
                                     value=_f(r["density_hab_km2"]), source_id="CAM-02"))
+    housing = CAM / "municipal_housing.csv"
+    if housing.exists():  # CAM-09/10/11 (Censo 2021); nulos se guardan como null → «no disponible»
+        for r in _csv(housing):
+            for col, ind in HOUSING_COLUMNS.items():
+                session.add(MunicipalSeries(ine_code=r["ine_code"], indicator_id=ind, year=int(r["year"]),
+                                            value=_f(r[col]), source_id=INDICATORS[ind]["source_id"]))
+    else:
+        log.warning("Sin %s: ejecute escudo_pipelines.cam_transform (indicadores de vivienda no disponibles)", housing)
     return n
+
+
+# columna de data/processed/cam/municipal_housing.csv → indicador trazable
+HOUSING_COLUMNS = {
+    "dwellings_total": "municipality_dwellings_total",
+    "dwellings_non_main": "municipality_non_main_dwellings",
+    "non_main_share": "municipality_non_main_share",
+    "single_dwelling_building_share": "municipality_single_dwelling_building_share",
+    "empty_electricity_share": "municipality_empty_electricity_share",
+    "sporadic_electricity_share": "municipality_sporadic_electricity_share",
+}
 
 
 def load_regional(session: Session) -> None:

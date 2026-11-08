@@ -37,8 +37,8 @@ Sin estas, el proyecto pierde puntos que ningún agente puede recuperar.
 | H1 | ✅ Participante única: **Lorena Marcos**; asistencia presencial el 26/11 (con una persona, bases y web coinciden) | Admisión | hecho 07/11 |
 | H2 | Decidir si se consulta a la organización el inicio del repo el 06/11 (declarado en `PROVENANCE.md`) | Cumplimiento | 09/11 |
 | H3 | Registrar clave gratuita **AEMET OpenData** y ponerla en `.env` (nunca en el repo) | Mapa oficial de peligro de incendios en la ficha (D20/V15) | 10/11 |
-| H4 | ✅ Licencia **EUPL-1.2** y repositorio público en GitHub autorizados (07/11); falta iniciar sesión con la cuenta elegida | R10 (10 pts) | 12/11 |
-| H5 | Autorizar **despliegue público** de la demo y elegir proveedor europeo (coste estimado 0–15 €/mes) | Enlace de demo en diapositiva 3; T10 | 14/11 |
+| H4 | ✅ Licencia **EUPL-1.2** y repositorio público: https://github.com/Lorenadata/escudo-madrid-incendios (CI verde) | R10 (10 pts) | hecho 07/11 |
+| H5 | 🟡 Decidido (08/11): **Hugging Face Spaces** (Docker; exige suscripción PRO, ~9 $/mes, un mes). Lorena activa PRO el **18/11**; A10 publica el Space `lorenadata/escudo-madrid` el 18–19/11 con `infra/docker/space.Dockerfile` (ya preparado) | Enlace de demo en diapositiva 3; T10; URL estable 72 h antes | activar PRO **18/11** |
 | H6 | Conseguir **≥1 técnico** (forestal / protección civil) y **≥1 gestor** (urbanización o ayuntamiento) para entrevista de 30 min y sesión de prueba | I25 (25 pts): sin esto el impacto es solo hipótesis | contactos **12/11**, sesiones **14–20/11** |
 | H7 | Revisión técnica del catálogo de 16 medidas (o declarar explícitamente que sigue pendiente) | Credibilidad ante jurado | 20/11 |
 | H8 | Enviar resumen de preselección (93 palabras, `docs/pitch/resumen-preseleccion.md`) | Preselección | **23/11** (margen sobre el 24) |
@@ -63,8 +63,8 @@ Sin estas, el proyecto pierde puntos que ningún agente puede recuperar.
 
 | # | Tarea | Dueño | Criterio | Aceptación |
 |---|---|---|---|---|
-| 2.1 | Auditar el Portal CAM buscando datasets **municipales** con relación directa: viviendas / segundas residencias / hogares (exposición en interfaz urbano-forestal a escala municipal), montes de utilidad pública, superficie forestal por propiedad, equipamientos de emergencia por municipio | A2 | D25 | `DATA_CATALOG.md` ampliado con verificación real (no se integra lo que no sirve) |
-| 2.2 | Integrar 2–4 datasets nuevos que superen la auditoría, con ficha, filtro y comparador | A2+A6+A7 | D25 | tests T01/T02 + visibles en la demo |
+| 2.1 | ✅ (08/11) Auditar el Portal CAM buscando datasets **municipales** con relación directa: viviendas / segundas residencias / hogares (exposición en interfaz urbano-forestal a escala municipal), montes de utilidad pública, superficie forestal por propiedad, equipamientos de emergencia por municipio | A2 | D25 | `DATA_CATALOG.md` ampliado con verificación real (no se integra lo que no sirve) |
+| 2.2 | ✅ (08/11: CAM-09, CAM-10, CAM-11 — Censo 2021; e2e local pendiente por memoria) Integrar 2–4 datasets nuevos que superen la auditoría, con ficha, filtro y comparador | A2+A6+A7 | D25 | tests T01/T02 + visibles en la demo |
 | 2.3 | Lista oficial de **municipios en Zonas de Alto Riesgo (ZAR)** del Plan Anual 2026 / INFOMA como capa de contexto (documento oficial, citado con página) | A1+A2 | D25, D20 | fuente y página citadas; test de que coincide con el documento |
 | 2.4 | Actualización automática verificable: comando `refresh` que vuelve a descargar, compara SHA-256 y registra versión; panel «última actualización» por fuente | A2+A10 | D25, R10 | test existente + demostración en vivo |
 | 2.5 | Histórico regional en la ficha y en el análisis: CAM-05 incendios 1985–2025, CAM-06 repoblaciones (M14), siempre etiquetado «regional» | A7 | D25 | UI + e2e |
@@ -99,8 +99,8 @@ Solo tras G-Demo. Orden por valor ante el jurado:
 |---|---|---|---|---|
 | 5.1 | Revisión de seguridad y privacidad: aislamiento multi-tenant, subida de ficheros, cabeceras, secretos, dependencias (`docs/privacy-security.md`) | A9 | V15, R10 | sin hallazgos P0 |
 | 5.2 | Accesibilidad (teclado, contraste, lector de pantalla) y responsive | A9 | V15, P5 | informe + correcciones |
-| 5.3 | Repositorio público depurado (👤 H4): sin credenciales, datos con licencia, README de 10 minutos, CI verde en GitHub | A10 | R10 | CI verde en el repo público |
-| 5.4 | Despliegue público (👤 H5) + copia local de respaldo + capturas y vídeo de 60 s como plan C | A10 | V15, P5 | URL estable 72 h antes del 26 |
+| 5.3 | ✅ Repositorio público depurado (👤 H4): sin credenciales, datos con licencia, README, CI verde en GitHub (07/11) | A10 | R10 | CI verde en el repo público |
+| 5.4 | Despliegue público en HF Spaces 18–19/11 (👤 H5; contenedor único listo, sin probar en remoto) + copia local de respaldo + capturas y vídeo de 60 s como plan C | A10 | V15, P5 | URL estable 72 h antes del 26 |
 | 5.5 | T11: instalación limpia en otra máquina siguiendo solo el README | A9 | R10 | cronometrada y documentada |
 | 5.6 | Freeze de funcionalidades **23/11**; solo correcciones después | A0 | todos | etiqueta `v1.0-datamad` |
 

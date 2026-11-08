@@ -6,7 +6,7 @@ Actualizado: 06/11/2026 (A0). Solo se marca ✅ lo verificado con test o ejecuci
 
 | Módulo | Estado | Evidencia | Agente |
 |---|---|---|---|
-| Pipeline Portal CAM (8 datasets, SHA-256, licencia, calidad) | ✅ | `pipelines/tests/test_cam.py` (11 ✔), `quality.json` 8/8 | A2 (A0) |
+| Pipeline Portal CAM (11 datasets, SHA-256, licencia, calidad) | ✅ | `pipelines/tests/test_cam.py` (13 ✔), `quality.json` 12/12 | A2 (A0) |
 | Cartografía oficial IDEM GEO-01/02/03 (ráster 5 m → reparto municipal + capa web) | ✅ | `pipelines/tests/test_idem.py` (15 ✔) | A3 |
 | Conector AEMET (XML público, OpenData con clave, TTL, stale/unavailable) | ✅ | `pipelines/tests/test_aemet.py` (14 ✔, incl. red) | A4 |
 | Optimizador CP-SAT + baselines + sensibilidad | ✅ | `tests/unit/test_optimizer.py` (13 ✔, fuerza bruta 200 instancias) | A5 |

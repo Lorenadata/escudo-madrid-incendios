@@ -1,0 +1,17 @@
+{
+  "source_id": "CAM-11",
+  "ckan_id": "censo_2021_viviendas_por_consumo_electrico",
+  "title": "Censo de vivienda y locales 2021. Viviendas por intensidad de uso consumo eléctrico. Municipios",
+  "catalog_url": "https://datos.comunidad.madrid/dataset/censo_2021_viviendas_por_consumo_electrico",
+  "resource_id": "eed1a980-f1b7-4d7b-9ce2-df4ae00c5f12",
+  "resource_url": "https://datos.comunidad.madrid/dataset/70f8104c-efae-4fd4-b611-c19b7373aebc/resource/eed1a980-f1b7-4d7b-9ce2-df4ae00c5f12/download/censo-de-vivienda-y-locales-2021.-viviendas-por-intensidad-de-uso-consumo-electrico.-municipios.csv",
+  "format": "CSV",
+  "file": "censo-de-vivienda-y-locales-2021.-viviendas-por-intensidad-de-uso-consumo-electrico.-municipios.csv",
+  "bytes": 245488,
+  "sha256": "eb9fc5afa9c40040995eb689b1a0f07e9ef7228e1b7341c2d3f622e5c5864986",
+  "license_id": "cc-by",
+  "license_title": "Creative Commons Attribution",
+  "portal_metadata_modified": "2026-11-05T17:34:48.235231",
+  "resource_last_modified": "2026-11-05T17:34:47.219198",
+  "extracted_at": "2026-11-08T21:39:37+00:00"
+}

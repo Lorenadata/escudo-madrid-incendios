@@ -16,11 +16,16 @@ Todas resueltas vía API CKAN `https://datos.comunidad.madrid/api/3/action/packa
 | CAM-06 | Repoblaciones forestales (`repoblaciones_forestales`) | CSV (latin-1) | `d77d6f73167932a7` | 2025-11-11 | Regional por grupo vegetal; 2006–2024 | Serie contextual `/v1/regional-series/CAM-06` | Ingerido |
 | CAM-07 | Distribución de la superficie por usos (`1101001`) | CSV | `c046c1f3d7abf412` | 2026-11-06 | **Agregado regional**; 1985–2024 | Serie regional; **no** se usa como % forestal municipal | Ingerido |
 | CAM-08 | Secciones censales — SHP (`secciones_censales`) | ZIP SHP, EPSG:25830 | `00198d017d032e83` | 2025-02-07 | 4.417 secciones (seccionado 2019) → 179 municipios por disolución | Geometría municipal del mapa y área calculada | Ingerido y usado |
+| CAM-09 | Censo 2021. Viviendas familiares convencionales por tipo de vivienda. Municipios (`censo_2021_viviendas_familiares_por_tipo`) | CSV | `a6eb1024d621cfda` | 2026-11-05 | 179 municipios (+ zonas estadísticas y CAM, descartadas); 2021; principales / no principales / total | Ficha «Vivienda y ocupación», filtro y orden en `/analisis`, export CSV | Ingerido y usado (08/11) |
+| CAM-10 | Censo 2021. Porcentaje de viviendas familiares por tipo de edificio. Municipios (`censo_2021_porcentaje_viviendas_familiares_por_tipo_edificio`) | CSV | `cd3e2b2e1549539b` | 2026-11-05 | 179 municipios; 151 con «Residencial con una vivienda» publicado (resto «-» por secreto estadístico) | % de viviendas en edificio unifamiliar (ficha, análisis, export) | Ingerido y usado (08/11) |
+| CAM-11 | Censo 2021. Viviendas por intensidad de uso según consumo eléctrico. Municipios (`censo_2021_viviendas_por_consumo_electrico`) | CSV | `eb9fc5afa9c40040` | 2026-11-05 | 180 códigos (179 municipios + `28999` sin municipio, descartado); 135 con dato; **provisional** | Viviendas vacías y de uso esporádico / total CAM-09 (ficha, export) | Ingerido y usado (08/11) |
 
 **Hallazgos de calidad (registrados en `data/processed/cam/quality.json` y tabla `data_quality_checks`):**
 - Códigos territoriales CAM de 4 dígitos = 3 de municipio + dígito de control → INE `28` + 3 primeros (test `test_cam_code_to_ine`).
 - 1 sección censal inválida corregida con `make_valid`.
 - Densidad publicada vs población/área de secciones: desviación mediana 0,07 %; máxima 18,6 % en Navacerrada (28093) — atribuible a que el seccionado no es deslinde jurídico. Control informativo.
+- CAM-09: Total = Principales + No principales en los 179 municipios (control `cam09_total_igual_suma`).
+- CAM-11: la suma de sus categorías (sin el subtotal «Uso esporádico») coincide **exactamente** con el total de CAM-09 en todos los municipios con dato (control `cam11_mismo_universo_que_cam09`); por eso las proporciones usan el total de CAM-09 como denominador. Si no coincidiera, la proporción sería `null`.
 - CAM-05 y CAM-07 **no** tienen desagregación municipal: el PRD lo anticipaba; el producto lo indica y marca `forest_share` municipal como `unavailable`.
 
 ## 2. Cartografía oficial IDEM (complementaria)
@@ -50,3 +55,6 @@ Detalle y pruebas: `docs/aemet.md`, `fixtures/aemet/README.md`.
 | CNIG MDT | P1: pendientes reales (CAM-03 no lo permite) |
 | MITECO EGIF | P1: series municipales históricas si son accesibles |
 | Catastro | Fuera de alcance sin base legal (datos personales) |
+| Superficie de terreno forestal por tipo de propiedad (`1913040`) | Auditado 08/11: solo agregado **regional** (14 conceptos, sin código territorial); no aporta escala municipal |
+| Montes de Utilidad Pública por pertenencia administrativa (`1919480`) y por comarca (`montes_por_comarca`) | Auditado 08/11: regional / comarcal; no municipal. Posible contexto regional futuro |
+| Lista de municipios en Zonas de Alto Riesgo (ZAR) | No existe como dataset en el Portal CAM (búsqueda 08/11); requiere el documento oficial del plan (tarea 2.3) |

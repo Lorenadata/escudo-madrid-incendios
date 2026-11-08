@@ -277,3 +277,28 @@ def test_flow_B_municipal_sees_only_authorized_areas(client, auth_a):
     tech = _auth(client, "tecnico@demo.escudo.local")
     assert client.patch(f"/v1/areas/{a['area_id']}/sharing", headers=tech,
                         json={"shared_with_municipality": False}).status_code == 403
+
+
+def test_housing_indicators_trace_to_processed_census(client):
+    """Fase 2 (CAM-09/10/11): la ficha muestra el valor exacto del procesado, con estado y fuente; null → no disponible."""
+    rows = {r["ine_code"]: r for r in csv.DictReader((ROOT / "data/processed/cam/municipal_housing.csv").open(encoding="utf-8"))}
+    h = client.get("/v1/municipalities/28131/profile").json()["housing"]
+    ind = {i["indicator_id"]: i for i in h["indicators"]}
+    assert len(ind) == 6 and h["census_year"] == 2021
+    nm = ind["municipality_non_main_share"]
+    assert nm["value"] == pytest.approx(float(rows["28131"]["non_main_share"]))
+    assert nm["status"] == "derived" and nm["source_id"] == "CAM-09" and "urbanización" in nm["caveat"]
+    assert ind["municipality_dwellings_total"]["status"] == "official"
+    missing = next(c for c, r in rows.items() if r["empty_electricity_share"] == "")
+    e = {i["indicator_id"]: i for i in client.get(f"/v1/municipalities/{missing}/profile").json()["housing"]["indicators"]}
+    assert e["municipality_empty_electricity_share"]["value"] is None
+    assert e["municipality_empty_electricity_share"]["status"] == "unavailable"
+
+
+def test_matrix_filters_by_non_main_share_and_export_has_census(client):
+    f = client.get("/v1/analysis/municipal-matrix", params={"min_non_main_share": 0.4, "sort": "non_main"}).json()
+    assert 0 < f["count"] < 179 and "CAM-09" in f["sources"]
+    vals = [r["non_main_share"] for r in f["rows"]]
+    assert all(v >= 0.4 for v in vals) and vals == sorted(vals, reverse=True)
+    rows = list(csv.DictReader(client.get("/v1/exports/municipalities.csv").text.splitlines()))
+    assert rows[0]["non_main_source"] == "CAM-09" and "non_main_share_2021" in rows[0]

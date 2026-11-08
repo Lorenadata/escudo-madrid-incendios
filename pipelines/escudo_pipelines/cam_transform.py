@@ -116,6 +116,63 @@ def latest(series: dict[tuple[str, int], object], ine: str) -> tuple[int | None,
     return y, series[(ine, y)]
 
 
+CAM11_SUBTOTAL = "Uso esporádico"  # = suma de los dos tramos «Uso esporádico entre …» (verificado)
+HOUSING_FIELDS = ("ine_code", "year", "dwellings_total", "dwellings_main", "dwellings_non_main", "non_main_share",
+                  "single_dwelling_building_share", "dwellings_empty_electricity", "empty_electricity_share",
+                  "dwellings_sporadic_electricity", "sporadic_electricity_share", "electricity_data_state")
+
+
+def _by_municipality(rows: list[dict[str, str]], category_col: str) -> dict[str, dict[str, float | None]]:
+    out: dict[str, dict[str, float | None]] = defaultdict(dict)
+    for r in rows:
+        if r["Tipo territorio"].strip() != "Municipios":
+            continue
+        out[cam_code_to_ine(r["Código territorio"])][r[category_col].strip()] = parse_number(r["Valor"])
+    return out
+
+
+def build_housing(cam09: list[dict[str, str]], cam10: list[dict[str, str]], cam11: list[dict[str, str]],
+                  ine_codes: list[str]) -> tuple[list[dict], dict[str, object]]:
+    """Exposición residencial municipal (Censo 2021). Solo cocientes de valores publicados; nada se estima.
+
+    - non_main_share = No principales / Total (CAM-09).
+    - single_dwelling_building_share = «Residencial con una vivienda» (CAM-10, %) / 100.
+    - empty/sporadic_electricity_share = categoría literal de CAM-11 / Total de CAM-09; válido porque la suma de
+      las categorías de CAM-11 (sin el subtotal) coincide con el Total de CAM-09 (se comprueba por municipio).
+    """
+    a, b, c = _by_municipality(cam09, "Tipo"), _by_municipality(cam10, "Tipo"), _by_municipality(cam11, "Consumo")
+    year = {int(r["Año"]) for r in cam09} | {int(r["Año"]) for r in cam10} | {int(r["Año"]) for r in cam11}
+    state = {r.get("Estado dato", "").strip() for r in cam11 if r.get("Estado dato", "").strip()}
+    stats: dict[str, object] = {"years": sorted(year), "cam11_state": sorted(state), "sum_mismatch_09": [],
+                                "universe_mismatch_11": [], "unknown_codes": sorted((set(a) | set(b) | set(c)) - set(ine_codes))}
+    rows = []
+    for ine in ine_codes:
+        t, mn, nm = (a.get(ine, {}).get(k) for k in ("Total", "Principales", "No principales"))
+        if None not in (t, mn, nm) and abs(t - mn - nm) > 0:
+            stats["sum_mismatch_09"].append(ine)
+        one = b.get(ine, {}).get("Residencial con una vivienda")
+        e = c.get(ine, {})
+        empty, spor = e.get("Viviendas vacias"), e.get(CAM11_SUBTOTAL)
+        parts = [v for k, v in e.items() if k != CAM11_SUBTOTAL]
+        if e and t and None not in parts and abs(sum(parts) - t) > 0:
+            stats["universe_mismatch_11"].append(ine)
+            empty = spor = None  # universos distintos: no se calcula la proporción
+        rows.append({
+            "ine_code": ine, "year": 2021,
+            "dwellings_total": int(t) if t is not None else "",
+            "dwellings_main": int(mn) if mn is not None else "",
+            "dwellings_non_main": int(nm) if nm is not None else "",
+            "non_main_share": round(nm / t, 6) if nm is not None and t else "",
+            "single_dwelling_building_share": round(one / 100, 6) if one is not None else "",
+            "dwellings_empty_electricity": int(empty) if empty is not None else "",
+            "empty_electricity_share": round(empty / t, 6) if empty is not None and t else "",
+            "dwellings_sporadic_electricity": int(spor) if spor is not None else "",
+            "sporadic_electricity_share": round(spor / t, 6) if spor is not None and t else "",
+            "electricity_data_state": ",".join(sorted(state)),
+        })
+    return rows, stats
+
+
 def build_municipal_geometries(shp_path: Path) -> tuple[dict[str, object], dict]:
     reader = shapefile.Reader(str(shp_path), encoding="latin1")
     parts: dict[str, list] = defaultdict(list)
@@ -230,6 +287,24 @@ def run() -> dict:
     write_csv("municipal_density_series.csv", [
         {"ine_code": i, "year": y, "density_hab_km2": v if v is not None else ""} for (i, y), v in sorted(dens.items())])
 
+    # --- CAM-09/10/11 exposición residencial municipal (Censo 2021)
+    housing, hstats = build_housing(_read(_only_csv("CAM-09")), _read(_only_csv("CAM-10")),
+                                    _read(_only_csv("CAM-11")), ine_codes)
+    check("vivienda_censo_2021", hstats["years"] == [2021], f"años: {hstats['years']}")
+    check("cam09_total_igual_suma", not hstats["sum_mismatch_09"],
+          f"Total = Principales + No principales; discrepancias: {hstats['sum_mismatch_09']}")
+    check("cam11_mismo_universo_que_cam09", not hstats["universe_mismatch_11"],
+          f"Σ categorías CAM-11 = Total CAM-09; discrepancias (proporción no calculada): {hstats['universe_mismatch_11']}")
+    cov = {k: sum(1 for r in housing if r[k] != "") for k in
+           ("non_main_share", "single_dwelling_building_share", "empty_electricity_share")}
+    check("vivienda_cobertura", cov["non_main_share"] >= 170,
+          f"municipios con dato: no principales {cov['non_main_share']}, unifamiliar {cov['single_dwelling_building_share']}, "
+          f"consumo eléctrico {cov['empty_electricity_share']} de {len(ine_codes)}; códigos sin municipio: {hstats['unknown_codes']}")
+    with (OUT_DIR / "municipal_housing.csv").open("w", encoding="utf-8", newline="") as f:
+        w = csv.DictWriter(f, fieldnames=list(HOUSING_FIELDS))
+        w.writeheader()
+        w.writerows(housing)
+
     # --- CAM-05 incendios (regional)
     fires: dict[int, dict] = defaultdict(dict)
     for r in _read(_only_csv("CAM-05")):
@@ -274,7 +349,8 @@ def run() -> dict:
 
     report = {
         "inputs": {sid: {k: _manifest(sid)[k] for k in ("sha256", "extracted_at", "resource_url")}
-                   for sid in ("CAM-01", "CAM-02", "CAM-03", "CAM-04", "CAM-05", "CAM-06", "CAM-07", "CAM-08")},
+                   for sid in ("CAM-01", "CAM-02", "CAM-03", "CAM-04", "CAM-05", "CAM-06", "CAM-07", "CAM-08",
+                               "CAM-09", "CAM-10", "CAM-11")},
         "geometry": {**geom_stats, "simplify_tolerance_m": SIMPLIFY_TOLERANCE_M, "crs_source": "EPSG:25830",
                      "crs_output": "EPSG:4326"},
         "checks": checks,

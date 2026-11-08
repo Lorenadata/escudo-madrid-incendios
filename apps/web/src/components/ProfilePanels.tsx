@@ -1,6 +1,6 @@
 "use client";
 
-import type { MunicipalityProfile, OfficialLayerSummary, WeatherContext } from "@/lib/api-types";
+import type { HousingContext, MunicipalityProfile, OfficialLayerSummary, WeatherContext } from "@/lib/api-types";
 import { fmtDate, fmtShare } from "@/lib/format";
 import { IndicatorValue } from "./IndicatorValue";
 import { SeriesPanel } from "./SeriesPanel";
@@ -134,6 +134,29 @@ export function OfficialFirePanel({ profile }: { profile: MunicipalityProfile })
   );
 }
 
+export function HousingPanel({ housing }: { housing: HousingContext | null | undefined }) {
+  return (
+    <section aria-labelledby="housing-h" className="border-t border-line pt-4">
+      <h3 id="housing-h" className="font-cond text-base font-semibold text-ink">
+        Vivienda y ocupación (Censo {housing?.census_year ?? 2021})
+      </h3>
+      {!housing ? (
+        <p className="py-2 text-sm text-ink-500">Indicadores de vivienda no disponibles.</p>
+      ) : (
+        <>
+          <p className="text-xs leading-relaxed text-ink-500">{housing.caveat}</p>
+          <div className="divide-y divide-line/70">
+            {housing.indicators.map((i) => (
+              <IndicatorValue key={i.indicator_id} indicator={i} />
+            ))}
+          </div>
+          <p className="text-xs text-ink-500">Fuentes: {housing.sources.join(", ")} (Portal de Datos Abiertos CAM).</p>
+        </>
+      )}
+    </section>
+  );
+}
+
 export function MunicipalityProfileView({ profile, showWeather = true }: { profile: MunicipalityProfile; showWeather?: boolean }) {
   return (
     <div className="space-y-4">
@@ -156,6 +179,7 @@ export function MunicipalityProfileView({ profile, showWeather = true }: { profi
         </div>
       </section>
       <SeriesPanel ine={profile.ine_code} />
+      <HousingPanel housing={profile.housing} />
       <OfficialFirePanel profile={profile} />
       {showWeather && <WeatherPanel weather={profile.weather} />}
       {profile.sources?.length > 0 && (

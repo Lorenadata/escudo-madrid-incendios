@@ -115,6 +115,27 @@ def _weather_unavailable(ine_code: str, reason: str, last_valid_at: str | None) 
     }
 
 
+HOUSING_INDICATORS = (
+    "municipality_dwellings_total", "municipality_non_main_dwellings", "municipality_non_main_share",
+    "municipality_single_dwelling_building_share", "municipality_empty_electricity_share",
+    "municipality_sporadic_electricity_share",
+)
+
+
+def housing_for(session: Session, ine_code: str) -> dict[str, Any]:
+    """Exposición residencial municipal (CAM-09/10/11, Censo 2021): siempre los 6 indicadores, null → «no disponible»."""
+    from .models import MunicipalSeries
+
+    rows = {r.indicator_id: r for r in session.scalars(
+        select(MunicipalSeries).where(MunicipalSeries.ine_code == ine_code,
+                                      MunicipalSeries.indicator_id.in_(HOUSING_INDICATORS)))}
+    items = [indicator(i, rows[i].value if i in rows else None, rows[i].year if i in rows else 2021)
+             for i in HOUSING_INDICATORS]
+    return {"census_year": 2021, "sources": ["CAM-09", "CAM-10", "CAM-11"], "indicators": items,
+            "caveat": ("Escala municipal (Censo 2021): describe el parque de viviendas del municipio, no el de una "
+                       "urbanización. Contexto de exposición residencial; no es un índice de riesgo.")}
+
+
 def municipality_profile(session: Session, m: Municipality, *, with_weather: bool = True) -> dict[str, Any]:
     prof = municipality_summary(m)
     prof["area_km2"] = indicator("municipality_area_km2", m.area_km2, None)
@@ -130,9 +151,10 @@ def municipality_profile(session: Session, m: Municipality, *, with_weather: boo
         "method": "CAM-07 (Distribución de la superficie por usos) solo se publica como agregado REGIONAL.",
         "caveat": "No existe desagregación municipal verificada en el Portal CAM; no se estima.",
     }
+    prof["housing"] = housing_for(session, m.ine_code)
     prof["official_fire"] = official_layers_for(session, m.ine_code)
     prof["weather"] = weather_context(session, m.ine_code) if with_weather else None
-    prof["sources"] = ["CAM-01", "CAM-02", "CAM-03", "CAM-08", "GEO-01", "GEO-02", "GEO-03", "AEMET"]
+    prof["sources"] = ["CAM-01", "CAM-02", "CAM-03", "CAM-08", "CAM-09", "CAM-10", "CAM-11", "GEO-01", "GEO-02", "GEO-03", "AEMET"]
     prof["scale_notice"] = SCALE_NOTICE
     return prof
 

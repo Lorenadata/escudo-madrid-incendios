@@ -1,0 +1,17 @@
+{
+  "source_id": "CAM-10",
+  "ckan_id": "censo_2021_porcentaje_viviendas_familiares_por_tipo_edificio",
+  "title": "Censo de vivienda y locales 2021. Porcentaje de viviendas familiares por tipo de edificio. Municipios",
+  "catalog_url": "https://datos.comunidad.madrid/dataset/censo_2021_porcentaje_viviendas_familiares_por_tipo_edificio",
+  "resource_id": "17d3584a-e56e-4221-9832-4028e4dbbe2d",
+  "resource_url": "https://datos.comunidad.madrid/dataset/438b95d7-f4fc-4160-957c-00627ba21875/resource/17d3584a-e56e-4221-9832-4028e4dbbe2d/download/censo-de-vivienda-y-locales-2021.-porcentaje-de-viviendas-familiares-por-tipo-de-edificio.-munic.csv",
+  "format": "CSV",
+  "file": "censo-de-vivienda-y-locales-2021.-porcentaje-de-viviendas-familiares-por-tipo-de-edificio.-munic.csv",
+  "bytes": 82155,
+  "sha256": "cd3e2b2e1549539b3b507007c8a19a0280b5c539c2b3134082efd6931787ec8c",
+  "license_id": "cc-by",
+  "license_title": "Creative Commons Attribution",
+  "portal_metadata_modified": "2026-11-05T17:34:40.003932",
+  "resource_last_modified": "2026-11-05T17:34:39.338002",
+  "extracted_at": "2026-11-08T21:39:37+00:00"
+}

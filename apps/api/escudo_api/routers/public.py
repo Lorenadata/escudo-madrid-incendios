@@ -221,6 +221,17 @@ def list_measures(session: Session = Depends(get_session)) -> list[dict[str, Any
     return [measure_dict(m) for m in session.scalars(select(MeasureCatalog).order_by(MeasureCatalog.code))]
 
 
+def _housing_values(session: Session) -> dict[str, dict[str, float | None]]:
+    """{ine_code: {indicator_id: valor}} de los indicadores de vivienda (Censo 2021) en municipal_series."""
+    from ..models import MunicipalSeries
+    from ..services import HOUSING_INDICATORS
+
+    out: dict[str, dict[str, float | None]] = {}
+    for r in session.scalars(select(MunicipalSeries).where(MunicipalSeries.indicator_id.in_(HOUSING_INDICATORS))):
+        out.setdefault(r.ine_code, {})[r.indicator_id] = r.value
+    return out
+
+
 @router.get("/v1/exports/municipalities.csv", tags=["exportación"])
 def export_municipalities_csv(session: Session = Depends(get_session)):
     """Export reproducible (M10/M20) de los indicadores municipales con fuente y periodo por columna."""
@@ -233,10 +244,18 @@ def export_municipalities_csv(session: Session = Depends(get_session)):
     w = csv.writer(buf)
     w.writerow(["ine_code", "name", "population_total", "population_year", "population_source", "age_65_plus_share",
                 "density_hab_km2", "density_year", "density_source", "altitude_m", "altitude_source", "area_km2_derived",
-                "area_source"])
+                "area_source", "dwellings_total_2021", "non_main_share_2021", "non_main_source",
+                "single_dwelling_building_share_2021", "single_dwelling_source", "empty_electricity_share_2021",
+                "sporadic_electricity_share_2021", "electricity_source"])
+    housing = _housing_values(session)
     for m in session.scalars(select(Municipality).order_by(Municipality.ine_code)):
+        h = housing.get(m.ine_code, {})
         w.writerow([m.ine_code, m.name, m.population_total, m.population_year, "CAM-01", m.age_65_plus_share,
-                    m.density_hab_km2, m.density_year, "CAM-02", m.altitude_m, "CAM-03", m.area_km2, "CAM-08"])
+                    m.density_hab_km2, m.density_year, "CAM-02", m.altitude_m, "CAM-03", m.area_km2, "CAM-08",
+                    h.get("municipality_dwellings_total"), h.get("municipality_non_main_share"), "CAM-09",
+                    h.get("municipality_single_dwelling_building_share"), "CAM-10",
+                    h.get("municipality_empty_electricity_share"), h.get("municipality_sporadic_electricity_share"),
+                    "CAM-11 (provisional) / CAM-09"])
     return Response(buf.getvalue(), media_type="text/csv; charset=utf-8",
                     headers={"Content-Disposition": 'attachment; filename="escudo-municipios.csv"'})
 
@@ -247,7 +266,8 @@ def municipal_matrix(
     min_high_share: float = Query(0, ge=0, le=1),
     max_density: float | None = Query(None, ge=0),
     min_age65_share: float = Query(0, ge=0, le=1),
-    sort: str = Query("high_share", pattern="^(high_share|density|age65|population)$"),
+    min_non_main_share: float = Query(0, ge=0, le=1),
+    sort: str = Query("high_share", pattern="^(high_share|density|age65|population|non_main|single_dwelling)$"),
     session: Session = Depends(get_session),
 ) -> dict[str, Any]:
     """Matriz municipal reproducible: datos CAM (CAM-01/02) junto al reparto de la capa oficial elegida.
@@ -261,6 +281,7 @@ def municipal_matrix(
         select(S.ine_code, func.sum(S.area_share)).where(S.layer == layer, S.class_code.in_(["4", "5"]))
         .group_by(S.ine_code)).all())
     has_layer = bool(session.scalar(select(func.count()).select_from(S).where(S.layer == layer)))
+    housing = _housing_values(session)
     rows = []
     for m in session.scalars(select(Municipality)):
         hs = high.get(m.ine_code, 0.0 if has_layer else None)
@@ -270,22 +291,31 @@ def municipal_matrix(
             continue
         if min_age65_share and (m.age_65_plus_share is None or m.age_65_plus_share < min_age65_share):
             continue
+        h = housing.get(m.ine_code, {})
+        nm = h.get("municipality_non_main_share")
+        if min_non_main_share and (nm is None or nm < min_non_main_share):
+            continue
         rows.append({"ine_code": m.ine_code, "name": m.name,
+                     "non_main_share": nm,
+                     "single_dwelling_building_share": h.get("municipality_single_dwelling_building_share"),
                      "high_share": round(hs, 4) if hs is not None else None,
                      "density_hab_km2": m.density_hab_km2, "density_year": m.density_year,
                      "age_65_plus_share": m.age_65_plus_share, "population_total": m.population_total,
                      "population_year": m.population_year})
     key = {"high_share": "high_share", "density": "density_hab_km2", "age65": "age_65_plus_share",
-           "population": "population_total"}[sort]
+           "population": "population_total", "non_main": "non_main_share",
+           "single_dwelling": "single_dwelling_building_share"}[sort]
     rows.sort(key=lambda r: (r[key] is None, -(r[key] or 0), r["ine_code"]))
     src = OFFICIAL_LAYERS[layer]["source_id"]
     return {
         "layer": layer, "layer_source_id": src, "status": "derived" if has_layer else "unavailable",
-        "sources": ["CAM-01", "CAM-02", src],
+        "sources": ["CAM-01", "CAM-02", "CAM-09", "CAM-10", src],
         "definition": (f"high_share: proporción de superficie municipal en clases 4 y 5 de {src} (suma literal de "
-                       "clases oficiales, calculada sobre el ráster de 5 m). Densidad y % ≥65 del Portal CAM."),
+                       "clases oficiales, calculada sobre el ráster de 5 m). Densidad y % ≥65 del Portal CAM. "
+                       "non_main_share (CAM-09) y single_dwelling_building_share (CAM-10): Censo 2021, municipal."),
         "caveat": ("Filtro comparativo a escala municipal. No es un índice de riesgo propio ni prioriza "
                    "actuaciones: la priorización corresponde a personal técnico."),
-        "filters": {"min_high_share": min_high_share, "max_density": max_density, "min_age65_share": min_age65_share},
+        "filters": {"min_high_share": min_high_share, "max_density": max_density, "min_age65_share": min_age65_share,
+                    "min_non_main_share": min_non_main_share},
         "count": len(rows), "rows": rows,
     }

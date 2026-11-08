@@ -27,6 +27,10 @@ test("explorador: mapa regional real, ficha municipal trazable y capa oficial li
   // dato CAM-01 con estado y año; la superficie forestal municipal NO se inventa
   await expect(page.getByText("Población censada").first()).toBeVisible();
   await expect(page.getByText("Superficie forestal del municipio")).toBeVisible();
+  // Fase 2: vivienda y ocupación (CAM-09/10/11, Censo 2021) con su advertencia de escala
+  await expect(page.getByRole("heading", { name: /Vivienda y ocupación \(Censo 2021\)/ })).toBeVisible();
+  await expect(page.getByText("Proporción de viviendas no principales")).toBeVisible();
+  await expect(page.getByText("Fuentes: CAM-09, CAM-10, CAM-11", { exact: false })).toBeVisible();
   // clases literales de GEO-01
   await expect(page.getByText("Riesgo muy alto").first()).toBeVisible();
 
@@ -100,6 +104,9 @@ test("análisis municipal: filtros sobre datos CAM y capa oficial, sin índice p
   const before = Number((await count.innerText()).split(" ")[0]);
   await page.getByLabel("Máx. densidad (hab/km²)").fill("20");
   await expect.poll(async () => Number((await count.innerText()).split(" ")[0])).toBeLessThan(before);
+  const afterDensity = Number((await count.innerText()).split(" ")[0]);
+  await page.getByLabel("Mín. % viviendas no principales").fill("40");
+  await expect.poll(async () => Number((await count.innerText()).split(" ")[0])).toBeLessThan(afterDensity);
   await page.getByText("Ver método y fuentes").click();
   await expect(page.getByText("No es un índice de riesgo propio", { exact: false })).toBeVisible();
   await assertSafeLanguage(page);

@@ -99,9 +99,17 @@ export interface WeatherContext {
   last_valid_at: string | null;
 }
 
+export interface HousingContext {
+  census_year: number;
+  sources: string[];
+  indicators: Indicator[];
+  caveat: string;
+}
+
 export interface MunicipalityProfile extends MunicipalitySummary {
   area_km2: Indicator;
   forest_share: Indicator;
+  housing?: HousingContext | null;
   official_fire: {
     risk: OfficialLayerSummary | null;
     hazard: OfficialLayerSummary | null;

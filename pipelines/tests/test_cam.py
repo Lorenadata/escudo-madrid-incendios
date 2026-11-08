@@ -85,3 +85,45 @@ def test_T02_processed_outputs():
 def test_regional_series_are_labeled_regional():
     rows = list(csv.DictReader((OUT / "fire_history.csv").open(encoding="utf-8")))
     assert rows and all("regional" in r["scope"] for r in rows)
+
+
+def _hrow(code, cat, val, col="Tipo", year="2021", tipo="Municipios"):
+    return {"Año": year, "Tipo territorio": tipo, "Código territorio": code, "Territorio": "X", col: cat, "Valor": val,
+            "Estado dato": "Provisional" if col == "Consumo" else ""}
+
+
+def test_build_housing_fixture():
+    """Fixture sintética mínima: cocientes de valores publicados, nulos explícitos y control de universo."""
+    from escudo_pipelines.cam_transform import build_housing
+
+    cam09 = [_hrow("0014", "Total", "100"), _hrow("0014", "Principales", "60"), _hrow("0014", "No principales", "40"),
+             _hrow("", "Total", "999", tipo="Comunidad de Madrid"),  # agregado regional: se ignora
+             _hrow("0029", "Total", "50"), _hrow("0029", "Principales", "50"), _hrow("0029", "No principales", "0")]
+    cam10 = [_hrow("0014", "Residencial con una vivienda", "75.13"), _hrow("0029", "Residencial con una vivienda", "-")]
+    cam11 = [_hrow("0014", c, v, col="Consumo") for c, v in
+             [("Viviendas vacias", "20"), ("Uso esporádico", "30"), ("Uso esporádico entre 251 y 500 kwh", "10"),
+              ("Uso esporádico entre 501y 750 kwh", "20"), ("Mayor de 10.000 kwh", "50")]]
+    cam11 += [_hrow("0029", "Viviendas vacias", "5", col="Consumo"), _hrow("0029", "Mayor de 10.000 kwh", "40", col="Consumo")]
+    rows, stats = build_housing(cam09, cam10, cam11, ["28001", "28002"])
+    a, b = rows
+    assert a["non_main_share"] == 0.4 and a["single_dwelling_building_share"] == pytest.approx(0.7513)
+    assert a["empty_electricity_share"] == 0.2 and a["sporadic_electricity_share"] == 0.3
+    assert b["non_main_share"] == 0 and b["single_dwelling_building_share"] == ""  # '-' → no disponible
+    assert b["empty_electricity_share"] == "" and stats["universe_mismatch_11"] == ["28002"]  # 45 ≠ 50: no se calcula
+    assert not stats["sum_mismatch_09"] and stats["years"] == [2021]
+
+
+@pytest.mark.skipif(not (OUT / "municipal_housing.csv").exists(), reason="ejecute escudo_pipelines.cam_transform")
+def test_T02_housing_outputs_trace_to_raw_cam09():
+    rows = {r["ine_code"]: r for r in csv.DictReader((OUT / "municipal_housing.csv").open(encoding="utf-8"))}
+    assert len(rows) == 179
+    for r in rows.values():
+        for k in ("non_main_share", "single_dwelling_building_share", "empty_electricity_share", "sporadic_electricity_share"):
+            assert r[k] == "" or 0 <= float(r[k]) <= 1
+    raw = sorted((RAW / "CAM-09").glob("*.csv"))
+    if raw:  # el crudo no se versiona; si existe, el procesado coincide con él
+        from escudo_pipelines.cam_transform import _read
+
+        t = {x["Tipo"]: x["Valor"] for x in _read(raw[0]) if x["Código territorio"] == "1258"}
+        assert int(rows["28125"]["dwellings_total"]) == int(t["Total"])
+        assert int(rows["28125"]["dwellings_non_main"]) == int(t["No principales"])

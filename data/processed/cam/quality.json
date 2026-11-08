@@ -39,6 +39,21 @@
       "sha256": "00198d017d032e83fdf5bcbb3327b1adbba21394264968c0c6508ba4473b09fc",
       "extracted_at": "2026-11-06T18:53:28+00:00",
       "resource_url": "https://datos.comunidad.madrid/dataset/2c176a23-a6cd-4c18-b5df-b32a3a3a1219/resource/b53b766c-e013-444c-b3b0-0992c4a0dbfc/download/558.zip"
+    },
+    "CAM-09": {
+      "sha256": "a6eb1024d621cfdacee4c357f0a1d1391c9bbd393fed19b637666ca528c52f94",
+      "extracted_at": "2026-11-08T21:39:37+00:00",
+      "resource_url": "https://datos.comunidad.madrid/dataset/e5f45e41-0af6-4ed6-8f77-1e1a5ca60d1b/resource/2c236ff4-6056-4a49-aea9-ad57d795e097/download/censo-de-vivienda-y-locales-2021.-viviendas-familiares-convencionales-por-tipo-de-vivienda.-muni.csv"
+    },
+    "CAM-10": {
+      "sha256": "cd3e2b2e1549539b3b507007c8a19a0280b5c539c2b3134082efd6931787ec8c",
+      "extracted_at": "2026-11-08T21:39:37+00:00",
+      "resource_url": "https://datos.comunidad.madrid/dataset/438b95d7-f4fc-4160-957c-00627ba21875/resource/17d3584a-e56e-4221-9832-4028e4dbbe2d/download/censo-de-vivienda-y-locales-2021.-porcentaje-de-viviendas-familiares-por-tipo-de-edificio.-munic.csv"
+    },
+    "CAM-11": {
+      "sha256": "eb9fc5afa9c40040995eb689b1a0f07e9ef7228e1b7341c2d3f622e5c5864986",
+      "extracted_at": "2026-11-08T21:39:37+00:00",
+      "resource_url": "https://datos.comunidad.madrid/dataset/70f8104c-efae-4fd4-b611-c19b7373aebc/resource/eed1a980-f1b7-4d7b-9ce2-df4ae00c5f12/download/censo-de-vivienda-y-locales-2021.-viviendas-por-intensidad-de-uso-consumo-electrico.-municipios.csv"
     }
   },
   "geometry": {
@@ -78,6 +93,26 @@
       "check": "rango_share65",
       "passed": true,
       "detail": "proporción ≥65 en [0,1]"
+    },
+    {
+      "check": "vivienda_censo_2021",
+      "passed": true,
+      "detail": "años: [2021]"
+    },
+    {
+      "check": "cam09_total_igual_suma",
+      "passed": true,
+      "detail": "Total = Principales + No principales; discrepancias: []"
+    },
+    {
+      "check": "cam11_mismo_universo_que_cam09",
+      "passed": true,
+      "detail": "Σ categorías CAM-11 = Total CAM-09; discrepancias (proporción no calculada): []"
+    },
+    {
+      "check": "vivienda_cobertura",
+      "passed": true,
+      "detail": "municipios con dato: no principales 179, unifamiliar 151, consumo eléctrico 135 de 179; códigos sin municipio: ['28999']"
     },
     {
       "check": "cam05_conceptos_conocidos",

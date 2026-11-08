@@ -677,12 +677,24 @@
             }
           },
           {
+            "name": "min_non_main_share",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "maximum": 1,
+              "minimum": 0,
+              "default": 0,
+              "title": "Min Non Main Share"
+            }
+          },
+          {
             "name": "sort",
             "in": "query",
             "required": false,
             "schema": {
               "type": "string",
-              "pattern": "^(high_share|density|age65|population)$",
+              "pattern": "^(high_share|density|age65|population|non_main|single_dwelling)$",
               "default": "high_share",
               "title": "Sort"
             }

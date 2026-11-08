@@ -7,7 +7,7 @@ Plataforma abierta de **planificación preventiva de incendios forestales** para
 
 ## Qué hace (estado real en `PROGRESS.md`)
 
-- Ingiere datos del **Portal de Datos Abiertos de la Comunidad de Madrid** (8 datasets: población, densidad, altitud, secciones censales, incendios, repoblaciones, usos del suelo, espacios protegidos) con checksum y licencia.
+- Ingiere datos del **Portal de Datos Abiertos de la Comunidad de Madrid** (11 datasets: población, densidad, altitud, secciones censales, incendios, repoblaciones, usos del suelo, espacios protegidos y tres del Censo 2021 sobre vivienda y ocupación) con checksum y licencia.
 - Integra la **cartografía oficial IDEM** de riesgo, peligrosidad y vulnerabilidad (clases literales, reparto por municipio).
 - Consulta la **predicción municipal de AEMET** con caducidad explícita (si falla: «no disponible»).
 - Permite a una organización registrar ámbitos, inspecciones y evidencias, construir escenarios de actuaciones con un **optimizador CP-SAT determinista** comparado con dos baselines, convertirlos en un plan con seguimiento y exportar un **informe PDF trazable**.

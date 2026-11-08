@@ -18,6 +18,8 @@ interface MatrixRow {
   age_65_plus_share: number | null;
   population_total: number | null;
   population_year: number | null;
+  non_main_share: number | null;
+  single_dwelling_building_share: number | null;
 }
 
 interface MatrixResponse {
@@ -42,6 +44,8 @@ const SORTS = [
   { value: "density", label: "Densidad" },
   { value: "age65", label: "% de 65 años o más" },
   { value: "population", label: "Población" },
+  { value: "non_main", label: "% viviendas no principales" },
+  { value: "single_dwelling", label: "% viviendas en edificio unifamiliar" },
 ];
 
 function numOrEmpty(v: string): string {
@@ -53,12 +57,14 @@ export default function AnalysisPage() {
   const [minHigh, setMinHigh] = useState("50");
   const [maxDensity, setMaxDensity] = useState("");
   const [minAge, setMinAge] = useState("");
+  const [minNonMain, setMinNonMain] = useState("");
   const [sort, setSort] = useState("high_share");
 
   const qs = new URLSearchParams({ layer, sort });
   if (numOrEmpty(minHigh)) qs.set("min_high_share", String(Math.min(100, Math.max(0, Number(minHigh))) / 100));
   if (numOrEmpty(maxDensity)) qs.set("max_density", String(Math.max(0, Number(maxDensity))));
   if (numOrEmpty(minAge)) qs.set("min_age65_share", String(Math.min(100, Math.max(0, Number(minAge))) / 100));
+  if (numOrEmpty(minNonMain)) qs.set("min_non_main_share", String(Math.min(100, Math.max(0, Number(minNonMain))) / 100));
   const path = `/v1/analysis/municipal-matrix?${qs.toString()}`;
   const m = useApi<MatrixResponse>(path);
   const meta = LAYERS.find((l) => l.value === layer)!;
@@ -69,12 +75,12 @@ export default function AnalysisPage() {
         <h1 className="font-cond text-2xl font-semibold text-ink">Análisis municipal</h1>
         <p className="max-w-prose text-sm text-ink-600">
           Cruza datos del Portal de Datos Abiertos de la Comunidad de Madrid (densidad CAM-02, población de 65 años o más
-          CAM-01) con el reparto de la cartografía oficial de incendios. Es un filtro comparativo a escala municipal:
+          CAM-01, viviendas no principales CAM-09 y viviendas en edificio unifamiliar CAM-10, Censo 2021) con el reparto de la cartografía oficial de incendios. Es un filtro comparativo a escala municipal:
           no crea un índice propio ni decide prioridades.
         </p>
       </header>
 
-      <form className="grid gap-4 rounded border border-line bg-white p-4 sm:grid-cols-2 lg:grid-cols-5" onSubmit={(e) => e.preventDefault()}>
+      <form className="grid gap-4 rounded border border-line bg-white p-4 sm:grid-cols-2 lg:grid-cols-6" onSubmit={(e) => e.preventDefault()}>
         <div>
           <label htmlFor="layer" className="label">Capa oficial</label>
           <select id="layer" className="field" value={layer} onChange={(e) => setLayer(e.target.value as Layer)}>
@@ -92,6 +98,10 @@ export default function AnalysisPage() {
         <div>
           <label htmlFor="minAge" className="label">Mín. % de 65 años o más</label>
           <input id="minAge" className="field" type="number" min={0} max={100} inputMode="numeric" value={minAge} onChange={(e) => setMinAge(e.target.value)} />
+        </div>
+        <div>
+          <label htmlFor="minNonMain" className="label">Mín. % viviendas no principales</label>
+          <input id="minNonMain" className="field" type="number" min={0} max={100} inputMode="numeric" value={minNonMain} onChange={(e) => setMinNonMain(e.target.value)} />
         </div>
         <div>
           <label htmlFor="sort" className="label">Ordenar por</label>
@@ -125,6 +135,8 @@ export default function AnalysisPage() {
                     <th scope="col" className="px-3 py-2 text-right">Densidad <StatusBadge status="official" /></th>
                     <th scope="col" className="px-3 py-2 text-right">65 años o más <StatusBadge status="derived" /></th>
                     <th scope="col" className="px-3 py-2 text-right">Población <StatusBadge status="official" /></th>
+                    <th scope="col" className="px-3 py-2 text-right">Viv. no principales 2021 <StatusBadge status="derived" /></th>
+                    <th scope="col" className="px-3 py-2 text-right">Viv. en edificio unifamiliar 2021 <StatusBadge status="official" /></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -138,6 +150,8 @@ export default function AnalysisPage() {
                       <td className="px-3 py-2 text-right tabular-nums">{fmtNumber(r.density_hab_km2)} <span className="text-xs text-ink-500">({r.density_year ?? "s/f"})</span></td>
                       <td className="px-3 py-2 text-right tabular-nums">{fmtShare(r.age_65_plus_share)}</td>
                       <td className="px-3 py-2 text-right tabular-nums">{fmtNumber(r.population_total)} <span className="text-xs text-ink-500">({r.population_year ?? "s/f"})</span></td>
+                      <td className="px-3 py-2 text-right tabular-nums">{fmtShare(r.non_main_share)}</td>
+                      <td className="px-3 py-2 text-right tabular-nums">{fmtShare(r.single_dwelling_building_share)}</td>
                     </tr>
                   ))}
                 </tbody>

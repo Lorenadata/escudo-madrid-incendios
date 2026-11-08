@@ -1,0 +1,17 @@
+{
+  "source_id": "CAM-09",
+  "ckan_id": "censo_2021_viviendas_familiares_por_tipo",
+  "title": "Censo de vivienda y locales 2021. Viviendas familiares convencionales por tipo de vivienda. Municipios",
+  "catalog_url": "https://datos.comunidad.madrid/dataset/censo_2021_viviendas_familiares_por_tipo",
+  "resource_id": "2c236ff4-6056-4a49-aea9-ad57d795e097",
+  "resource_url": "https://datos.comunidad.madrid/dataset/e5f45e41-0af6-4ed6-8f77-1e1a5ca60d1b/resource/2c236ff4-6056-4a49-aea9-ad57d795e097/download/censo-de-vivienda-y-locales-2021.-viviendas-familiares-convencionales-por-tipo-de-vivienda.-muni.csv",
+  "format": "CSV",
+  "file": "censo-de-vivienda-y-locales-2021.-viviendas-familiares-convencionales-por-tipo-de-vivienda.-muni.csv",
+  "bytes": 36246,
+  "sha256": "a6eb1024d621cfdacee4c357f0a1d1391c9bbd393fed19b637666ca528c52f94",
+  "license_id": "cc-by",
+  "license_title": "Creative Commons Attribution",
+  "portal_metadata_modified": "2026-11-05T17:34:37.444155",
+  "resource_last_modified": "2026-11-05T17:34:36.637207",
+  "extracted_at": "2026-11-08T21:39:37+00:00"
+}
