@@ -67,7 +67,7 @@ Sin estas, el proyecto pierde puntos que ningún agente puede recuperar.
 | 2.2 | ✅ (08/11: CAM-09, CAM-10, CAM-11 — Censo 2021; e2e local pendiente por memoria) Integrar 2–4 datasets nuevos que superen la auditoría, con ficha, filtro y comparador | A2+A6+A7 | D25 | tests T01/T02 + visibles en la demo |
 | 2.3 | Lista oficial de **municipios en Zonas de Alto Riesgo (ZAR)** del Plan Anual 2026 / INFOMA como capa de contexto (documento oficial, citado con página) | A1+A2 | D25, D20 | fuente y página citadas; test de que coincide con el documento |
 | 2.4 | Actualización automática verificable: comando `refresh` que vuelve a descargar, compara SHA-256 y registra versión; panel «última actualización» por fuente | A2+A10 | D25, R10 | test existente + demostración en vivo |
-| 2.5 | Histórico regional en la ficha y en el análisis: CAM-05 incendios 1985–2025, CAM-06 repoblaciones (M14), siempre etiquetado «regional» | A7 | D25 | UI + e2e |
+| 2.5 | ✅ (08/11; e2e local pendiente por memoria) Histórico regional en la ficha y en el análisis: CAM-05 incendios 1985–2025, CAM-06 repoblaciones (M14), siempre etiquetado «regional» | A7 | D25 | UI + e2e |
 | 2.6 | Copernicus EFFIS: evaluar licencia y utilidad (áreas quemadas históricas) — integrar solo si aporta y la licencia lo permite | A3 | D20 | decisión documentada |
 
 ### Fase 3 — Impacto con evidencia (12–21/11) · gate **G-Impacto** 👤

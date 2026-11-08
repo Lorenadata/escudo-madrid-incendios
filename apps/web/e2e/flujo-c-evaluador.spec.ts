@@ -109,6 +109,10 @@ test("análisis municipal: filtros sobre datos CAM y capa oficial, sin índice p
   await expect.poll(async () => Number((await count.innerText()).split(" ")[0])).toBeLessThan(afterDensity);
   await page.getByText("Ver método y fuentes").click();
   await expect(page.getByText("No es un índice de riesgo propio", { exact: false })).toBeVisible();
+  // 2.5: histórico regional (CAM-05, CAM-06) siempre rotulado como regional
+  await expect(page.getByRole("heading", { name: "Contexto regional" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: /Superficie repoblada, \d{4}–\d{4}/ })).toBeVisible();
+  await expect(page.getByRole("heading", { name: /Superficie afectada por incendios forestales/ })).toBeVisible();
   await assertSafeLanguage(page);
 });
 

@@ -180,6 +180,10 @@ export function MunicipalityProfileView({ profile, showWeather = true }: { profi
       </section>
       <SeriesPanel ine={profile.ine_code} />
       <HousingPanel housing={profile.housing} />
+      <p className="text-xs text-ink-500">
+        Histórico de incendios y repoblaciones (solo regional, CAM-05/CAM-06):{" "}
+        <a className="text-slate underline underline-offset-2" href="/analisis#contexto-regional">ver contexto regional</a>.
+      </p>
       <OfficialFirePanel profile={profile} />
       {showWeather && <WeatherPanel weather={profile.weather} />}
       {profile.sources?.length > 0 && (

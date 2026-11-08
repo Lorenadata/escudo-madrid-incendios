@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { FireHistoryPanel } from "@/components/FireHistoryPanel";
+import { ReforestationPanel } from "@/components/ReforestationPanel";
 import { Empty, ErrorState, Loading } from "@/components/States";
 import { StatusBadge } from "@/components/StatusBadge";
 import { fmtNumber, fmtShare } from "@/lib/format";
@@ -165,6 +167,16 @@ export default function AnalysisPage() {
           </details>
         </section>
       )}
+
+      <section id="contexto-regional" aria-labelledby="regional-h" className="space-y-3 border-t border-line pt-5">
+        <h2 id="regional-h" className="font-cond text-xl font-semibold text-ink">Contexto regional</h2>
+        <p className="max-w-prose text-sm text-ink-600">
+          Series históricas del Portal CAM publicadas solo como agregado de la Comunidad de Madrid (CAM-05 incendios,
+          CAM-06 repoblaciones). Se muestran como contexto: no se reparten entre municipios ni urbanizaciones.
+        </p>
+        <FireHistoryPanel />
+        <ReforestationPanel />
+      </section>
     </div>
   );
 }
