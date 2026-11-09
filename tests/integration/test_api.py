@@ -320,3 +320,14 @@ def test_fire_plan_zar_and_municipal_fires_are_literal(client):
     assert pozuelo["fires_total"]["value"] is None and pozuelo["fires_total"]["status"] == "unavailable"
     m = client.get("/v1/analysis/municipal-matrix", params={"zar_only": True, "min_high_share": 0}).json()
     assert m["count"] == 59 and all(r["zar_declared"] for r in m["rows"]) and "DOC-01" in m["sources"]
+
+
+def test_sources_expose_refresh_check_and_log(client):
+    """2.4: cada fuente indica su última comprobación contra el origen; el registro de ejecuciones es público."""
+    src = {s["source_id"]: s for s in client.get("/v1/sources").json()}
+    assert {"last_checked_at", "last_check_result", "versions_count"} <= set(src["CAM-01"])
+    assert src["CAM-01"]["versions_count"] >= 1
+    log = client.get("/v1/sources/refresh-log").json()
+    assert log["status"] in {"ok", "unavailable"} and "SHA-256" in log["method"]
+    if log["last_run"]:
+        assert all(r["result"] in {"unchanged", "changed", "failed"} for r in log["last_run"]["results"])

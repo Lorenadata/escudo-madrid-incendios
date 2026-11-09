@@ -4,7 +4,7 @@ import { FireHistoryPanel } from "@/components/FireHistoryPanel";
 import { ErrorState, Loading, Empty } from "@/components/States";
 import { API_URL } from "@/lib/api";
 import { StatusLegend } from "@/components/StatusBadge";
-import type { Health, Source } from "@/lib/api-types";
+import type { Health, RefreshLog, Source } from "@/lib/api-types";
 import { fmtDate } from "@/lib/format";
 import { useApi } from "@/lib/useApi";
 
@@ -14,7 +14,15 @@ const SOURCE_STATUS: Record<string, { label: string; cls: string }> = {
   not_ingested: { label: "Sin ingerir", cls: "text-ash-800" },
 };
 
+const CHECK_LABEL: Record<string, { label: string; cls: string }> = {
+  unchanged: { label: "Sin cambios en origen", cls: "text-pine" },
+  changed: { label: "Nueva versión incorporada", cls: "text-slate" },
+  changed_pending: { label: "Hay versión nueva sin incorporar", cls: "text-ochre-800" },
+  failed: { label: "Origen no accesible en la comprobación", cls: "text-rust" },
+};
+
 const PORTAL_LABEL: Record<string, string> = {
+  "CAM-DOC": "Documento oficial de la Comunidad de Madrid",
   CAM: "Portal de Datos Abiertos de la Comunidad de Madrid",
   IDEM: "IDEM / datos.gob.es",
   AEMET: "AEMET OpenData",
@@ -23,6 +31,7 @@ const PORTAL_LABEL: Record<string, string> = {
 export default function SourcesPage() {
   const sources = useApi<Source[]>("/v1/sources");
   const health = useApi<Health>("/health");
+  const refresh = useApi<RefreshLog>("/v1/sources/refresh-log");
 
   return (
     <div className="mx-auto w-full max-w-7xl space-y-6 px-4 py-6">
@@ -51,6 +60,25 @@ export default function SourcesPage() {
       )}
       {!!health.error && <ErrorState error={health.error} onRetry={health.reload} />}
 
+      {refresh.data && (
+        <section aria-labelledby="refresh-h" className="rounded border border-line bg-white p-3 text-sm">
+          <h2 id="refresh-h" className="font-cond text-base font-semibold text-ink">Actualización verificable</h2>
+          {refresh.data.last_run ? (
+            <p className="text-ink-700">
+              Última comprobación contra el origen: <strong>{fmtDate(refresh.data.last_run.started_at, true)}</strong> ·{" "}
+              {refresh.data.last_run.summary?.unchanged ?? 0} sin cambios · {refresh.data.last_run.summary?.changed ?? 0} con
+              versión nueva · {refresh.data.last_run.summary?.failed ?? 0} no accesibles.
+            </p>
+          ) : (
+            <p className="text-ink-500">Aún no se ha ejecutado ninguna comprobación (no disponible).</p>
+          )}
+          <p className="mt-1 text-xs text-ink-500">
+            Método: <code className="font-mono">{refresh.data.method}</code>. Una versión nueva solo se usa tras regenerar y
+            cargar los datos; la anterior queda registrada.
+          </p>
+        </section>
+      )}
+
       {sources.loading && <Loading label="Cargando fuentes" />}
       {!!sources.error && <ErrorState error={sources.error} onRetry={sources.reload} />}
       {sources.data && sources.data.length === 0 && <Empty title="No hay fuentes registradas" />}
@@ -67,6 +95,7 @@ export default function SourcesPage() {
                 <th className="p-2.5 font-medium">Actualizado en origen</th>
                 <th className="p-2.5 font-medium">Extraído</th>
                 <th className="p-2.5 font-medium">SHA-256</th>
+                <th className="p-2.5 font-medium">Comprobado en origen</th>
                 <th className="p-2.5 font-medium">Estado</th>
               </tr>
             </thead>
@@ -93,6 +122,21 @@ export default function SourcesPage() {
                         <code className="font-mono text-xs" title={s.sha256}>{s.sha256.slice(0, 12)}…</code>
                       ) : (
                         <span className="text-xs text-ink-500">—</span>
+                      )}
+                    </td>
+                    <td className="p-2.5 text-xs">
+                      {s.last_checked_at ? (
+                        <>
+                          {fmtDate(s.last_checked_at, true)}
+                          <p className={`font-semibold ${(CHECK_LABEL[s.last_check_result ?? ""] ?? { cls: "" }).cls}`}>
+                            {(CHECK_LABEL[s.last_check_result ?? ""] ?? { label: s.last_check_result ?? "" }).label}
+                          </p>
+                        </>
+                      ) : (
+                        <span className="text-ink-500">{s.portal === "AEMET" ? "consulta en tiempo real" : "sin comprobar"}</span>
+                      )}
+                      {!!s.versions_count && s.versions_count > 1 && (
+                        <p className="text-ink-500">{s.versions_count} versiones registradas</p>
                       )}
                     </td>
                     <td className={`p-2.5 text-xs font-semibold ${st.cls}`}>

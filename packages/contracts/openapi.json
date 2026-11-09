@@ -55,6 +55,30 @@
         }
       }
     },
+    "/v1/sources/refresh-log": {
+      "get": {
+        "tags": [
+          "procedencia"
+        ],
+        "summary": "Refresh Log",
+        "description": "Última ejecución de `python -m escudo_pipelines.refresh` (comprobación de SHA-256 contra el origen).",
+        "operationId": "refresh_log_v1_sources_refresh_log_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object",
+                  "title": "Response Refresh Log V1 Sources Refresh Log Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/sources/{source_id}": {
       "get": {
         "tags": [

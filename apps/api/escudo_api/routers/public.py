@@ -39,9 +39,30 @@ def health(session: Session = Depends(get_session)) -> dict[str, Any]:
             "sources_ok": ok, "sources_total": total}
 
 
+def _manifest_check(source_id: str) -> dict[str, Any]:
+    """Última comprobación de `escudo_pipelines.refresh` registrada en el manifest (si existe)."""
+    import json
+
+    from ..config import settings
+
+    p = settings.data_dir / "raw" / source_id / "manifest.json"
+    if not p.exists():
+        return {}
+    try:
+        m = json.loads(p.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return {}
+    return {"last_checked_at": m.get("last_checked_at"), "last_check_result": m.get("last_check_result"),
+            "previous_versions": len(m.get("previous_versions") or [])}
+
+
 def _source_dict(s: DataSource) -> dict[str, Any]:
     v = s.versions[-1] if s.versions else None
+    chk = _manifest_check(s.source_id)
     return {
+        "last_checked_at": chk.get("last_checked_at"),
+        "last_check_result": chk.get("last_check_result"),
+        "versions_count": max(len(s.versions), 1 + chk.get("previous_versions", 0)) if v else 0,
         "source_id": s.source_id, "portal": s.portal, "title": s.title, "producer": s.producer,
         "catalog_url": s.catalog_url, "license": s.license, "spatial_scope": s.spatial_scope,
         "temporal_scope": s.temporal_scope, "use_in_product": s.use_in_product, "caveats": s.caveats,
@@ -56,6 +77,23 @@ def _source_dict(s: DataSource) -> dict[str, Any]:
 @router.get("/v1/sources", tags=["procedencia"])
 def list_sources(session: Session = Depends(get_session)) -> list[dict[str, Any]]:
     return [_source_dict(s) for s in session.scalars(select(DataSource).order_by(DataSource.source_id))]
+
+
+@router.get("/v1/sources/refresh-log", tags=["procedencia"])
+def refresh_log() -> dict[str, Any]:
+    """Última ejecución de `python -m escudo_pipelines.refresh` (comprobación de SHA-256 contra el origen)."""
+    import json
+
+    from ..config import settings
+
+    p = settings.data_dir / "processed" / "refresh_log.json"
+    if not p.exists():
+        return {"status": "unavailable", "last_run": None, "runs": 0,
+                "method": "python -m escudo_pipelines.refresh: descarga, SHA-256 y comparación con el manifest"}
+    runs = json.loads(p.read_text(encoding="utf-8"))
+    last = runs[-1] if runs else None
+    return {"status": "ok" if last else "unavailable", "runs": len(runs), "last_run": last,
+            "method": "python -m escudo_pipelines.refresh: descarga, SHA-256 y comparación con el manifest"}
 
 
 @router.get("/v1/sources/{source_id}", tags=["procedencia"])

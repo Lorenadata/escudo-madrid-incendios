@@ -1,0 +1,265 @@
+[
+  {
+    "started_at": "2026-11-09T08:15:21+00:00",
+    "apply": false,
+    "results": [
+      {
+        "source_id": "CAM-01",
+        "checked_at": "2026-11-09T08:15:22+00:00",
+        "previous_sha256": "9a8087ab860803241ffe77903c9d306bc37cad4a2ca2d3814454960bc6dbedde",
+        "sha256": "9a8087ab860803241ffe77903c9d306bc37cad4a2ca2d3814454960bc6dbedde",
+        "bytes": 15573665,
+        "resource_url": "https://datos.comunidad.madrid/dataset/0a14fbfe-783e-4de3-81b1-ff3792bfd402/resource/bab16922-8df1-49b5-9791-aed4edf8ced1/download/poblacion-censada-por-edad-nacionalidad-y-sexo.-censo-anual.-municipios.csv",
+        "result": "unchanged"
+      },
+      {
+        "source_id": "CAM-02",
+        "checked_at": "2026-11-09T08:15:24+00:00",
+        "previous_sha256": "89d3248773adfcf27bb0e2aa1757b4d3ccd98246ca7a4acd6d017df5c70ffa7f",
+        "sha256": "89d3248773adfcf27bb0e2aa1757b4d3ccd98246ca7a4acd6d017df5c70ffa7f",
+        "bytes": 464475,
+        "resource_url": "https://datos.comunidad.madrid/dataset/81592bc2-a5c0-423a-88b2-82ced433f290/resource/58ffa899-970e-4559-9e8a-550e21b29b3c/download/densidad-de-poblacion.-municipios.csv",
+        "result": "unchanged"
+      },
+      {
+        "source_id": "CAM-03",
+        "checked_at": "2026-11-09T08:15:25+00:00",
+        "previous_sha256": "4d4ebfb93378ba8607765dc47cf25a1f9339216c50c82ca16fcddaf38a99126c",
+        "sha256": "4d4ebfb93378ba8607765dc47cf25a1f9339216c50c82ca16fcddaf38a99126c",
+        "bytes": 8147,
+        "resource_url": "https://datos.comunidad.madrid/dataset/776a8af2-04da-47ce-a8b8-65ba7de1d382/resource/5a0c8a8b-e503-4931-bbd2-0b3f9d414353/download/altitud.-municipios.csv",
+        "result": "unchanged"
+      },
+      {
+        "source_id": "CAM-04",
+        "checked_at": "2026-11-09T08:15:25+00:00",
+        "previous_sha256": "cd93a0984e97842adf2e7c1268c89f1cff0513a9327674e869151f72d2eee736",
+        "sha256": "cd93a0984e97842adf2e7c1268c89f1cff0513a9327674e869151f72d2eee736",
+        "bytes": 31329,
+        "resource_url": "https://datos.comunidad.madrid/dataset/cd55d34c-64e2-4ad0-911d-d3e7bdf53a91/resource/d32cc438-fff0-4c88-b16f-bd4fef20e6dc/download/espacios_protegidos.csv",
+        "result": "unchanged"
+      },
+      {
+        "source_id": "CAM-05",
+        "checked_at": "2026-11-09T08:15:25+00:00",
+        "previous_sha256": "edd4c15627a8847032a781cf1807e4139532338322cd02dbdaf8a96d53bf246a",
+        "sha256": "edd4c15627a8847032a781cf1807e4139532338322cd02dbdaf8a96d53bf246a",
+        "bytes": 23484,
+        "resource_url": "https://datos.comunidad.madrid/dataset/cde061a9-2777-4161-be9c-1c07ef0e48d3/resource/9b534df7-e7aa-42b3-9157-d874beb8b599/download/incendios-y-superficie-afectada.csv",
+        "result": "unchanged"
+      },
+      {
+        "source_id": "CAM-06",
+        "checked_at": "2026-11-09T08:15:25+00:00",
+        "previous_sha256": "d77d6f73167932a747197010baa430e10e10a1b301e0f4636900a183af39a18f",
+        "sha256": "d77d6f73167932a747197010baa430e10e10a1b301e0f4636900a183af39a18f",
+        "bytes": 1336,
+        "resource_url": "https://datos.comunidad.madrid/dataset/38e29d6f-110f-44cd-acc2-d795cfc28ff5/resource/9e7a91d4-f1b1-4bac-836a-e1fdefc530b1/download/repoblaciones_forestales.csv",
+        "result": "unchanged"
+      },
+      {
+        "source_id": "CAM-07",
+        "checked_at": "2026-11-09T08:15:25+00:00",
+        "previous_sha256": "c046c1f3d7abf41283591a88492c5685cee457e771eca528e886bcdcbdbd8d4e",
+        "sha256": "875f468b1edb148b14fbb43acd60b54073d35025195747f074d1f5db4651f7db",
+        "bytes": 45347,
+        "resource_url": "https://datos.comunidad.madrid/dataset/37b743ba-55aa-4096-a98b-2f05ce9d0370/resource/b7b17279-b82c-4ccf-97be-72b80d4a6756/download/distribucion-de-la-superficie-por-usos.csv",
+        "result": "changed",
+        "applied": false
+      },
+      {
+        "source_id": "CAM-08",
+        "checked_at": "2026-11-09T08:15:25+00:00",
+        "previous_sha256": "00198d017d032e83fdf5bcbb3327b1adbba21394264968c0c6508ba4473b09fc",
+        "sha256": "00198d017d032e83fdf5bcbb3327b1adbba21394264968c0c6508ba4473b09fc",
+        "bytes": 9250149,
+        "resource_url": "https://datos.comunidad.madrid/dataset/2c176a23-a6cd-4c18-b5df-b32a3a3a1219/resource/b53b766c-e013-444c-b3b0-0992c4a0dbfc/download/558.zip",
+        "result": "unchanged"
+      },
+      {
+        "source_id": "CAM-09",
+        "checked_at": "2026-11-09T08:15:26+00:00",
+        "previous_sha256": "a6eb1024d621cfdacee4c357f0a1d1391c9bbd393fed19b637666ca528c52f94",
+        "sha256": "a6eb1024d621cfdacee4c357f0a1d1391c9bbd393fed19b637666ca528c52f94",
+        "bytes": 36246,
+        "resource_url": "https://datos.comunidad.madrid/dataset/e5f45e41-0af6-4ed6-8f77-1e1a5ca60d1b/resource/2c236ff4-6056-4a49-aea9-ad57d795e097/download/censo-de-vivienda-y-locales-2021.-viviendas-familiares-convencionales-por-tipo-de-vivienda.-muni.csv",
+        "result": "unchanged"
+      },
+      {
+        "source_id": "CAM-10",
+        "checked_at": "2026-11-09T08:15:26+00:00",
+        "previous_sha256": "cd3e2b2e1549539b3b507007c8a19a0280b5c539c2b3134082efd6931787ec8c",
+        "sha256": "cd3e2b2e1549539b3b507007c8a19a0280b5c539c2b3134082efd6931787ec8c",
+        "bytes": 82155,
+        "resource_url": "https://datos.comunidad.madrid/dataset/438b95d7-f4fc-4160-957c-00627ba21875/resource/17d3584a-e56e-4221-9832-4028e4dbbe2d/download/censo-de-vivienda-y-locales-2021.-porcentaje-de-viviendas-familiares-por-tipo-de-edificio.-munic.csv",
+        "result": "unchanged"
+      },
+      {
+        "source_id": "CAM-11",
+        "checked_at": "2026-11-09T08:15:26+00:00",
+        "previous_sha256": "eb9fc5afa9c40040995eb689b1a0f07e9ef7228e1b7341c2d3f622e5c5864986",
+        "sha256": "eb9fc5afa9c40040995eb689b1a0f07e9ef7228e1b7341c2d3f622e5c5864986",
+        "bytes": 245488,
+        "resource_url": "https://datos.comunidad.madrid/dataset/70f8104c-efae-4fd4-b611-c19b7373aebc/resource/eed1a980-f1b7-4d7b-9ce2-df4ae00c5f12/download/censo-de-vivienda-y-locales-2021.-viviendas-por-intensidad-de-uso-consumo-electrico.-municipios.csv",
+        "result": "unchanged"
+      },
+      {
+        "source_id": "DOC-01",
+        "checked_at": "2026-11-09T08:15:26+00:00",
+        "previous_sha256": "22d08b64bab311bff65327338f2599a4392931f02c00244e7d0e3f48416c6efc",
+        "sha256": "22d08b64bab311bff65327338f2599a4392931f02c00244e7d0e3f48416c6efc",
+        "bytes": 2404437,
+        "resource_url": "https://www.comunidad.madrid/transparencia/sites/default/files/plan_anual_iiff_2026.pdf",
+        "result": "unchanged"
+      }
+    ],
+    "finished_at": "2026-11-09T08:15:26+00:00",
+    "summary": {
+      "unchanged": 11,
+      "changed": 1,
+      "failed": 0
+    }
+  },
+  {
+    "started_at": "2026-11-09T08:15:34+00:00",
+    "apply": true,
+    "results": [
+      {
+        "source_id": "CAM-07",
+        "checked_at": "2026-11-09T08:15:35+00:00",
+        "previous_sha256": "c046c1f3d7abf41283591a88492c5685cee457e771eca528e886bcdcbdbd8d4e",
+        "sha256": "875f468b1edb148b14fbb43acd60b54073d35025195747f074d1f5db4651f7db",
+        "bytes": 45347,
+        "resource_url": "https://datos.comunidad.madrid/dataset/37b743ba-55aa-4096-a98b-2f05ce9d0370/resource/b7b17279-b82c-4ccf-97be-72b80d4a6756/download/distribucion-de-la-superficie-por-usos.csv",
+        "result": "changed",
+        "applied": true
+      }
+    ],
+    "finished_at": "2026-11-09T08:15:35+00:00",
+    "summary": {
+      "unchanged": 0,
+      "changed": 1,
+      "failed": 0
+    }
+  },
+  {
+    "started_at": "2026-11-09T08:17:27+00:00",
+    "apply": false,
+    "results": [
+      {
+        "source_id": "CAM-01",
+        "checked_at": "2026-11-09T08:17:27+00:00",
+        "previous_sha256": "9a8087ab860803241ffe77903c9d306bc37cad4a2ca2d3814454960bc6dbedde",
+        "sha256": "9a8087ab860803241ffe77903c9d306bc37cad4a2ca2d3814454960bc6dbedde",
+        "bytes": 15573665,
+        "resource_url": "https://datos.comunidad.madrid/dataset/0a14fbfe-783e-4de3-81b1-ff3792bfd402/resource/bab16922-8df1-49b5-9791-aed4edf8ced1/download/poblacion-censada-por-edad-nacionalidad-y-sexo.-censo-anual.-municipios.csv",
+        "result": "unchanged"
+      },
+      {
+        "source_id": "CAM-02",
+        "checked_at": "2026-11-09T08:17:28+00:00",
+        "previous_sha256": "89d3248773adfcf27bb0e2aa1757b4d3ccd98246ca7a4acd6d017df5c70ffa7f",
+        "sha256": "89d3248773adfcf27bb0e2aa1757b4d3ccd98246ca7a4acd6d017df5c70ffa7f",
+        "bytes": 464475,
+        "resource_url": "https://datos.comunidad.madrid/dataset/81592bc2-a5c0-423a-88b2-82ced433f290/resource/58ffa899-970e-4559-9e8a-550e21b29b3c/download/densidad-de-poblacion.-municipios.csv",
+        "result": "unchanged"
+      },
+      {
+        "source_id": "CAM-03",
+        "checked_at": "2026-11-09T08:17:28+00:00",
+        "previous_sha256": "4d4ebfb93378ba8607765dc47cf25a1f9339216c50c82ca16fcddaf38a99126c",
+        "sha256": "4d4ebfb93378ba8607765dc47cf25a1f9339216c50c82ca16fcddaf38a99126c",
+        "bytes": 8147,
+        "resource_url": "https://datos.comunidad.madrid/dataset/776a8af2-04da-47ce-a8b8-65ba7de1d382/resource/5a0c8a8b-e503-4931-bbd2-0b3f9d414353/download/altitud.-municipios.csv",
+        "result": "unchanged"
+      },
+      {
+        "source_id": "CAM-04",
+        "checked_at": "2026-11-09T08:17:28+00:00",
+        "previous_sha256": "cd93a0984e97842adf2e7c1268c89f1cff0513a9327674e869151f72d2eee736",
+        "sha256": "cd93a0984e97842adf2e7c1268c89f1cff0513a9327674e869151f72d2eee736",
+        "bytes": 31329,
+        "resource_url": "https://datos.comunidad.madrid/dataset/cd55d34c-64e2-4ad0-911d-d3e7bdf53a91/resource/d32cc438-fff0-4c88-b16f-bd4fef20e6dc/download/espacios_protegidos.csv",
+        "result": "unchanged"
+      },
+      {
+        "source_id": "CAM-05",
+        "checked_at": "2026-11-09T08:17:28+00:00",
+        "previous_sha256": "edd4c15627a8847032a781cf1807e4139532338322cd02dbdaf8a96d53bf246a",
+        "sha256": "edd4c15627a8847032a781cf1807e4139532338322cd02dbdaf8a96d53bf246a",
+        "bytes": 23484,
+        "resource_url": "https://datos.comunidad.madrid/dataset/cde061a9-2777-4161-be9c-1c07ef0e48d3/resource/9b534df7-e7aa-42b3-9157-d874beb8b599/download/incendios-y-superficie-afectada.csv",
+        "result": "unchanged"
+      },
+      {
+        "source_id": "CAM-06",
+        "checked_at": "2026-11-09T08:17:28+00:00",
+        "previous_sha256": "d77d6f73167932a747197010baa430e10e10a1b301e0f4636900a183af39a18f",
+        "sha256": "d77d6f73167932a747197010baa430e10e10a1b301e0f4636900a183af39a18f",
+        "bytes": 1336,
+        "resource_url": "https://datos.comunidad.madrid/dataset/38e29d6f-110f-44cd-acc2-d795cfc28ff5/resource/9e7a91d4-f1b1-4bac-836a-e1fdefc530b1/download/repoblaciones_forestales.csv",
+        "result": "unchanged"
+      },
+      {
+        "source_id": "CAM-07",
+        "checked_at": "2026-11-09T08:17:28+00:00",
+        "previous_sha256": "875f468b1edb148b14fbb43acd60b54073d35025195747f074d1f5db4651f7db",
+        "sha256": "875f468b1edb148b14fbb43acd60b54073d35025195747f074d1f5db4651f7db",
+        "bytes": 45347,
+        "resource_url": "https://datos.comunidad.madrid/dataset/37b743ba-55aa-4096-a98b-2f05ce9d0370/resource/b7b17279-b82c-4ccf-97be-72b80d4a6756/download/distribucion-de-la-superficie-por-usos.csv",
+        "result": "unchanged"
+      },
+      {
+        "source_id": "CAM-08",
+        "checked_at": "2026-11-09T08:17:28+00:00",
+        "previous_sha256": "00198d017d032e83fdf5bcbb3327b1adbba21394264968c0c6508ba4473b09fc",
+        "sha256": "00198d017d032e83fdf5bcbb3327b1adbba21394264968c0c6508ba4473b09fc",
+        "bytes": 9250149,
+        "resource_url": "https://datos.comunidad.madrid/dataset/2c176a23-a6cd-4c18-b5df-b32a3a3a1219/resource/b53b766c-e013-444c-b3b0-0992c4a0dbfc/download/558.zip",
+        "result": "unchanged"
+      },
+      {
+        "source_id": "CAM-09",
+        "checked_at": "2026-11-09T08:17:29+00:00",
+        "previous_sha256": "a6eb1024d621cfdacee4c357f0a1d1391c9bbd393fed19b637666ca528c52f94",
+        "sha256": "a6eb1024d621cfdacee4c357f0a1d1391c9bbd393fed19b637666ca528c52f94",
+        "bytes": 36246,
+        "resource_url": "https://datos.comunidad.madrid/dataset/e5f45e41-0af6-4ed6-8f77-1e1a5ca60d1b/resource/2c236ff4-6056-4a49-aea9-ad57d795e097/download/censo-de-vivienda-y-locales-2021.-viviendas-familiares-convencionales-por-tipo-de-vivienda.-muni.csv",
+        "result": "unchanged"
+      },
+      {
+        "source_id": "CAM-10",
+        "checked_at": "2026-11-09T08:17:29+00:00",
+        "previous_sha256": "cd3e2b2e1549539b3b507007c8a19a0280b5c539c2b3134082efd6931787ec8c",
+        "sha256": "cd3e2b2e1549539b3b507007c8a19a0280b5c539c2b3134082efd6931787ec8c",
+        "bytes": 82155,
+        "resource_url": "https://datos.comunidad.madrid/dataset/438b95d7-f4fc-4160-957c-00627ba21875/resource/17d3584a-e56e-4221-9832-4028e4dbbe2d/download/censo-de-vivienda-y-locales-2021.-porcentaje-de-viviendas-familiares-por-tipo-de-edificio.-munic.csv",
+        "result": "unchanged"
+      },
+      {
+        "source_id": "CAM-11",
+        "checked_at": "2026-11-09T08:17:29+00:00",
+        "previous_sha256": "eb9fc5afa9c40040995eb689b1a0f07e9ef7228e1b7341c2d3f622e5c5864986",
+        "sha256": "eb9fc5afa9c40040995eb689b1a0f07e9ef7228e1b7341c2d3f622e5c5864986",
+        "bytes": 245488,
+        "resource_url": "https://datos.comunidad.madrid/dataset/70f8104c-efae-4fd4-b611-c19b7373aebc/resource/eed1a980-f1b7-4d7b-9ce2-df4ae00c5f12/download/censo-de-vivienda-y-locales-2021.-viviendas-por-intensidad-de-uso-consumo-electrico.-municipios.csv",
+        "result": "unchanged"
+      },
+      {
+        "source_id": "DOC-01",
+        "checked_at": "2026-11-09T08:17:29+00:00",
+        "previous_sha256": "22d08b64bab311bff65327338f2599a4392931f02c00244e7d0e3f48416c6efc",
+        "sha256": "22d08b64bab311bff65327338f2599a4392931f02c00244e7d0e3f48416c6efc",
+        "bytes": 2404437,
+        "resource_url": "https://www.comunidad.madrid/transparencia/sites/default/files/plan_anual_iiff_2026.pdf",
+        "result": "unchanged"
+      }
+    ],
+    "finished_at": "2026-11-09T08:17:29+00:00",
+    "summary": {
+      "unchanged": 12,
+      "changed": 0,
+      "failed": 0
+    }
+  }
+]

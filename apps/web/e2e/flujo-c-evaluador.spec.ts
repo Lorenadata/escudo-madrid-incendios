@@ -74,6 +74,8 @@ test("fuentes: procedencia con licencia y SHA-256, export CSV", async ({ page })
   const res = await page.request.get((await csv.getAttribute("href"))!);
   expect(res.status()).toBe(200);
   expect((await res.text()).split("\n").filter(Boolean).length).toBe(180); // cabecera + 179 municipios
+  await expect(page.getByRole("heading", { name: "Actualización verificable" })).toBeVisible();
+  await expect(page.getByText("Última comprobación contra el origen", { exact: false })).toBeVisible();
 });
 
 test("comparador: dos municipios a la misma escala", async ({ page }) => {

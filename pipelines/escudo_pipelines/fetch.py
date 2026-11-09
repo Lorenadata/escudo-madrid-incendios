@@ -21,7 +21,7 @@ from .sources import ALL_SOURCES, CKAN_BASE, SourceSpec
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 RAW_DIR = REPO_ROOT / "data" / "raw"
-USER_AGENT = "escudo-madrid-etl/0.1 (+https://github.com/; DATAMAD 2026)"
+USER_AGENT = "escudo-madrid-etl/0.1 (+https://github.com/Lorenadata/escudo-madrid-incendios; DATAMAD 2026)"
 
 
 def sha256_file(path: Path) -> str:

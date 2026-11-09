@@ -31,8 +31,8 @@
       "resource_url": "https://datos.comunidad.madrid/dataset/38e29d6f-110f-44cd-acc2-d795cfc28ff5/resource/9e7a91d4-f1b1-4bac-836a-e1fdefc530b1/download/repoblaciones_forestales.csv"
     },
     "CAM-07": {
-      "sha256": "c046c1f3d7abf41283591a88492c5685cee457e771eca528e886bcdcbdbd8d4e",
-      "extracted_at": "2026-11-06T18:53:26+00:00",
+      "sha256": "875f468b1edb148b14fbb43acd60b54073d35025195747f074d1f5db4651f7db",
+      "extracted_at": "2026-11-09T08:15:35+00:00",
       "resource_url": "https://datos.comunidad.madrid/dataset/37b743ba-55aa-4096-a98b-2f05ce9d0370/resource/b7b17279-b82c-4ccf-97be-72b80d4a6756/download/distribucion-de-la-superficie-por-usos.csv"
     },
     "CAM-08": {

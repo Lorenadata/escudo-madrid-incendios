@@ -55,6 +55,22 @@ export interface Source {
   sha256: string | null;
   status: "ok" | "failed" | "not_ingested" | string;
   quality_checks?: QualityCheck[];
+  last_checked_at?: string | null;
+  last_check_result?: "unchanged" | "changed" | "changed_pending" | "failed" | string | null;
+  versions_count?: number;
+}
+
+export interface RefreshLog {
+  status: string;
+  runs: number;
+  method: string;
+  last_run: {
+    started_at: string;
+    finished_at?: string;
+    apply: boolean;
+    summary?: { unchanged: number; changed: number; failed: number };
+    results: Array<{ source_id: string; result: string; checked_at: string; sha256?: string; error?: string }>;
+  } | null;
 }
 
 export interface MunicipalitySummary {

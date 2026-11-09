@@ -20,6 +20,8 @@ Todas resueltas vía API CKAN `https://datos.comunidad.madrid/api/3/action/packa
 | CAM-10 | Censo 2021. Porcentaje de viviendas familiares por tipo de edificio. Municipios (`censo_2021_porcentaje_viviendas_familiares_por_tipo_edificio`) | CSV | `cd3e2b2e1549539b` | 2026-11-05 | 179 municipios; 151 con «Residencial con una vivienda» publicado (resto «-» por secreto estadístico) | % de viviendas en edificio unifamiliar (ficha, análisis, export) | Ingerido y usado (08/11) |
 | CAM-11 | Censo 2021. Viviendas por intensidad de uso según consumo eléctrico. Municipios (`censo_2021_viviendas_por_consumo_electrico`) | CSV | `eb9fc5afa9c40040` | 2026-11-05 | 180 códigos (179 municipios + `28999` sin municipio, descartado); 135 con dato; **provisional** | Viviendas vacías y de uso esporádico / total CAM-09 (ficha, export) | Ingerido y usado (08/11) |
 
+**Actualización verificable (09/11/2026, `escudo_pipelines.refresh`):** 12 fuentes comprobadas contra el origen. CAM-07 presentaba un SHA-256 nuevo (`c046c1f3…` → `875f468b…`, portal modificado el 08/11): el comando detectó que contiene **las mismas 760 filas en otro orden**; se incorporó (historial en el manifest) y los valores procesados no cambian. El resto, sin cambios.
+
 **Hallazgos de calidad (registrados en `data/processed/cam/quality.json` y tabla `data_quality_checks`):**
 - Códigos territoriales CAM de 4 dígitos = 3 de municipio + dígito de control → INE `28` + 3 primeros (test `test_cam_code_to_ine`).
 - 1 sección censal inválida corregida con `make_valid`.
