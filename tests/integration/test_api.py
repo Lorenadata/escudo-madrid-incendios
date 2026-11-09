@@ -346,3 +346,16 @@ def test_satellite_burnt_areas_profile_and_layer(client):
     assert layers["burnt_areas"]["overlay"] and layers["burnt_areas"]["available"]
     g = client.get("/v1/layers/burnt_areas/geojson").json()
     assert g["source_id"] == "EFF-01" and len(g["features"]) == layers["burnt_areas"]["features"]
+
+
+def test_validation_accounts_see_both_cases_with_draft_scenarios(client):
+    """3.1: la organización de validación tiene los casos A y B con inspección y escenario EN BORRADOR (sin resolver)."""
+    h = _auth(client, "validacion1@demo.escudo.local")
+    names = sorted(a["name"] for a in client.get("/v1/areas", headers=h).json())
+    assert len(names) == 2 and names[0].startswith("Caso A") and names[1].startswith("Caso B")
+    scen = client.get("/v1/scenarios", headers=h).json()
+    assert len(scen) == 2 and all(s["budget_eur"] == 30000 and s["is_demo_budget"] for s in scen)
+    assert all(not s.get("latest_result") for s in scen)
+    # aislamiento: el gestor de la demo no ve los casos de validación
+    demo = _auth(client, "gestor@demo.escudo.local")
+    assert not any(a["name"].startswith("Caso ") for a in client.get("/v1/areas", headers=demo).json())

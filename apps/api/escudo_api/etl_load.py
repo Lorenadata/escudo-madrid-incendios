@@ -414,6 +414,9 @@ def seed_demo(session: Session) -> dict:
                       options=[ScenarioOption(position=k, cost_status="scenario", **o) for k, o in enumerate(s["options"])])
         session.add(sc)
         session.flush()
+        if s.get("solve", True) is False:  # escenario en borrador (sesiones de validación): lo resuelve el participante
+            summary[s["name"]] = {"status": "draft"}
+            continue
         res = solve_scenario(session, sc)
         session.flush()
         session.refresh(sc)

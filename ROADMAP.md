@@ -74,8 +74,8 @@ Sin estas, el proyecto pierde puntos que ningún agente puede recuperar.
 
 | # | Tarea | Dueño | Criterio | Aceptación |
 |---|---|---|---|---|
-| 3.1 | Protocolo del **experimento de utilidad** (PRD §5.5): misma tarea con y sin ESCUDO; medir tiempo, omisiones, cobertura de prioridades, calidad documental; consentimiento | A8 | I25 | `docs/validation-report.md` con protocolo antes de las sesiones |
-| 3.2 | Guion de entrevista (técnico y gestor) y registro de respuestas: útil / inviable / redundante / requiere revisión | A8 | I25, D20 | plantilla + respuestas reales anonimizadas |
+| 3.1 | ✅ (09/11: `docs/validation/protocolo-experimento.md`, diseño intra-sujeto contrabalanceado con casos A/B ficticios equivalentes, materiales y clave generados por script) Protocolo del **experimento de utilidad** (PRD §5.5): misma tarea con y sin ESCUDO; medir tiempo, omisiones, cobertura de prioridades, calidad documental; consentimiento | A8 | I25 | `docs/validation-report.md` con protocolo antes de las sesiones |
+| 3.2 | ✅ plantillas (09/11: guion, consentimiento, registro CSV); faltan respuestas reales (👤 H6) — Guion de entrevista (técnico y gestor) y registro de respuestas: útil / inviable / redundante / requiere revisión | A8 | I25, D20 | plantilla + respuestas reales anonimizadas |
 | 3.3 | Ejecutar sesiones (👤 H6) y, si no se logra, **ensayo interno** declarado como tal con tamaño de muestra | A8+👤 | I25 | resultados con n y límites; nunca extrapolar |
 | 3.4 | Panel de impacto «antes / después» del flujo (M12) con las métricas medidas en 3.3 | A7 | I25 | solo cifras medidas |
 | 3.5 | Modelo de implantación y costes reales: coste mensual medido del despliegue, horas de mantenimiento, quién lo opera (ayuntamiento, mancomunidad, CAM) | A0+A10 | V15, I25 | tabla con costes medidos, no estimados a ojo |
