@@ -115,7 +115,13 @@ def calendar(from_: date | None = Query(None, alias="from"), to: date | None = N
 
 
 def _ics_escape(s: str) -> str:
-    return s.replace("\\", "\\\\").replace(";", "\\;").replace(",", "\\,").replace("\n", "\\n")
+    """Escapado RFC 5545 de TEXT. Cualquier salto de línea (CRLF, CR o LF) se convierte en la secuencia
+    literal barra-n y el resto de caracteres de control se eliminan: un texto aportado por usuarios (responsable,
+    nombre del ámbito) no puede inyectar propiedades en el .ics."""
+    s = s.replace("\r\n", "\n").replace("\r", "\n")
+    s = "".join(ch for ch in s if ch == "\n" or (ord(ch) >= 0x20 and ord(ch) != 0x7F))
+    return (s.replace("\\", "\\\\").replace(";", "\\;").replace(",", "\\,")
+            .replace("\n", "\\n"))
 
 
 def _fold(line: str) -> str:
