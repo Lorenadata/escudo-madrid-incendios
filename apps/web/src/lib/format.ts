@@ -32,7 +32,7 @@ export function fmtIndicatorValue(value: number | string | null, unit?: string |
 export function unitLabel(unit?: string | null): string {
   if (!unit) return "";
   const u = unit.toLowerCase();
-  if (["share", "proporción", "proporcion", "ratio", "0-1", "%", "eur", "€"].includes(u)) return "";
+  if (["share", "proporción", "proporcion", "ratio", "0-1", "%", "eur", "€", "sí/no"].includes(u)) return "";
   return unit;
 }
 

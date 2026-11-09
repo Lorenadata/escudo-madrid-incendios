@@ -65,7 +65,7 @@ export function ReforestationPanel() {
               </rect>
               <rect x={L + 2 + i * bw} y={H - B - hgt} width={Math.max(1, bw - 2)} height={hgt} fill="#2F5D46" pointerEvents="none" />
               {(i === 0 || i === rows.length - 1 || r.year % 5 === 0) && (
-                <text x={L + 2 + i * bw + bw / 2} y={H - 6} textAnchor="middle" fontSize="10" fill="#56615B">{r.year}</text>
+                <text x={i === rows.length - 1 ? L + 2 + (i + 1) * bw : i === 0 ? L + 2 : L + 2 + i * bw + bw / 2} y={H - 6} textAnchor={i === rows.length - 1 ? "end" : i === 0 ? "start" : "middle"} fontSize="10" fill="#56615B">{r.year}</text>
               )}
             </g>
           );

@@ -117,8 +117,8 @@ export default function AnalysisPage() {
             {SORTS.map((s) => <option key={s.value} value={s.value}>{s.label}</option>)}
           </select>
         </div>
-        <div className="flex items-end">
-          <label className="flex items-center gap-2 text-sm text-ink-700">
+        <div className="sm:col-span-2 lg:col-span-6">
+          <label className="inline-flex items-center gap-2 text-sm text-ink-700">
             <input type="checkbox" checked={zarOnly} onChange={(e) => setZarOnly(e.target.checked)} />
             Solo municipios declarados Zona de Alto Riesgo
           </label>
