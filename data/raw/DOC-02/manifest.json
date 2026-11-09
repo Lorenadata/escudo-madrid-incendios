@@ -1,0 +1,19 @@
+{
+  "source_id": "DOC-02",
+  "ckan_id": null,
+  "title": "Decreto 59/2017, de 6 de junio, Plan Especial de Protección Civil de Emergencia por Incendios Forestales en la Comunidad de Madrid (INFOMA)",
+  "catalog_url": "https://www.bocm.es/boletin/CM_Orden_BOCM/2017/06/09/BOCM-20170609-1.PDF",
+  "resource_url": "https://www.bocm.es/boletin/CM_Orden_BOCM/2017/06/09/BOCM-20170609-1.PDF",
+  "format": "PDF",
+  "file": "BOCM-20170609-1.PDF",
+  "bytes": 1873573,
+  "sha256": "d9524a0988e1ef24e1f0f070af02d4fec49d5d18c57bbed787ce7275e909271c",
+  "license_id": "boletin-oficial",
+  "license_title": "Norma publicada en boletín oficial (cita obligatoria)",
+  "resource_last_modified": "Sun, 03 Sep 2017 17:58:22 GMT",
+  "extracted_at": "2026-11-09T08:51:27+00:00",
+  "pages_used": {
+    "anexo_5": "BOCM págs. 71–74 (PDF 62–65)",
+    "anexo_6": "BOCM págs. 74–76 (PDF 65–67)"
+  }
+}

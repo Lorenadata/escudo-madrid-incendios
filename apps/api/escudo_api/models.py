@@ -396,6 +396,25 @@ class PlanAction(Base, TimestampMixin):
     history: Mapped[list] = mapped_column(JSONType, default=list)
 
 
+class DossierItem(Base):
+    """M15: estado declarado por la organización de cada punto del expediente de autoprotección (INFOMA, DOC-02).
+
+    Nunca representa aprobación ni cumplimiento verificado: solo lo que la organización declara tener.
+    """
+
+    __tablename__ = "dossier_items"
+    id: Mapped[str] = mapped_column(String(36), primary_key=True, default=_uuid)
+    organization_id: Mapped[str] = mapped_column(ForeignKey("organizations.id"), index=True)
+    area_id: Mapped[str] = mapped_column(ForeignKey("areas_of_interest.id"), index=True)
+    item_code: Mapped[str] = mapped_column(String(32))
+    status: Mapped[str] = mapped_column(String(16), default="pending")  # pending|in_progress|available|not_applicable
+    note: Mapped[str] = mapped_column(Text, default="")
+    updated_by: Mapped[str | None] = mapped_column(ForeignKey("users.id"))
+    updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=_now)
+    history: Mapped[list] = mapped_column(JSONType, default=list)
+    __table_args__ = (UniqueConstraint("area_id", "item_code", name="uq_dossier_area_item"),)
+
+
 class AuditEvent(Base):
     __tablename__ = "audit_events"
     id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)

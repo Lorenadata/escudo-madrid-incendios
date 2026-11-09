@@ -104,6 +104,11 @@ test("área privada: login demo y aislamiento visible del ámbito ficticio", asy
   // el ámbito de la organización B no aparece
   await expect(page.getByText("organización B", { exact: false })).toHaveCount(0);
   await assertSafeLanguage(page);
+  // M15: expediente de autoprotección con cita literal del INFOMA; nunca aprueba
+  await page.getByRole("tab", { name: "Expediente" }).click();
+  await expect(page.getByRole("heading", { name: "Expediente de autoprotección" })).toBeVisible();
+  await expect(page.getByText("no redacta, no aprueba, no registra y no certifica", { exact: false })).toBeVisible();
+  await expect(page.getByText("Anexo 6, ap. 1.2.1.b · BOCM pág. 75", { exact: false })).toBeVisible();
   // M16: calendario preventivo con épocas de peligro oficiales y exportación iCal
   await expect(page.getByRole("heading", { name: "Calendario preventivo" })).toBeVisible();
   await expect(page.getByText("Época de peligro", { exact: false }).first()).toBeVisible();

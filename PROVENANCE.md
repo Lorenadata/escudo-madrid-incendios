@@ -24,6 +24,7 @@ Bases DATAMAD §1.2.5–1.2.6 (PRD): el uso de IA generativa está permitido; el
 | AEMET predicción municipal | Nota legal AEMET (cita obligatoria) | Contexto meteorológico |
 | FastAPI, SQLAlchemy, GeoAlchemy2, Shapely, pyproj, pyshp, rasterio, OR-Tools, ReportLab, Next.js, MapLibre GL JS | Licencias abiertas (MIT/BSD/Apache-2.0/LGPL según paquete) | Dependencias |
 | Plan Anual de Prevención, Vigilancia y Extinción de Incendios Forestales 2026 (DOC-01) | Documento público oficial de la Comunidad de Madrid (cita obligatoria) | ZAR y siniestros municipales 2015–2024, extracción literal con página |
+| Decreto 59/2017 INFOMA (DOC-02) | Norma publicada en el BOCM (cita obligatoria) | Lista de comprobación del expediente de autoprotección, citas literales cortas con apartado y página |
 | EFFIS — MODIS Burnt Areas (EFF-01) | CC BY 4.0, © Unión Europea | Perímetros de áreas quemadas por satélite |
 | Texto `LICENSE` EUPL-1.2 | Obtenido de `api.github.com/licenses/eupl-1.2` | Licencia del proyecto (confirmada por Lorena Marcos el 07/11/2026) |
 

@@ -80,6 +80,12 @@ def _resolver(sid: str) -> Callable[[httpx.Client], dict]:
 
         return lambda client: {"url": URL, "file": PDF_NAME, "portal_metadata_modified": None,
                                "resource_last_modified": None}
+    if sid == "DOC-02":
+        from .infoma import PDF_NAME as INFOMA_PDF
+        from .infoma import URL as INFOMA_URL
+
+        return lambda client: {"url": INFOMA_URL, "file": INFOMA_PDF, "portal_metadata_modified": None,
+                               "resource_last_modified": None}
     if sid == "EFF-01":
         from .effis import URL as EFFIS_URL
         from .effis import ZIP_NAME
@@ -149,7 +155,7 @@ def append_log(run: dict) -> None:
 
 
 def default_ids(include_idem: bool, include_effis: bool = False) -> list[str]:
-    ids = list(ALL_SOURCES) + ["DOC-01"]
+    ids = list(ALL_SOURCES) + ["DOC-01", "DOC-02"]
     if include_idem:
         ids += ["GEO-01", "GEO-02", "GEO-03"]
     if include_effis:

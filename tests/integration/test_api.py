@@ -380,3 +380,28 @@ def test_calendar_m16_actions_reviews_and_official_danger_periods(client, auth_a
     assert all(len(line.encode("utf-8")) <= 75 for line in ics.text.split("\r\n"))
     assert client.get("/v1/calendar").status_code == 401
     assert client.get("/v1/calendar", params={"from": "2026-01-01", "to": "2020-01-01"}, headers=auth_a).status_code == 422
+
+
+def test_dossier_m15_checklist_isolation_roles_and_plan_links(client, auth_a, auth_b):
+    """M15: expediente INFOMA por ámbito; solo la organización lo ve y edita; enlaza con el plan; nunca aprueba."""
+    area = next(a for a in client.get("/v1/areas", headers=auth_a).json() if "Los Pinos" in a["name"])
+    d = client.get(f"/v1/areas/{area['id']}/dossier", headers=auth_a).json()
+    assert d["source_id"] == "DOC-02" and len(d["items"]) == 15 and "no aprueba" in d["notice"]
+    faja = next(i for i in d["items"] if i["code"] == "A6-1.2-FAJA")
+    assert faja["status"] == "pending" and faja["data_status"] == "unavailable" and "BOCM pág. 75" in faja["citation"]
+    assert any(x["measure_code"] == "FAJA-30" and x["in_plan"] for x in faja["linked_actions"])  # plan del caso guiado
+    # otra organización: ni lectura ni escritura (404, sin revelar existencia)
+    assert client.get(f"/v1/areas/{area['id']}/dossier", headers=auth_b).status_code == 404
+    assert client.patch(f"/v1/areas/{area['id']}/dossier/A5-2.1", headers=auth_b,
+                        json={"status": "available"}).status_code == 404
+    r = client.patch(f"/v1/areas/{area['id']}/dossier/A5-2.1", headers=auth_a,
+                     json={"status": "in_progress", "note": "Borrador del técnico (ficticio)"})
+    assert r.status_code == 200 and r.json()["status"] == "in_progress" and r.json()["data_status"] == "user_reported"
+    assert client.patch(f"/v1/areas/{area['id']}/dossier/NO-EXISTE", headers=auth_a,
+                        json={"status": "available"}).status_code == 404
+    assert client.patch(f"/v1/areas/{area['id']}/dossier/A5-2.1", headers=auth_a,
+                        json={"status": "aprobado"}).status_code == 422
+    ev = client.get("/v1/audit", headers=auth_a).json()
+    assert any(e["action"] == "dossier_update" for e in ev)
+    # restaurar
+    client.patch(f"/v1/areas/{area['id']}/dossier/A5-2.1", headers=auth_a, json={"status": "pending"})

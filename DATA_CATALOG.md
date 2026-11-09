@@ -55,6 +55,12 @@ Todas resueltas vía API CKAN `https://datos.comunidad.madrid/api/3/action/packa
 - Control: área geodésica calculada vs `AREA_HA` publicada, desviación mediana 0,1 % (perímetros ≥30 ha).
 - Avisos del productor siempre visibles: MODIS 250 m; ≈30 ha o más; no distingue incendios de quemas agrícolas o prescritas; fechas aproximadas; posibles fusiones de perímetros. **No es la estadística oficial de incendios** (esa es DOC-01/EGIF) y ausencia de perímetro no significa ausencia de incendios.
 
+## 1 quater. Normativa de referencia
+
+| ID | Documento | SHA-256 (16) | Páginas usadas | Uso en producto |
+|---|---|---|---|---|
+| DOC-02 | Decreto 59/2017, de 6 de junio (INFOMA), BOCM núm. 136, 09/06/2017 ([PDF oficial](https://www.bocm.es/boletin/CM_Orden_BOCM/2017/06/09/BOCM-20170609-1.PDF)) | `d9524a0988e1ef24` (idéntico al citado en el catálogo de medidas) | Anexo 5 (págs. 71–74) y Anexo 6 (págs. 74–76) | Expediente de autoprotección (M15): 15 puntos con cita literal **verificada automáticamente** contra el texto del BOCM (`pipelines/tests/test_infoma_dossier.py`). Texto original publicado; existe corrección de errores (BOCM 25/08/2017) |
+
 ## 2. Cartografía oficial IDEM (complementaria)
 
 | ID | Recurso | Formato real | SHA-256 (16) | Fecha metadatos | Licencia (verificada en ISO 19139) | Uso |

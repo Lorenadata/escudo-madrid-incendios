@@ -13,6 +13,7 @@ import type { AreaDetail, Area, Measure, MunicipalitySummary, User } from "@/lib
 import { useApi } from "@/lib/useApi";
 import { AreaForm } from "./AreaForm";
 import { CalendarPanel } from "./CalendarPanel";
+import { DossierPanel } from "./DossierPanel";
 import { AuditPanel, ImpactPanel } from "./ImpactPanel";
 import { InspectionsPanel } from "./InspectionsPanel";
 import { MunicipalPanel } from "./MunicipalPanel";
@@ -22,6 +23,7 @@ const TABS = [
   { id: "contexto", label: "Contexto" },
   { id: "inspecciones", label: "Inspecciones" },
   { id: "escenarios", label: "Escenarios y plan" },
+  { id: "expediente", label: "Expediente" },
 ] as const;
 
 type AreaLayersData = Record<string, { status: string; resolution?: string; caveat?: string; classes: { class_label: string; area_share: number | null }[] }>;
@@ -65,6 +67,7 @@ export default function WorkspacePage() {
   const me = useApi<User>(hasToken ? "/v1/me" : null);
   const isMunicipal = !!me.data?.memberships.some((m) => m.role === "municipal");
   const isManager = !!me.data?.memberships.some((m) => m.role === "gestor" || m.role === "admin");
+  const canEditDossier = !!me.data?.memberships.some((m) => ["gestor", "admin", "tecnico"].includes(m.role));
   const orgReady = hasToken && !!me.data && !isMunicipal;
   const areas = useApi<Area[]>(orgReady ? "/v1/areas" : null);
   const measures = useApi<Measure[]>(orgReady ? "/v1/measures" : null);
@@ -232,6 +235,7 @@ export default function WorkspacePage() {
                 )}
                 {tab === "inspecciones" && <InspectionsPanel areaId={String(area.data.id)} />}
                 {tab === "escenarios" && <ScenariosPanel areaId={String(area.data.id)} measures={measures.data ?? []} />}
+                {tab === "expediente" && <DossierPanel areaId={String(area.data.id)} canEdit={canEditDossier} />}
               </div>
             </>
           )}

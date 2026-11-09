@@ -80,8 +80,9 @@ def all_source_specs() -> list:
 
     specs.append(PLAN_SPEC)
     from escudo_pipelines.effis import SPEC as EFFIS_SPEC
+    from escudo_pipelines.infoma import SPEC as INFOMA_SPEC
 
-    specs.append(EFFIS_SPEC)
+    specs += [EFFIS_SPEC, INFOMA_SPEC]
     try:
         from escudo_pipelines.idem.sources import IDEM_SOURCES
 
@@ -345,6 +346,7 @@ def seed_demo(session: Session) -> dict:
         ActionPlan,
         AreaOfInterest,
         AuditEvent,
+        DossierItem,
         EvidenceFile,
         Inspection,
         InspectionItem,
@@ -372,6 +374,7 @@ def seed_demo(session: Session) -> dict:
         session.execute(delete(Scenario).where(Scenario.id.in_(scen_ids)))
         session.execute(delete(InspectionItem).where(InspectionItem.inspection_id.in_(insp_ids)))
         session.execute(delete(Inspection).where(Inspection.id.in_(insp_ids)))
+        session.execute(delete(DossierItem).where(DossierItem.organization_id.in_(synth_orgs)))
         session.execute(delete(AreaOfInterest).where(AreaOfInterest.organization_id.in_(synth_orgs)))
         session.execute(delete(AuditEvent).where(AuditEvent.organization_id.in_(synth_orgs)))
         session.execute(delete(Membership).where(Membership.organization_id.in_(synth_orgs)))
