@@ -136,6 +136,45 @@ def housing_for(session: Session, ine_code: str) -> dict[str, Any]:
                        "urbanización. Contexto de exposición residencial; no es un índice de riesgo.")}
 
 
+FIRE_CAUSE_LABELS = {
+    "rayo": "Rayo",
+    "negligencia_accidente": "Negligencias y causas accidentales",
+    "intencionado": "Intencionado",
+    "desconocida": "Causa desconocida",
+    "reproducido": "Incendio reproducido",
+}
+PLAN_URL = "https://www.comunidad.madrid/transparencia/sites/default/files/plan_anual_iiff_2026.pdf"
+
+
+def fire_plan_for(session: Session, ine_code: str) -> dict[str, Any]:
+    """DOC-01: declaración ZAR (Anexo II, pág. 59) y siniestros 2015–2024 por causa (Anexo I, págs. 54–58)."""
+    from .models import MunicipalSeries
+
+    ids = ["municipality_zar_declared", "municipality_fires_total_2015_2024"] + [
+        f"municipality_fires_{c}_2015_2024" for c in FIRE_CAUSE_LABELS]
+    rows = {r.indicator_id: r.value for r in session.scalars(
+        select(MunicipalSeries).where(MunicipalSeries.ine_code == ine_code, MunicipalSeries.indicator_id.in_(ids)))}
+    zar_v = rows.get("municipality_zar_declared")
+    zar = indicator("municipality_zar_declared", None if zar_v is None else ("Sí" if zar_v == 1 else "No"), 2026)
+    total_v = rows.get("municipality_fires_total_2015_2024")
+    total = indicator("municipality_fires_total_2015_2024", None if total_v is None else int(total_v), "2015–2024")
+    causes = []
+    for key, label in FIRE_CAUSE_LABELS.items():
+        v = rows.get(f"municipality_fires_{key}_2015_2024")
+        causes.append(indicator("municipality_fires_cause_2015_2024", None if v is None else int(v), "2015–2024",
+                                label=label))
+    cause_values = [c["value"] for c in causes]
+    matches = (None if total["value"] is None or None in cause_values else sum(cause_values) == total["value"])
+    return {
+        "source_id": "DOC-01", "document_url": PLAN_URL,
+        "pages": {"zar": 59, "fires": "54–58"},
+        "zar": zar, "fires_total": total, "fires_by_cause": causes,
+        "total_matches_causes": matches,
+        "note": ("Valores literales del documento oficial. La suma de causas no coincide con el total en este "
+                 "municipio; el documento no lo explica y no se corrige.") if matches is False else None,
+    }
+
+
 def municipality_profile(session: Session, m: Municipality, *, with_weather: bool = True) -> dict[str, Any]:
     prof = municipality_summary(m)
     prof["area_km2"] = indicator("municipality_area_km2", m.area_km2, None)
@@ -152,9 +191,10 @@ def municipality_profile(session: Session, m: Municipality, *, with_weather: boo
         "caveat": "No existe desagregación municipal verificada en el Portal CAM; no se estima.",
     }
     prof["housing"] = housing_for(session, m.ine_code)
+    prof["fire_plan"] = fire_plan_for(session, m.ine_code)
     prof["official_fire"] = official_layers_for(session, m.ine_code)
     prof["weather"] = weather_context(session, m.ine_code) if with_weather else None
-    prof["sources"] = ["CAM-01", "CAM-02", "CAM-03", "CAM-08", "CAM-09", "CAM-10", "CAM-11", "GEO-01", "GEO-02", "GEO-03", "AEMET"]
+    prof["sources"] = ["CAM-01", "CAM-02", "CAM-03", "CAM-08", "CAM-09", "CAM-10", "CAM-11", "DOC-01", "GEO-01", "GEO-02", "GEO-03", "AEMET"]
     prof["scale_notice"] = SCALE_NOTICE
     return prof
 

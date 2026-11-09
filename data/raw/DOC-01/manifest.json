@@ -1,0 +1,26 @@
+{
+  "source_id": "DOC-01",
+  "ckan_id": null,
+  "title": "Plan Anual de Prevención, Vigilancia y Extinción de Incendios Forestales de la Comunidad de Madrid 2026",
+  "catalog_url": "https://www.comunidad.madrid/transparencia/sites/default/files/plan_anual_iiff_2026.pdf",
+  "resource_url": "https://www.comunidad.madrid/transparencia/sites/default/files/plan_anual_iiff_2026.pdf",
+  "format": "PDF",
+  "file": "plan_anual_iiff_2026.pdf",
+  "bytes": 2404437,
+  "sha256": "22d08b64bab311bff65327338f2599a4392931f02c00244e7d0e3f48416c6efc",
+  "license_id": "documento-publico-oficial",
+  "license_title": "Documento oficial público CAM (cita obligatoria)",
+  "resource_last_modified": "Fri, 13 Feb 2026 14:31:09 GMT",
+  "extracted_at": "2026-11-09T07:59:50+00:00",
+  "pages_used": {
+    "zar_annex_II": 59,
+    "zar_count_text": 16,
+    "fires_annex_I": [
+      54,
+      55,
+      56,
+      57,
+      58
+    ]
+  }
+}

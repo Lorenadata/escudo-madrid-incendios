@@ -1,6 +1,6 @@
 "use client";
 
-import type { HousingContext, MunicipalityProfile, OfficialLayerSummary, WeatherContext } from "@/lib/api-types";
+import type { FirePlanContext, HousingContext, MunicipalityProfile, OfficialLayerSummary, WeatherContext } from "@/lib/api-types";
 import { fmtDate, fmtShare } from "@/lib/format";
 import { IndicatorValue } from "./IndicatorValue";
 import { SeriesPanel } from "./SeriesPanel";
@@ -157,6 +157,42 @@ export function HousingPanel({ housing }: { housing: HousingContext | null | und
   );
 }
 
+export function FirePlanPanel({ plan }: { plan: FirePlanContext | null | undefined }) {
+  return (
+    <section aria-labelledby="plan-h" className="border-t border-line pt-4">
+      <h3 id="plan-h" className="font-cond text-base font-semibold text-ink">Plan Anual de incendios forestales 2026</h3>
+      {!plan ? (
+        <p className="py-2 text-sm text-ink-500">Datos del plan anual no disponibles.</p>
+      ) : (
+        <>
+          <p className="text-xs leading-relaxed text-ink-500">
+            Documento oficial de la Comunidad de Madrid ({plan.source_id}): Anexo II, pág. {plan.pages.zar} (Zonas de Alto
+            Riesgo) y Anexo I, págs. {plan.pages.fires} (siniestros por municipio de origen, fuente EGIF). Valores literales.
+          </p>
+          <div className="divide-y divide-line/70">
+            <IndicatorValue indicator={plan.zar} />
+            <IndicatorValue indicator={plan.fires_total} />
+          </div>
+          <details className="text-sm">
+            <summary className="cursor-pointer text-slate">Siniestros por causa, 2015–2024</summary>
+            <div className="divide-y divide-line/70">
+              {plan.fires_by_cause.map((c) => (
+                <IndicatorValue key={c.label} indicator={c} compact />
+              ))}
+            </div>
+          </details>
+          {plan.note && <p className="rounded border-l-4 border-ochre bg-ochre-50 p-2 text-xs text-ink-700">{plan.note}</p>}
+          <p className="text-xs text-ink-500">
+            <a className="text-slate underline underline-offset-2" href={plan.document_url} target="_blank" rel="noopener noreferrer">
+              Abrir el documento oficial (PDF)
+            </a>
+          </p>
+        </>
+      )}
+    </section>
+  );
+}
+
 export function MunicipalityProfileView({ profile, showWeather = true }: { profile: MunicipalityProfile; showWeather?: boolean }) {
   return (
     <div className="space-y-4">
@@ -179,6 +215,7 @@ export function MunicipalityProfileView({ profile, showWeather = true }: { profi
         </div>
       </section>
       <SeriesPanel ine={profile.ine_code} />
+      <FirePlanPanel plan={profile.fire_plan} />
       <HousingPanel housing={profile.housing} />
       <p className="text-xs text-ink-500">
         Histórico de incendios y repoblaciones (solo regional, CAM-05/CAM-06):{" "}

@@ -689,12 +689,22 @@
             }
           },
           {
+            "name": "zar_only",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false,
+              "title": "Zar Only"
+            }
+          },
+          {
             "name": "sort",
             "in": "query",
             "required": false,
             "schema": {
               "type": "string",
-              "pattern": "^(high_share|density|age65|population|non_main|single_dwelling)$",
+              "pattern": "^(high_share|density|age65|population|non_main|single_dwelling|fires)$",
               "default": "high_share",
               "title": "Sort"
             }

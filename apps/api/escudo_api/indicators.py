@@ -7,7 +7,53 @@ from typing import Any
 _HOUSING_CAVEAT = ("Escala municipal (Censo 2021). No describe una urbanización concreta ni se reparte entre zonas; "
                    "es contexto de exposición residencial, no un indicador de riesgo.")
 
+_PLAN_CAVEAT = ("Extraído literalmente del Plan Anual de Prevención, Vigilancia y Extinción de Incendios Forestales "
+                "de la Comunidad de Madrid 2026 (PDF oficial, página citada). Escala de término municipal.")
+
 INDICATORS: dict[str, dict[str, str]] = {
+    "municipality_zar_declared": {
+        "label": "Término municipal declarado Zona de Alto Riesgo (ZAR)",
+        "definition": "1 si el municipio figura en el Anexo II del Plan Anual 2026 («Términos municipales declarados "
+                      "Zonas de Alto Riesgo»), 0 si no figura.",
+        "unit": "sí/no",
+        "spatial_scope": "municipio",
+        "source_id": "DOC-01",
+        "update_frequency": "anual (plan anual)",
+        "null_handling": "Sin documento cargado → null (no disponible).",
+        "transformation": "escudo_pipelines.plan_anual: Anexo II, pág. 59; nombre literal emparejado con el código INE "
+                          "(erratas del documento registradas en quality.json).",
+        "caveat": _PLAN_CAVEAT + " La declaración ZAR implica obligaciones de planificación municipal; no es una "
+                                 "medida del riesgo de una urbanización concreta.",
+        "status": "official",
+    },
+    "municipality_fires_total_2015_2024": {
+        "label": "Siniestros forestales con origen en el municipio, 2015–2024",
+        "definition": "Columna «Total» del Anexo I del Plan Anual 2026 (número de siniestros por término municipal "
+                      "de origen, 2015–2024; fuente EGIF).",
+        "unit": "siniestros",
+        "spatial_scope": "municipio",
+        "source_id": "DOC-01",
+        "update_frequency": "anual (plan anual)",
+        "null_handling": "Fila incompleta en el documento → null (no disponible).",
+        "transformation": "escudo_pipelines.plan_anual: Anexo I, págs. 54–58; valor literal; extracción cuadrada con "
+                          "la fila TOTALES del documento.",
+        "caveat": _PLAN_CAVEAT + " En el documento, la suma de causas no siempre coincide con el total (tampoco en la "
+                                 "fila de totales); se muestran ambos sin corregir.",
+        "status": "official",
+    },
+    "municipality_fires_cause_2015_2024": {
+        "label": "Siniestros por causa, 2015–2024",
+        "definition": "Columnas de causa del Anexo I del Plan Anual 2026 (rayo, negligencias y causas accidentales, "
+                      "intencionado, causa desconocida, incendio reproducido).",
+        "unit": "siniestros",
+        "spatial_scope": "municipio",
+        "source_id": "DOC-01",
+        "update_frequency": "anual (plan anual)",
+        "null_handling": "Fila incompleta en el documento → null (no disponible).",
+        "transformation": "escudo_pipelines.plan_anual: Anexo I, págs. 54–58; valores literales.",
+        "caveat": _PLAN_CAVEAT,
+        "status": "official",
+    },
     "municipality_dwellings_total": {
         "label": "Viviendas familiares convencionales",
         "definition": "Total de viviendas familiares convencionales del municipio (Censo 2021).",

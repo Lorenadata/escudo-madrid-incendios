@@ -74,6 +74,9 @@ def all_source_specs() -> list:
     from escudo_pipelines.sources import CAM_SOURCES
 
     specs = list(CAM_SOURCES)
+    from escudo_pipelines.plan_anual import SPEC as PLAN_SPEC
+
+    specs.append(PLAN_SPEC)
     try:
         from escudo_pipelines.idem.sources import IDEM_SOURCES
 
@@ -180,7 +183,33 @@ def load_municipalities(session: Session) -> int:
                                             value=_f(r[col]), source_id=INDICATORS[ind]["source_id"]))
     else:
         log.warning("Sin %s: ejecute escudo_pipelines.cam_transform (indicadores de vivienda no disponibles)", housing)
+    load_plan(session)
     return n
+
+
+PLAN = DATA / "processed" / "plan"
+FIRE_CAUSES = ("rayo", "negligencia_accidente", "intencionado", "desconocida", "reproducido")
+
+
+def load_plan(session: Session) -> None:
+    """DOC-01 (Plan Anual 2026): ZAR (1/0 para los 179 municipios) y siniestros 2015–2024 por causa (literal)."""
+    zar_csv, fires_csv = PLAN / "zar_municipalities.csv", PLAN / "municipal_fires_2015_2024.csv"
+    if not zar_csv.exists() or not fires_csv.exists():
+        log.warning("Sin %s: ejecute escudo_pipelines.plan_anual (ZAR y siniestros municipales no disponibles)", PLAN)
+        return
+    zar = {r["ine_code"] for r in _csv(zar_csv)}
+    codes = [c for (c,) in session.execute(select(Municipality.ine_code))]
+    for c in codes:
+        session.add(MunicipalSeries(ine_code=c, indicator_id="municipality_zar_declared", year=2026,
+                                    value=1.0 if c in zar else 0.0, source_id="DOC-01"))
+    for r in _csv(fires_csv):
+        if r["ine_code"] not in codes:
+            continue
+        session.add(MunicipalSeries(ine_code=r["ine_code"], indicator_id="municipality_fires_total_2015_2024",
+                                    year=2024, value=_f(r["total_published"]), source_id="DOC-01"))
+        for cause in FIRE_CAUSES:
+            session.add(MunicipalSeries(ine_code=r["ine_code"], indicator_id=f"municipality_fires_{cause}_2015_2024",
+                                        year=2024, value=_f(r[cause]), source_id="DOC-01"))
 
 
 # columna de data/processed/cam/municipal_housing.csv → indicador trazable

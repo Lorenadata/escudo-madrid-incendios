@@ -302,3 +302,21 @@ def test_matrix_filters_by_non_main_share_and_export_has_census(client):
     assert all(v >= 0.4 for v in vals) and vals == sorted(vals, reverse=True)
     rows = list(csv.DictReader(client.get("/v1/exports/municipalities.csv").text.splitlines()))
     assert rows[0]["non_main_source"] == "CAM-09" and "non_main_share_2021" in rows[0]
+
+
+def test_fire_plan_zar_and_municipal_fires_are_literal(client):
+    """DOC-01: ZAR (Anexo II, pág. 59) y siniestros 2015–2024 (Anexo I) tal cual el documento oficial."""
+    zar = {r["ine_code"] for r in csv.DictReader((ROOT / "data/processed/plan/zar_municipalities.csv").open(encoding="utf-8"))}
+    fires = {r["ine_code"]: r for r in csv.DictReader(
+        (ROOT / "data/processed/plan/municipal_fires_2015_2024.csv").open(encoding="utf-8"))}
+    p = client.get("/v1/municipalities/28131/profile").json()["fire_plan"]
+    assert p["source_id"] == "DOC-01" and p["pages"]["zar"] == 59
+    assert p["zar"]["value"] == ("Sí" if "28131" in zar else "No") and p["zar"]["status"] == "official"
+    assert p["fires_total"]["value"] == int(fires["28131"]["total_published"])
+    assert len(p["fires_by_cause"]) == 5
+    madrid = client.get("/v1/municipalities/28079/profile").json()["fire_plan"]
+    assert madrid["zar"]["value"] == "No"
+    pozuelo = client.get("/v1/municipalities/28115/profile").json()["fire_plan"]
+    assert pozuelo["fires_total"]["value"] is None and pozuelo["fires_total"]["status"] == "unavailable"
+    m = client.get("/v1/analysis/municipal-matrix", params={"zar_only": True, "min_high_share": 0}).json()
+    assert m["count"] == 59 and all(r["zar_declared"] for r in m["rows"]) and "DOC-01" in m["sources"]

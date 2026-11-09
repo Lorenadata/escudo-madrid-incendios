@@ -1,0 +1,185 @@
+{
+  "inputs": {
+    "DOC-01": {
+      "sha256": "22d08b64bab311bff65327338f2599a4392931f02c00244e7d0e3f48416c6efc",
+      "extracted_at": "2026-11-09T07:59:50+00:00",
+      "resource_url": "https://www.comunidad.madrid/transparencia/sites/default/files/plan_anual_iiff_2026.pdf"
+    }
+  },
+  "name_fixes": [
+    {
+      "literal": "Canencia de la Sierra",
+      "ine_code": "28034",
+      "cam_name": "Canencia"
+    },
+    {
+      "literal": "Colmenar de Arroyo",
+      "ine_code": "28042",
+      "cam_name": "Colmenar del Arroyo"
+    },
+    {
+      "literal": "Horcajo de la Sierra-Aoslos",
+      "ine_code": "28070",
+      "cam_name": "Horcajo de la Sierra-Aoslos"
+    },
+    {
+      "literal": "Lozoya del Valle",
+      "ine_code": "28076",
+      "cam_name": "Lozoya"
+    },
+    {
+      "literal": "San María de la Alameda",
+      "ine_code": "28135",
+      "cam_name": "Santa María de la Alameda"
+    },
+    {
+      "literal": "Torredolones",
+      "ine_code": "28152",
+      "cam_name": "Torrelodones"
+    }
+  ],
+  "fires_total_mismatch": [
+    "Álamo (El)",
+    "Alcalá de Henares",
+    "Aldea del Fresno",
+    "Algete",
+    "Aranjuez",
+    "Arganda del Rey",
+    "Arroyomolinos",
+    "Becerril de la Sierra",
+    "Belmonte de Tajo",
+    "Berzosa del Lozoya",
+    "Boalo (El)",
+    "Brunete",
+    "Bustarviejo",
+    "Cadalso de los Vidrios",
+    "Camarma de Esteruelas",
+    "Carabaña",
+    "Cenicientos",
+    "Chapinería",
+    "Chinchón",
+    "Ciempozuelos",
+    "Cobeña",
+    "Collado Villalba",
+    "Colmenar de Oreja",
+    "Colmenar Viejo",
+    "Colmenarejo",
+    "Corpa",
+    "Escorial (El)",
+    "Fresnedillas de la Oliva",
+    "Fuenlabrada",
+    "Fuente el Saz de Jarama",
+    "Fuentidueña de Tajo",
+    "Galapagar",
+    "Garganta de los Montes",
+    "Gargantilla del Lozoya y Pinilla de Buitrago",
+    "Getafe",
+    "Griñón",
+    "Guadalix de la Sierra",
+    "Horcajo de la Sierra-Aoslos",
+    "Leganés",
+    "Loeches",
+    "Madrid",
+    "Majadahonda",
+    "Meco",
+    "Mejorada del Campo",
+    "Miraflores de la Sierra",
+    "Molar (El)",
+    "Molinos (Los)",
+    "Moraleja de Enmedio",
+    "Morata de Tajuña",
+    "Móstoles",
+    "Navalagamella",
+    "Navalcarnero",
+    "Nuevo Baztán",
+    "Paracuellos de Jarama",
+    "Parla",
+    "Pedrezuela",
+    "Pelayos de la Presa",
+    "Perales de Tajuña",
+    "Pezuela de las Torres",
+    "Puentes Viejas",
+    "Rivas-Vaciamadrid",
+    "Robledo de Chavela",
+    "Rozas de Puerto Real",
+    "San Agustín del Guadalix",
+    "San Fernando de Henares",
+    "San Lorenzo de El Escorial",
+    "San Martín de Valdeiglesias",
+    "San Sebastián de los Reyes",
+    "Santa María de la Alameda",
+    "Santorcaz",
+    "Serna del Monte (La)",
+    "Soto del Real",
+    "Torrejón de Ardoz",
+    "Torrejón de Velasco",
+    "Torres de la Alameda",
+    "Tres Cantos",
+    "Valdaracete",
+    "Valdemaqueda",
+    "Valdemorillo",
+    "Valdemoro",
+    "Valdeolmos-Alalpardo",
+    "Valdilecha",
+    "Velilla de San Antonio",
+    "Vellón (El)",
+    "Venturada",
+    "Villa del Prado",
+    "Villaconejos",
+    "Villalbilla",
+    "Villamanrique de Tajo",
+    "Villamanta",
+    "Villanueva de la Cañada",
+    "Villanueva del Pardillo",
+    "Villarejo de Salvanés",
+    "Villaviciosa de Odón",
+    "Zarzalejo"
+  ],
+  "outside_region_excluded": [
+    "REAL SITIO DE SAN ILDEFONSO",
+    "ALMOROX"
+  ],
+  "checks": [
+    {
+      "check": "zar_titulo_anexo_II",
+      "passed": true,
+      "detail": "pág. 59"
+    },
+    {
+      "check": "zar_texto_declara_59",
+      "passed": true,
+      "detail": "pág. 16: «son un total de 59»"
+    },
+    {
+      "check": "zar_numeracion_1_a_59",
+      "passed": true,
+      "detail": "59 entradas extraídas"
+    },
+    {
+      "check": "zar_emparejados_ine",
+      "passed": true,
+      "detail": "sin emparejar: []; correcciones de nombre registradas: 6"
+    },
+    {
+      "check": "siniestros_extraccion_cuadra_con_TOTALES",
+      "passed": true,
+      "detail": "suma por columna de lo extraído [117, 1159, 1013, 586, 36, 2641] vs fila TOTALES del documento [117, 1160, 1013, 586, 36, 2641]; la diferencia [0, 1, 0, 0, 0, 0] se explica por 1 siniestro(s) en filas incompletas que no se pueden asignar a una causa"
+    },
+    {
+      "check": "siniestros_cobertura",
+      "passed": true,
+      "detail": "179 municipios de la CAM; sin emparejar: []; fuera de la región (excluidos): ['REAL SITIO DE SAN ILDEFONSO', 'ALMOROX']"
+    },
+    {
+      "check": "siniestros_filas_completas",
+      "passed": true,
+      "detail": "177 filas completas; incompletas (no interpretadas): ['Montejo de la Sierra', 'Pozuelo de Alarcón']"
+    },
+    {
+      "check": "siniestros_total_vs_causas_informativo",
+      "passed": true,
+      "detail": "95 filas con total publicado ≠ suma de causas (se muestran marcadas, sin corregir)"
+    }
+  ],
+  "all_passed": true
+}

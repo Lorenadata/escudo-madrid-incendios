@@ -28,6 +28,19 @@ Todas resueltas vía API CKAN `https://datos.comunidad.madrid/api/3/action/packa
 - CAM-11: la suma de sus categorías (sin el subtotal «Uso esporádico») coincide **exactamente** con el total de CAM-09 en todos los municipios con dato (control `cam11_mismo_universo_que_cam09`); por eso las proporciones usan el total de CAM-09 como denominador. Si no coincidiera, la proporción sería `null`.
 - CAM-05 y CAM-07 **no** tienen desagregación municipal: el PRD lo anticipaba; el producto lo indica y marca `forest_share` municipal como `unavailable`.
 
+## 1 bis. Documentos oficiales de la Comunidad de Madrid (complementarios)
+
+| ID | Documento | Formato | SHA-256 (16) | Páginas usadas | Escala | Uso en producto | Estado |
+|---|---|---|---|---|---|---|---|
+| DOC-01 | Plan Anual de Prevención, Vigilancia y Extinción de Incendios Forestales de la Comunidad de Madrid 2026 ([PDF, Portal de Transparencia](https://www.comunidad.madrid/transparencia/sites/default/files/plan_anual_iiff_2026.pdf)) | PDF 2,4 MB, 100 págs. | `22d08b64bab311bf` | Anexo II pág. 59 (ZAR); texto pág. 16 («son un total de 59»); Anexo I págs. 54–58 (siniestros 2015–2024 por municipio y causa, fuente EGIF) | término municipal | Ficha «Plan Anual 2026», filtro ZAR y columna de siniestros en `/analisis`, export CSV | Ingerido y usado (09/11) |
+
+**Extracción y calidad (`data/processed/plan/quality.json`, `escudo_pipelines.plan_anual`):**
+- ZAR: 59 entradas numeradas 1–59, todas emparejadas con su código INE. Erratas o variantes del documento resueltas con tabla explícita y registradas: «Torredolones» → Torrelodones, «San María de la Alameda» → Santa María de la Alameda, «Canencia de la Sierra» → Canencia, «Colmenar de Arroyo» → Colmenar del Arroyo, «Lozoya del Valle» → Lozoya.
+- Siniestros: 179 municipios de la CAM. La extracción **cuadra con la fila TOTALES** del documento (117 · 1.160 · 1.013 · 586 · 36 · 2.641); la única diferencia es 1 siniestro de una fila incompleta que no se puede asignar a una causa.
+- Filas incompletas en el documento (Montejo de la Sierra, Pozuelo de Alarcón) → «no disponible».
+- Real Sitio de San Ildefonso (Segovia) y Almorox (Toledo) figuran en la tabla y se excluyen por estar fuera de la región.
+- En el propio documento la suma de causas **no coincide** con el total en 95 municipios ni en la fila de totales (2.912 frente a 2.641). Se muestran ambos valores literales y la ficha lo advierte; no se corrige.
+
 ## 2. Cartografía oficial IDEM (complementaria)
 
 | ID | Recurso | Formato real | SHA-256 (16) | Fecha metadatos | Licencia (verificada en ISO 19139) | Uso |
@@ -57,4 +70,4 @@ Detalle y pruebas: `docs/aemet.md`, `fixtures/aemet/README.md`.
 | Catastro | Fuera de alcance sin base legal (datos personales) |
 | Superficie de terreno forestal por tipo de propiedad (`1913040`) | Auditado 08/11: solo agregado **regional** (14 conceptos, sin código territorial); no aporta escala municipal |
 | Montes de Utilidad Pública por pertenencia administrativa (`1919480`) y por comarca (`montes_por_comarca`) | Auditado 08/11: regional / comarcal; no municipal. Posible contexto regional futuro |
-| Lista de municipios en Zonas de Alto Riesgo (ZAR) | No existe como dataset en el Portal CAM (búsqueda 08/11); requiere el documento oficial del plan (tarea 2.3) |
+| Lista de municipios en Zonas de Alto Riesgo (ZAR) | No existe como dataset en el Portal CAM; integrada desde el documento oficial (DOC-01, 09/11) |

@@ -22,6 +22,8 @@ interface MatrixRow {
   population_year: number | null;
   non_main_share: number | null;
   single_dwelling_building_share: number | null;
+  zar_declared: boolean | null;
+  fires_total_2015_2024: number | null;
 }
 
 interface MatrixResponse {
@@ -48,6 +50,7 @@ const SORTS = [
   { value: "population", label: "Población" },
   { value: "non_main", label: "% viviendas no principales" },
   { value: "single_dwelling", label: "% viviendas en edificio unifamiliar" },
+  { value: "fires", label: "Siniestros 2015–2024" },
 ];
 
 function numOrEmpty(v: string): string {
@@ -60,6 +63,7 @@ export default function AnalysisPage() {
   const [maxDensity, setMaxDensity] = useState("");
   const [minAge, setMinAge] = useState("");
   const [minNonMain, setMinNonMain] = useState("");
+  const [zarOnly, setZarOnly] = useState(false);
   const [sort, setSort] = useState("high_share");
 
   const qs = new URLSearchParams({ layer, sort });
@@ -67,6 +71,7 @@ export default function AnalysisPage() {
   if (numOrEmpty(maxDensity)) qs.set("max_density", String(Math.max(0, Number(maxDensity))));
   if (numOrEmpty(minAge)) qs.set("min_age65_share", String(Math.min(100, Math.max(0, Number(minAge))) / 100));
   if (numOrEmpty(minNonMain)) qs.set("min_non_main_share", String(Math.min(100, Math.max(0, Number(minNonMain))) / 100));
+  if (zarOnly) qs.set("zar_only", "true");
   const path = `/v1/analysis/municipal-matrix?${qs.toString()}`;
   const m = useApi<MatrixResponse>(path);
   const meta = LAYERS.find((l) => l.value === layer)!;
@@ -77,7 +82,8 @@ export default function AnalysisPage() {
         <h1 className="font-cond text-2xl font-semibold text-ink">Análisis municipal</h1>
         <p className="max-w-prose text-sm text-ink-600">
           Cruza datos del Portal de Datos Abiertos de la Comunidad de Madrid (densidad CAM-02, población de 65 años o más
-          CAM-01, viviendas no principales CAM-09 y viviendas en edificio unifamiliar CAM-10, Censo 2021) con el reparto de la cartografía oficial de incendios. Es un filtro comparativo a escala municipal:
+          CAM-01, viviendas no principales CAM-09 y viviendas en edificio unifamiliar CAM-10, Censo 2021), la lista oficial de Zonas
+          de Alto Riesgo y los siniestros 2015–2024 del Plan Anual 2026 (DOC-01) con el reparto de la cartografía oficial de incendios. Es un filtro comparativo a escala municipal:
           no crea un índice propio ni decide prioridades.
         </p>
       </header>
@@ -111,6 +117,12 @@ export default function AnalysisPage() {
             {SORTS.map((s) => <option key={s.value} value={s.value}>{s.label}</option>)}
           </select>
         </div>
+        <div className="flex items-end">
+          <label className="flex items-center gap-2 text-sm text-ink-700">
+            <input type="checkbox" checked={zarOnly} onChange={(e) => setZarOnly(e.target.checked)} />
+            Solo municipios declarados Zona de Alto Riesgo
+          </label>
+        </div>
       </form>
 
       {m.loading && !m.data && <Loading label="Calculando matriz" />}
@@ -139,6 +151,8 @@ export default function AnalysisPage() {
                     <th scope="col" className="px-3 py-2 text-right">Población <StatusBadge status="official" /></th>
                     <th scope="col" className="px-3 py-2 text-right">Viv. no principales 2021 <StatusBadge status="derived" /></th>
                     <th scope="col" className="px-3 py-2 text-right">Viv. en edificio unifamiliar 2021 <StatusBadge status="official" /></th>
+                    <th scope="col" className="px-3 py-2 text-center">ZAR 2026 <StatusBadge status="official" /></th>
+                    <th scope="col" className="px-3 py-2 text-right">Siniestros 2015–2024 <StatusBadge status="official" /></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -154,6 +168,8 @@ export default function AnalysisPage() {
                       <td className="px-3 py-2 text-right tabular-nums">{fmtNumber(r.population_total)} <span className="text-xs text-ink-500">({r.population_year ?? "s/f"})</span></td>
                       <td className="px-3 py-2 text-right tabular-nums">{fmtShare(r.non_main_share)}</td>
                       <td className="px-3 py-2 text-right tabular-nums">{fmtShare(r.single_dwelling_building_share)}</td>
+                      <td className="px-3 py-2 text-center">{r.zar_declared === null ? "—" : r.zar_declared ? "Sí" : "No"}</td>
+                      <td className="px-3 py-2 text-right tabular-nums">{fmtNumber(r.fires_total_2015_2024)}</td>
                     </tr>
                   ))}
                 </tbody>

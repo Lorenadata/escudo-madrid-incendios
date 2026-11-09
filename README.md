@@ -25,6 +25,8 @@ docker compose -f infra/docker-compose.yml up -d db
 .venv/Scripts/python -m escudo_pipelines.cam_transform
 .venv/Scripts/python -m escudo_pipelines.idem.fetch     # ~49 MB, cartografía oficial
 .venv/Scripts/python -m escudo_pipelines.idem.transform # ~10 min (o --web-only)
+.venv/Scripts/python -m escudo_pipelines.plan_anual fetch  # DOC-01 Plan Anual 2026 (PDF oficial)
+.venv/Scripts/python -m escudo_pipelines.plan_anual transform  # ZAR + siniestros municipales
 .venv/Scripts/python -m escudo_api.etl_load             # carga PostGIS + demo FICTICIA etiquetada
 .venv/Scripts/python -m uvicorn escudo_api.main:app --port 8000
 cd apps/web && npm install && npm run dev               # http://localhost:3000

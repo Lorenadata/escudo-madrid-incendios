@@ -227,7 +227,8 @@ def _housing_values(session: Session) -> dict[str, dict[str, float | None]]:
     from ..services import HOUSING_INDICATORS
 
     out: dict[str, dict[str, float | None]] = {}
-    for r in session.scalars(select(MunicipalSeries).where(MunicipalSeries.indicator_id.in_(HOUSING_INDICATORS))):
+    ids = (*HOUSING_INDICATORS, "municipality_zar_declared", "municipality_fires_total_2015_2024")
+    for r in session.scalars(select(MunicipalSeries).where(MunicipalSeries.indicator_id.in_(ids))):
         out.setdefault(r.ine_code, {})[r.indicator_id] = r.value
     return out
 
@@ -246,7 +247,8 @@ def export_municipalities_csv(session: Session = Depends(get_session)):
                 "density_hab_km2", "density_year", "density_source", "altitude_m", "altitude_source", "area_km2_derived",
                 "area_source", "dwellings_total_2021", "non_main_share_2021", "non_main_source",
                 "single_dwelling_building_share_2021", "single_dwelling_source", "empty_electricity_share_2021",
-                "sporadic_electricity_share_2021", "electricity_source"])
+                "sporadic_electricity_share_2021", "electricity_source", "zar_declared_2026",
+                "fires_total_2015_2024", "plan_source"])
     housing = _housing_values(session)
     for m in session.scalars(select(Municipality).order_by(Municipality.ine_code)):
         h = housing.get(m.ine_code, {})
@@ -255,7 +257,9 @@ def export_municipalities_csv(session: Session = Depends(get_session)):
                     h.get("municipality_dwellings_total"), h.get("municipality_non_main_share"), "CAM-09",
                     h.get("municipality_single_dwelling_building_share"), "CAM-10",
                     h.get("municipality_empty_electricity_share"), h.get("municipality_sporadic_electricity_share"),
-                    "CAM-11 (provisional) / CAM-09"])
+                    "CAM-11 (provisional) / CAM-09",
+                    {1.0: "si", 0.0: "no"}.get(h.get("municipality_zar_declared"), ""),
+                    h.get("municipality_fires_total_2015_2024"), "DOC-01 (Plan Anual 2026, Anexos II y I)"])
     return Response(buf.getvalue(), media_type="text/csv; charset=utf-8",
                     headers={"Content-Disposition": 'attachment; filename="escudo-municipios.csv"'})
 
@@ -267,7 +271,9 @@ def municipal_matrix(
     max_density: float | None = Query(None, ge=0),
     min_age65_share: float = Query(0, ge=0, le=1),
     min_non_main_share: float = Query(0, ge=0, le=1),
-    sort: str = Query("high_share", pattern="^(high_share|density|age65|population|non_main|single_dwelling)$"),
+    zar_only: bool = Query(False),
+    sort: str = Query("high_share",
+                      pattern="^(high_share|density|age65|population|non_main|single_dwelling|fires)$"),
     session: Session = Depends(get_session),
 ) -> dict[str, Any]:
     """Matriz municipal reproducible: datos CAM (CAM-01/02) junto al reparto de la capa oficial elegida.
@@ -295,8 +301,13 @@ def municipal_matrix(
         nm = h.get("municipality_non_main_share")
         if min_non_main_share and (nm is None or nm < min_non_main_share):
             continue
+        zar = h.get("municipality_zar_declared")
+        if zar_only and zar != 1:
+            continue
         rows.append({"ine_code": m.ine_code, "name": m.name,
                      "non_main_share": nm,
+                     "zar_declared": None if zar is None else zar == 1,
+                     "fires_total_2015_2024": h.get("municipality_fires_total_2015_2024"),
                      "single_dwelling_building_share": h.get("municipality_single_dwelling_building_share"),
                      "high_share": round(hs, 4) if hs is not None else None,
                      "density_hab_km2": m.density_hab_km2, "density_year": m.density_year,
@@ -304,18 +315,19 @@ def municipal_matrix(
                      "population_year": m.population_year})
     key = {"high_share": "high_share", "density": "density_hab_km2", "age65": "age_65_plus_share",
            "population": "population_total", "non_main": "non_main_share",
-           "single_dwelling": "single_dwelling_building_share"}[sort]
+           "single_dwelling": "single_dwelling_building_share", "fires": "fires_total_2015_2024"}[sort]
     rows.sort(key=lambda r: (r[key] is None, -(r[key] or 0), r["ine_code"]))
     src = OFFICIAL_LAYERS[layer]["source_id"]
     return {
         "layer": layer, "layer_source_id": src, "status": "derived" if has_layer else "unavailable",
-        "sources": ["CAM-01", "CAM-02", "CAM-09", "CAM-10", src],
+        "sources": ["CAM-01", "CAM-02", "CAM-09", "CAM-10", "DOC-01", src],
         "definition": (f"high_share: proporción de superficie municipal en clases 4 y 5 de {src} (suma literal de "
                        "clases oficiales, calculada sobre el ráster de 5 m). Densidad y % ≥65 del Portal CAM. "
-                       "non_main_share (CAM-09) y single_dwelling_building_share (CAM-10): Censo 2021, municipal."),
+                       "non_main_share (CAM-09) y single_dwelling_building_share (CAM-10): Censo 2021, municipal. "
+                       "zar_declared y fires_total_2015_2024: Plan Anual 2026 (DOC-01, Anexos II y I), literales."),
         "caveat": ("Filtro comparativo a escala municipal. No es un índice de riesgo propio ni prioriza "
                    "actuaciones: la priorización corresponde a personal técnico."),
         "filters": {"min_high_share": min_high_share, "max_density": max_density, "min_age65_share": min_age65_share,
-                    "min_non_main_share": min_non_main_share},
+                    "min_non_main_share": min_non_main_share, "zar_only": zar_only},
         "count": len(rows), "rows": rows,
     }

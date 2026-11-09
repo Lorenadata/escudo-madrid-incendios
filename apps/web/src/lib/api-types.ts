@@ -106,10 +106,22 @@ export interface HousingContext {
   caveat: string;
 }
 
+export interface FirePlanContext {
+  source_id: string;
+  document_url: string;
+  pages: { zar: number; fires: string };
+  zar: Indicator;
+  fires_total: Indicator;
+  fires_by_cause: Indicator[];
+  total_matches_causes: boolean | null;
+  note: string | null;
+}
+
 export interface MunicipalityProfile extends MunicipalitySummary {
   area_km2: Indicator;
   forest_share: Indicator;
   housing?: HousingContext | null;
+  fire_plan?: FirePlanContext | null;
   official_fire: {
     risk: OfficialLayerSummary | null;
     hazard: OfficialLayerSummary | null;

@@ -27,6 +27,10 @@ test("explorador: mapa regional real, ficha municipal trazable y capa oficial li
   // dato CAM-01 con estado y año; la superficie forestal municipal NO se inventa
   await expect(page.getByText("Población censada").first()).toBeVisible();
   await expect(page.getByText("Superficie forestal del municipio")).toBeVisible();
+  // 2.3: Plan Anual 2026 — ZAR y siniestros municipales (DOC-01), literales y con página
+  await expect(page.getByRole("heading", { name: "Plan Anual de incendios forestales 2026" })).toBeVisible();
+  await expect(page.getByText("Término municipal declarado Zona de Alto Riesgo (ZAR)")).toBeVisible();
+  await expect(page.getByText("Siniestros forestales con origen en el municipio, 2015–2024")).toBeVisible();
   // Fase 2: vivienda y ocupación (CAM-09/10/11, Censo 2021) con su advertencia de escala
   await expect(page.getByRole("heading", { name: /Vivienda y ocupación \(Censo 2021\)/ })).toBeVisible();
   await expect(page.getByText("Proporción de viviendas no principales")).toBeVisible();
@@ -107,6 +111,11 @@ test("análisis municipal: filtros sobre datos CAM y capa oficial, sin índice p
   const afterDensity = Number((await count.innerText()).split(" ")[0]);
   await page.getByLabel("Mín. % viviendas no principales").fill("40");
   await expect.poll(async () => Number((await count.innerText()).split(" ")[0])).toBeLessThan(afterDensity);
+  await page.getByLabel("Mín. % viviendas no principales").fill("");
+  await page.getByLabel("Máx. densidad (hab/km²)").fill("");
+  await page.getByLabel("Mín. % en clases altas").fill("");
+  await page.getByLabel("Solo municipios declarados Zona de Alto Riesgo").check();
+  await expect(count).toHaveText("59 municipios");
   await page.getByText("Ver método y fuentes").click();
   await expect(page.getByText("No es un índice de riesgo propio", { exact: false })).toBeVisible();
   // 2.5: histórico regional (CAM-05, CAM-06) siempre rotulado como regional

@@ -48,6 +48,7 @@ docker compose -f infra/docker-compose.yml up -d db
 # Datos (descarga real + transformación + carga)
 .venv/Scripts/python -m escudo_pipelines.fetch            # descarga CAM con checksum
 .venv/Scripts/python -m escudo_pipelines.cam_transform    # normaliza a data/processed/cam
+.venv/Scripts/python -m escudo_pipelines.plan_anual fetch && .venv/Scripts/python -m escudo_pipelines.plan_anual transform  # DOC-01: ZAR y siniestros municipales
 .venv/Scripts/python -m escudo_api.etl_load               # carga en PostGIS + seed demo ficticio
 # API
 .venv/Scripts/python -m uvicorn escudo_api.main:app --reload --port 8000
