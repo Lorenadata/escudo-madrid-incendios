@@ -86,7 +86,7 @@ Solo tras G-Demo. Orden por valor ante el jurado:
 
 | # | Módulo | Dueño | Criterio | Nota |
 |---|---|---|---|---|
-| 4.1 | M16 Calendario preventivo: vencimientos de acciones, revisión anual del PAIF, inspecciones programadas; export iCal | A6+A7 | D20, V15 | recordatorios no críticos |
+| 4.1 | ✅ (09/11: `GET /v1/calendar` y `.ics`; épocas de peligro oficiales DOC-01 pág. 18) M16 Calendario preventivo: vencimientos de acciones, revisión anual del PAIF, inspecciones programadas; export iCal | A6+A7 | D20, V15 | recordatorios no críticos |
 | 4.2 | M15 Expediente PAIF/PAMIF: checklist de información pendiente según INFOMA, adjuntos, estado; **nunca aprobación** | A6+A7 | D20, I25 | texto legal revisado por A1 |
 | 4.3 | M17 Colaboración: comentarios por acción/inspección, registro de decisiones con autor y fecha | A6+A7 | D20 | auditado |
 | 4.4 | M19 Asistente documental con citas sobre el Plan 2026, INFOMA y Ley 43/2003 (RAG local; responde solo con cita; nunca decisiones operativas) | A5+A6 | D20 | evaluación con 20 preguntas y respuestas verificadas |

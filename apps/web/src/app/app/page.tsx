@@ -12,6 +12,7 @@ import { ApiError, apiFetch, setToken } from "@/lib/api";
 import type { AreaDetail, Area, Measure, MunicipalitySummary, User } from "@/lib/api-types";
 import { useApi } from "@/lib/useApi";
 import { AreaForm } from "./AreaForm";
+import { CalendarPanel } from "./CalendarPanel";
 import { AuditPanel, ImpactPanel } from "./ImpactPanel";
 import { InspectionsPanel } from "./InspectionsPanel";
 import { MunicipalPanel } from "./MunicipalPanel";
@@ -157,6 +158,7 @@ export default function WorkspacePage() {
             ))}
           </ul>
           <ImpactPanel />
+          <CalendarPanel />
         </aside>
 
         <section aria-label="Ámbito seleccionado" className="min-w-0">

@@ -104,6 +104,11 @@ test("área privada: login demo y aislamiento visible del ámbito ficticio", asy
   // el ámbito de la organización B no aparece
   await expect(page.getByText("organización B", { exact: false })).toHaveCount(0);
   await assertSafeLanguage(page);
+  // M16: calendario preventivo con épocas de peligro oficiales y exportación iCal
+  await expect(page.getByRole("heading", { name: "Calendario preventivo" })).toBeVisible();
+  await expect(page.getByText("Época de peligro", { exact: false }).first()).toBeVisible();
+  const [dl] = await Promise.all([page.waitForEvent("download"), page.getByRole("button", { name: /Exportar a calendario/ }).click()]);
+  expect(dl.suggestedFilename()).toBe("escudo-calendario.ics");
 });
 
 test("análisis municipal: filtros sobre datos CAM y capa oficial, sin índice propio", async ({ page }) => {

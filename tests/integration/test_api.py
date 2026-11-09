@@ -359,3 +359,24 @@ def test_validation_accounts_see_both_cases_with_draft_scenarios(client):
     # aislamiento: el gestor de la demo no ve los casos de validación
     demo = _auth(client, "gestor@demo.escudo.local")
     assert not any(a["name"].startswith("Caso ") for a in client.get("/v1/areas", headers=demo).json())
+
+
+def test_calendar_m16_actions_reviews_and_official_danger_periods(client, auth_a):
+    """M16: vencimientos del plan (propios), revisión anual sugerida y épocas de peligro oficiales (DOC-01, pág. 18)."""
+    c = client.get("/v1/calendar", params={"from": "2026-11-01", "to": "2027-12-31"}, headers=auth_a).json()
+    kinds = {e["kind"] for e in c["events"]}
+    assert {"action_due", "inspection_review", "danger_period"} <= kinds and "no son alertas" in c["notice"].lower()
+    alto = [e for e in c["events"] if e["kind"] == "danger_period" and e["level"] == "alto"]
+    assert alto and alto[0]["start"] == "2027-06-15" and alto[0]["end"] == "2027-09-30" and alto[0]["status"] == "official"
+    review = next(e for e in c["events"] if e["kind"] == "inspection_review")
+    assert review["start"] == "2027-11-05" or review["start"] > "2027-11-04"  # inspección ficticia 05/11/2026 + 365 d
+    assert review["status"] == "derived"
+    # aislamiento: B no ve vencimientos ni ámbitos de A
+    b = _auth(client, "gestor-b@demo.escudo.local")
+    cb = client.get("/v1/calendar", params={"from": "2026-11-01", "to": "2027-12-31"}, headers=b).json()
+    assert not any("Los Pinos" in (e.get("area_name") or "") for e in cb["events"])
+    ics = client.get("/v1/calendar.ics", params={"from": "2026-11-01", "to": "2027-12-31"}, headers=auth_a)
+    assert ics.status_code == 200 and ics.text.startswith("BEGIN:VCALENDAR\r\n") and "DTSTART;VALUE=DATE:20270615" in ics.text
+    assert all(len(line.encode("utf-8")) <= 75 for line in ics.text.split("\r\n"))
+    assert client.get("/v1/calendar").status_code == 401
+    assert client.get("/v1/calendar", params={"from": "2026-01-01", "to": "2020-01-01"}, headers=auth_a).status_code == 422
