@@ -25,7 +25,7 @@ from pathlib import Path
 
 import httpx
 
-from .fetch import RAW_DIR, REPO_ROOT, USER_AGENT, resolve_resource
+from .fetch import RAW_DIR, REPO_ROOT, USER_AGENT, inside, resolve_resource, safe_filename
 from .sources import ALL_SOURCES
 
 LOG_PATH = REPO_ROOT / "data" / "processed" / "refresh_log.json"
@@ -70,7 +70,7 @@ def _resolver(sid: str) -> Callable[[httpx.Client], dict]:
 
         def cam(client: httpx.Client) -> dict:
             pkg, res = resolve_resource(client, spec)
-            return {"url": res["url"], "file": res["url"].rsplit("/", 1)[-1],
+            return {"url": res["url"], "file": safe_filename(res["url"]),
                     "portal_metadata_modified": pkg.get("metadata_modified"),
                     "resource_last_modified": res.get("last_modified") or res.get("created")}
         return cam
@@ -104,10 +104,10 @@ def check_source(client: httpx.Client, sid: str, *, apply: bool) -> dict:
         else:
             rec["result"] = "changed"
             if manifest.get("file"):
-                rec["content"] = compare_content(RAW_DIR / sid / manifest["file"], tmp)
+                rec["content"] = compare_content(inside(RAW_DIR / sid, manifest["file"]), tmp)
             if apply:
-                target = RAW_DIR / sid / info["file"]
-                old = RAW_DIR / sid / manifest["file"] if manifest.get("file") else None
+                target = inside(RAW_DIR / sid, info["file"])
+                old = inside(RAW_DIR / sid, manifest["file"]) if manifest.get("file") else None
                 if old and old.exists() and old != target:
                     old.unlink()
                 tmp.replace(target)

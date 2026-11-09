@@ -261,5 +261,35 @@
       "changed": 0,
       "failed": 0
     }
+  },
+  {
+    "started_at": "2026-11-09T08:23:08+00:00",
+    "apply": false,
+    "results": [
+      {
+        "source_id": "CAM-02",
+        "checked_at": "2026-11-09T08:23:08+00:00",
+        "previous_sha256": "89d3248773adfcf27bb0e2aa1757b4d3ccd98246ca7a4acd6d017df5c70ffa7f",
+        "sha256": "89d3248773adfcf27bb0e2aa1757b4d3ccd98246ca7a4acd6d017df5c70ffa7f",
+        "bytes": 464475,
+        "resource_url": "https://datos.comunidad.madrid/dataset/81592bc2-a5c0-423a-88b2-82ced433f290/resource/58ffa899-970e-4559-9e8a-550e21b29b3c/download/densidad-de-poblacion.-municipios.csv",
+        "result": "unchanged"
+      },
+      {
+        "source_id": "DOC-01",
+        "checked_at": "2026-11-09T08:23:08+00:00",
+        "previous_sha256": "22d08b64bab311bff65327338f2599a4392931f02c00244e7d0e3f48416c6efc",
+        "sha256": "22d08b64bab311bff65327338f2599a4392931f02c00244e7d0e3f48416c6efc",
+        "bytes": 2404437,
+        "resource_url": "https://www.comunidad.madrid/transparencia/sites/default/files/plan_anual_iiff_2026.pdf",
+        "result": "unchanged"
+      }
+    ],
+    "finished_at": "2026-11-09T08:23:08+00:00",
+    "summary": {
+      "unchanged": 2,
+      "changed": 0,
+      "failed": 0
+    }
   }
 ]

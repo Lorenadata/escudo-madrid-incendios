@@ -83,3 +83,20 @@ def test_reordered_csv_is_flagged_as_same_content(sandbox):
     assert rec["result"] == "changed" and rec["content"] == "same_rows_reordered"
     rec2 = refresh.check_source(_client(b"a;b\n3;5\n1;2\n"), "CAM-XX", apply=False)
     assert rec2["content"] == "different"
+
+
+@pytest.mark.parametrize("bad", ["https://x.test/..", "https://x.test/a/..%5C..%5Cevil.csv", "..\\evil.csv",
+                                 "C:evil.csv", "https://x.test/", ".hidden"])
+def test_remote_filenames_cannot_escape_raw_dir(bad):
+    from escudo_pipelines.fetch import safe_filename
+
+    with pytest.raises(ValueError):
+        safe_filename(bad)
+
+
+def test_safe_filename_accepts_portal_names(tmp_path):
+    from escudo_pipelines.fetch import inside, safe_filename
+
+    url = "https://datos.comunidad.madrid/dataset/x/resource/y/download/densidad-de-poblacion.-municipios.csv"
+    assert safe_filename(url) == "densidad-de-poblacion.-municipios.csv"
+    assert inside(tmp_path, "datos.csv") == (tmp_path / "datos.csv").resolve()

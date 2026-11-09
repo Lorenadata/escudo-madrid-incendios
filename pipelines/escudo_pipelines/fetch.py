@@ -24,6 +24,25 @@ RAW_DIR = REPO_ROOT / "data" / "raw"
 USER_AGENT = "escudo-madrid-etl/0.1 (+https://github.com/Lorenadata/escudo-madrid-incendios; DATAMAD 2026)"
 
 
+def safe_filename(url_or_name: str) -> str:
+    """Nombre de fichero seguro a partir de una URL remota: sin rutas, unidades ni «..» (evita path traversal)."""
+    from urllib.parse import unquote, urlparse
+
+    name = unquote(urlparse(url_or_name).path if "://" in url_or_name else url_or_name).rsplit("/", 1)[-1]
+    if (not name or name in {".", ".."} or any(c in name for c in ("\\", ":", "\x00"))
+            or name.startswith(".")):
+        raise ValueError(f"nombre de fichero remoto no válido: {url_or_name!r}")
+    return name
+
+
+def inside(base: Path, name: str) -> Path:
+    """base/name garantizando que el resultado queda dentro de base."""
+    target = (base / safe_filename(name)).resolve()
+    if target.parent != base.resolve():
+        raise ValueError(f"ruta fuera de {base}: {name!r}")
+    return target
+
+
 def sha256_file(path: Path) -> str:
     h = hashlib.sha256()
     with path.open("rb") as f:
@@ -49,8 +68,8 @@ def fetch_source(client: httpx.Client, spec: SourceSpec) -> dict:
     out_dir = RAW_DIR / spec.source_id
     out_dir.mkdir(parents=True, exist_ok=True)
     url = res["url"]
-    filename = url.rsplit("/", 1)[-1]
-    target = out_dir / filename
+    filename = safe_filename(url)
+    target = inside(out_dir, filename)
     with client.stream("GET", url) as resp:
         resp.raise_for_status()
         with target.open("wb") as f:
