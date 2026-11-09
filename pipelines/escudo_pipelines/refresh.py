@@ -10,7 +10,8 @@ Vuelve a descargar cada fuente, calcula su SHA-256 y lo compara con el manifest 
 Cada comprobación queda en el manifest (`last_checked_at`, `last_check_result`) y en
 `data/processed/refresh_log.json`. Una versión nueva conserva la anterior en `previous_versions`;
 la carga (`escudo_api.etl_load`) registra cada SHA-256 distinto en la tabla `dataset_versions`.
-Sin `--apply` nunca se modifica un dato en uso. IDEM (≈49 MB) se comprueba solo con `--include-idem`.
+Sin `--apply` nunca se modifica un dato en uso. IDEM (≈49 MB) y EFFIS (≈262 MB, toda Europa) se comprueban
+solo con `--include-idem` / `--include-effis`.
 """
 
 from __future__ import annotations
@@ -79,6 +80,12 @@ def _resolver(sid: str) -> Callable[[httpx.Client], dict]:
 
         return lambda client: {"url": URL, "file": PDF_NAME, "portal_metadata_modified": None,
                                "resource_last_modified": None}
+    if sid == "EFF-01":
+        from .effis import URL as EFFIS_URL
+        from .effis import ZIP_NAME
+
+        return lambda client: {"url": EFFIS_URL, "file": ZIP_NAME, "portal_metadata_modified": None,
+                               "resource_last_modified": None}
     if sid.startswith("GEO-"):
         from .idem.sources import IDEM_LAYERS
 
@@ -141,10 +148,12 @@ def append_log(run: dict) -> None:
     LOG_PATH.write_text(json.dumps(runs, ensure_ascii=False, indent=2), encoding="utf-8")
 
 
-def default_ids(include_idem: bool) -> list[str]:
+def default_ids(include_idem: bool, include_effis: bool = False) -> list[str]:
     ids = list(ALL_SOURCES) + ["DOC-01"]
     if include_idem:
         ids += ["GEO-01", "GEO-02", "GEO-03"]
+    if include_effis:
+        ids += ["EFF-01"]
     return ids
 
 
@@ -157,6 +166,8 @@ def rebuild(changed: list[str]) -> None:
         steps.append([py, "-m", "escudo_pipelines.plan_anual", "transform"])
     if any(s.startswith("GEO-") for s in changed):
         steps.append([py, "-m", "escudo_pipelines.idem.transform"])
+    if "EFF-01" in changed:
+        steps.append([py, "-m", "escudo_pipelines.effis", "transform"])
     steps.append([py, "-m", "escudo_api.etl_load"] + ([] if any(s.startswith("GEO-") for s in changed) else ["--skip-idem"]))
     for cmd in steps:
         print("  →", " ".join(cmd[1:]))
@@ -166,7 +177,7 @@ def rebuild(changed: list[str]) -> None:
 def main(argv: list[str]) -> int:
     apply = "--apply" in argv
     do_rebuild = "--rebuild" in argv
-    ids = [a for a in argv if not a.startswith("--")] or default_ids("--include-idem" in argv)
+    ids = [a for a in argv if not a.startswith("--")] or default_ids("--include-idem" in argv, "--include-effis" in argv)
     run = {"started_at": _now(), "apply": apply, "results": []}
     with httpx.Client(timeout=180, follow_redirects=True, headers={"User-Agent": USER_AGENT}) as client:
         for sid in ids:

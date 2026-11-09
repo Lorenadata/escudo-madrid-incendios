@@ -27,6 +27,10 @@ test("explorador: mapa regional real, ficha municipal trazable y capa oficial li
   // dato CAM-01 con estado y año; la superficie forestal municipal NO se inventa
   await expect(page.getByText("Población censada").first()).toBeVisible();
   await expect(page.getByText("Superficie forestal del municipio")).toBeVisible();
+  // 2.6: áreas quemadas por satélite (EFFIS) en la ficha y como capa activable
+  await expect(page.getByRole("heading", { name: /Áreas quemadas cartografiadas por satélite/ })).toBeVisible();
+  await page.getByLabel(/Áreas quemadas cartografiadas por satélite \(EFFIS\)/).check();
+  await expect(page.getByText("Áreas quemadas por satélite · EFF-01")).toBeVisible();
   // 2.3: Plan Anual 2026 — ZAR y siniestros municipales (DOC-01), literales y con página
   await expect(page.getByRole("heading", { name: "Plan Anual de incendios forestales 2026" })).toBeVisible();
   await expect(page.getByText("Término municipal declarado Zona de Alto Riesgo (ZAR)")).toBeVisible();

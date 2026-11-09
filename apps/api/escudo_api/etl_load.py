@@ -36,6 +36,8 @@ from .models import (
     Organization,
     ProtectedSpace,
     RegionalSeries,
+    SatelliteBurntArea,
+    SatelliteBurntAreaMunicipality,
     User,
 )
 
@@ -77,6 +79,9 @@ def all_source_specs() -> list:
     from escudo_pipelines.plan_anual import SPEC as PLAN_SPEC
 
     specs.append(PLAN_SPEC)
+    from escudo_pipelines.effis import SPEC as EFFIS_SPEC
+
+    specs.append(EFFIS_SPEC)
     try:
         from escudo_pipelines.idem.sources import IDEM_SOURCES
 
@@ -138,6 +143,12 @@ def load_quality(session: Session, run: IngestionRun) -> None:
     for c in q["checks"]:
         session.add(DataQualityCheck(run_id=run.id, source_id=owner.get(c["check"]), check=c["check"],
                                      passed=c["passed"], detail=c["detail"]))
+    for sid, qpath in (("DOC-01", DATA / "processed" / "plan" / "quality.json"),
+                       ("EFF-01", DATA / "processed" / "effis" / "quality.json")):
+        if qpath.exists():
+            for c in json.loads(qpath.read_text(encoding="utf-8")).get("checks", []):
+                session.add(DataQualityCheck(run_id=run.id, source_id=sid, check=c["check"][:64],
+                                             passed=bool(c["passed"]), detail=str(c.get("detail", ""))))
     idem_q = IDEM / "quality.json"
     if idem_q.exists():
         for c in json.loads(idem_q.read_text(encoding="utf-8")).get("checks", []):
@@ -221,6 +232,38 @@ HOUSING_COLUMNS = {
     "empty_electricity_share": "municipality_empty_electricity_share",
     "sporadic_electricity_share": "municipality_sporadic_electricity_share",
 }
+
+
+EFFIS = DATA / "processed" / "effis"
+
+
+def load_effis(session: Session) -> int:
+    """EFF-01: perímetros EFFIS que intersecan la región (literales) y su reparto municipal (derivado)."""
+    gj, csv_path = EFFIS / "burnt_areas_madrid.geojson", EFFIS / "municipal_burnt_areas.csv"
+    session.execute(delete(SatelliteBurntAreaMunicipality))
+    session.execute(delete(SatelliteBurntArea))
+    if not gj.exists() or not csv_path.exists():
+        log.warning("Sin %s: ejecute escudo_pipelines.effis (áreas quemadas no disponibles)", EFFIS)
+        return 0
+    fc = json.loads(gj.read_text(encoding="utf-8"))
+    for f in fc["features"]:
+        p = f["properties"]
+        session.add(SatelliteBurntArea(
+            effis_id=p["effis_id"], source_id="EFF-01", year=p["year"],
+            fire_date=date.fromisoformat(p["fire_date"]) if p.get("fire_date") else None,
+            last_update=date.fromisoformat(p["last_update"]) if p.get("last_update") else None,
+            area_ha_effis=p["area_ha_effis"], area_ha_in_region=p["area_ha_in_region_derived"],
+            commune_literal=p.get("commune_literal"), province_literal=p.get("province_literal"),
+            attributes={k: v for k, v in p.items() if k.startswith("lc_") or k in ("natura2000_pct", "class",
+                                                                                    "final_date", "country")},
+            geom=_multi_wkt(f["geometry"])))
+    session.flush()
+    codes = {c for (c,) in session.execute(select(Municipality.ine_code))}
+    for r in _csv(csv_path):
+        if r["ine_code"] in codes:
+            session.add(SatelliteBurntAreaMunicipality(effis_id=r["effis_id"], ine_code=r["ine_code"],
+                                                       area_ha=float(r["area_ha_in_municipality"])))
+    return len(fc["features"])
 
 
 def load_regional(session: Session) -> None:
@@ -409,6 +452,7 @@ def main(argv: list[str] | None = None) -> int:
         load_quality(session, run)
         n_muni = load_municipalities(session)
         load_regional(session)
+        n_effis = load_effis(session)
         idem = {} if args.skip_idem else load_idem(session)
         for layer, sid in LAYER_FILES.items():
             src = session.get(DataSource, sid)
@@ -420,7 +464,7 @@ def main(argv: list[str] | None = None) -> int:
         seed = seed_demo(session) if not args.no_seed and n_meas else {}
         run.status = "ok"
         run.finished_at = datetime.now(UTC)
-        run.summary = {"municipalities": n_muni, "idem_polygons": idem, "measures": n_meas, "seed": seed}
+        run.summary = {"municipalities": n_muni, "effis_perimeters": n_effis, "idem_polygons": idem, "measures": n_meas, "seed": seed}
         session.commit()
         print(json.dumps(run.summary, ensure_ascii=False, indent=2, default=str))
     return 0

@@ -1,0 +1,15 @@
+{
+  "source_id": "EFF-01",
+  "ckan_id": null,
+  "title": "EFFIS — Áreas quemadas cartografiadas (MODIS Burnt Areas, Rapid Damage Assessment)",
+  "catalog_url": "https://forest-fire.emergency.copernicus.eu/applications/data-and-services",
+  "resource_url": "https://forest-fire.emergency.copernicus.eu/downloads/data.request.form/effis_layer.zip",
+  "format": "SHP (ZIP)",
+  "file": "effis_layer.zip",
+  "bytes": 261704113,
+  "sha256": "c1a5d2de11febe9f4f5deacce79faa50631f09d917da27ecf341d29fd3e04f77",
+  "license_id": "CC-BY-4.0",
+  "license_title": "CC BY 4.0 — © Unión Europea, EFFIS",
+  "resource_last_modified": "Mon, 09 Nov 2026 03:46:05 GMT",
+  "extracted_at": "2026-11-09T08:25:01+00:00"
+}

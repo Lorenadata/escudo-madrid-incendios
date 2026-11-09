@@ -19,6 +19,7 @@ export default function ExplorerPage() {
   const hash = useHash();
   const selected = picked ?? (/^\d{5}$/.test(hash) ? hash : null);
   const [activeOfficial, setActiveOfficial] = useState<string | null>(null);
+  const [showBurnt, setShowBurnt] = useState(false);
   const [legend, setLegend] = useState<LegendSpec[]>([]);
   const [mapError, setMapError] = useState<string | null>(null);
 
@@ -37,7 +38,7 @@ export default function ExplorerPage() {
     [filtering, list.data],
   );
   const officialLayers = useMemo(
-    () => (layers.data ?? []).filter((l) => l.name !== "municipalities"),
+    () => (layers.data ?? []).filter((l) => l.name !== "municipalities" && !l.overlay),
     [layers.data],
   );
 
@@ -93,6 +94,21 @@ export default function ExplorerPage() {
               </label>
             ))}
           </fieldset>
+
+          {(() => {
+            const burnt = (layers.data ?? []).find((l) => l.name === "burnt_areas");
+            if (!burnt) return null;
+            return (
+              <fieldset className="space-y-2">
+                <legend className="label">Histórico observado por satélite</legend>
+                <label className={`flex items-center gap-2 text-sm ${burnt.available ? "" : "text-ink-500"}`}>
+                  <input type="checkbox" disabled={!burnt.available} checked={showBurnt} onChange={(e) => setShowBurnt(e.target.checked)} className="accent-pine" />
+                  {burnt.label ?? burnt.name}
+                  <StatusBadge status={burnt.available ? "official" : "unavailable"} className="ml-auto" />
+                </label>
+              </fieldset>
+            );
+          })()}
 
           {selected && (
             <div className="border-t border-line pt-4">
@@ -161,6 +177,7 @@ export default function ExplorerPage() {
           highlight={highlight}
           officialLayers={officialLayers}
           activeOfficial={activeOfficial}
+          showBurnt={showBurnt}
           onSelect={select}
           onLegend={setLegend}
           onError={setMapError}

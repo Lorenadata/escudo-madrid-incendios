@@ -1,0 +1,105 @@
+ine_code,name,effis_id,year,fire_date,area_ha_in_municipality,area_ha_effis_perimeter,commune_literal
+28005,Alcalá de Henares,206035,2022,2022-07-16,30.0,39.0,Alcalá de Henares
+28005,Alcalá de Henares,235696,2024,2024-07-30,0.9,92.0,Torres de la Alameda
+28006,Alcobendas,278333,2025,2025-08-12,120.5,2037.0,Madrid
+28008,Aldea del Fresno,271663,2025,2025-06-14,10.0,10.0,Aldea del Fresno
+28008,Aldea del Fresno,279775,2025,2025-08-20,19.2,20.0,Aldea del Fresno
+28008,Aldea del Fresno,592438,2026,2026-07-23,360.8,19939.0,Navas del Rey
+28008,Aldea del Fresno,636746,2026,2026-08-19,296.3,296.0,Aldea del Fresno
+28009,Algete,601510,2026,2026-07-31,7.5,18.0,"Molar, El"
+28013,Aranjuez,358,2016,2016-06-12,155.9,156.0,Aranjuez
+28013,Aranjuez,49693,2021,2021-06-11,10.4,10.0,Aranjuez
+28013,Aranjuez,205444,2022,2022-07-06,263.6,264.0,Aranjuez
+28013,Aranjuez,238404,2024,2024-08-08,35.2,35.0,Aranjuez
+28013,Aranjuez,277684,2025,2025-08-09,263.3,263.0,Aranjuez
+28015,Arroyomolinos,275055,2025,2025-07-19,18.7,20.0,Arroyomolinos
+28017,Batres,15688,2019,2019-05-30,22.3,30.0,Batres
+28021,Berrueco (El),15193,2019,2019-07-24,183.5,184.0,"Berrueco, El"
+28027,Buitrago del Lozoya,562521,2026,2026-07-16,453.5,862.0,Puentes Viejas
+28031,Cadalso de los Vidrios,18335,2019,2019-06-29,2052.7,3157.0,Cadalso de los Vidrios
+28031,Cadalso de los Vidrios,45448,2020,2020-11-10,7.9,8.0,Cadalso de los Vidrios
+28031,Cadalso de los Vidrios,592438,2026,2026-07-23,3.2,19939.0,Navas del Rey
+28034,Canencia,18345,2019,2019-08-04,13.4,222.0,Rascafría
+28037,Cenicientos,18335,2019,2019-06-29,279.9,3157.0,Cadalso de los Vidrios
+28042,Colmenar del Arroyo,592438,2026,2026-07-23,1713.1,19939.0,Navas del Rey
+28043,Colmenar de Oreja,527098,2026,2026-06-21,20.3,20.0,Colmenar de Oreja
+28044,Colmenarejo,276931,2025,2025-07-28,0.7,1.0,Colmenarejo
+28045,Colmenar Viejo,235694,2024,2024-07-28,25.3,25.0,Colmenar Viejo
+28045,Colmenar Viejo,235928,2024,2024-07-30,1.2,1.0,Colmenar Viejo
+28045,Colmenar Viejo,238960,2024,2024-08-22,420.7,535.0,Colmenar Viejo
+28045,Colmenar Viejo,278273,2025,2025-08-12,39.8,40.0,Colmenar Viejo
+28045,Colmenar Viejo,278333,2025,2025-08-12,73.4,2037.0,Madrid
+28046,Collado Mediano,205441,2022,2022-07-13,77.9,78.0,Collado Mediano
+28048,Corpa,275583,2025,2025-07-22,1.7,2.0,Corpa
+28051,Chapinería,592438,2026,2026-07-23,633.6,19939.0,Navas del Rey
+28052,Chinchón,208722,2022,2022-08-03,5.0,5.0,Chinchón
+28052,Chinchón,215461,2023,2023-04-09,2.1,2.0,Chinchón
+28052,Chinchón,233485,2024,2024-07-10,4.8,30.0,Villaconejos
+28055,Estremera,281350,2025,2025-09-15,9.0,16.0,Almoguera
+28056,Fresnedillas de la Oliva,592438,2026,2026-07-23,1250.0,19939.0,Navas del Rey
+28056,Fresnedillas de la Oliva,572494,2026,2026-07-25,3.1,3.0,Fresnedillas de la Oliva
+28075,Loeches,236151,2024,2024-07-31,741.3,756.0,Loeches
+28079,Madrid,275923,2025,2025-07-18,4.7,5.0,Madrid
+28079,Madrid,275924,2025,2025-07-26,2.7,3.0,Madrid
+28079,Madrid,278333,2025,2025-08-12,1213.8,2037.0,Madrid
+28079,Madrid,561467,2026,2026-07-12,3.2,3.0,Madrid
+28079,Madrid,561468,2026,2026-07-12,0.8,1.0,Madrid
+28085,Miraflores de la Sierra,18345,2019,2019-08-04,57.5,222.0,Rascafría
+28085,Miraflores de la Sierra,769647,2026,2026-09-20,1.4,1.0,Miraflores de la Sierra
+28086,Molar (El),236150,2024,2024-08-01,46.9,47.0,"Molar, El"
+28086,Molar (El),236946,2024,2024-08-05,0.9,207.0,Pedrezuela
+28086,Molar (El),281176,2025,2025-09-08,1.1,1.0,"Molar, El"
+28086,Molar (El),557609,2026,2026-07-01,8.6,9.0,"Molar, El"
+28086,Molar (El),601510,2026,2026-07-31,9.9,18.0,"Molar, El"
+28092,Móstoles,275055,2025,2025-07-19,1.0,20.0,Arroyomolinos
+28095,Navalagamella,592438,2026,2026-07-23,22.1,19939.0,Navas del Rey
+28096,Navalcarnero,274755,2025,2025-07-17,796.9,3247.0,Valmojado
+28099,Navas del Rey,562592,2026,2026-07-22,185.6,42458.0,Navaluenga
+28099,Navas del Rey,592438,2026,2026-07-23,4348.3,19939.0,Navas del Rey
+28108,Pedrezuela,236946,2024,2024-08-05,205.6,207.0,Pedrezuela
+28109,Pelayos de la Presa,592438,2026,2026-07-23,609.6,19939.0,Navas del Rey
+28120,Rascafría,17545,2019,2019-08-04,6.9,393.0,Real Sitio de San Ildefonso
+28120,Rascafría,18345,2019,2019-08-04,150.8,222.0,Rascafría
+28122,Ribatejada,50999,2021,2021-07-22,32.1,33.0,Ribatejada
+28123,Rivas-Vaciamadrid,239299,2024,2024-08-21,10.8,11.0,Rivas-Vaciamadrid
+28125,Robledo de Chavela,41051,2020,2020-08-02,783.0,1113.0,Zarzalejo
+28125,Robledo de Chavela,43540,2020,2020-08-29,18.0,18.0,Robledo de Chavela
+28125,Robledo de Chavela,562592,2026,2026-07-22,599.1,42458.0,Navaluenga
+28125,Robledo de Chavela,592438,2026,2026-07-23,2410.8,19939.0,Navas del Rey
+28126,Robregordo,274218,2025,2025-07-10,0.6,1.0,Robregordo
+28126,Robregordo,510771,2026,2026-06-12,0.7,1.0,Robregordo
+28128,Rozas de Puerto Real,18335,2019,2019-06-29,13.9,3157.0,Cadalso de los Vidrios
+28129,San Agustín del Guadalix,43149,2020,2020-08-21,4.5,5.0,San Agustín del Guadalix
+28130,San Fernando de Henares,206035,2022,2022-07-16,8.9,39.0,Alcalá de Henares
+28132,San Martín de la Vega,753166,2026,2026-09-16,3.0,3.0,San Martín de la Vega
+28133,San Martín de Valdeiglesias,562592,2026,2026-07-22,2849.7,42458.0,Navaluenga
+28133,San Martín de Valdeiglesias,592438,2026,2026-07-23,4807.2,19939.0,Navas del Rey
+28133,San Martín de Valdeiglesias,592434,2026,2026-07-31,35.0,35.0,San Martín de Valdeiglesias
+28134,San Sebastián de los Reyes,236161,2024,2024-07-31,19.3,19.0,San Sebastián de los Reyes
+28135,Santa María de la Alameda,41051,2020,2020-08-02,7.2,1113.0,Zarzalejo
+28140,Serranillos del Valle,15688,2019,2019-05-30,1.4,30.0,Batres
+28144,Soto del Real,236160,2024,2024-07-31,2.7,3.0,Soto del Real
+28145,Talamanca de Jarama,216178,2023,2023-05-08,18.9,25.0,Talamanca de Jarama
+28154,Torres de la Alameda,235696,2024,2024-07-30,81.4,92.0,Torres de la Alameda
+28154,Torres de la Alameda,236151,2024,2024-07-31,14.5,756.0,Loeches
+28159,Valdemaqueda,562592,2026,2026-07-22,339.9,42458.0,Navaluenga
+28164,Valdetorres de Jarama,216178,2023,2023-05-08,5.8,25.0,Talamanca de Jarama
+28168,Vellón (El),207248,2022,2022-07-26,10.0,10.0,"Vellón, El"
+28170,Villaconejos,233485,2024,2024-07-10,24.8,30.0,Villaconejos
+28171,Villa del Prado,40679,2020,2020-07-23,59.5,59.0,Villa del Prado
+28171,Villa del Prado,273043,2025,2025-06-30,122.7,123.0,Villa del Prado
+28171,Villa del Prado,592438,2026,2026-07-23,3522.0,19939.0,Navas del Rey
+28172,Villalbilla,235696,2024,2024-07-30,9.3,92.0,Torres de la Alameda
+28174,Villamanta,210021,2022,2022-08-25,3.6,4.0,Villamanta
+28174,Villamanta,274755,2025,2025-07-17,987.0,3247.0,Valmojado
+28180,Villarejo de Salvanés,239467,2024,2024-08-24,4.4,4.0,Villarejo de Salvanés
+28180,Villarejo de Salvanés,277007,2025,2025-07-25,5.5,6.0,Villarejo de Salvanés
+28181,Villaviciosa de Odón,507873,2026,2026-06-08,3.2,3.0,Villaviciosa de Odón
+28181,Villaviciosa de Odón,507874,2026,2026-06-08,0.9,1.0,Villaviciosa de Odón
+28181,Villaviciosa de Odón,561289,2026,2026-07-10,11.1,11.0,Villaviciosa de Odón
+28183,Zarzalejo,41051,2020,2020-08-02,321.5,1113.0,Zarzalejo
+28901,Lozoyuela-Navas-Sieteiglesias,562521,2026,2026-07-16,140.2,862.0,Puentes Viejas
+28902,Puentes Viejas,562521,2026,2026-07-16,267.3,862.0,Puentes Viejas
+28903,Tres Cantos,237095,2024,2024-08-04,47.8,48.0,Tres Cantos
+28903,Tres Cantos,238960,2024,2024-08-22,113.7,535.0,Colmenar Viejo
+28903,Tres Cantos,278333,2025,2025-08-12,627.8,2037.0,Madrid

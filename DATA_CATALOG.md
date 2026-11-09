@@ -43,6 +43,18 @@ Todas resueltas vía API CKAN `https://datos.comunidad.madrid/api/3/action/packa
 - Real Sitio de San Ildefonso (Segovia) y Almorox (Toledo) figuran en la tabla y se excluyen por estar fuera de la región.
 - En el propio documento la suma de causas **no coincide** con el total en 95 municipios ni en la fila de totales (2.912 frente a 2.641). Se muestran ambos valores literales y la ficha lo advierte; no se corrige.
 
+## 1 ter. Observación por satélite (complementaria, europea)
+
+| ID | Producto | Formato | SHA-256 (16) | Licencia | Escala | Uso en producto | Estado |
+|---|---|---|---|---|---|---|---|
+| EFF-01 | EFFIS — MODIS Burnt Areas (Rapid Damage Assessment), Copernicus EMS / JRC ([datos y servicios](https://forest-fire.emergency.copernicus.eu/applications/data-and-services)) | SHP en ZIP, 262 MB (toda Europa, actualización diaria) | `c1a5d2de11febe9f` | CC BY 4.0 — © Unión Europea ([licencia](https://forest-fire.emergency.copernicus.eu/about-effis/data-license)) | perímetros a 250 m; ≈30 ha o más | Capa activable en el mapa; ficha «Áreas quemadas cartografiadas por satélite» con superficie dentro de cada término | Ingerido y usado (09/11) |
+
+**Decisión 2.6 (09/11/2026): integrar.** Aporta perímetros reales y las campañas 2025–2026, que no cubren ni el Portal CAM (CAM-05, regional) ni el Plan Anual (DOC-01, 2015–2024). Licencia CC BY 4.0 compatible.
+- 109.262 perímetros europeos → **73 intersecan la Comunidad de Madrid** (68 asignados por EFFIS a Madrid; 5 de Ávila, Guadalajara, Toledo y Segovia que entran en parte, p. ej. Navaluenga, 42.458 ha, 9 % dentro). Años: 2016 y 2019–2026.
+- Reparto municipal **derivado**: intersección con CAM-08 en EPSG:25830 → 104 pares perímetro × municipio en 61 municipios. Se conserva literal el municipio que asigna EFFIS.
+- Control: área geodésica calculada vs `AREA_HA` publicada, desviación mediana 0,1 % (perímetros ≥30 ha).
+- Avisos del productor siempre visibles: MODIS 250 m; ≈30 ha o más; no distingue incendios de quemas agrícolas o prescritas; fechas aproximadas; posibles fusiones de perímetros. **No es la estadística oficial de incendios** (esa es DOC-01/EGIF) y ausencia de perímetro no significa ausencia de incendios.
+
 ## 2. Cartografía oficial IDEM (complementaria)
 
 | ID | Recurso | Formato real | SHA-256 (16) | Fecha metadatos | Licencia (verificada en ISO 19139) | Uso |
@@ -66,7 +78,7 @@ Detalle y pruebas: `docs/aemet.md`, `fixtures/aemet/README.md`.
 
 | Fuente | Motivo |
 |---|---|
-| Copernicus EMS/EFFIS | P1: verificar licencia y resolución de perímetros; no mezclar provisionales con certificados |
+| Copernicus EMS/EFFIS | Integrado como EFF-01 (09/11); ver sección 1 ter |
 | CNIG MDT | P1: pendientes reales (CAM-03 no lo permite) |
 | MITECO EGIF | P1: series municipales históricas si son accesibles |
 | Catastro | Fuera de alcance sin base legal (datos personales) |

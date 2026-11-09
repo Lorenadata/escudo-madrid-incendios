@@ -18,6 +18,7 @@ const RAMP = ["#E3ECE6", "#B9D0C2", "#86AE98", "#4F826A", "#1E3B2F"];
 // Rampa ordinal para clases oficiales (de menor a mayor). Clases no ordinales → gris.
 const ORDINAL_RAMP = ["#F4E9B8", "#EBC46E", "#D98A3A", "#B5502A", "#7A2416", "#4A120B"];
 const NON_ORDINAL = "#8A8F8C";
+const BURNT_COLOR = "#5B3E6E"; // ciruela: fuera de la rampa ordinal de las capas oficiales
 
 /** Posición ordinal de una etiqueta literal («Riesgo muy bajo» … «muy alto»); null si no es ordinal. */
 export function ordinalRank(label: string): number | null {
@@ -85,12 +86,13 @@ interface Props {
   highlight: Set<string> | null;
   officialLayers: Layer[];
   activeOfficial: string | null;
+  showBurnt?: boolean;
   onSelect: (ine: string) => void;
   onLegend: (l: LegendSpec[]) => void;
   onError: (msg: string | null) => void;
 }
 
-export function MapExplorer({ choropleth, selected, highlight, officialLayers, activeOfficial, onSelect, onLegend, onError }: Props) {
+export function MapExplorer({ choropleth, selected, highlight, officialLayers, activeOfficial, showBurnt = false, onSelect, onLegend, onError }: Props) {
   const ref = useRef<HTMLDivElement>(null);
   const mapRef = useRef<MlMap | null>(null);
   const [ready, setReady] = useState(false);
@@ -273,6 +275,27 @@ export function MapExplorer({ choropleth, selected, highlight, officialLayers, a
       .catch((e) => onError(`Capa «${layer.title ?? layer.label ?? layer.name}» no disponible: ${e.message}`));
   }, [ready, activeOfficial, officialLayers, onError]);
 
+  // EFF-01: perímetros de áreas quemadas (EFFIS), capa superpuesta independiente de la capa oficial.
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!ready || !map) return;
+    const vis = showBurnt ? "visible" : "none";
+    if (map.getLayer("burnt-fill")) {
+      map.setLayoutProperty("burnt-fill", "visibility", vis);
+      map.setLayoutProperty("burnt-line", "visibility", vis);
+      return;
+    }
+    if (!showBurnt) return;
+    apiFetch<FeatureCollection>("/v1/layers/burnt_areas/geojson")
+      .then((fc) => {
+        if (!mapRef.current || map.getLayer("burnt-fill")) return;
+        map.addSource("burnt", { type: "geojson", data: fc as unknown as GeoJSON.FeatureCollection });
+        map.addLayer({ id: "burnt-fill", type: "fill", source: "burnt", paint: { "fill-color": BURNT_COLOR, "fill-opacity": 0.45 } });
+        map.addLayer({ id: "burnt-line", type: "line", source: "burnt", paint: { "line-color": "#2E1F38", "line-width": 1.2 } });
+      })
+      .catch((e) => onError(`Capa de áreas quemadas (EFFIS) no disponible: ${e.message}`));
+  }, [ready, showBurnt, onError]);
+
   // Leyendas.
   useEffect(() => {
     const opt = CHOROPLETH_OPTIONS[choropleth];
@@ -299,8 +322,15 @@ export function MapExplorer({ choropleth, selected, highlight, officialLayers, a
         note: "Clases literales de la capa oficial, sin recalcular. Generalización web a 200 m: solo visualización, no consulta por parcela.",
       });
     }
+    if (showBurnt) {
+      specs.unshift({
+        title: "Áreas quemadas por satélite · EFF-01",
+        items: [{ label: "Perímetro EFFIS (≈30 ha o más, 250 m)", color: BURNT_COLOR }],
+        note: "Estimación MODIS de EFFIS (Copernicus EMS, JRC), CC BY 4.0. No distingue quemas prescritas; fechas aproximadas.",
+      });
+    }
     onLegend(specs);
-  }, [choropleth, breaks, activeOfficial, officialLayers, onLegend, officialLegends]);
+  }, [choropleth, breaks, activeOfficial, officialLayers, onLegend, officialLegends, showBurnt]);
 
   // Estilo en línea: maplibre-gl.css fija `.maplibregl-map { position: relative }` y anularía la clase.
   return (

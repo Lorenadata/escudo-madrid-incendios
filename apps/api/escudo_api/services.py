@@ -175,6 +175,31 @@ def fire_plan_for(session: Session, ine_code: str) -> dict[str, Any]:
     }
 
 
+def satellite_burnt_for(session: Session, ine_code: str) -> dict[str, Any]:
+    """EFF-01: perímetros EFFIS que tocan el municipio, con superficie dentro del término (derivada) y literal EFFIS."""
+    from .models import SatelliteBurntArea as A
+    from .models import SatelliteBurntAreaMunicipality as M
+
+    total_layer = session.scalar(select(func.count()).select_from(A)) or 0
+    rows = session.execute(select(A, M.area_ha).join(M, M.effis_id == A.effis_id)
+                           .where(M.ine_code == ine_code).order_by(A.fire_date.desc())).all()
+    events = [{"effis_id": a.effis_id, "fire_date": a.fire_date.isoformat() if a.fire_date else None,
+               "year": a.year, "area_ha_in_municipality": round(ha, 1), "area_ha_effis_perimeter": a.area_ha_effis,
+               "commune_literal": a.commune_literal, "province_literal": a.province_literal,
+               "status": "derived"} for a, ha in rows]
+    years = sorted({a.year for (a,) in session.execute(select(A))})
+    return {
+        "source_id": "EFF-01", "status": "derived" if total_layer else "unavailable",
+        "period": f"{years[0]}–{years[-1]}" if years else None,
+        "events": events, "total_ha_in_municipality": round(sum(e["area_ha_in_municipality"] for e in events), 1),
+        "method": ("Intersección de cada perímetro EFFIS con el límite municipal (CAM-08) en EPSG:25830. La superficie "
+                   "del perímetro completo y el municipio asignado por EFFIS se muestran literales."),
+        "caveat": ("Estimación por satélite (MODIS, 250 m): áreas de unas 30 ha o más; no distingue incendios "
+                   "forestales de quemas agrícolas o prescritas; fechas aproximadas. Sin perímetros no significa "
+                   "que no haya habido incendios. Fuente: EFFIS (Copernicus EMS, JRC), CC BY 4.0."),
+    }
+
+
 def municipality_profile(session: Session, m: Municipality, *, with_weather: bool = True) -> dict[str, Any]:
     prof = municipality_summary(m)
     prof["area_km2"] = indicator("municipality_area_km2", m.area_km2, None)
@@ -192,9 +217,10 @@ def municipality_profile(session: Session, m: Municipality, *, with_weather: boo
     }
     prof["housing"] = housing_for(session, m.ine_code)
     prof["fire_plan"] = fire_plan_for(session, m.ine_code)
+    prof["satellite_burnt"] = satellite_burnt_for(session, m.ine_code)
     prof["official_fire"] = official_layers_for(session, m.ine_code)
     prof["weather"] = weather_context(session, m.ine_code) if with_weather else None
-    prof["sources"] = ["CAM-01", "CAM-02", "CAM-03", "CAM-08", "CAM-09", "CAM-10", "CAM-11", "DOC-01", "GEO-01", "GEO-02", "GEO-03", "AEMET"]
+    prof["sources"] = ["CAM-01", "CAM-02", "CAM-03", "CAM-08", "CAM-09", "CAM-10", "CAM-11", "DOC-01", "EFF-01", "GEO-01", "GEO-02", "GEO-03", "AEMET"]
     prof["scale_notice"] = SCALE_NOTICE
     return prof
 

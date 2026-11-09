@@ -183,6 +183,12 @@ def list_layers(session: Session = Depends(get_session)) -> list[dict[str, Any]]
                        "status": "official" if n else "unavailable", "available": bool(n), "features": n,
                        "classes": lm.get("classes", []), "license": lm.get("license"),
                        "version": lm.get("version_or_date")})
+    from ..models import SatelliteBurntArea
+
+    n = session.scalar(select(func.count()).select_from(SatelliteBurntArea)) or 0
+    layers.append({"name": "burnt_areas", "label": "Áreas quemadas cartografiadas por satélite (EFFIS)",
+                   "source_id": "EFF-01", "status": "official" if n else "unavailable", "available": bool(n),
+                   "features": n, "license": "CC BY 4.0 — © Unión Europea, EFFIS", "overlay": True})
     return layers
 
 
@@ -196,6 +202,17 @@ def layer_geojson(name: str, session: Session = Depends(get_session)) -> dict[st
                                  "altitude_m": m.altitude_m, "population_year": m.population_year,
                                  "density_year": m.density_year}} for m, g in rows]
         return {"type": "FeatureCollection", "source_id": "CAM-08", "features": feats}
+    if name == "burnt_areas":
+        from ..models import SatelliteBurntArea as A
+
+        rows = session.execute(select(A, func.ST_AsGeoJSON(A.geom, 5)).order_by(A.fire_date)).all()
+        if not rows:
+            raise HTTPException(404, "Capa EFFIS no disponible (no ingerida)")
+        return {"type": "FeatureCollection", "source_id": "EFF-01", "license": "CC BY 4.0 — © Unión Europea, EFFIS",
+                "features": [{"type": "Feature", "geometry": json.loads(g), "properties": {
+                    "effis_id": a.effis_id, "year": a.year, "fire_date": a.fire_date.isoformat() if a.fire_date else None,
+                    "area_ha_effis": a.area_ha_effis, "commune_literal": a.commune_literal,
+                    "province_literal": a.province_literal}} for a, g in rows]}
     if name not in OFFICIAL_LAYERS:
         raise HTTPException(404, "Capa desconocida")
     rows = session.execute(select(OfficialLayerPolygon.class_code, OfficialLayerPolygon.class_label,

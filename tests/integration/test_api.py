@@ -331,3 +331,18 @@ def test_sources_expose_refresh_check_and_log(client):
     assert log["status"] in {"ok", "unavailable"} and "SHA-256" in log["method"]
     if log["last_run"]:
         assert all(r["result"] in {"unchanged", "changed", "failed"} for r in log["last_run"]["results"])
+
+
+def test_satellite_burnt_areas_profile_and_layer(client):
+    """2.6 (EFF-01): perímetros EFFIS literales en el mapa; reparto municipal derivado con método y avisos."""
+    rows = [r for r in csv.DictReader((ROOT / "data/processed/effis/municipal_burnt_areas.csv").open(encoding="utf-8"))]
+    ine = rows[0]["ine_code"]
+    expected = round(sum(float(r["area_ha_in_municipality"]) for r in rows if r["ine_code"] == ine), 1)
+    p = client.get(f"/v1/municipalities/{ine}/profile").json()["satellite_burnt"]
+    assert p["source_id"] == "EFF-01" and p["status"] == "derived"
+    assert p["total_ha_in_municipality"] == pytest.approx(expected, abs=0.2)
+    assert "prescritas" in p["caveat"] and "EPSG:25830" in p["method"]
+    layers = {x["name"]: x for x in client.get("/v1/layers").json()}
+    assert layers["burnt_areas"]["overlay"] and layers["burnt_areas"]["available"]
+    g = client.get("/v1/layers/burnt_areas/geojson").json()
+    assert g["source_id"] == "EFF-01" and len(g["features"]) == layers["burnt_areas"]["features"]

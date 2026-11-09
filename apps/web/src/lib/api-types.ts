@@ -133,11 +133,30 @@ export interface FirePlanContext {
   note: string | null;
 }
 
+export interface SatelliteBurntContext {
+  source_id: string;
+  status: string;
+  period: string | null;
+  events: Array<{
+    effis_id: string;
+    fire_date: string | null;
+    year: number;
+    area_ha_in_municipality: number;
+    area_ha_effis_perimeter: number;
+    commune_literal: string | null;
+    province_literal: string | null;
+  }>;
+  total_ha_in_municipality: number;
+  method: string;
+  caveat: string;
+}
+
 export interface MunicipalityProfile extends MunicipalitySummary {
   area_km2: Indicator;
   forest_share: Indicator;
   housing?: HousingContext | null;
   fire_plan?: FirePlanContext | null;
+  satellite_burnt?: SatelliteBurntContext | null;
   official_fire: {
     risk: OfficialLayerSummary | null;
     hazard: OfficialLayerSummary | null;
@@ -189,6 +208,7 @@ export interface Layer {
   legend?: LayerLegendItem[];
   class_property?: string | null;
   description?: string | null;
+  overlay?: boolean;
 }
 
 export interface GeoFeature {

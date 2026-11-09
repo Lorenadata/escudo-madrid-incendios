@@ -1,7 +1,7 @@
 "use client";
 
-import type { FirePlanContext, HousingContext, MunicipalityProfile, OfficialLayerSummary, WeatherContext } from "@/lib/api-types";
-import { fmtDate, fmtShare } from "@/lib/format";
+import type { FirePlanContext, HousingContext, SatelliteBurntContext, MunicipalityProfile, OfficialLayerSummary, WeatherContext } from "@/lib/api-types";
+import { fmtDate, fmtNumber, fmtShare } from "@/lib/format";
 import { IndicatorValue } from "./IndicatorValue";
 import { SeriesPanel } from "./SeriesPanel";
 import { StatusBadge } from "./StatusBadge";
@@ -193,6 +193,63 @@ export function FirePlanPanel({ plan }: { plan: FirePlanContext | null | undefin
   );
 }
 
+export function SatelliteBurntPanel({ data }: { data: SatelliteBurntContext | null | undefined }) {
+  return (
+    <section aria-labelledby="effis-h" className="border-t border-line pt-4">
+      <div className="flex items-center gap-2">
+        <h3 id="effis-h" className="font-cond text-base font-semibold text-ink">
+          Áreas quemadas cartografiadas por satélite{data?.period ? `, ${data.period}` : ""}
+        </h3>
+        <StatusBadge status={!data || data.status === "unavailable" ? "unavailable" : "derived"} className="ml-auto" />
+      </div>
+      {!data || data.status === "unavailable" ? (
+        <p className="py-2 text-sm text-ink-500">Capa EFFIS no disponible.</p>
+      ) : data.events.length === 0 ? (
+        <p className="py-2 text-sm text-ink-600">
+          EFFIS no ha cartografiado perímetros que toquen este término municipal en el periodo disponible.
+        </p>
+      ) : (
+        <>
+          <p className="text-sm text-ink-700">
+            {data.events.length} perímetro{data.events.length === 1 ? "" : "s"} ·{" "}
+            <strong className="tabular-nums">{fmtNumber(data.total_ha_in_municipality)} ha</strong> dentro del término
+          </p>
+          <div className="mt-1 max-h-56 overflow-auto">
+            <table className="w-full text-xs">
+              <caption className="sr-only">Perímetros EFFIS que tocan el municipio</caption>
+              <thead>
+                <tr className="text-left text-ink-500">
+                  <th className="py-1 font-medium">Fecha</th>
+                  <th className="py-1 text-right font-medium">ha en el término</th>
+                  <th className="py-1 text-right font-medium">ha del perímetro</th>
+                  <th className="py-1 pl-2 font-medium">Municipio según EFFIS</th>
+                </tr>
+              </thead>
+              <tbody>
+                {data.events.map((e) => (
+                  <tr key={e.effis_id} className="border-t border-line">
+                    <td className="py-0.5">{fmtDate(e.fire_date)}</td>
+                    <td className="py-0.5 text-right tabular-nums">{fmtNumber(e.area_ha_in_municipality)}</td>
+                    <td className="py-0.5 text-right tabular-nums">{fmtNumber(e.area_ha_effis_perimeter)}</td>
+                    <td className="py-0.5 pl-2">{e.commune_literal}{e.province_literal && e.province_literal !== "Madrid" ? ` (${e.province_literal})` : ""}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </>
+      )}
+      {data && (
+        <details className="mt-1 text-xs text-ink-600">
+          <summary className="cursor-pointer text-slate">Ver método y fuentes</summary>
+          <p className="mt-1">{data.method}</p>
+          <p className="mt-1">{data.caveat}</p>
+        </details>
+      )}
+    </section>
+  );
+}
+
 export function MunicipalityProfileView({ profile, showWeather = true }: { profile: MunicipalityProfile; showWeather?: boolean }) {
   return (
     <div className="space-y-4">
@@ -216,6 +273,7 @@ export function MunicipalityProfileView({ profile, showWeather = true }: { profi
       </section>
       <SeriesPanel ine={profile.ine_code} />
       <FirePlanPanel plan={profile.fire_plan} />
+      <SatelliteBurntPanel data={profile.satellite_burnt} />
       <HousingPanel housing={profile.housing} />
       <p className="text-xs text-ink-500">
         Histórico de incendios y repoblaciones (solo regional, CAM-05/CAM-06):{" "}

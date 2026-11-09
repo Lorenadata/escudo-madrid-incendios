@@ -1,0 +1,44 @@
+{
+  "inputs": {
+    "EFF-01": {
+      "sha256": "c1a5d2de11febe9f4f5deacce79faa50631f09d917da27ecf341d29fd3e04f77",
+      "extracted_at": "2026-11-09T08:25:01+00:00",
+      "resource_url": "https://forest-fire.emergency.copernicus.eu/downloads/data.request.form/effis_layer.zip"
+    }
+  },
+  "years": [
+    2016,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+  ],
+  "features": 73,
+  "checks": [
+    {
+      "check": "effis_registros_leidos",
+      "passed": true,
+      "detail": "109262 perímetros en el paquete europeo"
+    },
+    {
+      "check": "effis_perimetros_region",
+      "passed": true,
+      "detail": "73 perímetros intersecan la Comunidad de Madrid (0 geometrías corregidas con buffer(0) en la lectura)"
+    },
+    {
+      "check": "effis_area_calculada_vs_publicada",
+      "passed": true,
+      "detail": "desviación mediana entre AREA_HA publicada y área geodésica calculada (perímetros ≥30 ha): 0.1%"
+    },
+    {
+      "check": "effis_reparto_municipal",
+      "passed": true,
+      "detail": "104 pares perímetro×municipio en 61 municipios"
+    }
+  ],
+  "all_passed": true
+}

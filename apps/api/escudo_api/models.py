@@ -163,6 +163,33 @@ class OfficialLayerMunicipalShare(Base):
     source_id: Mapped[str] = mapped_column(String(16))
 
 
+class SatelliteBurntArea(Base):
+    """EFF-01: perímetro de área quemada de EFFIS (MODIS) que interseca la Comunidad de Madrid (atributos literales)."""
+
+    __tablename__ = "satellite_burnt_areas"
+    effis_id: Mapped[str] = mapped_column(String(32), primary_key=True)
+    source_id: Mapped[str] = mapped_column(String(16))
+    fire_date: Mapped[date | None] = mapped_column(Date)
+    last_update: Mapped[date | None] = mapped_column(Date)
+    year: Mapped[int] = mapped_column(Integer, index=True)
+    area_ha_effis: Mapped[float] = mapped_column(Float)
+    area_ha_in_region: Mapped[float] = mapped_column(Float)
+    commune_literal: Mapped[str | None] = mapped_column(Text)
+    province_literal: Mapped[str | None] = mapped_column(Text)
+    attributes: Mapped[dict] = mapped_column(JSONType, default=dict)
+    geom = mapped_column(Geometry("MULTIPOLYGON", srid=4326, spatial_index=True))
+
+
+class SatelliteBurntAreaMunicipality(Base):
+    """Reparto DERIVADO: superficie de cada perímetro EFFIS dentro de cada municipio (intersección en EPSG:25830)."""
+
+    __tablename__ = "satellite_burnt_area_municipalities"
+    effis_id: Mapped[str] = mapped_column(ForeignKey("satellite_burnt_areas.effis_id", ondelete="CASCADE"),
+                                          primary_key=True)
+    ine_code: Mapped[str] = mapped_column(ForeignKey("municipalities.ine_code"), primary_key=True, index=True)
+    area_ha: Mapped[float] = mapped_column(Float)
+
+
 class RegionalSeries(Base):
     """Series agregadas regionales (CAM-05 incendios, CAM-06 repoblaciones, CAM-07 usos)."""
 

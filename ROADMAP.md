@@ -68,7 +68,7 @@ Sin estas, el proyecto pierde puntos que ningún agente puede recuperar.
 | 2.3 | ✅ (09/11, DOC-01: 59 ZAR + siniestros municipales 2015–2024 por causa, Anexo I) Lista oficial de **municipios en Zonas de Alto Riesgo (ZAR)** del Plan Anual 2026 / INFOMA como capa de contexto (documento oficial, citado con página) | A1+A2 | D25, D20 | fuente y página citadas; test de que coincide con el documento |
 | 2.4 | ✅ (09/11: `escudo_pipelines.refresh`; prueba real: CAM-07 cambió de SHA-256 con las mismas 760 filas reordenadas) Actualización automática verificable: comando `refresh` que vuelve a descargar, compara SHA-256 y registra versión; panel «última actualización» por fuente | A2+A10 | D25, R10 | test existente + demostración en vivo |
 | 2.5 | ✅ (08/11; e2e local 10/10 ✔ 09/11) Histórico regional en la ficha y en el análisis: CAM-05 incendios 1985–2025, CAM-06 repoblaciones (M14), siempre etiquetado «regional» | A7 | D25 | UI + e2e |
-| 2.6 | Copernicus EFFIS: evaluar licencia y utilidad (áreas quemadas históricas) — integrar solo si aporta y la licencia lo permite | A3 | D20 | decisión documentada |
+| 2.6 | ✅ (09/11: integrado como EFF-01, CC BY 4.0; 73 perímetros 2016–2026, capa en mapa y ficha) Copernicus EFFIS: evaluar licencia y utilidad (áreas quemadas históricas) — integrar solo si aporta y la licencia lo permite | A3 | D20 | decisión documentada |
 
 ### Fase 3 — Impacto con evidencia (12–21/11) · gate **G-Impacto** 👤
 
