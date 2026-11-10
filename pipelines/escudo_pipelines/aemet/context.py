@@ -206,24 +206,31 @@ def get_weather_context(
 
 
 def _fire_indicator(p: OpenDataProvider, client, cache, epoch: float, now: datetime) -> dict:
+    """Mapa oficial de AEMET: el ESTIMADO del día si está publicado; si no, el PREVISTO para mañana (rotulado)."""
     caveat = (
         "Mapa ráster oficial de AEMET para Península y Baleares. No se extrae un valor por municipio "
-        "ni por urbanización. Índice de peligro, no pronóstico de ignición."
+        "ni por urbanización. Índice de peligro, no pronóstico de ignición. © AEMET."
     )
+    base = {"unit": "URL de imagen (mapa)", "spatial_scope": "Península y Baleares (mapa)",
+            "source_id": "AEMET-INC-MAPA", "caveat": caveat}
     try:
         url = p.fetch_fire_map_url(client, cache, epoch)
-        value, status = url, "official"
+        return {**base, "indicator_id": "aemet_fire_danger_map_estimated", "value": url, "status": "official",
+                "label": "Mapa de niveles de riesgo meteorológico de incendios (estimado, hoy)",
+                "temporal_scope": now.date().isoformat(),
+                "method": "Mapa estimado publicado por AEMET (api/incendios/mapasriesgo/estimado/area/p)."}
     except AemetUnavailable:
-        value, status = None, "unavailable"
-    return {
-        "indicator_id": "aemet_fire_danger_map_estimated",
-        "label": "Mapa de niveles de riesgo meteorológico de incendios (estimado)",
-        "value": value,
-        "unit": "URL de imagen (mapa)",
-        "spatial_scope": "Península y Baleares (mapa)",
-        "temporal_scope": now.date().isoformat(),
-        "status": status,
-        "source_id": "AEMET-INC-MAPA",
-        "method": "Último mapa publicado por AEMET (api/incendios/mapasriesgo/estimado/area/p).",
-        "caveat": caveat,
-    }
+        pass
+    try:
+        url = p.fetch_fire_map_url(client, cache, epoch, forecast_day=1)
+        tomorrow = (now + timedelta(days=1)).date().isoformat()
+        return {**base, "indicator_id": "aemet_fire_danger_map_forecast", "value": url, "status": "official",
+                "label": "Mapa de niveles de riesgo meteorológico de incendios (previsto para mañana)",
+                "temporal_scope": tomorrow,
+                "method": ("AEMET no publica hoy el mapa estimado; se muestra el PREVISTO para mañana "
+                           "(api/incendios/mapasriesgo/previsto/dia/1/area/p).")}
+    except AemetUnavailable:
+        return {**base, "indicator_id": "aemet_fire_danger_map_estimated", "value": None, "status": "unavailable",
+                "label": "Mapa de niveles de riesgo meteorológico de incendios",
+                "temporal_scope": now.date().isoformat(),
+                "method": "Ni el mapa estimado ni el previsto están disponibles en AEMET OpenData en este momento."}

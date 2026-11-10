@@ -24,6 +24,8 @@ XML_URL = "https://www.aemet.es/xml/municipios/localidad_{ine}.xml"
 OPENDATA_BASE = "https://opendata.aemet.es/opendata"
 OD_DAILY = OPENDATA_BASE + "/api/prediccion/especifica/municipio/diaria/{ine}"
 OD_FIRE_ESTIMATED = OPENDATA_BASE + "/api/incendios/mapasriesgo/estimado/area/{area}"
+# Previsto: dia=1 «Mañana», 2 «Pasado mañana»… (especificación OpenAPI oficial de AEMET)
+OD_FIRE_FORECAST = OPENDATA_BASE + "/api/incendios/mapasriesgo/previsto/dia/{dia}/area/{area}"
 USER_AGENT = "escudo-madrid-etl/0.1 (DATAMAD 2026)"
 
 # TTL de caché de red por tipo de producto (segundos). La vigencia de la predicción se
@@ -159,14 +161,20 @@ class OpenDataProvider:
             cache.put(key, raw, now)
         return parsed
 
-    def fetch_fire_map_url(self, client: httpx.Client | None, cache: TTLCache, now: float, area: str = "p") -> str:
-        """Devuelve la URL `datos` del último mapa de riesgo estimado (imagen peninsular)."""
-        key = f"odfire:{area}"
+    def fetch_fire_map_url(self, client: httpx.Client | None, cache: TTLCache, now: float, area: str = "p",
+                           forecast_day: int | None = None) -> str:
+        """URL `datos` del mapa de riesgo meteorológico de incendios (imagen peninsular).
+
+        `forecast_day=None` → mapa ESTIMADO (día en curso); `forecast_day=1` → mapa PREVISTO para mañana.
+        """
+        key = f"odfire:{area}:{forecast_day or 'est'}"
         raw = cache.get(key, TTL_SECONDS["fire_danger_map"], now)
         if raw is None:
             c, owned = _client(client)
             try:
-                r = c.get(OD_FIRE_ESTIMATED.format(area=area), headers={"api_key": self._key})
+                url = (OD_FIRE_ESTIMATED.format(area=area) if forecast_day is None
+                       else OD_FIRE_FORECAST.format(dia=forecast_day, area=area))
+                r = c.get(url, headers={"api_key": self._key})
                 if r.status_code in (401, 403, 429) or not r.content:
                     raise AemetUnavailable(f"OpenData HTTP {r.status_code}")
                 meta = r.json()

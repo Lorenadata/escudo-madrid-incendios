@@ -9,6 +9,28 @@ import { StatusBadge } from "./StatusBadge";
 const DEFAULT_WEATHER_DISCLAIMER =
   "Predicción meteorológica oficial de AEMET, solo informativa: no es un índice de peligro de incendio, ni pronóstico de ignición, ni alerta operativa.";
 
+/** Mapa oficial de AEMET (imagen peninsular): se muestra tal cual, con su fecha y autoría. Nunca se extrae un valor local. */
+function FireDangerMap({ indicator }: { indicator: NonNullable<WeatherContext["fire_danger"]> }) {
+  const url = typeof indicator.value === "string" && /^https:\/\/opendata\.aemet\.es\//.test(indicator.value) ? indicator.value : null;
+  if (!url) return <IndicatorValue indicator={indicator} />;
+  return (
+    <figure className="my-2 rounded border border-line bg-white p-2">
+      <div className="flex items-baseline justify-between gap-2">
+        <figcaption className="text-sm text-ink-600">{indicator.label}</figcaption>
+        <StatusBadge status={indicator.status} />
+      </div>
+      <a href={url} target="_blank" rel="noopener noreferrer" className="mt-1 block">
+        {/* eslint-disable-next-line @next/next/no-img-element -- imagen oficial externa de AEMET, sin optimizar */}
+        <img src={url} alt={`${indicator.label}, ${indicator.temporal_scope ?? ""}. Mapa oficial de AEMET de Península y Baleares.`}
+          className="max-h-64 w-full object-contain" loading="lazy" />
+      </a>
+      <p className="mt-1 text-xs text-ink-500">
+        {indicator.temporal_scope} · {indicator.caveat}
+      </p>
+    </figure>
+  );
+}
+
 export function WeatherPanel({ weather }: { weather: WeatherContext | null | undefined }) {
   const status = weather?.status ?? "unavailable";
   return (
@@ -52,7 +74,7 @@ export function WeatherPanel({ weather }: { weather: WeatherContext | null | und
               )}
             </p>
           )}
-          {weather.fire_danger && <IndicatorValue indicator={weather.fire_danger} />}
+          {weather.fire_danger && <FireDangerMap indicator={weather.fire_danger} />}
           <div className="grid grid-cols-2 gap-x-4">
             {weather.variables.map((v) => (
               <IndicatorValue key={v.indicator_id} indicator={v} compact />

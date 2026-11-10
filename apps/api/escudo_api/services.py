@@ -10,6 +10,7 @@ from typing import Any
 from sqlalchemy import func, select
 from sqlalchemy.orm import Session
 
+from .config import settings
 from .indicators import indicator
 from .models import (
     AuditEvent,
@@ -86,7 +87,7 @@ def weather_context(session: Session, ine_code: str) -> dict[str, Any]:
     except ImportError:
         return _weather_unavailable(ine_code, "Conector AEMET no instalado", last_valid_at)
     try:
-        ctx = get_weather_context(ine_code)
+        ctx = get_weather_context(ine_code, api_key=settings.aemet_api_key or "")
     except Exception as exc:  # el conector no debe tumbar la ficha
         log.warning("AEMET falló para %s: %s", ine_code, exc)
         return _weather_unavailable(ine_code, f"Error del conector: {type(exc).__name__}", last_valid_at)

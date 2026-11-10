@@ -247,3 +247,22 @@ def test_live_public_xml():
     assert ctx["status"] in ("ok", "stale", "unavailable")
     if ctx["status"] == "ok":
         assert ctx["variables"]
+
+
+
+def test_fire_map_falls_back_to_forecast_when_estimated_missing():
+    """Caso real del 10/11/2026: el mapa ESTIMADO responde estado 404; se usa el PREVISTO de mañana, rotulado."""
+    def handler(request):
+        if "/incendios/mapasriesgo/estimado/" in request.url.path:
+            return httpx.Response(200, json={"descripcion": "No hay datos que satisfagan esos criterios", "estado": 404})
+        if "/incendios/mapasriesgo/previsto/dia/1/" in request.url.path:
+            return httpx.Response(200, json={"estado": 200, "datos": "https://opendata.aemet.es/sh/prev.png",
+                                             "metadatos": "x", "descripcion": "exito"})
+        return opendata_handler(request)
+
+    c, _ = client_for(handler)
+    ctx = get_weather_context("28079", now=NOW_OK, client=c, api_key="TEST-KEY", cache=TTLCache())
+    fd = ctx["fire_danger"]
+    assert fd["status"] == "official" and fd["value"].endswith("prev.png")
+    assert fd["indicator_id"] == "aemet_fire_danger_map_forecast" and "previsto para mañana" in fd["label"]
+    assert fd["temporal_scope"] > NOW_OK.date().isoformat()
