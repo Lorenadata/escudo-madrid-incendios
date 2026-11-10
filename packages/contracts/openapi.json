@@ -2599,6 +2599,29 @@
         }
       }
     },
+    "/v1/public/progress": {
+      "get": {
+        "tags": [
+          "portal público"
+        ],
+        "summary": "Public Progress",
+        "operationId": "public_progress_v1_public_progress_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object",
+                  "title": "Response Public Progress V1 Public Progress Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/demo/guided": {
       "get": {
         "tags": [

@@ -453,3 +453,21 @@ def test_m19_docs_search_is_extractive_public_and_bounded(client):
     assert client.get("/v1/docs/search", params={"q": "x" * 301}).status_code == 422
     ev = client.get("/v1/docs/evaluation").json()
     assert ev["total"] == 20 and ev["hits"] >= 18
+
+
+def test_m18_public_progress_respects_consent_threshold_and_never_leaks_private_data(client):
+    """M18: agregados públicos solo de ámbitos autorizados, con umbral (≥3 ámbitos, ≥2 organizaciones), sin nombres."""
+    r = client.get("/v1/public/progress")  # sin autenticación
+    assert r.status_code == 200
+    d = r.json()
+    assert d["thresholds"] == {"min_areas": 3, "min_organizations": 2} and "no de riesgo" in d["notice"]
+    pub = {m["ine_code"]: m for m in d["published"]}
+    assert "28047" in pub and pub["28047"]["areas"] == 3 and pub["28047"]["synthetic"] is True
+    assert pub["28047"]["zar_declared"] is True and 0 <= pub["28047"]["actions_done_share"] <= 1
+    # 28131 solo tiene 1 ámbito autorizado: no se publica ninguna cifra
+    w = {m["ine_code"]: m for m in d["withheld"]}
+    assert "28131" in w and set(w["28131"]) == {"ine_code", "name", "reason"}
+    flat = json.dumps(d, ensure_ascii=False)
+    for private in ("Los Pinos", "DEMO D", "Ámbito D", "Gestora", "budget", "cost_eur", "area_id", "organization_id",
+                    "no compartido"):
+        assert private not in flat, private

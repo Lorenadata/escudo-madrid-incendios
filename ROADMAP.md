@@ -90,7 +90,7 @@ Solo tras G-Demo. Orden por valor ante el jurado:
 | 4.2 | ✅ (09/11: 15 puntos con cita literal verificada contra el BOCM, DOC-02; enlazado al plan; nunca aprueba) M15 Expediente PAIF/PAMIF: checklist de información pendiente según INFOMA, adjuntos, estado; **nunca aprobación** | A6+A7 | D20, I25 | texto legal revisado por A1 |
 | 4.3 | ✅ (10/11: comentarios y decisiones inmutables por actuación, inspección y ámbito; pestaña «Decisiones»; aislado y auditado) M17 Colaboración: comentarios por acción/inspección, registro de decisiones con autor y fecha | A6+A7 | D20 | auditado |
 | 4.4 | ✅ (10/11: búsqueda EXTRACTIVA sin IA generativa sobre DOC-01 y DOC-02; acierto@3 = 18/20 en conjunto fijado antes de ajustar; Ley 43/2003 no indexada) M19 Asistente documental con citas sobre el Plan 2026, INFOMA y Ley 43/2003 (RAG local; responde solo con cita; nunca decisiones operativas) | A5+A6 | D20 | evaluación con 20 preguntas y respuestas verificadas |
-| 4.5 | M18 Portal público: avance agregado por municipio sin datos privados | A7 | I25 | test de privacidad |
+| 4.5 | ✅ (10/11: `/avance` y `GET /v1/public/progress`; solo ámbitos autorizados, umbral ≥3 ámbitos de ≥2 organizaciones, sin nombres ni costes; 3 ámbitos ficticios en Collado Villalba para la demo) M18 Portal público: avance agregado por municipio sin datos privados | A7 | I25 | test de privacidad |
 | 4.6 | M21 PWA para inspección en campo (formulario offline y sincronización) | A7 | V15 | probado en móvil |
 
 ### Fase 5 — Calidad, seguridad y publicación (17–23/11) · gates **G7/G9**

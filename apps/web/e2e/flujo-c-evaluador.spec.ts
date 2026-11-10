@@ -216,3 +216,13 @@ test("M19 normativa: búsqueda extractiva con fragmentos literales, página y ev
   await expect(page.getByText(/Cómo se ha evaluado: \d+ de 20 preguntas/)).toBeVisible();
   await assertSafeLanguage(page);
 });
+
+test("M18 avance público: agregados con umbral de privacidad y sin datos privados", async ({ page }) => {
+  await page.goto("/avance");
+  await expect(page.getByRole("heading", { name: "Avance público de la prevención" })).toBeVisible();
+  await expect(page.getByRole("row", { name: /Collado Villalba/ })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "No se publican (umbral de privacidad)" })).toBeVisible();
+  await expect(page.getByText("Los Pinos")).toHaveCount(0);
+  await expect(page.getByText("no de riesgo", { exact: false }).first()).toBeVisible();
+  await assertSafeLanguage(page);
+});

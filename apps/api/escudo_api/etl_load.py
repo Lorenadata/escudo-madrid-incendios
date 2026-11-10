@@ -426,7 +426,7 @@ def seed_demo(session: Session) -> dict:
         session.flush()
         session.refresh(sc)
         plan = create_plan_from(session, sc, "optimized", None)
-        for upd in seed.get("plan_updates", []):
+        for upd in s.get("plan_updates", seed.get("plan_updates", [])):
             for a in plan.actions:
                 if a.measure_code == upd["measure_code"]:
                     a.status = upd["status"]
