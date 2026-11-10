@@ -36,7 +36,7 @@ cd apps/web && npm install && npm run dev               # http://localhost:3000
 
 **Actualización verificable:** `python -m escudo_pipelines.refresh` vuelve a descargar cada fuente y compara su SHA-256 con el manifest (sin tocar los datos en uso); `--apply --rebuild` incorpora las versiones nuevas, conserva el historial y recarga PostGIS. El resultado se ve en `/fuentes` y en `GET /v1/sources/refresh-log`.
 
-**Demo en un comando:** `bash scripts/demo.sh` (BD, migraciones, datos, API en :8000, web en :3000, cachés calentadas); `bash scripts/demo.sh check` ejecuta los 10 e2e y restaura la demo; `bash scripts/demo.sh stop` la detiene. Para desarrollo: `bash scripts/dev.sh`. Documentación interactiva de la API: http://localhost:8000/docs.
+**Demo en un comando:** `bash scripts/demo.sh` (si el puerto 8000 está ocupado por otro servicio, el script lo avisa: `API_PORT=8010 bash scripts/demo.sh`) (BD, migraciones, datos, API en :8000, web en :3000, cachés calentadas); `bash scripts/demo.sh check` ejecuta los 10 e2e y restaura la demo; `bash scripts/demo.sh stop` la detiene. Para desarrollo: `bash scripts/dev.sh`. Documentación interactiva de la API: http://localhost:8000/docs.
 
 **Demo local** (datos ficticios): `gestor@demo.escudo.local` / `demo-escudo-2026`. Recorrido público sin credenciales: `GET /v1/demo/guided`.
 

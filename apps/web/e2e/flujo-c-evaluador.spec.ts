@@ -109,6 +109,15 @@ test("área privada: login demo y aislamiento visible del ámbito ficticio", asy
   await expect(page.getByRole("heading", { name: "Expediente de autoprotección" })).toBeVisible();
   await expect(page.getByText("no redacta, no aprueba, no registra y no certifica", { exact: false })).toBeVisible();
   await expect(page.getByText("Anexo 6, ap. 1.2.1.b · BOCM pág. 75", { exact: false })).toBeVisible();
+  // M17: registro de decisiones del ámbito, inmutable y con autor
+  await page.getByRole("tab", { name: "Decisiones" }).click();
+  await expect(page.getByRole("heading", { name: "Registro de decisiones" })).toBeVisible();
+  await page.getByText("Comentarios y decisiones sobre el ámbito").click();
+  await page.getByLabel(/Nueva entrada \(Comentarios y decisiones sobre el ámbito\)/).fill("Decisión e2e: revisar la faja en primavera (ficticio)");
+  await page.getByLabel("Tipo de entrada").selectOption("decision");
+  await page.getByRole("button", { name: "Añadir entrada", exact: true }).click();
+  await page.getByRole("button", { name: "Actualizar registro" }).click();
+  await expect(page.getByText("Decisión e2e: revisar la faja en primavera (ficticio)").first()).toBeVisible();
   // M16: calendario preventivo con épocas de peligro oficiales y exportación iCal
   await expect(page.getByRole("heading", { name: "Calendario preventivo" })).toBeVisible();
   await expect(page.getByText("Época de peligro", { exact: false }).first()).toBeVisible();

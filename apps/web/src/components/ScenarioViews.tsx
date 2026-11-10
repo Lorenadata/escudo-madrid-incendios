@@ -99,12 +99,14 @@ export function ActionPlanTable({
   onPatch,
   onUpload,
   busy,
+  renderThread,
 }: {
   plan: ActionPlan;
   measures?: Measure[];
   onPatch?: (a: PlanAction, patch: Partial<PlanAction> & { note?: string }) => void;
   onUpload?: (a: PlanAction, file: File) => void;
   busy?: boolean;
+  renderThread?: (a: PlanAction) => React.ReactNode;
 }) {
   if (!plan.actions.length) return <p className="text-sm text-ink-500">El plan no tiene actuaciones.</p>;
   return (
@@ -127,6 +129,7 @@ export function ActionPlanTable({
             <tr key={a.id} className="border-b border-line align-top">
               <td className="py-1.5 pr-2">
                 {measureName(measures, a.measure_code)}
+                {renderThread?.(a)}
                 {a.history?.length > 0 && (
                   <details className="text-xs text-ink-500">
                     <summary className="cursor-pointer">Historial ({a.history.length})</summary>

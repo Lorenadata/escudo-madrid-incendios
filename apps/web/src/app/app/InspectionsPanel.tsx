@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { CommentThread } from "@/components/CommentThread";
 import { Empty, ErrorState, Loading } from "@/components/States";
 import { StatusBadge } from "@/components/StatusBadge";
 import { apiFetch } from "@/lib/api";
@@ -191,6 +192,7 @@ export function InspectionsPanel({ areaId }: { areaId: string }) {
             ))}
           </ul>
           {ins.review_status !== "reviewed" && <ReviewForm ins={ins} onDone={list.reload} />}
+          <CommentThread entityType="inspection" entityId={String(ins.id)} />
           <div className="flex flex-wrap items-center gap-3 text-xs text-ink-600">
             <span>Evidencias: {ins.evidence.length ? ins.evidence.map((e) => e.original_name ?? e.filename).join(", ") : "ninguna"}</span>
             <label className="cursor-pointer text-slate underline">

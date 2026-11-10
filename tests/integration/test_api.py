@@ -405,3 +405,40 @@ def test_dossier_m15_checklist_isolation_roles_and_plan_links(client, auth_a, au
     assert any(e["action"] == "dossier_update" for e in ev)
     # restaurar
     client.patch(f"/v1/areas/{area['id']}/dossier/A5-2.1", headers=auth_a, json={"status": "pending"})
+
+
+def test_m17_comments_and_decisions_are_private_immutable_and_audited(client, auth_a, auth_b):
+    """M17: hilo por actuación/inspección y registro de decisiones del ámbito; aislado (T08), saneado y auditado."""
+    area = next(a for a in client.get("/v1/areas", headers=auth_a).json() if "Los Pinos" in a["name"])
+    scen_ids = {s["id"] for s in client.get("/v1/scenarios", params={"area_id": area["id"]}, headers=auth_a).json()}
+    plan = next(x for x in client.get("/v1/action-plans", headers=auth_a).json() if x["scenario_id"] in scen_ids)
+    action = plan["actions"][0]
+    ins = client.get("/v1/inspections", params={"area_id": area["id"]}, headers=auth_a).json()[0]
+    r = client.post("/v1/comments", headers=auth_a, json={"entity_type": "plan_action", "entity_id": action["id"],
+                                                          "kind": "decision", "body": "Se prioriza la faja\r\nnorte\x07"})
+    assert r.status_code == 201, r.text
+    c = r.json()
+    assert c["body"] == "Se prioriza la faja\nnorte" and c["author_name"] and c["status"] == "user_reported"
+    assert client.post("/v1/comments", headers=auth_a, json={"entity_type": "inspection", "entity_id": ins["id"],
+                                                             "body": "Revisar hidrantes en marzo"}).status_code == 201
+    thread = client.get("/v1/comments", params={"entity_type": "plan_action", "entity_id": action["id"]},
+                        headers=auth_a).json()
+    assert any(x["id"] == c["id"] for x in thread)
+    log = client.get(f"/v1/areas/{area['id']}/decisions", headers=auth_a).json()
+    assert log["count"] >= 1 and all(e["kind"] == "decision" for e in log["entries"]) and "inmutable" in log["notice"]
+    assert client.get(f"/v1/areas/{area['id']}/decisions", params={"kind": "all"}, headers=auth_a).json()["count"] >= 2
+    # aislamiento: otra organización no lee ni escribe (404)
+    assert client.get("/v1/comments", params={"entity_type": "plan_action", "entity_id": action["id"]},
+                      headers=auth_b).status_code == 404
+    assert client.post("/v1/comments", headers=auth_b, json={"entity_type": "area", "entity_id": area["id"],
+                                                             "body": "intruso"}).status_code == 404
+    assert client.get(f"/v1/areas/{area['id']}/decisions", headers=auth_b).status_code == 404
+    # validación: vacío tras sanear, tipo desconocido, sin sesión
+    assert client.post("/v1/comments", headers=auth_a, json={"entity_type": "area", "entity_id": area["id"],
+                                                             "body": " \x07 "}).status_code == 422
+    assert client.post("/v1/comments", headers=auth_a, json={"entity_type": "scenario", "entity_id": area["id"],
+                                                             "body": "x"}).status_code == 422
+    assert client.get("/v1/comments", params={"entity_type": "area", "entity_id": area["id"]}).status_code == 401
+    # inmutable: no hay ruta de edición ni de borrado
+    assert client.delete(f"/v1/comments/{c['id']}", headers=auth_a).status_code in (404, 405)
+    assert any(e["action"] == "decision_create" for e in client.get("/v1/audit", headers=auth_a).json())

@@ -415,6 +415,26 @@ class DossierItem(Base):
     __table_args__ = (UniqueConstraint("area_id", "item_code", name="uq_dossier_area_item"),)
 
 
+class Comment(Base):
+    """M17: comentario o decisión sobre un ámbito, una inspección o una actuación del plan.
+
+    Inmutable: no se edita ni se borra; una corrección es una entrada nueva (registro auditable con autor y fecha).
+    """
+
+    __tablename__ = "comments"
+    id: Mapped[str] = mapped_column(String(36), primary_key=True, default=_uuid)
+    organization_id: Mapped[str] = mapped_column(ForeignKey("organizations.id"), index=True)
+    area_id: Mapped[str] = mapped_column(ForeignKey("areas_of_interest.id"), index=True)
+    entity_type: Mapped[str] = mapped_column(String(16))  # area | inspection | plan_action
+    entity_id: Mapped[str] = mapped_column(String(36), index=True)
+    kind: Mapped[str] = mapped_column(String(16), default="comment")  # comment | decision
+    body: Mapped[str] = mapped_column(Text)
+    author_id: Mapped[str] = mapped_column(ForeignKey("users.id"))
+    author_name: Mapped[str] = mapped_column(Text)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=_now)
+    record_status: Mapped[str] = mapped_column(String(16), default="active")
+
+
 class AuditEvent(Base):
     __tablename__ = "audit_events"
     id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)

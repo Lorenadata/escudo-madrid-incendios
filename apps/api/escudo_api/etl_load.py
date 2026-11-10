@@ -346,6 +346,7 @@ def seed_demo(session: Session) -> dict:
         ActionPlan,
         AreaOfInterest,
         AuditEvent,
+        Comment,
         DossierItem,
         EvidenceFile,
         Inspection,
@@ -375,6 +376,7 @@ def seed_demo(session: Session) -> dict:
         session.execute(delete(InspectionItem).where(InspectionItem.inspection_id.in_(insp_ids)))
         session.execute(delete(Inspection).where(Inspection.id.in_(insp_ids)))
         session.execute(delete(DossierItem).where(DossierItem.organization_id.in_(synth_orgs)))
+        session.execute(delete(Comment).where(Comment.organization_id.in_(synth_orgs)))
         session.execute(delete(AreaOfInterest).where(AreaOfInterest.organization_id.in_(synth_orgs)))
         session.execute(delete(AuditEvent).where(AuditEvent.organization_id.in_(synth_orgs)))
         session.execute(delete(Membership).where(Membership.organization_id.in_(synth_orgs)))

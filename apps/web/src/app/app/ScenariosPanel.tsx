@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { CommentThread } from "@/components/CommentThread";
 import { ActionPlanTable, ScenarioOptionsTable, ScenarioResultView } from "@/components/ScenarioViews";
 import { Empty, ErrorState, Loading } from "@/components/States";
 import { StatusBadge } from "@/components/StatusBadge";
@@ -253,7 +254,16 @@ function ScenarioDetail({ scenario, measures, onChanged }: { scenario: Scenario;
               <button type="button" className="btn-primary" disabled={busy} onClick={createPlan}>Confirmar plan</button>
             </div>
           )}
-          {plan && <ActionPlanTable plan={plan} measures={measures} onPatch={patch} onUpload={upload} busy={busy} />}
+          {plan && (
+            <ActionPlanTable
+              plan={plan}
+              measures={measures}
+              onPatch={patch}
+              onUpload={upload}
+              busy={busy}
+              renderThread={(a) => <CommentThread entityType="plan_action" entityId={String(a.id)} />}
+            />
+          )}
         </section>
       )}
     </div>

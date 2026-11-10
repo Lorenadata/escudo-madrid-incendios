@@ -63,6 +63,9 @@ if [ "${HAS_IDEM:-0}" -gt 0 ]; then reseed; else "$PY" -m escudo_api.etl_load > 
 say "    datos cargados; demo FICTICIA restaurada (sin ámbitos de pruebas)"
 
 say "3/6 API en :$API_PORT"
+if curl -s -m 2 -o /dev/null "http://127.0.0.1:$API_PORT/"; then
+  say "El puerto $API_PORT ya está ocupado por otro servicio. Usa otro: API_PORT=8010 bash scripts/demo.sh"; exit 1
+fi
 nohup "$PY" -m uvicorn escudo_api.main:app --host 127.0.0.1 --port "$API_PORT" > var/demo-api.log 2>&1 &
 echo $! > "$PIDS"
 wait_url "http://127.0.0.1:$API_PORT/health" 60 || { say "La API no arrancó: var/demo-api.log"; exit 1; }
@@ -70,8 +73,10 @@ wait_url "http://127.0.0.1:$API_PORT/health" 60 || { say "La API no arrancó: va
 say "4/6 Web en :$WEB_PORT"
 cd apps/web
 [ -d node_modules ] || npm ci >/dev/null
-if [ ! -f .next/BUILD_ID ] || [ -n "$(find src -newer .next/BUILD_ID -type f | head -1)" ]; then
+# Recompila si no hay build, si cambió el código o si cambió el puerto de la API (va incrustado en el build)
+if [ ! -f .next/BUILD_ID ] || [ -n "$(find src -newer .next/BUILD_ID -type f | head -1)" ]    || [ "$(cat "$ROOT/var/demo-api-port" 2>/dev/null)" != "$API_PORT" ]; then
   NEXT_PUBLIC_API_URL="http://localhost:$API_PORT" npm run build > "$ROOT/var/demo-build.log" 2>&1
+  echo "$API_PORT" > "$ROOT/var/demo-api-port"
 fi
 # siempre DESPUÉS del build: un servidor previo serviría chunks inexistentes
 nohup node node_modules/next/dist/bin/next start -p "$WEB_PORT" > "$ROOT/var/demo-web.log" 2>&1 &

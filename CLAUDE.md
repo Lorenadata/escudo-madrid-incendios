@@ -57,7 +57,7 @@ docker compose -f infra/docker-compose.yml up -d db
 # Web
 cd apps/web && npm install && npm run dev                  # http://localhost:3000
 # Demo completa en un comando
-bash scripts/demo.sh            # start | stop | check (e2e + restaurar demo)
+bash scripts/demo.sh            # start | stop | check (e2e + restaurar demo); si :8000 está ocupado → API_PORT=8010 bash scripts/demo.sh
 # Tests
 .venv/Scripts/python -m pytest                             # unit + integración (requiere db) + pipelines
 cd apps/web && npm run lint && npm run build
