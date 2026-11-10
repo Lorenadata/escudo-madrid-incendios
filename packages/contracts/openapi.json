@@ -2518,6 +2518,87 @@
         }
       }
     },
+    "/v1/docs/search": {
+      "get": {
+        "tags": [
+          "normativa"
+        ],
+        "summary": "Docs Search",
+        "operationId": "docs_search_v1_docs_search_get",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 3,
+              "maxLength": 300,
+              "title": "Q"
+            }
+          },
+          {
+            "name": "k",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 10,
+              "minimum": 1,
+              "default": 5,
+              "title": "K"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Docs Search V1 Docs Search Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/docs/evaluation": {
+      "get": {
+        "tags": [
+          "normativa"
+        ],
+        "summary": "Docs Evaluation",
+        "operationId": "docs_evaluation_v1_docs_evaluation_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object",
+                  "title": "Response Docs Evaluation V1 Docs Evaluation Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/demo/guided": {
       "get": {
         "tags": [

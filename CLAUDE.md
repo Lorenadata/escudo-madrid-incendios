@@ -51,6 +51,7 @@ docker compose -f infra/docker-compose.yml up -d db
 .venv/Scripts/python -m escudo_pipelines.plan_anual fetch && .venv/Scripts/python -m escudo_pipelines.plan_anual transform  # DOC-01: ZAR y siniestros municipales
 .venv/Scripts/python -m escudo_api.etl_load               # carga en PostGIS + seed demo ficticio
 .venv/Scripts/python -m escudo_pipelines.effis fetch && .venv/Scripts/python -m escudo_pipelines.effis transform  # EFF-01 (262 MB): áreas quemadas EFFIS
+python -m escudo_pipelines.docsearch build && python -m escudo_pipelines.docsearch evaluate  # M19: índice de normativa y evaluación (20 preguntas)
 .venv/Scripts/python -m escudo_pipelines.refresh          # comprueba SHA-256 contra el origen (--apply --rebuild para incorporar)
 # API
 .venv/Scripts/python -m uvicorn escudo_api.main:app --reload --port 8000

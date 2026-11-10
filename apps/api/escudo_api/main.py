@@ -14,7 +14,7 @@ from sqlalchemy.orm import Session
 from .config import settings
 from .db import get_session
 from .models import ActionPlan, AreaOfInterest, Inspection, Organization, Scenario
-from .routers import calendar, collab, dossier, municipal, private, public
+from .routers import calendar, collab, docs, dossier, municipal, private, public
 
 logging.basicConfig(level=logging.INFO, format='{"ts":"%(asctime)s","lvl":"%(levelname)s","logger":"%(name)s","msg":%(message)r}')
 log = logging.getLogger("escudo.api")
@@ -45,6 +45,7 @@ app.include_router(municipal.router)
 app.include_router(calendar.router)
 app.include_router(dossier.router)
 app.include_router(collab.router)
+app.include_router(docs.router)
 
 
 def _demo_scenario(session: Session) -> Scenario:

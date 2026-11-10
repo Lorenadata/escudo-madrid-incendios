@@ -205,3 +205,14 @@ test("M05: dibujar el ámbito en el mapa y ver sus clases oficiales orientativas
   await expect(page.getByRole("heading", { name: "Clases oficiales dentro del ámbito dibujado" })).toBeVisible();
   await expect(page.getByText("no para consultar una parcela", { exact: false })).toBeVisible();
 });
+
+test("M19 normativa: búsqueda extractiva con fragmentos literales, página y evaluación visible", async ({ page }) => {
+  await page.goto("/normativa");
+  await expect(page.getByRole("heading", { name: "Normativa con citas" })).toBeVisible();
+  await page.getByRole("button", { name: "¿Cuándo es la época de peligro alto?" }).click();
+  await expect(page.getByText("15 de junio hasta el 30 de septiembre", { exact: false }).first()).toBeVisible();
+  await expect(page.getByText("no se redactan respuestas", { exact: false }).first()).toBeVisible();
+  await expect(page.getByRole("link", { name: "Abrir el documento en esa página" }).first()).toHaveAttribute("href", /#page=\d+/);
+  await expect(page.getByText(/Cómo se ha evaluado: \d+ de 20 preguntas/)).toBeVisible();
+  await assertSafeLanguage(page);
+});

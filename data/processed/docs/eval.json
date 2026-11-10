@@ -1,0 +1,249 @@
+{
+  "k": 3,
+  "hits": 18,
+  "total": 20,
+  "hit_rate": 0.9,
+  "items": [
+    {
+      "q": "¿Cuándo es la época de peligro alto de incendios forestales?",
+      "expect": "Desde el 15 de junio hasta el 30 de septiembre",
+      "doc": "DOC-01",
+      "hit": true,
+      "hit_page": 18,
+      "top_pages": [
+        "DOC-01 p.18",
+        "DOC-01 p.31",
+        "DOC-02 p.13"
+      ]
+    },
+    {
+      "q": "¿Qué fechas tiene la época de peligro medio?",
+      "expect": "Del 16 de mayo al 14 de junio",
+      "doc": "DOC-01",
+      "hit": true,
+      "hit_page": 13,
+      "top_pages": [
+        "DOC-02 p.37",
+        "DOC-02 p.13",
+        "DOC-01 p.18"
+      ]
+    },
+    {
+      "q": "¿Cuántos municipios están declarados Zonas de Alto Riesgo?",
+      "expect": "son un total de 59",
+      "doc": "DOC-01",
+      "hit": true,
+      "hit_page": 16,
+      "top_pages": [
+        "DOC-01 p.15",
+        "DOC-02 p.42",
+        "DOC-01 p.16"
+      ]
+    },
+    {
+      "q": "¿Cuántas zonas de interfaz urbano-forestal hay catalogadas en la Comunidad de Madrid?",
+      "expect": "2.930 Zonas IUF",
+      "doc": "DOC-01",
+      "hit": true,
+      "hit_page": 16,
+      "top_pages": [
+        "DOC-01 p.16",
+        "DOC-01 p.37",
+        "DOC-01 p.22"
+      ]
+    },
+    {
+      "q": "¿Qué anchura debe tener la faja perimetral de protección de una urbanización?",
+      "expect": "faja perimetral de protección de treinta metros de ancho",
+      "doc": "DOC-02",
+      "hit": true,
+      "hit_page": 51,
+      "top_pages": [
+        "DOC-02 p.68",
+        "DOC-02 p.69",
+        "DOC-01 p.51"
+      ]
+    },
+    {
+      "q": "¿Quién inspecciona las medidas de prevención de incendios en las urbanizaciones?",
+      "expect": "la inspección y el control de la aplicación de las medidas de prevención",
+      "doc": "DOC-02",
+      "hit": true,
+      "hit_page": 67,
+      "top_pages": [
+        "DOC-02 p.67",
+        "DOC-02 p.65",
+        "DOC-01 p.51"
+      ]
+    },
+    {
+      "q": "¿Quién debe redactar el plan de autoprotección por riesgo de incendio forestal?",
+      "expect": "redactados por técnicos competentes cualificados",
+      "doc": "DOC-02",
+      "hit": true,
+      "hit_page": 62,
+      "top_pages": [
+        "DOC-01 p.52",
+        "DOC-02 p.62",
+        "DOC-02 p.67"
+      ]
+    },
+    {
+      "q": "¿Qué plazo tenían las urbanizaciones para redactar su plan de autoprotección?",
+      "expect": "antes del plazo de dos años",
+      "doc": "DOC-02",
+      "hit": true,
+      "hit_page": 67,
+      "top_pages": [
+        "DOC-02 p.67",
+        "DOC-01 p.51",
+        "DOC-01 p.50"
+      ]
+    },
+    {
+      "q": "¿Quién cumple las obligaciones si la urbanización no tiene junta ni órgano de gestión?",
+      "expect": "responden solidariamente",
+      "doc": "DOC-02",
+      "hit": false,
+      "hit_page": null,
+      "top_pages": [
+        "DOC-02 p.66",
+        "DOC-02 p.67",
+        "DOC-01 p.51"
+      ]
+    },
+    {
+      "q": "¿A quién hay que designar en la organización del plan de autoprotección?",
+      "expect": "Un Jefe de emergencias responsable de todas las actuaciones",
+      "doc": "DOC-02",
+      "hit": true,
+      "hit_page": 63,
+      "top_pages": [
+        "DOC-02 p.65",
+        "DOC-02 p.63",
+        "DOC-01 p.50"
+      ]
+    },
+    {
+      "q": "¿Quién determina el plano de delimitación de las urbanizaciones afectadas?",
+      "expect": "Corresponde a los ayuntamientos determinar, mediante un plano de delimitación",
+      "doc": "DOC-02",
+      "hit": true,
+      "hit_page": 66,
+      "top_pages": [
+        "DOC-02 p.66",
+        "DOC-02 p.59",
+        "DOC-02 p.67"
+      ]
+    },
+    {
+      "q": "¿Qué red de hidrantes debe tener una urbanización?",
+      "expect": "red de hidrantes homologados",
+      "doc": "DOC-02",
+      "hit": false,
+      "hit_page": null,
+      "top_pages": [
+        "DOC-02 p.67",
+        "DOC-02 p.68",
+        "DOC-02 p.70"
+      ]
+    },
+    {
+      "q": "¿Se pueden hacer quemas en terrenos forestales en época de peligro bajo?",
+      "expect": "En época de peligro bajo, la quema en terrenos forestales",
+      "doc": "DOC-01",
+      "hit": true,
+      "hit_page": 46,
+      "top_pages": [
+        "DOC-01 p.46",
+        "DOC-02 p.47",
+        "DOC-01 p.47"
+      ]
+    },
+    {
+      "q": "¿Cuántos puestos de vigilancia fijos tiene la red de vigilancia?",
+      "expect": "Red de Puestos de Vigilancia Fijos (33)",
+      "doc": "DOC-01",
+      "hit": true,
+      "hit_page": 32,
+      "top_pages": [
+        "DOC-01 p.32",
+        "DOC-02 p.56",
+        "DOC-02 p.27"
+      ]
+    },
+    {
+      "q": "¿Qué indicador se usa para medir la eficacia del dispositivo de extinción?",
+      "expect": "porcentaje de incendios que permanecen en fase de conato",
+      "doc": "DOC-01",
+      "hit": true,
+      "hit_page": 10,
+      "top_pages": [
+        "DOC-01 p.10",
+        "DOC-01 p.43",
+        "DOC-02 p.14"
+      ]
+    },
+    {
+      "q": "¿Qué entidades deben disponer de plan de autoprotección según la directriz básica?",
+      "expect": "núcleos de población, urbanizaciones, campings, albergues",
+      "doc": "DOC-02",
+      "hit": true,
+      "hit_page": 65,
+      "top_pages": [
+        "DOC-02 p.65",
+        "DOC-01 p.38",
+        "DOC-02 p.35"
+      ]
+    },
+    {
+      "q": "¿Qué planos o croquis debe incluir el plan de autoprotección?",
+      "expect": "Plano o croquis de situación de la zona",
+      "doc": "DOC-02",
+      "hit": true,
+      "hit_page": 64,
+      "top_pages": [
+        "DOC-02 p.64",
+        "DOC-02 p.59",
+        "DOC-02 p.70"
+      ]
+    },
+    {
+      "q": "¿Puede trabajar la maquinaria pesada en época de peligro alto?",
+      "expect": "no realizarán trabajos que puedan generar chispas",
+      "doc": "DOC-01",
+      "hit": true,
+      "hit_page": 31,
+      "top_pages": [
+        "DOC-01 p.31",
+        "DOC-02 p.56",
+        "DOC-01 p.18"
+      ]
+    },
+    {
+      "q": "¿A quién se avisa en caso de incendio forestal según el plan de autoprotección?",
+      "expect": "Centro de Atención de Llamadas de Urgencia Madrid 112",
+      "doc": "DOC-02",
+      "hit": true,
+      "hit_page": 64,
+      "top_pages": [
+        "DOC-02 p.63",
+        "DOC-02 p.64",
+        "DOC-01 p.11"
+      ]
+    },
+    {
+      "q": "¿Cómo deben estar las calles sin salida de las urbanizaciones?",
+      "expect": "calles sin salida de las urbanizaciones deben estar debidamente señalizadas",
+      "doc": "DOC-02",
+      "hit": true,
+      "hit_page": 66,
+      "top_pages": [
+        "DOC-02 p.66",
+        "DOC-02 p.69",
+        "DOC-01 p.61"
+      ]
+    }
+  ],
+  "method": "Conjunto fijado ANTES de ajustar el ranking. Cada frase esperada se copió del texto oficial (no de la salida del buscador). Acierto = algún fragmento de los 3 primeros resultados contiene la frase (normalizando espacios y tildes)."
+}

@@ -442,3 +442,14 @@ def test_m17_comments_and_decisions_are_private_immutable_and_audited(client, au
     # inmutable: no hay ruta de edición ni de borrado
     assert client.delete(f"/v1/comments/{c['id']}", headers=auth_a).status_code in (404, 405)
     assert any(e["action"] == "decision_create" for e in client.get("/v1/audit", headers=auth_a).json())
+
+
+def test_m19_docs_search_is_extractive_public_and_bounded(client):
+    r = client.get("/v1/docs/search", params={"q": "¿Cuándo es la época de peligro alto de incendios forestales?"}).json()
+    assert r["status"] == "official" and "no redactar respuestas" in r["disclaimer"].lower().replace("sin ", "no ")
+    assert any("15 de junio hasta el 30 de septiembre" in x["text"] for x in r["results"][:3])
+    assert all(x["url"].startswith("https://") and "#page=" in x["url"] for x in r["results"])
+    assert client.get("/v1/docs/search", params={"q": "ab"}).status_code == 422
+    assert client.get("/v1/docs/search", params={"q": "x" * 301}).status_code == 422
+    ev = client.get("/v1/docs/evaluation").json()
+    assert ev["total"] == 20 and ev["hits"] >= 18
