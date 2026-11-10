@@ -37,7 +37,8 @@ reseed() { "$PY" -m escudo_api.etl_load --skip-idem > var/demo-seed.log 2>&1; }
 case "${1:-start}" in
   stop) stop; exit 0 ;;
   check)
-    rc=0; (cd apps/web && E2E_BASE_URL="http://localhost:$WEB_PORT" npx playwright test) || rc=$?
+    E2E_API_PORT=$(cat var/demo-api-port 2>/dev/null || echo "$API_PORT")
+    rc=0; (cd apps/web && E2E_BASE_URL="http://localhost:$WEB_PORT" E2E_API_URL="http://localhost:$E2E_API_PORT" npx playwright test) || rc=$?
     reseed  # siempre: borra los ámbitos creados por los tests
     if [ "$rc" -eq 0 ]; then say "e2e en verde y demo restaurada."; else say "e2e con fallos (demo restaurada igualmente)."; fi
     exit "$rc" ;;

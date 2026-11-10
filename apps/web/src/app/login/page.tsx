@@ -23,7 +23,9 @@ export default function LoginPage() {
         body: JSON.stringify({ email, password }),
       });
       setToken(r.access_token);
-      router.push("/app");
+      // Solo rutas internas («/campo»), nunca URLs externas ni «//host» (evita redirecciones abiertas)
+      const next = new URLSearchParams(window.location.search).get("next");
+      router.push(next && /^\/(?!\/)[\w\-/]*$/.test(next) ? next : "/app");
     } catch (err) {
       setError(err instanceof Error ? err.message : "No se ha podido iniciar sesión");
     } finally {

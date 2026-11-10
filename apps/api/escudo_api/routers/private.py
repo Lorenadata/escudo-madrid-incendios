@@ -224,6 +224,7 @@ class InspectionIn(BaseModel):
     inspected_on: date
     inspector_name: str = Field(min_length=2, max_length=200)
     items: list[InspectionItemIn] = Field(default_factory=list, max_length=100)
+    client_uuid: str | None = Field(None, pattern=r"^[0-9a-fA-F-]{36}$")  # M21: idempotencia sin conexión
 
 
 def inspection_dict(i: Inspection) -> dict[str, Any]:
@@ -249,14 +250,22 @@ def list_inspections(area_id: str | None = None, p: Principal = Depends(current_
 
 
 @router.post("/inspections", tags=["inspecciones"], status_code=201)
-def create_inspection(body: InspectionIn, p: Principal = Depends(current_principal),
+def create_inspection(body: InspectionIn, response: Response, p: Principal = Depends(current_principal),
                       session: Session = Depends(get_session)) -> dict:
     area = _get_area(session, p, body.area_id)
+    if body.client_uuid:  # reenvío desde el modo sin conexión: devuelve la ya creada, no duplica
+        prev = session.scalar(select(Inspection).where(Inspection.organization_id == area.organization_id,
+                                                       Inspection.client_uuid == body.client_uuid))
+        if prev is not None:
+            if prev.area_id != area.id:
+                raise HTTPException(409, "Identificador de dispositivo ya usado en otro ámbito")
+            response.status_code = 200
+            return {**inspection_dict(prev), "replayed": True}
     unknown = [it.checklist_code for it in body.items if it.checklist_code not in CHECKLIST]
     if unknown:
         raise HTTPException(422, f"Códigos de checklist desconocidos: {unknown}")
     i = Inspection(organization_id=area.organization_id, area_id=area.id, inspected_on=body.inspected_on,
-                   inspector_name=body.inspector_name,
+                   inspector_name=body.inspector_name, client_uuid=body.client_uuid,
                    items=[InspectionItem(**it.model_dump()) for it in body.items])
     session.add(i)
     session.flush()
@@ -295,6 +304,12 @@ def upload_inspection_evidence(inspection_id: str, file: UploadFile = File(...),
     i = session.get(Inspection, inspection_id)
     if i is None or i.organization_id not in p.org_ids:
         raise HTTPException(404, "Recurso no encontrado")
+    data = file.file.read(settings.max_evidence_bytes + 1)
+    file.file.seek(0)
+    dup = session.scalar(select(EvidenceFile).where(EvidenceFile.inspection_id == i.id,
+                                                    EvidenceFile.sha256 == hashlib.sha256(data).hexdigest()))
+    if dup is not None:  # misma foto reenviada (sincronización sin conexión): no se duplica
+        return {**evidence_dict(dup), "replayed": True}
     e = _store_evidence(session, p, i.organization_id, file, inspection_id=i.id)
     session.commit()
     return evidence_dict(e)

@@ -174,9 +174,11 @@ test("revisión técnica: bloqueada sin cualificación verificada, con el motivo
   await expect(page).toHaveURL(/\/app/, { timeout: 30_000 });
   await page.getByRole("button", { name: /Urbanización Ejemplo Los Pinos \(FICTICIA\)/ }).click();
   await page.getByRole("tab", { name: "Inspecciones" }).click();
-  await page.getByText("Registrar revisión técnica").first().click();
-  await page.getByRole("button", { name: "Registrar revisión" }).first().click();
-  await expect(page.getByText("cualificación verificada", { exact: false }).last()).toBeVisible();
+  // dentro de UNA inspección (puede haber varias, p. ej. las creadas en campo por otros e2e)
+  const ins = page.locator("article").filter({ hasText: "Registrar revisión técnica" }).first();
+  await ins.getByText("Registrar revisión técnica").click();
+  await ins.getByRole("button", { name: "Registrar revisión" }).click();
+  await expect(ins.getByText("cualificación verificada", { exact: false }).last()).toBeVisible();
   await expect(page.getByText("Pendiente de revisión técnica").first()).toBeVisible();
 });
 

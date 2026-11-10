@@ -280,7 +280,10 @@ class Inspection(Base, TimestampMixin):
     inspector_name: Mapped[str] = mapped_column(Text)
     review_status: Mapped[str] = mapped_column(String(32), default="pending_technical_review")
     record_status: Mapped[str] = mapped_column(String(16), default="active")
+    # M21: identificador generado en el dispositivo (modo sin conexión) para que reenviar no duplique
+    client_uuid: Mapped[str | None] = mapped_column(String(36))
     items: Mapped[list[InspectionItem]] = relationship(lazy="selectin", cascade="all, delete-orphan")
+    __table_args__ = (UniqueConstraint("organization_id", "client_uuid", name="uq_inspection_client_uuid"),)
     evidence: Mapped[list[EvidenceFile]] = relationship(lazy="selectin")
 
 

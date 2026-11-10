@@ -477,3 +477,31 @@ def test_m18_public_progress_respects_consent_threshold_and_never_leaks_private_
     for private in ("Los Pinos", "DEMO D", "Ámbito D", "Gestora", "budget", "cost_eur", "area_id", "organization_id",
                     "no compartido"):
         assert private not in flat, private
+
+
+def test_m21_offline_sync_is_idempotent_for_inspections_and_photos(client, auth_a):
+    """M21: reenviar una inspección (mismo client_uuid) o la misma foto no duplica; el uuid no salta de ámbito."""
+    import uuid as _uuid
+
+    areas = client.get("/v1/areas", headers=auth_a).json()
+    area = next(a for a in areas if "Los Pinos" in a["name"])
+    cu = str(_uuid.uuid4())
+    body = {"area_id": area["id"], "inspected_on": "2026-11-10", "inspector_name": "Campo (ficticio)",
+            "items": [{"checklist_code": "hidrantes", "answer": "parcial", "observation": "sin conexión"}],
+            "client_uuid": cu}
+    r1 = client.post("/v1/inspections", headers=auth_a, json=body)
+    r2 = client.post("/v1/inspections", headers=auth_a, json=body)
+    assert r1.status_code == 201 and r2.status_code == 200 and r2.json()["replayed"] is True
+    assert r1.json()["id"] == r2.json()["id"]
+    n = sum(1 for i in client.get("/v1/inspections", params={"area_id": area["id"]}, headers=auth_a).json()
+            if i["inspector_name"] == "Campo (ficticio)")
+    assert n == 1
+    files = {"file": ("foto.png", PNG_1PX, "image/png")}
+    e1 = client.post(f"/v1/inspections/{r1.json()['id']}/evidence", headers=auth_a, files=files)
+    e2 = client.post(f"/v1/inspections/{r1.json()['id']}/evidence", headers=auth_a,
+                     files={"file": ("foto.png", PNG_1PX, "image/png")})
+    assert e1.status_code == 201 and e2.json()["replayed"] is True and e1.json()["id"] == e2.json()["id"]
+    other = next((a for a in areas if a["id"] != area["id"]), None)
+    if other:
+        assert client.post("/v1/inspections", headers=auth_a, json={**body, "area_id": other["id"]}).status_code == 409
+    assert client.post("/v1/inspections", headers=auth_a, json={**body, "client_uuid": "no-es-uuid"}).status_code == 422

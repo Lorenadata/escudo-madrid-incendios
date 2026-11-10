@@ -1,0 +1,14 @@
+{
+  "name": "ESCUDO MADRID · Inspección en campo",
+  "short_name": "ESCUDO campo",
+  "description": "Registro de inspecciones preventivas sin conexión para urbanizaciones y técnicos (DATAMAD 2026, no oficial).",
+  "lang": "es",
+  "start_url": "/campo",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#EEF1EF",
+  "theme_color": "#1E3B2F",
+  "icons": [
+    { "src": "/icon-escudo.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}
