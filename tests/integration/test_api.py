@@ -460,10 +460,16 @@ def test_m18_public_progress_respects_consent_threshold_and_never_leaks_private_
     r = client.get("/v1/public/progress")  # sin autenticación
     assert r.status_code == 200
     d = r.json()
-    assert d["thresholds"] == {"min_areas": 3, "min_organizations": 2} and "no de riesgo" in d["notice"]
+    t = d["thresholds"]
+    assert t["min_areas"] == 3 and t["min_organizations"] == 3 and t["max_org_share"] == 0.5 and "no de riesgo" in d["notice"]
     pub = {m["ine_code"]: m for m in d["published"]}
-    assert "28047" in pub and pub["28047"]["areas"] == 3 and pub["28047"]["synthetic"] is True
-    assert pub["28047"]["zar_declared"] is True and 0 <= pub["28047"]["actions_done_share"] <= 1
+    m = pub["28047"]
+    assert m["synthetic"] is True and m["zar_declared"] is True and m["areas_band"] == "3 o más"
+    # anti-diferencias: valores gruesos y sin recuentos exactos de organizaciones, ámbitos ni puntos del expediente
+    for k in ("actions_done_share", "actions_documented_share", "actions_overdue_share", "areas_inspected_last_12m_share"):
+        assert m[k] is None or abs(m[k] * 10 - round(m[k] * 10)) < 1e-9, (k, m[k])
+    assert m["actions_total_approx"] % 5 == 0
+    assert not {"organizations", "areas", "actions_total", "dossier_points_available"} & set(m)
     # 28131 solo tiene 1 ámbito autorizado: no se publica ninguna cifra
     w = {m["ine_code"]: m for m in d["withheld"]}
     assert "28131" in w and set(w["28131"]) == {"ine_code", "name", "reason"}

@@ -10,20 +10,18 @@ interface PublishedRow {
   ine_code: string;
   name: string | null;
   zar_declared: boolean;
-  areas: number;
-  organizations: number;
+  areas_band: string;
   synthetic: boolean;
-  actions_total: number;
+  actions_total_approx: number;
   actions_done_share: number | null;
   actions_documented_share: number | null;
   actions_overdue_share: number | null;
   areas_inspected_last_12m_share: number | null;
-  dossier_points_available: number;
 }
 
 interface Progress {
   notice: string;
-  thresholds: { min_areas: number; min_organizations: number };
+  thresholds: { min_areas: number; min_organizations: number; max_org_share: number; share_bin: number; count_bin: number };
   published: PublishedRow[];
   withheld: { ine_code: string; name: string | null; reason: string }[];
   method: string;
@@ -59,7 +57,7 @@ export default function AvancePage() {
                     <th scope="col" className="px-3 py-2">Municipio</th>
                     <th scope="col" className="px-3 py-2 text-center">ZAR 2026 <StatusBadge status="official" /></th>
                     <th scope="col" className="px-3 py-2 text-right">Ámbitos</th>
-                    <th scope="col" className="px-3 py-2 text-right">Actuaciones planificadas</th>
+                    <th scope="col" className="px-3 py-2 text-right">Actuaciones planificadas (aprox.)</th>
                     <th scope="col" className="px-3 py-2 text-right">Hechas (declarado)</th>
                     <th scope="col" className="px-3 py-2 text-right">Con evidencia</th>
                     <th scope="col" className="px-3 py-2 text-right">Vencidas sin hacer</th>
@@ -75,8 +73,8 @@ export default function AvancePage() {
                         {r.synthetic && <span className="ml-2"><SyntheticBadge /></span>}
                       </th>
                       <td className="px-3 py-2 text-center">{r.zar_declared ? "Sí" : "No"}</td>
-                      <td className="px-3 py-2 text-right tabular-nums">{r.areas} <span className="text-xs text-ink-500">({r.organizations} org.)</span></td>
-                      <td className="px-3 py-2 text-right tabular-nums">{fmtNumber(r.actions_total)}</td>
+                      <td className="px-3 py-2 text-right tabular-nums">{r.areas_band}</td>
+                      <td className="px-3 py-2 text-right tabular-nums">≈ {fmtNumber(r.actions_total_approx)}</td>
                       <td className="px-3 py-2 text-right tabular-nums">{fmtShare(r.actions_done_share)}</td>
                       <td className="px-3 py-2 text-right tabular-nums">{fmtShare(r.actions_documented_share)}</td>
                       <td className="px-3 py-2 text-right tabular-nums">{fmtShare(r.actions_overdue_share)}</td>
@@ -91,8 +89,9 @@ export default function AvancePage() {
             <section aria-labelledby="withheld-h" className="text-sm">
               <h2 id="withheld-h" className="font-cond text-base font-semibold">No se publican (umbral de privacidad)</h2>
               <p className="text-xs text-ink-600">
-                Municipios con algún ámbito autorizado, pero menos de {d.data.thresholds.min_areas} ámbitos o de{" "}
-                {d.data.thresholds.min_organizations} organizaciones: no se muestra ninguna cifra.
+                Municipios con algún ámbito autorizado que no alcanzan {d.data.thresholds.min_areas} ámbitos de{" "}
+                {d.data.thresholds.min_organizations} organizaciones, o en los que una organización aporta más de la mitad
+                de las actuaciones: no se muestra ninguna cifra.
               </p>
               <p className="mt-1 text-ink-700">{d.data.withheld.map((w) => w.name ?? w.ine_code).join(" · ")}</p>
             </section>
