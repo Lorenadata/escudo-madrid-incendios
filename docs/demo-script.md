@@ -20,7 +20,7 @@ Formato de las bases (ap. 8–9): exposición de **5 min** y **5 min** de pregun
 | (opcional, si sobra tiempo) | `/analisis` | Con un clic: municipios con ≥50 % de superficie en riesgo alto o muy alto (GEO-01) y densidad < 20 hab/km² (CAM-02). Es un filtro sobre valores publicados, no un índice nuestro. |
 | 2:45–3:45 | `/demo` | Caso guiado con urbanización **ficticia** etiquetada: inspección → 11 medidas del catálogo ligado al INFOMA → presupuesto de demo 30.000 €. El optimizador CP-SAT cubre el **90,1 %** de la prioridad técnica frente a **84,2 %** (manual) y **85,1 %** (menor coste), sin superar el presupuesto. Mostrar sensibilidad. Insistir: es una función objetivo acordada, **no reducción de riesgo**. |
 | 3:45–4:20 | plan + PDF | Plan con responsables, vencimientos, historial y evidencias; informe PDF con fuentes, método, supuestos y «validación profesional pendiente». |
-| 4:20–5:00 | Diapositiva 3 | 67 tests automáticos + 6 de navegador, código abierto, ETL reproducible, multiusuario aislado. Siguiente paso: validar con técnicos y una urbanización real. |
+| 4:20–5:00 | Diapositiva 3 | 159 pruebas automáticas (incluida accesibilidad), código abierto que se instala desde cero en ~9 min, datos aislados por organización. Siguiente paso: validar con técnicos y una urbanización real; el protocolo está listo. |
 
 ## Preguntas previsibles (PRD §10.3)
 
