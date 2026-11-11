@@ -16,6 +16,23 @@
 
 Coincide con la solución exacta (fuerza bruta) en 200 instancias aleatorias; nunca supera el presupuesto; determinista. Ver `docs/optimizer-method.md` y `tests/unit/test_optimizer.py`.
 
+## 2 bis. Instalación limpia siguiendo solo el README (T11, 11/11/2026)
+
+Clon nuevo de `github.com/Lorenadata/escudo-madrid-incendios` (commit `203ec34` + corrección de migración), entorno Python nuevo y base de datos vacía (proyecto Docker aparte), en Windows 11 con Git Bash.
+
+| Paso del README | Tiempo | Resultado |
+|---|---:|---|
+| `git clone` | 3 s | ok |
+| `pip install -e ".[dev]"` | 5 min 13 s | ok |
+| `docker compose … up -d db` | 9 s | ok |
+| `alembic upgrade head` | 18 s | **falló** en la primera prueba: índice espacial duplicado en la migración de EFFIS (GeoAlchemy2 ya lo crea con la tabla). Corregido; tras la corrección, ok y `alembic check` sin diferencias |
+| `escudo_api.etl_load` | 30 s | 179 municipios, 73 perímetros EFFIS, 18/18 fuentes |
+| `pytest` | 37 s | 128 superados, 1 omitido (necesita el PDF original del BOCM, no incluido en la instalación rápida) |
+| `npm ci` + `npm run build` | 1 min 46 s + 25 s | ok |
+| API + web + Playwright | 2 min 29 s | **30/30** (flujos, accesibilidad, modo sin conexión) |
+
+Total: unos 9 minutos desde cero hasta la plataforma funcionando y verificada. El fallo encontrado habría impedido arrancar el despliegue público, que siempre parte de una base vacía.
+
 ## 3. Validación con profesionales y experimento de utilidad (pendiente)
 
 - Protocolo: `docs/validation/protocolo-experimento.md` (cerrado antes de las sesiones).

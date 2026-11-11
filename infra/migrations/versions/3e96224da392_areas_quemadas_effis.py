@@ -31,7 +31,7 @@ def upgrade() -> None:
     sa.Column('geom', geoalchemy2.types.Geometry(geometry_type='MULTIPOLYGON', srid=4326, dimension=2, from_text='ST_GeomFromEWKT', name='geometry'), nullable=True),
     sa.PrimaryKeyConstraint('effis_id')
     )
-    op.create_index('idx_satellite_burnt_areas_geom', 'satellite_burnt_areas', ['geom'], unique=False, postgresql_using='gist')
+    # El índice GiST de `geom` lo crea GeoAlchemy2 con la tabla (spatial_index=True): no se repite aquí
     op.create_index(op.f('ix_satellite_burnt_areas_year'), 'satellite_burnt_areas', ['year'], unique=False)
     op.create_table('satellite_burnt_area_municipalities',
     sa.Column('effis_id', sa.String(length=32), nullable=False),
@@ -50,6 +50,6 @@ def downgrade() -> None:
     op.drop_index(op.f('ix_satellite_burnt_area_municipalities_ine_code'), table_name='satellite_burnt_area_municipalities')
     op.drop_table('satellite_burnt_area_municipalities')
     op.drop_index(op.f('ix_satellite_burnt_areas_year'), table_name='satellite_burnt_areas')
-    op.drop_index('idx_satellite_burnt_areas_geom', table_name='satellite_burnt_areas', postgresql_using='gist')
+    # el índice GiST se elimina con la tabla
     op.drop_table('satellite_burnt_areas')
     # ### end Alembic commands ###

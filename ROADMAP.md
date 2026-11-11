@@ -101,7 +101,7 @@ Solo tras G-Demo. Orden por valor ante el jurado:
 | 5.2 | ✅ (11/11: 0 incidencias WCAG 2.1 AA con axe en 9 páginas y el área privada; sin desbordamiento a 390 px; `docs/accessibility.md`; falta móvil físico) Accesibilidad (teclado, contraste, lector de pantalla) y responsive | A9 | V15, P5 | informe + correcciones |
 | 5.3 | ✅ Repositorio público depurado (👤 H4): sin credenciales, datos con licencia, README, CI verde en GitHub (07/11) | A10 | R10 | CI verde en el repo público |
 | 5.4 | Despliegue público en HF Spaces 18–19/11 (👤 H5; contenedor único listo, sin probar en remoto) + copia local de respaldo + capturas y vídeo de 60 s como plan C | A10 | V15, P5 | URL estable 72 h antes del 26 |
-| 5.5 | T11: instalación limpia en otra máquina siguiendo solo el README | A9 | R10 | cronometrada y documentada |
+| 5.5 | ✅ (11/11: clon nuevo + README, ~9 min, 128 pytest + 30/30 e2e; encontrado y corregido índice duplicado en migración) T11: instalación limpia en otra máquina siguiendo solo el README | A9 | R10 | cronometrada y documentada |
 | 5.6 | Freeze de funcionalidades **23/11**; solo correcciones después | A0 | todos | etiqueta `v1.0-datamad` |
 
 ### Fase 6 — Presentación y defensa (21–25/11)
