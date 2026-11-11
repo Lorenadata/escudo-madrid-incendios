@@ -78,7 +78,7 @@ Sin estas, el proyecto pierde puntos que ningún agente puede recuperar.
 | 3.2 | ✅ plantillas (09/11: guion, consentimiento, registro CSV); faltan respuestas reales (👤 H6) — Guion de entrevista (técnico y gestor) y registro de respuestas: útil / inviable / redundante / requiere revisión | A8 | I25, D20 | plantilla + respuestas reales anonimizadas |
 | 3.3 | Ejecutar sesiones (👤 H6) y, si no se logra, **ensayo interno** declarado como tal con tamaño de muestra | A8+👤 | I25 | resultados con n y límites; nunca extrapolar |
 | 3.4 | Panel de impacto «antes / después» del flujo (M12) con las métricas medidas en 3.3 | A7 | I25 | solo cifras medidas |
-| 3.5 | Modelo de implantación y costes reales: coste mensual medido del despliegue, horas de mantenimiento, quién lo opera (ayuntamiento, mancomunidad, CAM) | A0+A10 | V15, I25 | tabla con costes medidos, no estimados a ojo |
+| 3.5 | ✅ (11/11: `docs/operations-costs.md` con tiempos medidos del despliegue; importe de la suscripción según factura 👤) Modelo de implantación y costes reales: coste mensual medido del despliegue, horas de mantenimiento, quién lo opera (ayuntamiento, mancomunidad, CAM) | A0+A10 | V15, I25 | tabla con costes medidos, no estimados a ojo |
 
 ### Fase 4 — Producto P1 que suma originalidad (13–20/11)
 
