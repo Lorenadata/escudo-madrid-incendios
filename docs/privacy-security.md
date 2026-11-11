@@ -41,6 +41,7 @@ ESCUDO no trata categorías especiales de datos ni datos de residentes: las cuen
 | Fecha | Herramienta | Resultado |
 |---|---|---|
 | 11/11/2026 | `pip-audit` | Sin vulnerabilidades conocidas |
+| 11/11/2026 | `npm audit` (incluye desarrollo) | 8 avisos moderados en herramientas de lint (`minimatch` vía `eslint-config-next`); no se publican con la aplicación; su arreglo exige bajar de versión mayor. Aceptado |
 | 11/11/2026 | `npm audit --omit=dev` | 1 crítica en `maplibre-gl` 5.6.0 (GHSA-jrc7-96c5-q579, saneado de HTML de popups). ESCUDO usaba `setText`, no `setHTML`, pero se actualizó a 6.16.0 (publicada hace más de dos semanas). Tras la actualización: 0 vulnerabilidades; 13/13 e2e |
 
 ## 4. Hallazgos corregidos

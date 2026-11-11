@@ -84,3 +84,18 @@ def test_decompression_bomb_is_rejected_before_decoding():
     with pytest.raises(HTTPException) as e:
         _strip_image_metadata(b.getvalue(), "image/png")
     assert e.value.status_code == 413
+
+
+def test_global_per_account_cap_stops_distributed_brute_force():
+    t = LoginThrottle()
+    for i in range(t.MAX_PER_EMAIL):
+        assert t.reserve("victima@x", f"10.0.{i // 250}.{i % 250}", 100 + i * 0.01) is None  # 1 intento por IP
+    assert t.reserve("victima@x", "10.9.9.9", 102) > 0
+
+
+def test_ipv6_grouped_by_64():
+    t = LoginThrottle()
+    for i in range(t.MAX_PER_PAIR):
+        t.reserve("a@x", f"2001:db8:1:2::{i + 1:x}", 100 + i)
+    assert t.reserve("a@x", "2001:db8:1:2::ffff", 120) > 0  # mismo /64
+    assert t.reserve("a@x", "2001:db8:1:3::1", 120) is None  # otro /64

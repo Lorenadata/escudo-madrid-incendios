@@ -29,12 +29,14 @@ class LoginThrottle:
 
     - Por par (email, IP): MAX_PER_PAIR intentos fallidos en WINDOW_S → 429. Al ir ligado a la IP, un tercero
       no puede bloquear la cuenta de otra persona desde su propia conexión (sin bloqueo dirigido de cuentas).
-    - Por IP: MAX_PER_IP intentos fallidos en WINDOW_S → 429 (frena probar muchos emails desde una conexión).
+    - Por IP (IPv6 agrupado por /64): MAX_PER_IP intentos fallidos → 429 (frena probar muchos emails).
+    - Por cuenta, global: MAX_PER_EMAIL intentos fallidos desde cualquier IP → 429 (frena la fuerza bruta
+      distribuida; bloquear así una cuenta ajena exige cientos de intentos desde muchas conexiones).
     El intento se RESERVA de forma atómica antes de comprobar la contraseña (sin carreras entre peticiones
     simultáneas) y se libera si el acceso es correcto.
     """
 
-    WINDOW_S, MAX_PER_PAIR, MAX_PER_IP = 15 * 60, 10, 50
+    WINDOW_S, MAX_PER_PAIR, MAX_PER_IP, MAX_PER_EMAIL = 15 * 60, 10, 50, 100
 
     def __init__(self) -> None:
         import threading
@@ -51,35 +53,53 @@ class LoginThrottle:
         return xs
 
     @staticmethod
-    def _keys(email: str, ip: str) -> tuple[str, str]:
-        return f"p:{email}|{ip}", f"i:{ip}"
+    def _ip_group(ip: str) -> str:
+        """IPv6 se agrupa por /64 (un usuario dispone de millones de direcciones dentro de su bloque)."""
+        import ipaddress
+
+        try:
+            a = ipaddress.ip_address(ip)
+        except ValueError:
+            return ip
+        if a.version == 6:
+            if a.ipv4_mapped:  # ::ffff:1.2.3.4 → 1.2.3.4
+                return str(a.ipv4_mapped)
+            return str(ipaddress.ip_network(f"{a}/64", strict=False))
+        return str(a)
+
+    def _keys(self, email: str, ip: str) -> tuple[str, str, str]:
+        g = self._ip_group(ip)
+        return f"p:{email}|{g}", f"i:{g}", f"e:{email}"
 
     def reserve(self, email: str, ip: str, now: float) -> int | None:
         """Reserva un intento. Devuelve segundos de espera si se ha superado el límite (y no reserva)."""
-        kp, ki = self._keys(email, ip)
+        keys = self._keys(email, ip)
+        limits = (self.MAX_PER_PAIR, self.MAX_PER_IP, self.MAX_PER_EMAIL)
         with self._lock:
-            p, i = self._recent(kp, now), self._recent(ki, now)
-            for xs, limit in ((p, self.MAX_PER_PAIR), (i, self.MAX_PER_IP)):
+            for k, limit in zip(keys, limits, strict=True):
+                xs = self._recent(k, now)
                 if len(xs) >= limit:
                     return int(self.WINDOW_S - (now - xs[0])) + 1
-            self._fails.setdefault(kp, []).append(now)
-            self._fails.setdefault(ki, []).append(now)
+            for k in keys:
+                self._fails.setdefault(k, []).append(now)
             return None
 
     def release(self, email: str, ip: str, now: float) -> None:
         """Acceso correcto: se libera la reserva y se limpia el contador del par (email, IP)."""
-        kp, ki = self._keys(email, ip)
+        kp, ki, ke = self._keys(email, ip)
         with self._lock:
             self._fails.pop(kp, None)
-            xs = self._fails.get(ki, [])
-            if now in xs:
-                xs.remove(now)
+            for k in (ki, ke):
+                xs = self._fails.get(k, [])
+                if now in xs:
+                    xs.remove(now)
 
     # Compatibilidad con pruebas antiguas
     def retry_after(self, email: str, ip: str, now: float) -> int | None:
-        kp, ki = self._keys(email, ip)
+        limits = (self.MAX_PER_PAIR, self.MAX_PER_IP, self.MAX_PER_EMAIL)
         with self._lock:
-            for xs, limit in ((self._recent(kp, now), self.MAX_PER_PAIR), (self._recent(ki, now), self.MAX_PER_IP)):
+            for k, limit in zip(self._keys(email, ip), limits, strict=True):
+                xs = self._recent(k, now)
                 if len(xs) >= limit:
                     return int(self.WINDOW_S - (now - xs[0])) + 1
         return None
