@@ -63,7 +63,7 @@ ESCUDO no trata categorías especiales de datos ni datos de residentes: las cuen
 - **CSP con `'unsafe-inline'` en scripts y estilos**: lo exige el arranque de Next.js sin *nonces*. Se mitiga con `default-src 'self'` y sin `eval`. Mejora posible: CSP con *nonce* por petición.
 - **Token en `sessionStorage`**: un XSS podría leerlo; mitigado por la CSP y porque React escapa todo el texto. Alternativa futura: cookie `HttpOnly`.
 - **Límite de intentos en memoria del proceso**: válido para una sola instancia (el despliegue previsto); con varias réplicas haría falta un almacén compartido (p. ej. Redis con `INCR` y caducidad).
-- **Fuerza bruta distribuida**: un atacante con muchas IP puede probar 10 contraseñas por IP contra una cuenta. Es el precio de no permitir bloqueos dirigidos; mitigación futura: retardos progresivos o segundo factor.
+- **Equilibrio entre fuerza bruta y bloqueo dirigido**: tope global de 100 fallos por cuenta en 15 min para conexiones nuevas; las conexiones desde las que la cuenta entró bien en los últimos 30 días no se bloquean. Durante un ataque, entrar desde un dispositivo nuevo obliga a esperar hasta 15 min. Mejora futura: CAPTCHA o segundo factor.
 - **Demo pública con cuentas de ejemplo conocidas**: cualquiera puede crear datos en las organizaciones ficticias. Son datos ficticios, el disco del Space es efímero y cada reinicio restaura la demo; los avisos piden no subir datos ni fotos reales.
 - **Sin cifrado de las fotos en reposo** en el disco del servidor: aceptable para la demo (datos ficticios); en una implantación real, almacenamiento cifrado.
 - **Sin validación de malware en PDF**: se valida la firma y el tamaño, no el contenido.

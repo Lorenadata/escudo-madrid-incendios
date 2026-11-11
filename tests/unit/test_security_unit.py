@@ -99,3 +99,13 @@ def test_ipv6_grouped_by_64():
         t.reserve("a@x", f"2001:db8:1:2::{i + 1:x}", 100 + i)
     assert t.reserve("a@x", "2001:db8:1:2::ffff", 120) > 0  # mismo /64
     assert t.reserve("a@x", "2001:db8:1:3::1", 120) is None  # otro /64
+
+
+def test_global_cap_does_not_lock_out_the_legitimate_users_known_connection():
+    t = LoginThrottle()
+    assert t.reserve("gestora@x", "81.0.0.1", 10) is None
+    t.release("gestora@x", "81.0.0.1", 10)  # acceso correcto desde su conexión habitual
+    for i in range(t.MAX_PER_EMAIL):  # ataque distribuido
+        t.reserve("gestora@x", f"10.1.{i // 250}.{i % 250}", 100 + i * 0.01)
+    assert t.reserve("gestora@x", "10.9.9.9", 102) > 0  # conexión nueva: bloqueada
+    assert t.reserve("gestora@x", "81.0.0.1", 102) is None  # su conexión: puede entrar
