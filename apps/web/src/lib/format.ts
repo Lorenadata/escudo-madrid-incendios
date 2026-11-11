@@ -1,6 +1,8 @@
 const nf = new Intl.NumberFormat("es-ES", { maximumFractionDigits: 1 });
 const nf0 = new Intl.NumberFormat("es-ES", { maximumFractionDigits: 0 });
 const eur = new Intl.NumberFormat("es-ES", { style: "currency", currency: "EUR", maximumFractionDigits: 0 });
+// Importes con decimales (p. ej. costes unitarios de 0,60 €/m²): nunca se redondean a «1 €» ni a «0 €».
+const eur2 = new Intl.NumberFormat("es-ES", { style: "currency", currency: "EUR", minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
 export function fmtNumber(v: number | null | undefined, digits?: number): string {
   if (v === null || v === undefined || Number.isNaN(v)) return "—";
@@ -10,7 +12,7 @@ export function fmtNumber(v: number | null | undefined, digits?: number): string
 
 export function fmtEur(v: number | null | undefined): string {
   if (v === null || v === undefined || Number.isNaN(v)) return "—";
-  return eur.format(v);
+  return Number.isInteger(v) ? eur.format(v) : eur2.format(v);
 }
 
 export function fmtShare(v: number | null | undefined): string {
