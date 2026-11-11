@@ -93,10 +93,28 @@ def all_source_specs() -> list:
 
 
 def ensure_schema() -> None:
+    """Crea el esquema si falta y deja la base marcada en la última migración de Alembic.
+
+    Si la base nunca se migró (instalación siguiendo el README sin `alembic upgrade`), `create_all` construye el
+    esquema actual y se marca como `head`; así un `alembic upgrade head` posterior no intenta recrear tablas.
+    """
     with engine.begin() as conn:
         conn.execute(text("CREATE EXTENSION IF NOT EXISTS postgis"))
         conn.execute(text("CREATE EXTENSION IF NOT EXISTS unaccent"))
+        had_version = conn.execute(text("SELECT to_regclass('alembic_version') IS NOT NULL")).scalar() and \
+            conn.execute(text("SELECT count(*) FROM alembic_version")).scalar() > 0
     Base.metadata.create_all(engine)
+    if not had_version:
+        try:
+            from alembic import command
+            from alembic.config import Config
+
+            ini = Path(__file__).resolve().parents[3] / "alembic.ini"
+            if ini.exists():
+                command.stamp(Config(str(ini)), "head")
+                log.info("Esquema creado desde los modelos y marcado en la migración más reciente (alembic stamp head)")
+        except Exception as exc:  # sin Alembic disponible la carga sigue siendo válida
+            log.warning("No se pudo marcar la versión del esquema: %s", exc)
 
 
 def load_sources(session: Session, run: IngestionRun) -> None:

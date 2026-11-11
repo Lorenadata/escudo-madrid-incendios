@@ -15,28 +15,45 @@ Plataforma abierta de **planificación preventiva de incendios forestales** para
 
 ## Arranque rápido
 
-Requisitos: Python ≥3.12, Docker, Node ≥22.
+Requisitos: Python ≥ 3.12, Docker, Node ≥ 22 y unos 3 GB de disco. Los **datos procesados vienen incluidos** en el repositorio (con su `manifest.json`, URL y SHA-256), así que no hace falta descargar nada para tener la plataforma funcionando.
 
 ```bash
+git clone https://github.com/Lorenadata/escudo-madrid-incendios.git && cd escudo-madrid-incendios
 python -m venv .venv
 .venv/Scripts/python -m pip install -e ".[dev]"        # Linux/macOS: .venv/bin/python
-docker compose -f infra/docker-compose.yml up -d db
-.venv/Scripts/python -m escudo_pipelines.fetch          # descarga real del Portal CAM (SHA-256)
+docker compose -f infra/docker-compose.yml up -d db     # PostGIS en el puerto 5433
+.venv/Scripts/python -m alembic upgrade head            # esquema de la base de datos
+.venv/Scripts/python -m escudo_api.etl_load             # carga datos reales + demo FICTICIA etiquetada
+.venv/Scripts/python -m uvicorn escudo_api.main:app --port 8000      # API: http://localhost:8000/docs
+cd apps/web && npm ci && npm run build && npm run start               # web: http://localhost:3000
+```
+
+O todo de una vez: `bash scripts/demo.sh` (si el puerto 8000 está ocupado, el script lo avisa: `API_PORT=8010 bash scripts/demo.sh`).
+
+Opcional: copia `.env.example` a `.env` y añade una clave gratuita de AEMET OpenData (`AEMET_API_KEY`) para la predicción completa y el mapa oficial de riesgo de incendios. Sin ella se usa el XML público de AEMET.
+
+### Reproducir los datos desde el origen (opcional)
+
+Cada paso vuelve a descargar la fuente oficial, comprueba su SHA-256 y regenera `data/processed/`:
+
+```bash
+.venv/Scripts/python -m escudo_pipelines.fetch                 # Portal de Datos Abiertos de la CAM (11 datasets)
 .venv/Scripts/python -m escudo_pipelines.cam_transform
-.venv/Scripts/python -m escudo_pipelines.idem.fetch     # ~49 MB, cartografía oficial
-.venv/Scripts/python -m escudo_pipelines.idem.transform # ~10 min (o --web-only)
-.venv/Scripts/python -m escudo_pipelines.plan_anual fetch  # DOC-01 Plan Anual 2026 (PDF oficial)
-.venv/Scripts/python -m escudo_pipelines.plan_anual transform  # ZAR + siniestros municipales
-.venv/Scripts/python -m escudo_pipelines.effis fetch    # EFF-01 EFFIS (262 MB, opcional: el procesado está versionado)
+.venv/Scripts/python -m escudo_pipelines.idem.fetch            # cartografía oficial IDEM (~49 MB)
+.venv/Scripts/python -m escudo_pipelines.idem.transform        # ~10 min (o --web-only)
+.venv/Scripts/python -m escudo_pipelines.plan_anual fetch      # Plan Anual 2026 (PDF oficial)
+.venv/Scripts/python -m escudo_pipelines.plan_anual transform  # Zonas de Alto Riesgo y siniestros municipales
+.venv/Scripts/python -m escudo_pipelines.infoma                # Decreto INFOMA (BOCM)
+.venv/Scripts/python -m escudo_pipelines.effis fetch           # EFFIS (~262 MB, toda Europa)
 .venv/Scripts/python -m escudo_pipelines.effis transform
-.venv/Scripts/python -m escudo_api.etl_load             # carga PostGIS + demo FICTICIA etiquetada
-.venv/Scripts/python -m uvicorn escudo_api.main:app --port 8000
-cd apps/web && npm install && npm run dev               # http://localhost:3000
+.venv/Scripts/python -m escudo_pipelines.docsearch build       # índice de normativa
+.venv/Scripts/python -m escudo_pipelines.docsearch evaluate    # evaluación (20 preguntas)
+.venv/Scripts/python -m escudo_api.etl_load                    # recarga PostGIS
 ```
 
 **Actualización verificable:** `python -m escudo_pipelines.refresh` vuelve a descargar cada fuente y compara su SHA-256 con el manifest (sin tocar los datos en uso); `--apply --rebuild` incorpora las versiones nuevas, conserva el historial y recarga PostGIS. El resultado se ve en `/fuentes` y en `GET /v1/sources/refresh-log`.
 
-**Demo en un comando:** `bash scripts/demo.sh` (si el puerto 8000 está ocupado por otro servicio, el script lo avisa: `API_PORT=8010 bash scripts/demo.sh`) (BD, migraciones, datos, API en :8000, web en :3000, cachés calentadas); `bash scripts/demo.sh check` ejecuta los 10 e2e y restaura la demo; `bash scripts/demo.sh stop` la detiene. Para desarrollo: `bash scripts/dev.sh`. Documentación interactiva de la API: http://localhost:8000/docs.
+**Demo en un comando:** `bash scripts/demo.sh` (BD, migraciones, datos, API en :8000, web en :3000, cachés calentadas); `bash scripts/demo.sh check` ejecuta las pruebas de navegador (flujos, accesibilidad, modo sin conexión) y restaura la demo; `bash scripts/demo.sh stop` la detiene. Para desarrollo: `bash scripts/dev.sh`. Documentación interactiva de la API: http://localhost:8000/docs.
 
 **Demo local** (datos ficticios): `gestor@demo.escudo.local` / `demo-escudo-2026`. Recorrido público sin credenciales: `GET /v1/demo/guided`.
 
