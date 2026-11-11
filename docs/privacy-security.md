@@ -22,11 +22,11 @@ ESCUDO no trata categorías especiales de datos ni datos de residentes: las cuen
 | Autorización expresa al ayuntamiento | `shared_with_municipality`, revocable; la vista municipal es de solo lectura | `test_flow_B_municipal_sees_only_authorized_areas` |
 | Contraseñas | bcrypt (coste 10) | — |
 | Tokens de sesión | JWT HS256 con caducidad (8 h). **Nunca** con el secreto de ejemplo del repositorio: si falta o tiene menos de 32 bytes, la API genera uno aleatorio al arrancar | `test_published_example_secret_is_never_used`, `test_51_security_headers_…` |
-| Fuerza bruta | 10 fallos por email o 50 por IP en 15 min → 429 con `Retry-After`; un acceso correcto limpia el contador del email | `test_throttle_*`, `test_51_security_headers_login_throttle_and_strong_jwt_secret` |
+| Fuerza bruta | 10 intentos fallidos por par (email, IP) o 50 por IP en 15 min → 429 con `Retry-After`. Ligado a la IP para que nadie pueda bloquear la cuenta de otra persona; el intento se reserva de forma atómica (cerrojo) antes de verificar la contraseña | `tests/unit/test_security_unit.py` (incl. 100 peticiones simultáneas), `test_51_security_headers_login_throttle_and_strong_jwt_secret` |
 | Enumeración de usuarios | Mismo mensaje y mismo coste (bcrypt de relleno) exista o no el email | revisión de código |
 | Cabeceras de la web | CSP (`default-src 'self'`, solo IGN y AEMET como orígenes externos, `frame-ancestors 'none'`, `object-src 'none'`), `nosniff`, `X-Frame-Options: DENY`, `Referrer-Policy`, `Permissions-Policy` | e2e del explorador falla si la CSP bloquea algo |
 | Cabeceras de la API | `nosniff`, `DENY`, `no-referrer`; `Cache-Control: private, no-store` en respuestas con sesión | `test_51_security_headers_…` |
-| Subida de ficheros | Máx. 10 MB; solo JPEG, PNG o PDF con firma válida; **las imágenes se decodifican y se recodifican sin metadatos** (EXIF con GPS, fabricante, fecha); almacenamiento por SHA-256, sin nombres de usuario en rutas | `test_51_photo_metadata_gps_is_stripped_on_upload` |
+| Subida de ficheros | Máx. 10 MB; solo JPEG, PNG o PDF con firma válida; **las imágenes se decodifican y se recodifican sin metadatos** (EXIF con GPS, fabricante, fecha), con un máximo de 40 megapíxeles comprobado antes de decodificar (contra bombas de descompresión); almacenamiento por SHA-256, sin nombres de usuario en rutas | `test_51_photo_metadata_gps_is_stripped_on_upload` |
 | Descarga de evidencias | Solo la organización; `Cache-Control: private, no-store`; `Content-Disposition: attachment` | tests de evidencias |
 | Textos libres | Control de caracteres eliminado en comentarios; escapado RFC 5545 en el calendario (sin inyección de líneas) | `test_m17_…`, `tests/unit/test_calendar_ics.py` |
 | Redirecciones | `?next=` del login solo acepta rutas internas | revisión de código |
@@ -55,12 +55,14 @@ ESCUDO no trata categorías especiales de datos ni datos de residentes: las cuen
 | 11/11 | Sin cabeceras de seguridad (CSP, marcos, sniffing) | cabeceras en web y API |
 | 11/11 | Fotos con ubicación GPS en EXIF | recodificación sin metadatos |
 | 11/11 | `maplibre-gl` vulnerable | actualizado a 6.16.0 |
+| 11/11 | Revisión automática: bloqueo dirigido de cuentas, carrera en el límite de intentos, bomba de descompresión en imágenes | límite por (email, IP) con reserva atómica; tope de 40 MP antes de decodificar |
 
 ## 5. Riesgos que quedan (aceptados o pendientes)
 
 - **CSP con `'unsafe-inline'` en scripts y estilos**: lo exige el arranque de Next.js sin *nonces*. Se mitiga con `default-src 'self'` y sin `eval`. Mejora posible: CSP con *nonce* por petición.
 - **Token en `sessionStorage`**: un XSS podría leerlo; mitigado por la CSP y porque React escapa todo el texto. Alternativa futura: cookie `HttpOnly`.
-- **Límite de intentos en memoria del proceso**: válido para una sola instancia (el despliegue previsto); con varias réplicas haría falta un almacén compartido.
+- **Límite de intentos en memoria del proceso**: válido para una sola instancia (el despliegue previsto); con varias réplicas haría falta un almacén compartido (p. ej. Redis con `INCR` y caducidad).
+- **Fuerza bruta distribuida**: un atacante con muchas IP puede probar 10 contraseñas por IP contra una cuenta. Es el precio de no permitir bloqueos dirigidos; mitigación futura: retardos progresivos o segundo factor.
 - **Demo pública con cuentas de ejemplo conocidas**: cualquiera puede crear datos en las organizaciones ficticias. Son datos ficticios, el disco del Space es efímero y cada reinicio restaura la demo; los avisos piden no subir datos ni fotos reales.
 - **Sin cifrado de las fotos en reposo** en el disco del servidor: aceptable para la demo (datos ficticios); en una implantación real, almacenamiento cifrado.
 - **Sin validación de malware en PDF**: se valida la firma y el tamaño, no el contenido.

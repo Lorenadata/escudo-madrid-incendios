@@ -71,16 +71,15 @@ def login(body: LoginIn, request: Request, session: Session = Depends(get_sessio
     from ..security import _DUMMY_HASH, login_throttle
 
     email, ip, now = body.email.lower(), (request.client.host if request.client else "?"), time.time()
-    wait = login_throttle.retry_after(email, ip, now)
+    wait = login_throttle.reserve(email, ip, now)  # atómico: cuenta el intento antes de verificar
     if wait is not None:
         raise HTTPException(429, "Demasiados intentos fallidos. Espere unos minutos e inténtelo de nuevo.",
                             headers={"Retry-After": str(wait)})
     u = session.scalar(select(User).where(User.email == email))
     ok = verify_password(body.password, u.password_hash if u else _DUMMY_HASH) and u is not None
     if not ok:
-        login_throttle.fail(email, ip, now)
         raise HTTPException(401, "Credenciales no válidas")
-    login_throttle.success(email)
+    login_throttle.release(email, ip, now)
     audit(session, org_id=None, user_id=u.id, action="login", entity="user", entity_id=u.id)
     session.commit()
     return {"access_token": create_token(u.id), "token_type": "bearer", "user": _user_dict(u)}
@@ -289,6 +288,9 @@ def create_inspection(body: InspectionIn, response: Response, p: Principal = Dep
 ALLOWED_TYPES = {"image/jpeg": b"\xff\xd8\xff", "image/png": b"\x89PNG", "application/pdf": b"%PDF"}
 
 
+MAX_IMAGE_PIXELS = 40_000_000  # 40 MP: fotos de móvil caben; una «bomba» de descompresión no
+
+
 def _strip_image_metadata(data: bytes, content_type: str) -> bytes:
     """Privacidad (5.1): elimina metadatos de las fotos (EXIF con GPS, fabricante, fecha…) antes de guardarlas.
 
@@ -298,18 +300,26 @@ def _strip_image_metadata(data: bytes, content_type: str) -> bytes:
     if content_type not in ("image/jpeg", "image/png"):
         return data
     import io
+    import warnings
 
     from PIL import Image, ImageOps, UnidentifiedImageError
 
     try:
-        with Image.open(io.BytesIO(data)) as im:
-            im = ImageOps.exif_transpose(im)
-            out = io.BytesIO()
-            if content_type == "image/jpeg":
-                im.convert("RGB").save(out, "JPEG", quality=92, optimize=True)
-            else:
-                im.save(out, "PNG", optimize=True)
-            return out.getvalue()
+        with warnings.catch_warnings():
+            warnings.simplefilter("error", Image.DecompressionBombWarning)
+            with Image.open(io.BytesIO(data)) as im:
+                w, h = im.size  # solo cabecera: aún no se ha decodificado
+                if w * h > MAX_IMAGE_PIXELS:
+                    raise HTTPException(413, f"Imagen demasiado grande ({w}×{h} px; máx. 40 megapíxeles)")
+                im = ImageOps.exif_transpose(im)
+                out = io.BytesIO()
+                if content_type == "image/jpeg":
+                    im.convert("RGB").save(out, "JPEG", quality=92)
+                else:
+                    im.save(out, "PNG")
+                return out.getvalue()
+    except (Image.DecompressionBombError, Image.DecompressionBombWarning) as exc:
+        raise HTTPException(413, "Imagen demasiado grande (máx. 40 megapíxeles)") from exc
     except (UnidentifiedImageError, OSError, ValueError) as exc:
         raise HTTPException(415, "Imagen no válida") from exc
 
