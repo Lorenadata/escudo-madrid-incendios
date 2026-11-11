@@ -35,6 +35,12 @@ app.add_middleware(CORSMiddleware, allow_origins=settings.cors_origins.split(","
 async def access_log(request: Request, call_next):  # M22 observabilidad: latencia por petición
     t0 = time.perf_counter()
     response = await call_next(request)
+    # Cabeceras de seguridad (5.1): sin sniffing, sin marcos ajenos, sin Referer y sin caché de respuestas con sesión
+    response.headers.setdefault("X-Content-Type-Options", "nosniff")
+    response.headers.setdefault("X-Frame-Options", "DENY")
+    response.headers.setdefault("Referrer-Policy", "no-referrer")
+    if request.headers.get("authorization"):
+        response.headers.setdefault("Cache-Control", "private, no-store")
     log.info("%s %s %s %.1fms", request.method, request.url.path, response.status_code, (time.perf_counter() - t0) * 1000)
     return response
 

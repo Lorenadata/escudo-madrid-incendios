@@ -14,6 +14,8 @@ async function assertSafeLanguage(page: Page) {
 test("explorador: mapa regional real, ficha municipal trazable y capa oficial literal", async ({ page }) => {
   const errors: string[] = [];
   page.on("pageerror", (e) => errors.push(e.message));
+  // 5.1: la política de contenidos (CSP) no debe bloquear nada de la propia aplicación (mapa, teselas, API)
+  page.on("console", (m) => { if (/Content Security Policy|Refused to/i.test(m.text())) errors.push(m.text()); });
   await page.goto("/");
   await expect(page.getByRole("heading", { name: "Explorador regional" })).toBeVisible();
   await expect(page.locator("canvas.maplibregl-canvas")).toBeVisible();

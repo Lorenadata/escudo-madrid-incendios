@@ -56,7 +56,7 @@ export function PolygonDrawMap({ municipalityCode, value, onChange }: { municipa
   useEffect(() => {
     let disposed = false;
     (async () => {
-      const maplibregl = (await import("maplibre-gl")).default;
+      const maplibregl = await import("maplibre-gl");
       if (disposed || !ref.current) return;
       const map = new maplibregl.Map({
         container: ref.current,

@@ -1,11 +1,7 @@
 import { expect, test } from "@playwright/test";
 
 // 1×1 PNG válido
-const PNG = Buffer.from(
-  "89504e470d0a1a0a0000000d4948445200000001000000010806000000" +
-    "1f15c4890000000d49444154789c6360000002000154a24f5d0000000049454e44ae426082",
-  "hex",
-);
+const PNG = Buffer.from("89504e470d0a1a0a0000000d49484452000000010000000108060000001f15c4890000000d49444154789c6390b3d6ff0f00028b0188aca22bc10000000049454e44ae426082", "hex");
 
 test("M21 campo: inspección sin conexión, página servida offline y envío único al volver la red", async ({ page, context }) => {
   const stamp = `Campo e2e ${Date.now()} (ficticio)`;

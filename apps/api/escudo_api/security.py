@@ -20,6 +20,52 @@ def hash_password(password: str) -> str:
     return bcrypt.hashpw(password.encode(), bcrypt.gensalt(rounds=10)).decode()
 
 
+# Hash de relleno: si el usuario no existe se verifica igual, para que el tiempo no revele qué emails existen.
+_DUMMY_HASH = bcrypt.hashpw(b"escudo-dummy-password", bcrypt.gensalt(rounds=10)).decode()
+
+
+class LoginThrottle:
+    """Límite de intentos FALLIDOS de inicio de sesión (en memoria del proceso).
+
+    Por email: MAX_PER_EMAIL fallos en WINDOW_S → 429. Por IP: MAX_PER_IP fallos en WINDOW_S → 429.
+    Un acceso correcto limpia el contador del email.
+    """
+
+    WINDOW_S, MAX_PER_EMAIL, MAX_PER_IP = 15 * 60, 10, 50
+
+    def __init__(self) -> None:
+        self._fails: dict[str, list[float]] = {}
+
+    def _recent(self, key: str, now: float) -> list[float]:
+        xs = [t for t in self._fails.get(key, []) if now - t < self.WINDOW_S]
+        if xs:
+            self._fails[key] = xs
+        else:
+            self._fails.pop(key, None)
+        return xs
+
+    def retry_after(self, email: str, ip: str, now: float) -> int | None:
+        e, i = self._recent(f"e:{email}", now), self._recent(f"i:{ip}", now)
+        if len(e) >= self.MAX_PER_EMAIL:
+            return int(self.WINDOW_S - (now - e[0])) + 1
+        if len(i) >= self.MAX_PER_IP:
+            return int(self.WINDOW_S - (now - i[0])) + 1
+        return None
+
+    def fail(self, email: str, ip: str, now: float) -> None:
+        for k in (f"e:{email}", f"i:{ip}"):
+            self._fails.setdefault(k, []).append(now)
+
+    def success(self, email: str) -> None:
+        self._fails.pop(f"e:{email}", None)
+
+    def reset(self) -> None:
+        self._fails.clear()
+
+
+login_throttle = LoginThrottle()
+
+
 def verify_password(password: str, hashed: str) -> bool:
     try:
         return bcrypt.checkpw(password.encode(), hashed.encode())

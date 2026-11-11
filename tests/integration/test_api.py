@@ -10,10 +10,7 @@ import pytest
 
 pytestmark = pytest.mark.db
 ROOT = Path(__file__).resolve().parents[2]
-PNG_1PX = bytes.fromhex(
-    "89504e470d0a1a0a0000000d4948445200000001000000010806000000"
-    "1f15c4890000000d49444154789c6360000002000154a24f5d0000000049454e44ae426082"
-)
+PNG_1PX = bytes.fromhex("89504e470d0a1a0a0000000d49484452000000010000000108060000001f15c4890000000d49444154789c6390b3d6ff0f00028b0188aca22bc10000000049454e44ae426082")  # PNG 1×1 válido (decodificable)
 
 
 def test_health_and_sources(client):
@@ -505,3 +502,55 @@ def test_m21_offline_sync_is_idempotent_for_inspections_and_photos(client, auth_
     if other:
         assert client.post("/v1/inspections", headers=auth_a, json={**body, "area_id": other["id"]}).status_code == 409
     assert client.post("/v1/inspections", headers=auth_a, json={**body, "client_uuid": "no-es-uuid"}).status_code == 422
+
+
+def test_51_security_headers_login_throttle_and_strong_jwt_secret(client):
+    """5.1: cabeceras de seguridad, límite de intentos fallidos (429) y secreto JWT nunca débil ni publicado."""
+    from escudo_api.config import settings
+    from escudo_api.security import login_throttle
+
+    h = client.get("/health").headers
+    assert h["x-content-type-options"] == "nosniff" and h["x-frame-options"] == "DENY" and h["referrer-policy"] == "no-referrer"
+    assert len(settings.escudo_jwt_secret.encode()) >= 32 and settings.escudo_jwt_secret != "dev-only-change-me"
+    login_throttle.reset()
+    try:
+        bad = {"email": "nadie-throttle@demo.escudo.local", "password": "x"}
+        codes = [client.post("/v1/auth/login", json=bad).status_code for _ in range(11)]
+        assert codes[:10] == [401] * 10 and codes[10] == 429
+        r = client.post("/v1/auth/login", json=bad)
+        assert r.status_code == 429 and int(r.headers["retry-after"]) > 0
+        # otro email desde la misma IP sigue pudiendo entrar (el límite por IP es mayor)
+        assert client.post("/v1/auth/login", json={"email": "gestor@demo.escudo.local",
+                                                   "password": "demo-escudo-2026"}).status_code == 200
+    finally:
+        login_throttle.reset()
+    me = client.get("/v1/me", headers=_auth(client, "gestor@demo.escudo.local"))
+    assert me.headers["cache-control"] == "private, no-store"
+
+
+def test_51_photo_metadata_gps_is_stripped_on_upload(client, auth_a):
+    """5.1 privacidad: una foto JPEG con GPS en EXIF se guarda sin metadatos (y sigue deduplicándose)."""
+    import io
+
+    from PIL import Image
+
+    img = Image.new("RGB", (8, 8), (40, 90, 60))
+    exif = Image.Exif()
+    exif[0x010F] = "FabricanteMovil"
+    exif[0x8825] = {1: "N", 2: (40.0, 35.0, 30.0), 3: "W", 4: (4.0, 8.0, 50.0)}  # GPS
+    raw = io.BytesIO()
+    img.save(raw, "JPEG", exif=exif.tobytes())
+    assert b"FabricanteMovil" in raw.getvalue()
+    area = next(a for a in client.get("/v1/areas", headers=auth_a).json() if "Los Pinos" in a["name"])
+    ins = client.get("/v1/inspections", params={"area_id": area["id"]}, headers=auth_a).json()[0]
+    up = client.post(f"/v1/inspections/{ins['id']}/evidence", headers=auth_a,
+                     files={"file": ("gps.jpg", raw.getvalue(), "image/jpeg")})
+    assert up.status_code == 201, up.text
+    stored = client.get(f"/v1/evidence/{up.json()['id']}", headers=auth_a).content
+    assert b"FabricanteMovil" not in stored and not Image.open(io.BytesIO(stored)).getexif()
+    again = client.post(f"/v1/inspections/{ins['id']}/evidence", headers=auth_a,
+                        files={"file": ("gps.jpg", raw.getvalue(), "image/jpeg")})
+    assert again.json().get("replayed") is True
+    bad = client.post(f"/v1/inspections/{ins['id']}/evidence", headers=auth_a,
+                      files={"file": ("x.jpg", b"\xff\xd8\xff" + b"no-es-imagen", "image/jpeg")})
+    assert bad.status_code == 415

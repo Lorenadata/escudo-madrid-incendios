@@ -8,7 +8,7 @@ from dataclasses import asdict, is_dataclass
 from datetime import date
 from typing import Any, Literal
 
-from fastapi import APIRouter, Depends, File, HTTPException, Response, UploadFile
+from fastapi import APIRouter, Depends, File, HTTPException, Request, Response, UploadFile
 from pydantic import BaseModel, Field
 from shapely.geometry import MultiPolygon, shape
 from sqlalchemy import func, select
@@ -65,10 +65,22 @@ def _user_dict(u: User) -> dict[str, Any]:
 
 
 @router.post("/auth/login", tags=["acceso"])
-def login(body: LoginIn, session: Session = Depends(get_session)) -> dict[str, Any]:
-    u = session.scalar(select(User).where(User.email == body.email.lower()))
-    if u is None or not verify_password(body.password, u.password_hash):
+def login(body: LoginIn, request: Request, session: Session = Depends(get_session)) -> dict[str, Any]:
+    import time
+
+    from ..security import _DUMMY_HASH, login_throttle
+
+    email, ip, now = body.email.lower(), (request.client.host if request.client else "?"), time.time()
+    wait = login_throttle.retry_after(email, ip, now)
+    if wait is not None:
+        raise HTTPException(429, "Demasiados intentos fallidos. Espere unos minutos e inténtelo de nuevo.",
+                            headers={"Retry-After": str(wait)})
+    u = session.scalar(select(User).where(User.email == email))
+    ok = verify_password(body.password, u.password_hash if u else _DUMMY_HASH) and u is not None
+    if not ok:
+        login_throttle.fail(email, ip, now)
         raise HTTPException(401, "Credenciales no válidas")
+    login_throttle.success(email)
     audit(session, org_id=None, user_id=u.id, action="login", entity="user", entity_id=u.id)
     session.commit()
     return {"access_token": create_token(u.id), "token_type": "bearer", "user": _user_dict(u)}
@@ -277,13 +289,45 @@ def create_inspection(body: InspectionIn, response: Response, p: Principal = Dep
 ALLOWED_TYPES = {"image/jpeg": b"\xff\xd8\xff", "image/png": b"\x89PNG", "application/pdf": b"%PDF"}
 
 
-def _store_evidence(session: Session, p: Principal, org_id: str, file: UploadFile, **links: str) -> EvidenceFile:
+def _strip_image_metadata(data: bytes, content_type: str) -> bytes:
+    """Privacidad (5.1): elimina metadatos de las fotos (EXIF con GPS, fabricante, fecha…) antes de guardarlas.
+
+    Las fotos de móvil suelen llevar la ubicación exacta. Se respeta la orientación y se recodifica sin metadatos;
+    es determinista (la misma foto produce los mismos bytes), lo que mantiene la deduplicación al reintentar.
+    """
+    if content_type not in ("image/jpeg", "image/png"):
+        return data
+    import io
+
+    from PIL import Image, ImageOps, UnidentifiedImageError
+
+    try:
+        with Image.open(io.BytesIO(data)) as im:
+            im = ImageOps.exif_transpose(im)
+            out = io.BytesIO()
+            if content_type == "image/jpeg":
+                im.convert("RGB").save(out, "JPEG", quality=92, optimize=True)
+            else:
+                im.save(out, "PNG", optimize=True)
+            return out.getvalue()
+    except (UnidentifiedImageError, OSError, ValueError) as exc:
+        raise HTTPException(415, "Imagen no válida") from exc
+
+
+def _read_upload(file: UploadFile) -> bytes:
+    """Lee, valida (tamaño y firma) y limpia de metadatos un fichero subido."""
     data = file.file.read(settings.max_evidence_bytes + 1)
     if len(data) > settings.max_evidence_bytes:
         raise HTTPException(413, "Archivo demasiado grande (máx. 10 MB)")
     magic = ALLOWED_TYPES.get(file.content_type or "")
     if magic is None or not data.startswith(magic):
         raise HTTPException(415, "Solo se admiten JPEG, PNG o PDF válidos")
+    return _strip_image_metadata(data, file.content_type or "")
+
+
+def _store_evidence(session: Session, p: Principal, org_id: str, file: UploadFile, data: bytes | None = None,
+                    **links: str) -> EvidenceFile:
+    data = _read_upload(file) if data is None else data
     digest = hashlib.sha256(data).hexdigest()
     key = f"{org_id}/{digest}"
     path = settings.escudo_evidence_dir / key
@@ -304,13 +348,12 @@ def upload_inspection_evidence(inspection_id: str, file: UploadFile = File(...),
     i = session.get(Inspection, inspection_id)
     if i is None or i.organization_id not in p.org_ids:
         raise HTTPException(404, "Recurso no encontrado")
-    data = file.file.read(settings.max_evidence_bytes + 1)
-    file.file.seek(0)
+    data = _read_upload(file)
     dup = session.scalar(select(EvidenceFile).where(EvidenceFile.inspection_id == i.id,
                                                     EvidenceFile.sha256 == hashlib.sha256(data).hexdigest()))
     if dup is not None:  # misma foto reenviada (sincronización sin conexión): no se duplica
         return {**evidence_dict(dup), "replayed": True}
-    e = _store_evidence(session, p, i.organization_id, file, inspection_id=i.id)
+    e = _store_evidence(session, p, i.organization_id, file, data, inspection_id=i.id)
     session.commit()
     return evidence_dict(e)
 

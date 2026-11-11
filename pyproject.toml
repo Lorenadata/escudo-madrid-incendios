@@ -26,6 +26,7 @@ dependencies = [
   "pyshp>=2.3",
   "ortools>=9.10",
   "reportlab>=4.2",
+  "pillow>=10",
   "python-multipart>=0.0.9",
   "bcrypt>=4.1",
   "pyjwt>=2.8",

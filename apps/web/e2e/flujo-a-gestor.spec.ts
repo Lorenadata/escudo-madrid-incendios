@@ -4,11 +4,7 @@ import { expect, test } from "@playwright/test";
 // login → ámbito → contexto oficial → inspección + foto → medidas → presupuesto → optimizar → comparar
 // → confirmar plan → asignar → evidencia → informe PDF.
 
-const PNG_1PX = Buffer.from(
-  "89504e470d0a1a0a0000000d4948445200000001000000010806000000" +
-    "1f15c4890000000d49444154789c6360000002000154a24f5d0000000049454e44ae426082",
-  "hex",
-);
+const PNG_1PX = Buffer.from("89504e470d0a1a0a0000000d49484452000000010000000108060000001f15c4890000000d49444154789c6390b3d6ff0f00028b0188aca22bc10000000049454e44ae426082", "hex");
 
 test("Flujo A completo del gestor en menos de 3 minutos", async ({ page }) => {
   test.setTimeout(240_000);

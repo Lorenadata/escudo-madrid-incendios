@@ -97,7 +97,7 @@ Solo tras G-Demo. Orden por valor ante el jurado:
 
 | # | Tarea | Dueño | Criterio | Aceptación |
 |---|---|---|---|---|
-| 5.1 | Revisión de seguridad y privacidad: aislamiento multi-tenant, subida de ficheros, cabeceras, secretos, dependencias (`docs/privacy-security.md`) | A9 | V15, R10 | sin hallazgos P0 |
+| 5.1 | ✅ (11/11: `docs/privacy-security.md`; 8 hallazgos corregidos, 0 vulnerabilidades en dependencias) Revisión de seguridad y privacidad: aislamiento multi-tenant, subida de ficheros, cabeceras, secretos, dependencias (`docs/privacy-security.md`) | A9 | V15, R10 | sin hallazgos P0 |
 | 5.2 | Accesibilidad (teclado, contraste, lector de pantalla) y responsive | A9 | V15, P5 | informe + correcciones |
 | 5.3 | ✅ Repositorio público depurado (👤 H4): sin credenciales, datos con licencia, README, CI verde en GitHub (07/11) | A10 | R10 | CI verde en el repo público |
 | 5.4 | Despliegue público en HF Spaces 18–19/11 (👤 H5; contenedor único listo, sin probar en remoto) + copia local de respaldo + capturas y vídeo de 60 s como plan C | A10 | V15, P5 | URL estable 72 h antes del 26 |

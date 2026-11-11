@@ -22,3 +22,16 @@ class Settings(BaseSettings):
 
 
 settings = Settings()
+
+# Valores de ejemplo publicados en el repositorio: con ellos cualquiera podría firmar tokens válidos.
+_PUBLISHED_SECRETS = {"dev-only-change-me", "cambia-esto-por-un-secreto-de-al-menos-32-bytes", ""}
+JWT_SECRET_EPHEMERAL = (settings.escudo_jwt_secret in _PUBLISHED_SECRETS
+                        or len(settings.escudo_jwt_secret.encode()) < 32)
+if JWT_SECRET_EPHEMERAL:
+    import logging
+    import secrets
+
+    settings.escudo_jwt_secret = secrets.token_urlsafe(48)
+    logging.getLogger("escudo.security").warning(
+        "ESCUDO_JWT_SECRET ausente, débil o de ejemplo: se usa un secreto aleatorio de este proceso "
+        "(las sesiones caducan al reiniciar). Configure un secreto propio de ≥32 bytes en producción.")
