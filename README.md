@@ -59,6 +59,8 @@ Cada paso vuelve a descargar la fuente oficial, comprueba su SHA-256 y regenera 
 
 ## Demo pública (Hugging Face Space)
 
+**https://lorenadata-escudo-madrid.hf.space** · cuentas ficticias `gestor@demo.escudo.local`, `tecnico@demo.escudo.local`, `municipal@demo.escudo.local` (contraseña `demo-escudo-2026`) · caso guiado sin cuenta en `/demo` · inspección en campo en `/campo`.
+
 `infra/docker/space.Dockerfile` clona este repositorio en un commit fijo y ejecuta PostGIS, la API (interna, publicada como `/api`) y la web (puerto 7860) en un único contenedor mediante `scripts/space-entrypoint.sh`. La ficha del Space está en `infra/docker/hf-space/README.md`. El disco es efímero: cada reinicio recarga los datos reales y restaura la demo ficticia. `AEMET_API_KEY` y `ESCUDO_JWT_SECRET` se configuran como *secrets* del Space, nunca en el repositorio.
 
 ## Tests

@@ -15,7 +15,7 @@ WORKDIR /web
 COPY --from=src /src/apps/web/package*.json ./
 RUN npm ci --no-audit --no-fund
 COPY --from=src /src/apps/web ./
-ENV NEXT_PUBLIC_API_URL=/api ESCUDO_API_PROXY=http://127.0.0.1:8000 NEXT_TELEMETRY_DISABLED=1
+ENV NEXT_PUBLIC_API_URL=/api ESCUDO_API_PROXY=http://127.0.0.1:8000 NEXT_TELEMETRY_DISABLED=1     ESCUDO_FRAME_ANCESTORS="https://huggingface.co"
 RUN npm run build && npm prune --omit=dev
 
 FROM python:3.13-slim-bookworm

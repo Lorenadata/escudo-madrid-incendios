@@ -20,7 +20,8 @@ const CSP = [
   `connect-src 'self' ${apiOrigin} https://www.ign.es`.trim(),
   "worker-src 'self' blob:",
   "font-src 'self' data:",
-  "frame-ancestors 'none'",
+  // Solo en el despliegue de Hugging Face: su página del Space muestra la app en un marco desde huggingface.co
+  `frame-ancestors ${process.env.ESCUDO_FRAME_ANCESTORS || "'none'"}`,
   "base-uri 'self'",
   "form-action 'self'",
   "object-src 'none'",
@@ -28,7 +29,8 @@ const CSP = [
 const SECURITY_HEADERS = [
   { key: "Content-Security-Policy", value: CSP },
   { key: "X-Content-Type-Options", value: "nosniff" },
-  { key: "X-Frame-Options", value: "DENY" },
+  // X-Frame-Options no admite listas de orígenes: si se permite un marco concreto, decide solo la CSP
+  ...(process.env.ESCUDO_FRAME_ANCESTORS ? [] : [{ key: "X-Frame-Options", value: "DENY" }]),
   { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
   { key: "Permissions-Policy", value: "geolocation=(), microphone=(), camera=(self)" },
 ];
