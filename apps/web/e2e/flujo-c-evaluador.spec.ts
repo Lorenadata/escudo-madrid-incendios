@@ -1,9 +1,14 @@
-import { expect, test, type Page } from "@playwright/test";
+import { expect, test, type Locator, type Page } from "@playwright/test";
 
 // Flujo C del PRD §3.2 (evaluador DATAMAD, sin credenciales) + comprobaciones de lenguaje seguro.
 // Requiere API (datos cargados con escudo_api.etl_load) y web en ejecución.
 
 const FORBIDDEN_CLAIMS = [/vidas salvadas/i, /vivienda segura/i, /vivienda insegura/i, /hect[aá]reas protegidas efectivamente/i];
+
+/** Polígonos dibujados de verdad en el mapa (no basta con que exista el lienzo: MapLibre puede fallar sin pintar nada). */
+async function renderedFeatures(map: Locator): Promise<number> {
+  return Number((await map.getAttribute("data-rendered-features")) ?? 0);
+}
 
 async function assertSafeLanguage(page: Page) {
   const text = await page.locator("body").innerText();
@@ -20,6 +25,13 @@ test("explorador: mapa regional real, ficha municipal trazable y capa oficial li
   await expect(page.getByRole("heading", { name: "Explorador regional" })).toBeVisible();
   await expect(page.locator("canvas.maplibregl-canvas")).toBeVisible();
   await expect(page.getByText("179 municipios")).toBeVisible();
+  const map = page.getByRole("region", { name: "Mapa de municipios de la Comunidad de Madrid" });
+  await expect.poll(() => renderedFeatures(map), { timeout: 30_000 }).toBeGreaterThan(100);
+  // filtrar marca en el mapa los municipios que cumplen y lo dice con su número
+  await page.getByLabel("Densidad máx. (hab/km²)").fill("50");
+  await expect(page.getByText(/^\d+ de 179 municipios cumplen el filtro$/)).toBeVisible();
+  await page.getByRole("button", { name: "Quitar filtro" }).click();
+  await expect(page.getByText(/^\d+ de 179 municipios cumplen el filtro$/)).toHaveCount(0);
   await expect(page.getByText("Instituto Geográfico Nacional", { exact: false })).toBeVisible();
 
   await page.getByLabel("Buscar municipio").fill("San Lorenzo");
@@ -130,7 +142,7 @@ test("área privada: login demo y aislamiento visible del ámbito ficticio", asy
 test("análisis municipal: filtros sobre datos CAM y capa oficial, sin índice propio", async ({ page }) => {
   await page.goto("/analisis");
   await expect(page.getByRole("heading", { name: "Análisis municipal" })).toBeVisible();
-  const count = page.getByText(/^\d+ municipios$/);
+  const count = page.getByText(/^\d+ municipios cumplen los filtros$/);
   await expect(count).toBeVisible();
   const before = Number((await count.innerText()).split(" ")[0]);
   await page.getByLabel("Máx. densidad (hab/km²)").fill("20");
@@ -142,7 +154,11 @@ test("análisis municipal: filtros sobre datos CAM y capa oficial, sin índice p
   await page.getByLabel("Máx. densidad (hab/km²)").fill("");
   await page.getByLabel("Mín. % en clases altas").fill("");
   await page.getByLabel("Solo municipios declarados Zona de Alto Riesgo").check();
-  await expect(count).toHaveText("59 municipios");
+  await expect(count).toHaveText("59 municipios cumplen los filtros");
+  // el mapa del análisis colorea los municipios filtrados
+  const amap = page.getByRole("region", { name: "Mapa de los municipios que cumplen los filtros" });
+  await expect.poll(() => renderedFeatures(amap), { timeout: 30_000 }).toBeGreaterThan(100);
+  await expect(page.getByText("No cumple el filtro")).toBeVisible();
   await page.getByText("Ver método y fuentes").click();
   await expect(page.getByText("No es un índice de riesgo propio", { exact: false })).toBeVisible();
   // 2.5: histórico regional (CAM-05, CAM-06) siempre rotulado como regional

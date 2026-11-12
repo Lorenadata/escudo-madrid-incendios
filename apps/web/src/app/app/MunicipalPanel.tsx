@@ -189,7 +189,7 @@ export function MunicipalPanel() {
   return (
     <div className="mt-5 space-y-6">
       <section aria-labelledby="muni-h" className="space-y-2">
-        <p className="text-xs uppercase tracking-wide text-ink-500">Panel municipal · INE {d.municipality.ine_code}</p>
+        <p className="text-sm text-ink-500">Panel municipal, INE {d.municipality.ine_code}</p>
         <h2 id="muni-h" className="font-cond text-2xl font-semibold">{d.municipality.name}</h2>
         <p className="max-w-prose rounded border-l-4 border-slate bg-white px-3 py-2 text-sm text-ink-600">{d.notice}</p>
         <p className="text-sm text-ink-600">
@@ -226,7 +226,7 @@ export function MunicipalPanel() {
           <div className="overflow-x-auto rounded border border-line bg-white">
             <table className="w-full text-sm">
               <caption className="sr-only">Ámbitos compartidos con el ayuntamiento</caption>
-              <thead className="bg-granite text-left text-xs uppercase tracking-wide text-ink-600">
+              <thead className="table-head">
                 <tr>
                   <th scope="col" className="px-3 py-2">Ámbito</th>
                   <th scope="col" className="px-3 py-2">Última inspección</th>

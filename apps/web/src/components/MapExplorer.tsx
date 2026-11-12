@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import type { Map as MlMap, GeoJSONSource, MapLayerMouseEvent } from "maplibre-gl";
 import type { FeatureCollection, Layer } from "@/lib/api-types";
 import { apiFetch } from "@/lib/api";
+import { loadMaplibre } from "@/lib/maplibre";
 import { fmtNumber, fmtShare } from "@/lib/format";
 
 export type ChoroplethKey = "density" | "age_65_plus_share" | "altitude_m";
@@ -17,6 +18,17 @@ export const CHOROPLETH_OPTIONS: Record<ChoroplethKey, { label: string; source: 
 const RAMP = ["#E3ECE6", "#B9D0C2", "#86AE98", "#4F826A", "#1E3B2F"];
 // Rampa ordinal para clases oficiales (de menor a mayor). Clases no ordinales → gris.
 const ORDINAL_RAMP = ["#F4E9B8", "#EBC46E", "#D98A3A", "#B5502A", "#7A2416", "#4A120B"];
+/** Rampa de riesgo de 5 pasos (tokens --color-risk-1…5). Solo para datos de riesgo. */
+export const RISK_RAMP = ORDINAL_RAMP.slice(0, 5);
+export const SELECT_COLOR = "#B7791F";
+
+/** Marca en el contenedor cuántos polígonos de una capa se han dibujado (lo comprueban las pruebas e2e). */
+export function trackRendered(map: MlMap, layer: string, el: HTMLElement | null) {
+  map.on("idle", () => {
+    if (!el || !map.getLayer(layer)) return;
+    el.dataset.renderedFeatures = String(map.queryRenderedFeatures({ layers: [layer] }).length);
+  });
+}
 const NON_ORDINAL = "#8A8F8C";
 const BURNT_COLOR = "#5B3E6E"; // ciruela: fuera de la rampa ordinal de las capas oficiales
 
@@ -99,15 +111,17 @@ export function MapExplorer({ choropleth, selected, highlight, officialLayers, a
   const [muni, setMuni] = useState<FeatureCollection | null>(null);
   const [officialLegends, setOfficialLegends] = useState<Record<string, { label: string; color: string }[]>>({});
   const onSelectRef = useRef(onSelect);
+  const onErrorRef = useRef(onError);
   useEffect(() => {
     onSelectRef.current = onSelect;
-  }, [onSelect]);
+    onErrorRef.current = onError;
+  }, [onSelect, onError]);
 
   // Inicializa el mapa una sola vez.
   useEffect(() => {
     let disposed = false;
     (async () => {
-      const maplibregl = await import("maplibre-gl");
+      const maplibregl = await loadMaplibre();
       if (disposed || !ref.current) return;
       const map = new maplibregl.Map({
         container: ref.current,
@@ -121,10 +135,11 @@ export function MapExplorer({ choropleth, selected, highlight, officialLayers, a
               attribution: "Mapa base © Instituto Geográfico Nacional de España (CC BY 4.0)",
             },
           },
-          layers: [{ id: "ign", type: "raster", source: "ign", paint: { "raster-saturation": -0.65, "raster-opacity": 0.85 } }],
+          layers: [{ id: "ign", type: "raster", source: "ign", paint: { "raster-saturation": -0.85, "raster-opacity": 0.7 } }],
         },
-        center: [-3.72, 40.5],
-        zoom: 7.6,
+        bounds: [[-4.58, 39.88], [-3.05, 41.17]], // Comunidad de Madrid
+        // en escritorio, margen izquierdo para que la leyenda no tape municipios
+        fitBoundsOptions: { padding: window.innerWidth >= 1024 ? { top: 24, bottom: 24, right: 24, left: 220 } : 12 },
         minZoom: 6,
         maxZoom: 15,
         maxBounds: [[-5.6, 39.4], [-1.9, 41.7]],
@@ -136,6 +151,12 @@ export function MapExplorer({ choropleth, selected, highlight, officialLayers, a
         mapRef.current = map;
         setReady(true);
       });
+      // Errores del mapa (no los de teselas del mapa base, que se reintentan solas): visibles, nunca silenciosos.
+      map.on("error", (e: { error?: { message?: string }; sourceId?: string }) => {
+        if (e.sourceId === "ign") return;
+        onErrorRef.current(`El mapa no ha podido dibujar los datos: ${e.error?.message ?? "error desconocido"}`);
+      });
+      trackRendered(map, "muni-fill", ref.current);
       const popup = new maplibregl.Popup({ closeButton: false, closeOnClick: false, offset: 8 });
       map.on("mousemove", "muni-fill", (e: MapLayerMouseEvent) => {
         const f = e.features?.[0];
@@ -187,6 +208,7 @@ export function MapExplorer({ choropleth, selected, highlight, officialLayers, a
           ...f.properties,
           __v: featureValue(f.properties, choropleth),
           __dim: highlight ? !highlight.has(String(f.properties.ine_code)) : false,
+          __match: highlight ? highlight.has(String(f.properties.ine_code)) : false,
         },
       })),
     };
@@ -196,11 +218,19 @@ export function MapExplorer({ choropleth, selected, highlight, officialLayers, a
       map.addSource("muni", { type: "geojson", data: data as unknown as GeoJSON.FeatureCollection, promoteId: "ine_code" });
       map.addLayer({ id: "muni-fill", type: "fill", source: "muni", paint: { "fill-color": "#ccc", "fill-opacity": 0.72 } });
       map.addLayer({ id: "muni-line", type: "line", source: "muni", paint: { "line-color": "#15201A", "line-width": 0.4, "line-opacity": 0.55 } });
+      // Municipios que cumplen el filtro: contorno ocre, para que se vean también sobre una capa oficial.
+      map.addLayer({
+        id: "muni-match",
+        type: "line",
+        source: "muni",
+        paint: { "line-color": SELECT_COLOR, "line-width": 1.8 },
+        filter: ["==", ["get", "__match"], true],
+      });
       map.addLayer({
         id: "muni-selected",
         type: "line",
         source: "muni",
-        paint: { "line-color": "#B7791F", "line-width": 3 },
+        paint: { "line-color": "#15201A", "line-width": 3.5 },
         filter: ["==", ["get", "ine_code"], "__none__"],
       });
     }
@@ -212,7 +242,7 @@ export function MapExplorer({ choropleth, selected, highlight, officialLayers, a
       ["==", ["get", "__v"], null], "#D9DCDA",
       color,
     ] as never);
-    map.setPaintProperty("muni-fill", "fill-opacity", ["case", ["get", "__dim"], 0.18, activeOfficial ? 0.25 : 0.75] as never);
+    map.setPaintProperty("muni-fill", "fill-opacity", ["case", ["get", "__dim"], 0.08, activeOfficial ? 0.25 : 0.8] as never);
   }, [ready, muni, choropleth, breaks, highlight, activeOfficial]);
 
   // Selección.

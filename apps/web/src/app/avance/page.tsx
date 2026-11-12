@@ -52,7 +52,7 @@ export default function AvancePage() {
             <div className="overflow-x-auto rounded border border-line bg-white">
               <table className="w-full min-w-[52rem] text-sm">
                 <caption className="sr-only">Avance agregado por municipio</caption>
-                <thead className="bg-granite text-left text-xs uppercase tracking-wide text-ink-600">
+                <thead className="table-head">
                   <tr>
                     <th scope="col" className="px-3 py-2">Municipio</th>
                     <th scope="col" className="px-3 py-2 text-center">ZAR 2026 <StatusBadge status="official" /></th>

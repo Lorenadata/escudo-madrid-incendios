@@ -53,7 +53,7 @@ export function SyntheticBadge({ className = "" }: { className?: string }) {
   return (
     <span
       title="Dato ficticio de demostración: inventado para ilustrar el flujo, no describe ninguna urbanización real."
-      className={`inline-flex items-center whitespace-nowrap rounded-[3px] border border-dashed border-ochre bg-white px-1.5 py-px font-cond text-[11px] font-semibold uppercase leading-4 tracking-wide text-ochre-800 ${className}`}
+      className={`inline-flex items-center whitespace-nowrap rounded-[3px] border border-dashed border-ochre bg-white px-1.5 py-px font-cond text-[11px] font-semibold leading-4 tracking-wide text-ochre-800 ${className}`}
     >
       Ficticio
     </span>

@@ -1,8 +1,11 @@
 @import "tailwindcss";
 
-/* Paleta ESCUDO: cartografía forestal técnica, fría. Sin colores corporativos institucionales. */
+/* Paleta ESCUDO: hoja cartográfica forestal.
+   Verde monte para la estructura, granito de fondo, ocre para selección y foco.
+   La rampa de riesgo (paja → brasa) se reserva para DATOS de riesgo: nunca decora. */
 @theme inline {
   --color-pine: #1E3B2F;
+  --color-pine-900: #142A21;
   --color-pine-50: #E6EEE9;
   --color-pine-700: #284D3D;
   --color-granite: #EEF1EF;
@@ -23,8 +26,13 @@
   --color-ash-800: #4A4E4C;
   --color-rust: #9A3B1F;
   --color-rust-50: #F8ECE7;
-  --font-sans: var(--font-plex), system-ui, sans-serif;
-  --font-cond: var(--font-plex-cond), var(--font-plex), system-ui, sans-serif;
+  --color-risk-1: #F4E9B8;
+  --color-risk-2: #EBC46E;
+  --color-risk-3: #D98A3A;
+  --color-risk-4: #B5502A;
+  --color-risk-5: #7A2416;
+  --font-sans: var(--font-archivo), system-ui, sans-serif;
+  --font-cond: var(--font-archivo), system-ui, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
 
@@ -34,7 +42,21 @@ html, body {
 }
 
 body {
-  font-family: var(--font-plex), system-ui, sans-serif;
+  font-family: var(--font-archivo), system-ui, sans-serif;
+  font-stretch: 100%;
+}
+
+/* Rótulos: Archivo estrecha, como los títulos de una hoja topográfica. */
+.font-cond,
+h1,
+h2,
+h3 {
+  font-stretch: 80%;
+  letter-spacing: -0.005em;
+}
+
+h1 {
+  text-wrap: balance;
 }
 
 /* Rayado para «no disponible»: se reconoce sin color. */
@@ -64,6 +86,14 @@ body {
   .panel {
     @apply rounded border border-line bg-white p-4;
   }
+  /* Cabecera de tabla: tipo de frase, sin mayúsculas forzadas. */
+  .table-head {
+    @apply border-b border-line bg-granite text-left text-[13px] font-semibold leading-snug text-ink-700;
+  }
+  /* Leyenda de mapa como cajetín de hoja cartográfica. */
+  .map-legend {
+    @apply rounded-sm border border-ink/20 border-t-[3px] border-t-pine bg-white/95 p-3 text-xs text-ink-700 shadow-[0_1px_0_rgba(21,32,26,0.08)];
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -74,6 +104,9 @@ body {
 }
 
 .maplibregl-popup-content {
-  font-family: var(--font-plex), system-ui, sans-serif;
-  border-radius: 4px;
+  font-family: var(--font-archivo), system-ui, sans-serif;
+  border-radius: 2px;
+  padding: 6px 10px;
+  font-size: 13px;
+  box-shadow: 0 1px 3px rgba(21, 32, 26, 0.25);
 }

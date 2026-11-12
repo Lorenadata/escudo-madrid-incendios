@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { AnalysisMap } from "@/components/AnalysisMap";
 import { FireHistoryPanel } from "@/components/FireHistoryPanel";
 import { ReforestationPanel } from "@/components/ReforestationPanel";
 import { Empty, ErrorState, Loading } from "@/components/States";
@@ -65,6 +66,7 @@ export default function AnalysisPage() {
   const [minNonMain, setMinNonMain] = useState("");
   const [zarOnly, setZarOnly] = useState(false);
   const [sort, setSort] = useState("high_share");
+  const [hovered, setHovered] = useState<string | null>(null);
 
   const qs = new URLSearchParams({ layer, sort });
   if (numOrEmpty(minHigh)) qs.set("min_high_share", String(Math.min(100, Math.max(0, Number(minHigh))) / 100));
@@ -78,9 +80,9 @@ export default function AnalysisPage() {
 
   return (
     <div className="mx-auto w-full max-w-6xl space-y-5 px-4 py-6">
-      <header>
-        <h1 className="font-cond text-2xl font-semibold text-ink">Análisis municipal</h1>
-        <p className="max-w-prose text-sm text-ink-600">
+      <header className="space-y-2">
+        <h1 className="font-cond text-3xl font-bold leading-tight text-ink">Análisis municipal</h1>
+        <p className="max-w-3xl text-sm leading-relaxed text-ink-600">
           Cruza datos del Portal de Datos Abiertos de la Comunidad de Madrid (densidad CAM-02, población de 65 años o más
           CAM-01, viviendas no principales CAM-09 y viviendas en edificio unifamiliar CAM-10, Censo 2021), la lista oficial de Zonas
           de Alto Riesgo y los siniestros 2015–2024 del Plan Anual 2026 (DOC-01) con el reparto de la cartografía oficial de incendios. Es un filtro comparativo a escala municipal:
@@ -132,17 +134,20 @@ export default function AnalysisPage() {
       )}
       {m.data && m.data.status !== "unavailable" && (
         <section aria-label="Resultados" className="space-y-3">
-          <div className="flex flex-wrap items-center gap-2 text-sm text-ink-600">
-            <span className="font-semibold text-ink" aria-live="polite">{m.data.count} municipios</span>
-            <span>· fuentes {m.data.sources.join(", ")}</span>
+          <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 text-sm text-ink-600">
+            <p className="font-cond text-xl font-semibold text-ink" aria-live="polite">
+              <span className="tabular-nums">{m.data.count}</span> municipios cumplen los filtros
+            </p>
+            <p>Fuentes: {m.data.sources.join(", ")}</p>
           </div>
+          <AnalysisMap rows={m.data.rows} measure={meta.high} sourceId={m.data.layer_source_id} hovered={hovered} />
           {m.data.count === 0 ? (
             <Empty title="Ningún municipio cumple los filtros">Relaja algún umbral.</Empty>
           ) : (
             <div className="overflow-x-auto rounded border border-line bg-white">
               <table className="w-full text-sm">
                 <caption className="sr-only">Matriz municipal: datos CAM y reparto de la capa oficial</caption>
-                <thead className="bg-granite text-left text-xs uppercase tracking-wide text-ink-600">
+                <thead className="table-head">
                   <tr>
                     <th scope="col" className="px-3 py-2">Municipio</th>
                     <th scope="col" className="px-3 py-2 text-right">{meta.high} <StatusBadge status="derived" /></th>
@@ -157,10 +162,17 @@ export default function AnalysisPage() {
                 </thead>
                 <tbody>
                   {m.data.rows.map((r) => (
-                    <tr key={r.ine_code} className="border-t border-line">
+                    <tr
+                      key={r.ine_code}
+                      className="border-t border-line hover:bg-ochre-50 focus-within:bg-ochre-50"
+                      onMouseEnter={() => setHovered(r.ine_code)}
+                      onMouseLeave={() => setHovered(null)}
+                      onFocus={() => setHovered(r.ine_code)}
+                      onBlur={() => setHovered(null)}
+                    >
                       <th scope="row" className="px-3 py-2 text-left font-medium">
                         <Link className="underline-offset-2 hover:underline" href={`/#${r.ine_code}`}>{r.name}</Link>
-                        <span className="ml-1 text-xs text-ink-500">INE {r.ine_code}</span>
+                        <span className="block text-xs font-normal text-ink-500">INE {r.ine_code}</span>
                       </th>
                       <td className="px-3 py-2 text-right tabular-nums">{fmtShare(r.high_share)}</td>
                       <td className="px-3 py-2 text-right tabular-nums">{fmtNumber(r.density_hab_km2)} <span className="text-xs text-ink-500">({r.density_year ?? "s/f"})</span></td>

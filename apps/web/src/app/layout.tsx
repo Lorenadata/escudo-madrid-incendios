@@ -1,20 +1,16 @@
 import type { Metadata } from "next";
-import { IBM_Plex_Sans, IBM_Plex_Sans_Condensed } from "next/font/google";
+import { Archivo } from "next/font/google";
 import { Suspense } from "react";
 import "maplibre-gl/dist/maplibre-gl.css";
 import "./globals.css";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 
-const plex = IBM_Plex_Sans({
-  variable: "--font-plex",
+// Archivo: grotesca con eje de anchura. Una sola familia: rótulos estrechos (como los de un mapa
+// topográfico) y texto a anchura normal.
+const archivo = Archivo({
+  variable: "--font-archivo",
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
-});
-
-const plexCond = IBM_Plex_Sans_Condensed({
-  variable: "--font-plex-cond",
-  subsets: ["latin"],
-  weight: ["500", "600", "700"],
+  axes: ["wdth"],
 });
 
 export const metadata: Metadata = {
@@ -25,9 +21,9 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="es" className={`${plex.variable} ${plexCond.variable} h-full antialiased`}>
+    <html lang="es" className={`${archivo.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col">
-        <Suspense fallback={<div className="h-11 border-b border-ink/15 bg-white" />}>
+        <Suspense fallback={<div className="h-12 bg-pine" />}>
           <SiteHeader />
         </Suspense>
         <main id="main" className="flex flex-1 flex-col">

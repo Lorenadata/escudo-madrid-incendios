@@ -2,6 +2,7 @@
 
 import { useCallback, useMemo, useState } from "react";
 import { CHOROPLETH_OPTIONS, MapExplorer, type ChoroplethKey, type LegendSpec } from "@/components/MapExplorer";
+import { MapLegend } from "@/components/MapLegend";
 import { MunicipalityProfileView } from "@/components/ProfilePanels";
 import { Empty, ErrorState, Loading } from "@/components/States";
 import { StatusBadge } from "@/components/StatusBadge";
@@ -29,6 +30,7 @@ export default function ExplorerPage() {
   if (maxD) params.set("max_density", maxD);
   params.set("sort", "name");
   const list = useApi<MunicipalitySummary[]>(`/v1/municipalities?${params.toString()}`);
+  const all = useApi<MunicipalitySummary[]>("/v1/municipalities?sort=name");
   const layers = useApi<Layer[]>("/v1/layers");
   const profile = useApi<MunicipalityProfile>(selected ? `/v1/municipalities/${selected}/profile` : null);
 
@@ -41,25 +43,69 @@ export default function ExplorerPage() {
     () => (layers.data ?? []).filter((l) => l.name !== "municipalities" && !l.overlay),
     [layers.data],
   );
+  const burnt = (layers.data ?? []).find((l) => l.name === "burnt_areas");
 
   const select = useCallback((ine: string) => {
     setPicked(ine);
     history.replaceState(null, "", `#${ine}`);
   }, []);
 
+  const closeProfile = () => {
+    setPicked(null);
+    history.replaceState(null, "", " ");
+    window.dispatchEvent(new HashChangeEvent("hashchange"));
+  };
+
+  const clearFilter = () => {
+    setQ("");
+    setMinD("");
+    setMaxD("");
+  };
+
   return (
     <div className="flex flex-1 flex-col lg:flex-row">
-      <aside className="order-2 w-full shrink-0 overflow-y-auto border-r border-line bg-white lg:order-1 lg:h-[calc(100vh-6.5rem)] lg:w-[400px]">
-        <div className="space-y-4 p-4">
-          <div>
-            <h1 className="font-cond text-xl font-semibold text-ink">Explorador regional</h1>
-            <p className="text-sm text-ink-600">
-              Municipios de la Comunidad de Madrid con datos de su Portal de Datos Abiertos. Selecciona uno en el mapa o en la lista.
-            </p>
+      <aside className="order-2 w-full shrink-0 overflow-y-auto border-r border-line bg-white lg:order-1 lg:h-[calc(100vh-5.75rem)] lg:w-[400px]">
+        <div className="border-b border-line px-4 pb-4 pt-5">
+          <h1 className="font-cond text-2xl font-bold leading-tight text-ink">Explorador regional</h1>
+          <p className="mt-1 text-sm leading-relaxed text-ink-600">
+            Los municipios de la Comunidad de Madrid con datos de su Portal de Datos Abiertos y la cartografía oficial de
+            incendios. Pulsa un municipio en el mapa o en la lista para abrir su ficha.
+          </p>
+        </div>
+
+        {selected && (
+          <div className="border-b border-line bg-granite/40 p-4">
+            <button type="button" className="btn-secondary mb-3" onClick={closeProfile}>
+              Cerrar ficha
+            </button>
+            {profile.loading && <Loading label="Cargando ficha" />}
+            {!!profile.error && <ErrorState error={profile.error} onRetry={profile.reload} />}
+            {profile.data && <MunicipalityProfileView profile={profile.data} />}
           </div>
+        )}
+
+        <div className="space-y-6 p-4">
+          <section aria-labelledby="filtro-h" className="space-y-2">
+            <h2 id="filtro-h" className="font-cond text-base font-semibold text-ink">Buscar y filtrar</h2>
+            <label htmlFor="q" className="label">Buscar municipio</label>
+            <input id="q" className="field" value={q} onChange={(e) => setQ(e.target.value)} placeholder="Nombre del municipio" />
+            <div className="grid grid-cols-2 gap-2">
+              <div>
+                <label htmlFor="mind" className="label">Densidad mín. (hab/km²)</label>
+                <input id="mind" type="number" min={0} inputMode="numeric" className="field" value={minD} onChange={(e) => setMinD(e.target.value)} />
+              </div>
+              <div>
+                <label htmlFor="maxd" className="label">Densidad máx. (hab/km²)</label>
+                <input id="maxd" type="number" min={0} inputMode="numeric" className="field" value={maxD} onChange={(e) => setMaxD(e.target.value)} />
+              </div>
+            </div>
+            <p className="text-xs leading-relaxed text-ink-500">
+              Los municipios que cumplen el filtro llevan borde ocre en el mapa; el resto se atenúa.
+            </p>
+          </section>
 
           <fieldset className="space-y-2">
-            <legend className="label">Colorear municipios por</legend>
+            <legend className="mb-2 font-cond text-base font-semibold text-ink">Colorear municipios por</legend>
             {(Object.keys(CHOROPLETH_OPTIONS) as ChoroplethKey[]).map((k) => (
               <label key={k} className="flex items-center gap-2 text-sm">
                 <input type="radio" name="choro" checked={choropleth === k} onChange={() => setChoropleth(k)} className="accent-pine" />
@@ -69,7 +115,7 @@ export default function ExplorerPage() {
           </fieldset>
 
           <fieldset className="space-y-2">
-            <legend className="label">Cartografía oficial de incendios</legend>
+            <legend className="mb-2 font-cond text-base font-semibold text-ink">Cartografía oficial de incendios</legend>
             {layers.loading && <Loading label="Cargando capas" />}
             {!!layers.error && <ErrorState error={layers.error} onRetry={layers.reload} />}
             {layers.data && officialLayers.length === 0 && (
@@ -95,59 +141,30 @@ export default function ExplorerPage() {
             ))}
           </fieldset>
 
-          {(() => {
-            const burnt = (layers.data ?? []).find((l) => l.name === "burnt_areas");
-            if (!burnt) return null;
-            return (
-              <fieldset className="space-y-2">
-                <legend className="label">Histórico observado por satélite</legend>
-                <label className={`flex items-center gap-2 text-sm ${burnt.available ? "" : "text-ink-500"}`}>
-                  <input type="checkbox" disabled={!burnt.available} checked={showBurnt} onChange={(e) => setShowBurnt(e.target.checked)} className="accent-pine" />
-                  {burnt.label ?? burnt.name}
-                  <StatusBadge status={burnt.available ? "official" : "unavailable"} className="ml-auto" />
-                </label>
-              </fieldset>
-            );
-          })()}
-
-          {selected && (
-            <div className="border-t border-line pt-4">
-              <button type="button" className="mb-2 text-xs text-slate underline" onClick={() => { setPicked(null); history.replaceState(null, "", " "); window.dispatchEvent(new HashChangeEvent("hashchange")); }}>
-                Cerrar ficha
-              </button>
-              {profile.loading && <Loading label="Cargando ficha" />}
-              {!!profile.error && <ErrorState error={profile.error} onRetry={profile.reload} />}
-              {profile.data && <MunicipalityProfileView profile={profile.data} />}
-            </div>
+          {burnt && (
+            <fieldset className="space-y-2">
+              <legend className="mb-2 font-cond text-base font-semibold text-ink">Histórico observado por satélite</legend>
+              <label className={`flex items-center gap-2 text-sm ${burnt.available ? "" : "text-ink-500"}`}>
+                <input type="checkbox" disabled={!burnt.available} checked={showBurnt} onChange={(e) => setShowBurnt(e.target.checked)} className="accent-pine" />
+                {burnt.label ?? burnt.name}
+                <StatusBadge status={burnt.available ? "official" : "unavailable"} className="ml-auto" />
+              </label>
+            </fieldset>
           )}
 
-          <div className="space-y-2 border-t border-line pt-4">
-            <label htmlFor="q" className="label">Buscar municipio</label>
-            <input id="q" className="field" value={q} onChange={(e) => setQ(e.target.value)} placeholder="Nombre del municipio" />
-            <div className="grid grid-cols-2 gap-2">
-              <div>
-                <label htmlFor="mind" className="label">Densidad mín. (hab/km²)</label>
-                <input id="mind" type="number" min={0} inputMode="numeric" className="field" value={minD} onChange={(e) => setMinD(e.target.value)} />
-              </div>
-              <div>
-                <label htmlFor="maxd" className="label">Densidad máx. (hab/km²)</label>
-                <input id="maxd" type="number" min={0} inputMode="numeric" className="field" value={maxD} onChange={(e) => setMaxD(e.target.value)} />
-              </div>
-            </div>
+          <section aria-labelledby="lista-h" className="space-y-2 border-t border-line pt-4">
+            <h2 id="lista-h" className="font-cond text-base font-semibold text-ink">Municipios</h2>
             {list.loading && <Loading label="Cargando municipios" />}
             {!!list.error && <ErrorState error={list.error} onRetry={list.reload} />}
-            {!selected && list.data && (
-              <p className="text-xs text-ink-500">Haz clic en el mapa o en la lista para abrir la ficha territorial.</p>
-            )}
             {list.data && (
               <>
                 <p className="text-xs text-ink-500" aria-live="polite">{list.data.length} municipios</p>
                 {list.data.length === 0 ? (
                   <Empty title="Ningún municipio cumple el filtro">Amplía el rango de densidad o cambia la búsqueda.</Empty>
                 ) : (
-                  <ul className="max-h-56 overflow-y-auto rounded border border-line">
+                  <ul className="max-h-72 overflow-y-auto rounded border border-line">
                     {list.data.map((m) => (
-                      <li key={m.ine_code}>
+                      <li key={m.ine_code} className="border-b border-line last:border-b-0">
                         <button
                           type="button"
                           onClick={() => select(m.ine_code)}
@@ -165,12 +182,11 @@ export default function ExplorerPage() {
                 )}
               </>
             )}
-          </div>
-
+          </section>
         </div>
       </aside>
 
-      <section className="relative order-1 h-[60vh] flex-1 lg:order-2 lg:h-auto" aria-label="Mapa">
+      <section className="relative order-1 h-[62vh] flex-1 lg:order-2 lg:h-auto" aria-label="Mapa">
         <MapExplorer
           choropleth={choropleth}
           selected={selected}
@@ -183,26 +199,21 @@ export default function ExplorerPage() {
           onError={setMapError}
         />
         {mapError && (
-          <div role="alert" className="absolute left-3 right-3 top-3 rounded border-l-4 border-rust bg-white p-2 text-sm shadow">
+          <div role="alert" className="absolute left-3 right-3 top-3 z-10 rounded border-l-4 border-rust bg-white p-2 text-sm shadow">
             {mapError}
           </div>
         )}
-        <div className="absolute bottom-8 left-3 max-w-[18rem] space-y-3 rounded border border-line bg-white/95 p-3 text-xs shadow-sm">
-          {legend.map((l) => (
-            <div key={l.title}>
-              <p className="mb-1 font-cond text-sm font-semibold text-ink">{l.title}</p>
-              <ul className="space-y-0.5">
-                {l.items.map((it) => (
-                  <li key={it.label} className="flex items-center gap-2">
-                    <span className="inline-block h-3 w-5 rounded-sm border border-ink/20" style={{ background: it.color }} aria-hidden />
-                    {it.label}
-                  </li>
-                ))}
-              </ul>
-              <p className="mt-1 text-ink-500">{l.note}</p>
-            </div>
-          ))}
-        </div>
+        {filtering && list.data && (
+          <div className="absolute left-3 right-14 top-3 z-[5] flex flex-wrap items-center gap-x-3 gap-y-1 rounded-sm border border-ochre bg-white/95 px-3 py-1.5 text-sm shadow-sm sm:right-auto">
+            <span className="inline-block h-3 w-3 border-2 border-ochre" aria-hidden />
+            <span>
+              <strong className="tabular-nums">{list.data.length}</strong>
+              {all.data ? <> de <span className="tabular-nums">{all.data.length}</span></> : null} municipios cumplen el filtro
+            </span>
+            <button type="button" onClick={clearFilter} className="text-slate underline underline-offset-2">Quitar filtro</button>
+          </div>
+        )}
+        <MapLegend specs={legend} className="absolute bottom-8 left-3 max-h-[70%] max-w-[17rem]" />
       </section>
     </div>
   );

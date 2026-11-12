@@ -3,6 +3,7 @@
 import type { Map as MlMap, MapMouseEvent } from "maplibre-gl";
 import { useEffect, useRef, useState } from "react";
 import { API_URL } from "@/lib/api";
+import { loadMaplibre } from "@/lib/maplibre";
 import { BASEMAP_IGN } from "./MapExplorer";
 
 // Dibujo de la geometría AUTORIZADA de un ámbito (M05): clic = vértice, «Cerrar polígono» = terminar.
@@ -56,7 +57,7 @@ export function PolygonDrawMap({ municipalityCode, value, onChange }: { municipa
   useEffect(() => {
     let disposed = false;
     (async () => {
-      const maplibregl = await import("maplibre-gl");
+      const maplibregl = await loadMaplibre();
       if (disposed || !ref.current) return;
       const map = new maplibregl.Map({
         container: ref.current,
