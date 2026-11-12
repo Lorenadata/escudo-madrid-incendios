@@ -7,7 +7,7 @@ Medido el 11/11/2026 sobre el despliegue real: **https://lorenadata-escudo-madri
 | Elemento | Valor | Origen |
 |---|---|---|
 | Plataforma | Hugging Face Spaces, Docker, hardware `cpu-basic` | API del Space (`runtime.hardware`) |
-| Coste | Suscripción PRO de Hugging Face de la participante (importe según factura; ~9 $/mes anunciados en su web) | 👤 factura |
+| Coste | **6,50 €** cobrados por la suscripción PRO de Hugging Face (noviembre de 2026); se cancelará tras la entrega | factura de la participante (12/11) |
 | Arquitectura | Un contenedor: PostGIS + API + web, construido desde el repositorio público en un commit fijo | `infra/docker/space.Dockerfile` |
 | Construcción completa | 2–4 min (dos construcciones el 11/11) | estado del Space |
 | Arranque en frío (reinicio) | 40 s hasta que responde el caso guiado | medición del 11/11 |
