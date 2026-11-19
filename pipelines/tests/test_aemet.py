@@ -224,7 +224,30 @@ def test_opendata_two_step_with_key():
     assert v["weather_temp_max_c"]["value"] == 99 and v["weather_precip_prob_24h_pct"]["value"] == 5
     assert ctx["fire_danger"]["status"] == "official"
     assert ctx["fire_danger"]["value"].endswith("mapa.png")
+    assert ctx["fire_danger"]["image_path"] == "/v1/weather/fire-danger-map/estimated"
     assert "no se extrae un valor por municipio" in ctx["fire_danger"]["caveat"].lower()
+
+
+def test_fire_map_image_se_guarda_y_rechaza_datos_expirados():
+    from escudo_pipelines.aemet.client import AemetUnavailable, OpenDataProvider
+
+    png = b"\x89PNG\r\n\x1a\n" + b"0" * 20
+    answers = [png]
+
+    def handler(request):
+        if request.url.path.startswith("/opendata/api/"):
+            return httpx.Response(200, json={"estado": 200, "datos": "https://opendata.aemet.es/sh/m", "descripcion": "exito"})
+        return httpx.Response(200, content=answers[0])
+
+    c, rec = client_for(handler)
+    p, cache = OpenDataProvider("TEST-KEY"), TTLCache()
+    assert p.fetch_fire_map_image(c, cache, 1000.0) == (png, "image/png")
+    n = len(rec.requests)
+    answers[0] = b'{"descripcion": "datos expirados", "estado": 404}'
+    assert p.fetch_fire_map_image(c, cache, 1060.0) == (png, "image/png")  # sale de la caché, sin pedir de nuevo
+    assert len(rec.requests) == n
+    with pytest.raises(AemetUnavailable):
+        p.fetch_fire_map_image(c, TTLCache(), 1000.0)  # sin caché y con «datos expirados»: no hay imagen
 
 
 def test_opendata_quota_falls_back_to_public_xml():

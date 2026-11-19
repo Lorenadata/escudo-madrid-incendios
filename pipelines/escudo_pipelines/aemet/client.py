@@ -189,9 +189,44 @@ class OpenDataProvider:
             cache.put(key, raw, now)
         return raw.decode()
 
+    def fetch_fire_map_image(self, client: httpx.Client | None, cache: TTLCache, now: float, area: str = "p",
+                             forecast_day: int | None = None) -> tuple[bytes, str]:
+        """Imagen del mapa oficial (bytes y tipo). Se guarda la imagen, no la URL `datos`, que AEMET caduca pronto."""
+        key = f"odfireimg:{area}:{forecast_day or 'est'}"
+        raw = cache.get(key, TTL_SECONDS["fire_danger_map"], now)
+        if raw is None:
+            c, owned = _client(client)
+            try:
+                url = (OD_FIRE_ESTIMATED.format(area=area) if forecast_day is None
+                       else OD_FIRE_FORECAST.format(dia=forecast_day, area=area))
+                raw, _ = self._two_step(url, c)
+            except (httpx.HTTPError, ValueError) as exc:
+                raise AemetUnavailable(f"OpenData mapa incendios: {exc}") from exc
+            finally:
+                if owned:
+                    c.close()
+            if image_type(raw) is None:
+                raise AemetUnavailable("OpenData mapa incendios: la respuesta no es una imagen (datos expirados)")
+            cache.put(key, raw, now)
+        kind = image_type(raw)
+        if kind is None:
+            raise AemetUnavailable("caché del mapa de incendios no válida")
+        return raw, kind
+
     @staticmethod
     def source_url(ine: str) -> str:
         return OD_DAILY.format(ine=ine)
+
+
+def image_type(content: bytes) -> str | None:
+    """Tipo MIME por la firma del fichero; `None` si no es PNG, GIF o JPEG."""
+    if content.startswith(b"\x89PNG\r\n\x1a\n"):
+        return "image/png"
+    if content[:6] in (b"GIF87a", b"GIF89a"):
+        return "image/gif"
+    if content.startswith(b"\xff\xd8\xff"):
+        return "image/jpeg"
+    return None
 
 
 def now_epoch() -> float:

@@ -59,3 +59,4 @@ Formato: fecha · agente · artefacto · cómo verificar · criterio(s). Solo he
 - **Meteorología:** predicción horaria de AEMET para los 179 municipios (`/v1/weather/regional`), con `unavailable` ante cualquier fallo.
 - **Web:** páginas `/ranking` y `/meteo`, gráficos SVG propios y nueva tipografía y paleta.
 - **Riesgo estimado hoy:** `escudo_api.current_risk` cruza las clases 4 y 5 de GEO-01 con el índice de Fosberg calculado sobre la predicción horaria de AEMET (`/v1/analysis/current-risk`). Estimación derivada, sin calibrar con incendios de Madrid. Decisión en ADR-0005 y método en `docs/current-risk.md`.
+- **Corrección:** el mapa oficial de peligro de AEMET salía roto porque se guardaba 6 horas la URL temporal `datos`, que AEMET caduca antes. Ahora la API guarda la imagen y la sirve en `/v1/weather/fire-danger-map/{estimated|forecast}`.

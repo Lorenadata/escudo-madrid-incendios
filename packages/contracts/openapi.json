@@ -503,6 +503,52 @@
         }
       }
     },
+    "/v1/weather/fire-danger-map/{kind}": {
+      "get": {
+        "tags": [
+          "meteorología"
+        ],
+        "summary": "Fire Danger Map",
+        "description": "Imagen oficial del mapa de AEMET, servida desde la API porque el enlace temporal de AEMET caduca.",
+        "operationId": "fire_danger_map_v1_weather_fire_danger_map__kind__get",
+        "parameters": [
+          {
+            "name": "kind",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "enum": [
+                "estimated",
+                "forecast"
+              ],
+              "type": "string",
+              "title": "Kind"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "image/png": {}
+            }
+          },
+          "503": {
+            "description": "AEMET no disponible"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/fire-history": {
       "get": {
         "tags": [

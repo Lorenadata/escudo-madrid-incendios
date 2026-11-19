@@ -216,6 +216,7 @@ def _fire_indicator(p: OpenDataProvider, client, cache, epoch: float, now: datet
     try:
         url = p.fetch_fire_map_url(client, cache, epoch)
         return {**base, "indicator_id": "aemet_fire_danger_map_estimated", "value": url, "status": "official",
+                "image_path": "/v1/weather/fire-danger-map/estimated",
                 "label": "Mapa de niveles de riesgo meteorológico de incendios (estimado, hoy)",
                 "temporal_scope": now.date().isoformat(),
                 "method": "Mapa estimado publicado por AEMET (api/incendios/mapasriesgo/estimado/area/p)."}
@@ -225,6 +226,7 @@ def _fire_indicator(p: OpenDataProvider, client, cache, epoch: float, now: datet
         url = p.fetch_fire_map_url(client, cache, epoch, forecast_day=1)
         tomorrow = (now + timedelta(days=1)).date().isoformat()
         return {**base, "indicator_id": "aemet_fire_danger_map_forecast", "value": url, "status": "official",
+                "image_path": "/v1/weather/fire-danger-map/forecast",
                 "label": "Mapa de niveles de riesgo meteorológico de incendios (previsto para mañana)",
                 "temporal_scope": tomorrow,
                 "method": ("AEMET no publica hoy el mapa estimado; se muestra el PREVISTO para mañana "

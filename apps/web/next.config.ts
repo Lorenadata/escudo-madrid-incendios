@@ -16,7 +16,7 @@ const CSP = [
   "default-src 'self'",
   "script-src 'self' 'unsafe-inline'",
   "style-src 'self' 'unsafe-inline'",
-  `img-src 'self' data: blob: https://www.ign.es https://opendata.aemet.es`,
+  `img-src 'self' data: blob: ${apiOrigin} https://www.ign.es https://opendata.aemet.es`.replace(/\s+/g, " "),
   `connect-src 'self' ${apiOrigin} https://www.ign.es`.trim(),
   "worker-src 'self' blob:",
   "font-src 'self' data:",

@@ -564,6 +564,15 @@ def test_ranking_cruza_planes_oficiales_sin_meteorologia(client):
     assert "no incluye meteorología" in d["caveat"] and not any(k.startswith("gust") for k in d["rows"][0])
 
 
+def test_mapa_oficial_sin_clave_no_inventa_imagen(client, monkeypatch):
+    from escudo_api.config import settings
+
+    monkeypatch.delenv("AEMET_API_KEY", raising=False)
+    monkeypatch.setattr(settings, "aemet_api_key", None)
+    assert client.get("/v1/weather/fire-danger-map/estimated").status_code == 503
+    assert client.get("/v1/weather/fire-danger-map/otro").status_code == 422
+
+
 def test_riesgo_estimado_sin_prediccion_no_da_puntuacion(client, monkeypatch):
     from escudo_api import weather_regional as wr
     from escudo_api.routers import ranking

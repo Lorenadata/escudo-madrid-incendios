@@ -3,9 +3,9 @@
 from __future__ import annotations
 
 import json
-from typing import Any
+from typing import Any, Literal
 
-from fastapi import APIRouter, Depends, HTTPException, Query
+from fastapi import APIRouter, Depends, HTTPException, Query, Response
 from sqlalchemy import func, select, text
 from sqlalchemy.orm import Session
 
@@ -231,6 +231,25 @@ def weather(municipality_code: str, session: Session = Depends(get_session)) -> 
 
     _get_muni(session, municipality_code)
     return weather_context(session, municipality_code)
+
+
+@router.get("/v1/weather/fire-danger-map/{kind}", tags=["meteorología"], response_class=Response,
+            responses={200: {"content": {"image/png": {}}}, 503: {"description": "AEMET no disponible"}})
+def fire_danger_map(kind: Literal["estimated", "forecast"]) -> Response:
+    """Imagen oficial del mapa de AEMET, servida desde la API porque el enlace temporal de AEMET caduca."""
+    import os
+
+    from escudo_pipelines.aemet.client import AemetUnavailable, OpenDataProvider, default_cache, now_epoch
+
+    key = os.environ.get("AEMET_API_KEY", "") or settings.aemet_api_key or ""
+    if not key:
+        raise HTTPException(503, "Mapa oficial no disponible: sin clave de AEMET OpenData")
+    try:
+        content, media = OpenDataProvider(key).fetch_fire_map_image(
+            None, default_cache(), now_epoch(), forecast_day=None if kind == "estimated" else 1)
+    except AemetUnavailable as exc:
+        raise HTTPException(503, f"Mapa oficial no disponible: {exc}") from exc
+    return Response(content, media_type=media, headers={"Cache-Control": "public, max-age=1800"})
 
 
 @router.get("/v1/fire-history", tags=["histórico"])

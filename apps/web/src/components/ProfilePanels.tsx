@@ -1,5 +1,6 @@
 "use client";
 
+import { API_URL } from "@/lib/api";
 import type { FirePlanContext, HousingContext, SatelliteBurntContext, MunicipalityProfile, OfficialLayerSummary, WeatherContext } from "@/lib/api-types";
 import { fmtDate, fmtNumber, fmtShare } from "@/lib/format";
 import { IndicatorValue } from "./IndicatorValue";
@@ -11,7 +12,9 @@ const DEFAULT_WEATHER_DISCLAIMER =
 
 /** Mapa oficial de AEMET (imagen peninsular): se muestra tal cual, con su fecha y autoría. Nunca se extrae un valor local. */
 export function FireDangerMap({ indicator }: { indicator: NonNullable<WeatherContext["fire_danger"]> }) {
-  const url = typeof indicator.value === "string" && /^https:\/\/opendata\.aemet\.es\//.test(indicator.value) ? indicator.value : null;
+  // La URL `datos` de AEMET caduca en minutos: la imagen se sirve desde la API de ESCUDO.
+  const path = (indicator as { image_path?: string }).image_path;
+  const url = typeof path === "string" && /^\/v1\/weather\/fire-danger-map\/(estimated|forecast)$/.test(path) ? `${API_URL}${path}` : null;
   if (!url) return <IndicatorValue indicator={indicator} />;
   return (
     <figure className="my-2 rounded border border-line bg-white p-2">
