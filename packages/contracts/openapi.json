@@ -760,6 +760,123 @@
         }
       }
     },
+    "/v1/analysis/attention-ranking": {
+      "get": {
+        "tags": [
+          "análisis"
+        ],
+        "summary": "Attention Ranking",
+        "description": "Puntuación de atención preventiva de los 179 municipios, con componentes, motivos y estabilidad.",
+        "operationId": "attention_ranking_v1_analysis_attention_ranking_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object",
+                  "title": "Response Attention Ranking V1 Analysis Attention Ranking Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/analysis/current-risk": {
+      "get": {
+        "tags": [
+          "análisis"
+        ],
+        "summary": "Current Risk",
+        "description": "Riesgo estimado hoy por municipio: mapa oficial × índice de Fosberg con la predicción de AEMET.",
+        "operationId": "current_risk_v1_analysis_current_risk_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object",
+                  "title": "Response Current Risk V1 Analysis Current Risk Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/weather/hourly": {
+      "get": {
+        "tags": [
+          "meteorología"
+        ],
+        "summary": "Weather Hourly",
+        "description": "Predicción horaria y diaria de AEMET para un municipio. Si AEMET falla, `status: unavailable`.",
+        "operationId": "weather_hourly_v1_weather_hourly_get",
+        "parameters": [
+          {
+            "name": "municipality_code",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Municipality Code"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Weather Hourly V1 Weather Hourly Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/weather/regional": {
+      "get": {
+        "tags": [
+          "meteorología"
+        ],
+        "summary": "Weather Regional",
+        "description": "Rachas, lluvia, humedad y temperatura previstas en los 179 municipios (se completa en segundo plano).",
+        "operationId": "weather_regional_v1_weather_regional_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object",
+                  "title": "Response Weather Regional V1 Weather Regional Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/auth/login": {
       "post": {
         "tags": [

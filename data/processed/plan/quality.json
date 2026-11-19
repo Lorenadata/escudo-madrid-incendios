@@ -179,6 +179,21 @@
       "check": "siniestros_total_vs_causas_informativo",
       "passed": true,
       "detail": "95 filas con total publicado ≠ suma de causas (se muestran marcadas, sin corregir)"
+    },
+    {
+      "check": "planes_179_municipios",
+      "passed": true,
+      "detail": "179 filas del Anexo VI (1), págs. 93–96"
+    },
+    {
+      "check": "planes_zar_coincide_con_anexo_II",
+      "passed": true,
+      "detail": "59 municipios con «ZAR 2017» = Sí, frente a 59 del Anexo II"
+    },
+    {
+      "check": "planes_recuento_informativo",
+      "passed": true,
+      "detail": "58 obligados; 28 con aprobación en pleno; 27 con «No»; 3 con la casilla vacía"
     }
   ],
   "all_passed": true

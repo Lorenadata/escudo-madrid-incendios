@@ -222,7 +222,7 @@ FIRE_CAUSES = ("rayo", "negligencia_accidente", "intencionado", "desconocida", "
 
 
 def load_plan(session: Session) -> None:
-    """DOC-01 (Plan Anual 2026): ZAR (1/0 para los 179 municipios) y siniestros 2015–2024 por causa (literal)."""
+    """DOC-01 (Plan Anual 2026): ZAR (1/0), siniestros 2015–2024 por causa y planes municipales (literal)."""
     zar_csv, fires_csv = PLAN / "zar_municipalities.csv", PLAN / "municipal_fires_2015_2024.csv"
     if not zar_csv.exists() or not fires_csv.exists():
         log.warning("Sin %s: ejecute escudo_pipelines.plan_anual (ZAR y siniestros municipales no disponibles)", PLAN)
@@ -240,6 +240,17 @@ def load_plan(session: Session) -> None:
         for cause in FIRE_CAUSES:
             session.add(MunicipalSeries(ine_code=r["ine_code"], indicator_id=f"municipality_fires_{cause}_2015_2024",
                                         year=2024, value=_f(r[cause]), source_id="DOC-01"))
+    plans_csv = PLAN / "municipal_plans.csv"
+    if not plans_csv.exists():
+        log.warning("Sin %s: ejecute escudo_pipelines.plan_anual (planes municipales no disponibles)", plans_csv)
+        return
+    literal = {"si": 1.0, "no": 0.0, "": None}  # casilla vacía en el documento → null, nunca «no»
+    for r in _csv(plans_csv):
+        if r["ine_code"] not in codes:
+            continue
+        for col, ind in (("pamif_required", "municipality_pamif_required"), ("pamif_approved", "municipality_pamif_approved")):
+            session.add(MunicipalSeries(ine_code=r["ine_code"], indicator_id=ind, year=2026,
+                                        value=literal[r[col]], source_id="DOC-01"))
 
 
 # columna de data/processed/cam/municipal_housing.csv → indicador trazable

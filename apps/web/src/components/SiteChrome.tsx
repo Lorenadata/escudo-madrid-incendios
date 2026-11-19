@@ -5,6 +5,8 @@ import { usePathname } from "next/navigation";
 
 const NAV = [
   { href: "/", label: "Explorador" },
+  { href: "/ranking", label: "Ranking" },
+  { href: "/meteo", label: "Meteo" },
   { href: "/comparar", label: "Comparar" },
   { href: "/analisis", label: "Análisis" },
   { href: "/demo", label: "Caso guiado" },
@@ -17,18 +19,18 @@ const NAV = [
 export function SiteHeader() {
   const path = usePathname();
   return (
-    <header className="bg-pine text-white">
+    <header className="border-b border-brass/35 bg-pine-900 text-white">
       <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:left-2 focus:top-2 focus:z-50 focus:bg-white focus:p-2 focus:text-ink">
         Saltar al contenido
       </a>
       <div className="mx-auto flex max-w-[1600px] flex-wrap items-stretch gap-x-6 px-4">
         <Link href="/" className="flex items-center gap-2 py-2.5" aria-label="ESCUDO MADRID, inicio">
           <svg width="24" height="24" viewBox="0 0 22 22" aria-hidden>
-            <path d="M11 1.5 19.5 5v6.2c0 4.6-3.6 8-8.5 9.3-4.9-1.3-8.5-4.7-8.5-9.3V5Z" fill="#EEF1EF" />
-            <path d="M5 13.5c2.2-1.6 4-1.6 6 0s3.8 1.6 6 0" stroke="#1E3B2F" strokeWidth="1.4" fill="none" />
-            <path d="M5 10c2.2-1.6 4-1.6 6 0s3.8 1.6 6 0" stroke="#B7791F" strokeWidth="1.4" fill="none" />
+            <path d="M11 1.5 19.5 5v6.2c0 4.6-3.6 8-8.5 9.3-4.9-1.3-8.5-4.7-8.5-9.3V5Z" fill="none" stroke="#D8B76A" strokeWidth="1.2" />
+            <path d="M5.5 13.5c2-1.5 3.7-1.5 5.5 0s3.5 1.5 5.5 0" stroke="#F4EFE3" strokeWidth="1" fill="none" />
+            <path d="M5.5 10c2-1.5 3.7-1.5 5.5 0s3.5 1.5 5.5 0" stroke="#D8B76A" strokeWidth="1" fill="none" />
           </svg>
-          <span className="font-cond text-[19px] font-bold leading-none tracking-wide">ESCUDO MADRID</span>
+          <span className="font-display text-[19px] leading-none tracking-[0.08em]">ESCUDO MADRID</span>
         </Link>
         <nav aria-label="Principal" className="-mx-4 flex min-w-0 basis-full overflow-x-auto px-4 sm:mx-0 sm:basis-auto sm:px-0">
           {NAV.map((n) => {
@@ -38,8 +40,8 @@ export function SiteHeader() {
                 key={n.href}
                 href={n.href}
                 aria-current={active ? "page" : undefined}
-                className={`flex items-center whitespace-nowrap border-b-[3px] px-2.5 pb-2 pt-2.5 text-sm ${
-                  active ? "border-ochre font-semibold text-white" : "border-transparent text-white/80 hover:border-white/30 hover:text-white"
+                className={`flex items-center whitespace-nowrap border-b-2 px-2.5 pb-2.5 pt-3 text-sm ${
+                  active ? "border-brass font-medium text-white" : "border-transparent text-white/75 hover:border-brass/40 hover:text-white"
                 }`}
               >
                 {n.label}

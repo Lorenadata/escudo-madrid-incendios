@@ -1,15 +1,16 @@
 @import "tailwindcss";
 
-/* Paleta ESCUDO: hoja cartográfica forestal.
-   Verde monte para la estructura, granito de fondo, ocre para selección y foco.
-   La rampa de riesgo (paja → brasa) se reserva para DATOS de riesgo: nunca decora. */
+/* Paleta ESCUDO: monte de noche y latón.
+   Verde casi negro para la estructura, piedra clara de fondo, latón para selección y foco.
+   La rampa de riesgo (paja → brasa) se reserva para DATOS oficiales de riesgo: nunca decora.
+   Las páginas de ranking y meteorología usan la «sala nocturna» (tokens noct-*). */
 @theme inline {
-  --color-pine: #1E3B2F;
-  --color-pine-900: #142A21;
-  --color-pine-50: #E6EEE9;
-  --color-pine-700: #284D3D;
-  --color-granite: #EEF1EF;
-  --color-line: #D5DBD8;
+  --color-pine: #12271F;
+  --color-pine-900: #0B1713;
+  --color-pine-50: #E7ECE7;
+  --color-pine-700: #1F3D30;
+  --color-granite: #F4F3EE;
+  --color-line: #DFDDD3;
   --color-ink: #15201A;
   --color-ink-800: #26302B;
   --color-ink-700: #3A4540;
@@ -17,8 +18,8 @@
   --color-ink-500: #5F6A65;
   --color-slate: #3C5A73;
   --color-slate-50: #EAF0F5;
-  --color-ochre: #B7791F;
-  --color-ochre-50: #FBF3E4;
+  --color-ochre: #A67C26;
+  --color-ochre-50: #F8F2E3;
   --color-ochre-800: #6E4810;
   --color-plum: #5B3E6E;
   --color-ash: #8A8F8C;
@@ -31,13 +32,22 @@
   --color-risk-3: #D98A3A;
   --color-risk-4: #B5502A;
   --color-risk-5: #7A2416;
+  --color-noct-bg: #0B1512;
+  --color-noct-surface: #111E19;
+  --color-noct-raise: #182A22;
+  --color-noct-line: #2A3B32;
+  --color-noct-ink: #F4EFE3;
+  --color-noct-ink2: #CFCBBD;
+  --color-noct-ink3: #A3A698;
+  --color-brass: #D8B76A;
+  --font-display: var(--font-bodoni), Georgia, serif;
   --font-sans: var(--font-archivo), system-ui, sans-serif;
   --font-cond: var(--font-archivo), system-ui, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
 
 html, body {
-  background: #EEF1EF;
+  background: #F4F3EE;
   color: #15201A;
 }
 
@@ -48,15 +58,57 @@ body {
 
 /* Rótulos: Archivo estrecha, como los títulos de una hoja topográfica. */
 .font-cond,
-h1,
-h2,
 h3 {
   font-stretch: 80%;
   letter-spacing: -0.005em;
 }
 
+/* Títulos y grandes cifras: Bodoni Moda, de contraste alto, con su eje óptico. */
+h1,
+h2,
+.font-display {
+  font-family: var(--font-bodoni), Georgia, serif;
+  font-optical-sizing: auto;
+  font-stretch: 100%;
+  font-weight: 500;
+  letter-spacing: -0.012em;
+}
+
 h1 {
   text-wrap: balance;
+}
+
+/* Sala nocturna: ranking y meteorología. */
+.noct {
+  background: #0B1512;
+  color: #F4EFE3;
+  color-scheme: dark;
+}
+
+.noct :focus-visible {
+  outline-color: #D8B76A;
+}
+
+.noct-rule {
+  border-color: #2A3B32;
+}
+
+.noct input[type="range"] {
+  accent-color: #D8B76A;
+}
+
+.hatch-dark {
+  background-image: repeating-linear-gradient(135deg, rgba(244, 239, 227, 0.32) 0 1.5px, transparent 1.5px 5px);
+}
+
+@keyframes dot-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+
+.dot-in {
+  animation: dot-in 0.55s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  transform-box: fill-box;
 }
 
 /* Rayado para «no disponible»: se reconoce sin color. */
@@ -66,16 +118,16 @@ h1 {
 }
 
 :focus-visible {
-  outline: 2px solid #B7791F;
+  outline: 2px solid #A67C26;
   outline-offset: 2px;
 }
 
 @layer components {
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-1.5 rounded bg-pine px-3 py-1.5 text-sm font-medium text-white hover:bg-pine-700 disabled:cursor-not-allowed disabled:opacity-50;
+    @apply inline-flex items-center justify-center gap-1.5 rounded-sm bg-pine px-3.5 py-1.5 text-sm font-medium text-white hover:bg-pine-700 disabled:cursor-not-allowed disabled:opacity-50;
   }
   .btn-secondary {
-    @apply inline-flex items-center justify-center gap-1.5 rounded border border-ink/25 bg-white px-3 py-1.5 text-sm font-medium text-ink hover:bg-granite disabled:cursor-not-allowed disabled:opacity-50;
+    @apply inline-flex items-center justify-center gap-1.5 rounded-sm border border-ink/25 bg-white px-3.5 py-1.5 text-sm font-medium text-ink hover:border-ink/50 hover:bg-granite disabled:cursor-not-allowed disabled:opacity-50;
   }
   .field {
     @apply w-full rounded border border-ink/25 bg-white px-2.5 py-1.5 text-sm text-ink placeholder:text-ink-500;
@@ -84,7 +136,7 @@ h1 {
     @apply mb-1 block text-sm font-medium text-ink-700;
   }
   .panel {
-    @apply rounded border border-line bg-white p-4;
+    @apply rounded-sm border border-line bg-white p-5;
   }
   /* Cabecera de tabla: tipo de frase, sin mayúsculas forzadas. */
   .table-head {
@@ -92,7 +144,7 @@ h1 {
   }
   /* Leyenda de mapa como cajetín de hoja cartográfica. */
   .map-legend {
-    @apply rounded-sm border border-ink/20 border-t-[3px] border-t-pine bg-white/95 p-3 text-xs text-ink-700 shadow-[0_1px_0_rgba(21,32,26,0.08)];
+    @apply rounded-sm border border-ink/20 border-t-2 border-t-ochre bg-white/95 p-3 text-xs text-ink-700 shadow-[0_1px_0_rgba(21,32,26,0.08)];
   }
 }
 

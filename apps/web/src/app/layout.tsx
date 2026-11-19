@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Archivo } from "next/font/google";
+import { Archivo, Bodoni_Moda } from "next/font/google";
 import { Suspense } from "react";
 import "maplibre-gl/dist/maplibre-gl.css";
 import "./globals.css";
@@ -13,6 +13,13 @@ const archivo = Archivo({
   axes: ["wdth"],
 });
 
+// Bodoni Moda solo para títulos y grandes cifras: el contraste de sus trazos da el tono de la publicación.
+const bodoni = Bodoni_Moda({
+  variable: "--font-bodoni",
+  subsets: ["latin"],
+  axes: ["opsz"],
+});
+
 export const metadata: Metadata = {
   title: "ESCUDO MADRID — Planificación preventiva de incendios forestales",
   description:
@@ -21,9 +28,9 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="es" className={`${archivo.variable} h-full antialiased`}>
+    <html lang="es" className={`${archivo.variable} ${bodoni.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col">
-        <Suspense fallback={<div className="h-12 bg-pine" />}>
+        <Suspense fallback={<div className="h-14 bg-pine-900" />}>
           <SiteHeader />
         </Suspense>
         <main id="main" className="flex flex-1 flex-col">

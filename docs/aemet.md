@@ -9,7 +9,7 @@ de `docs/contracts/api-contract.md`.
 | ID | Producto | URL | Auth | Estado verificado |
 |---|---|---|---|---|
 | AEMET-PRED-MUN (XML) | Predicción municipal diaria, 7 días | `https://www.aemet.es/xml/municipios/localidad_<INE5>.xml` | Ninguna | **200 OK**, ISO-8859-15, `<elaborado>2026-11-06T17:15:10</elaborado>` para 28079, 28131, 28148. Usa el mismo código INE de 5 dígitos. |
-| (XML horario) | Predicción municipal horaria | `https://www.aemet.es/xml/municipios_h/localidad_h_<INE5>.xml` | Ninguna | 200 OK (no integrado aún; candidato para M14) |
+| AEMET-PRED-HOR (XML) | Predicción municipal horaria (unas 48 h): racha, viento, precipitación, humedad, temperatura | `https://www.aemet.es/xml/municipios_h/localidad_h_<INE5>.xml` | Ninguna | **200 OK**, verificado el 18/11/2026. Integrado en `aemet/hourly.py`; API `/v1/weather/hourly` y `/v1/weather/regional` (179 municipios, 6 peticiones simultáneas, caché de 3 h). «Ip» se conserva como lluvia inapreciable, sin convertirla en cantidad. |
 | AEMET-PRED-MUN (OpenData) | `GET /api/prediccion/especifica/municipio/diaria/{municipio}` (también `/horaria/`) | `https://opendata.aemet.es/opendata` | Cabecera `api_key` | Sin clave responde **200 con cuerpo vacío** (no 401). **Verificado con clave real el 10/11/2026** (28131 y 28079: 9 variables, sin errores). |
 | AEMET-INC-MAPA | `GET /api/incendios/mapasriesgo/estimado/area/{area}` y `/previsto/dia/{dia}/area/{area}`; `area` = `p` (Península y Baleares) o `c` (Canarias) | idem | `api_key` | Documentado en la especificación oficial; sin clave no verificable. Devuelve un **mapa (imagen PNG)**, no valores por municipio. Verificado el 10/11/2026: `estimado` respondía `estado: 404` («No hay datos que satisfagan esos criterios») y `previsto/dia/1` (mañana) sí; ESCUDO usa el estimado si existe y, si no, el previsto de mañana **rotulado como tal** (`aemet_fire_danger_map_forecast`). |
 
@@ -50,8 +50,9 @@ Variables (día actual):
 
 Valores vacíos en origen se devuelven `null` con `status: unavailable`; **nunca se interpolan**.
 `fire_danger`: sin clave → `null`. Con clave → URL del último mapa oficial (`status: official`) con la advertencia
-de que es un ráster peninsular del que **no se extrae un valor por municipio ni por urbanización**. No se calcula
-ningún índice propio (PRD §4.3: prohibido sumar temperatura + viento + vegetación).
+de que es un ráster peninsular del que **no se extrae un valor por municipio ni por urbanización**. No se suman
+temperatura, viento y vegetación (PRD §4.3). El «riesgo estimado hoy» es un cálculo aparte de ESCUDO con el índice
+publicado de Fosberg: ver `docs/current-risk.md` y ADR-0005.
 
 ## 4. Política de caducidad (T05)
 

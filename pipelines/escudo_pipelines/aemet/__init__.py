@@ -2,6 +2,7 @@
 
 from .client import AemetUnavailable, OpenDataProvider, TTLCache, XmlPublicProvider
 from .context import DISCLAIMER, SOURCE_ID, get_weather_context, reset_state
+from .hourly import get_hourly_forecast, parse_hourly_xml
 from .parsers import AemetParseError, parse_localidad_xml, parse_opendata_daily
 
 __all__ = [
@@ -12,7 +13,9 @@ __all__ = [
     "SOURCE_ID",
     "TTLCache",
     "XmlPublicProvider",
+    "get_hourly_forecast",
     "get_weather_context",
+    "parse_hourly_xml",
     "parse_localidad_xml",
     "parse_opendata_daily",
     "reset_state",

@@ -41,7 +41,7 @@ cd /app/apps/web
 node node_modules/next/dist/bin/next start -H 0.0.0.0 -p 7860 &
 WEB_PID=$!
 # Calentamiento en segundo plano: geometrías y caso guiado quedan en caché antes de la primera visita.
-( sleep 5; for p in /v1/layers/municipalities/geojson /v1/layers/risk/geojson /v1/demo/guided /v1/analysis/municipal-matrix; do
+( sleep 5; for p in /v1/layers/municipalities/geojson /v1/layers/risk/geojson /v1/demo/guided /v1/analysis/municipal-matrix /v1/analysis/attention-ranking /v1/weather/regional; do
     curl -s -m 120 -o /dev/null "http://127.0.0.1:8000$p"; done; log "cachés calentadas" ) &
 
 trap 'kill $WEB_PID $API_PID 2>/dev/null; "$PGBIN/pg_ctl" -D "$PGDATA" -m fast stop' TERM INT

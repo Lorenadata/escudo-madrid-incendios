@@ -57,3 +57,15 @@ def test_T02_plan_outputs():
                                                                                      "Pozuelo de Alarcón"}
     manifest = json.loads((ROOT / "data/raw/DOC-01/manifest.json").read_text(encoding="utf-8"))
     assert manifest["resource_url"].startswith("https://www.comunidad.madrid/") and len(manifest["sha256"]) == 64
+
+
+def test_anexo_vi_asigna_cada_marca_a_su_columna():
+    """Una casilla vacía no desplaza las demás: «Si» en la columna de aprobación no se confunde con la obligación."""
+    from escudo_pipelines.plan_anual import plan_row_from_cells
+
+    r = plan_row_from_cells([(48.2, "28001 Acebeda, La"), (292.5, "68"), (329.5, "Si"), (389.2, "Si"), (453.4, "No"), (518.6, "Si")])
+    assert r == {"ine_code": "28001", "name_literal": "Acebeda, La", "zar_2017": "si", "pamif_required": "si",
+                 "pamif_approved": "no", "under_5000": "si"}
+    r = plan_row_from_cells([(48.2, "28002 Ajalvir"), (281.2, "4.863"), (387.1, "No"), (518.6, "Si")])
+    assert (r["zar_2017"], r["pamif_required"], r["pamif_approved"]) == ("", "no", "")
+    assert plan_row_from_cells([(48.2, "Total Comunidad de Madrid"), (265.2, "7.001.715")]) is None

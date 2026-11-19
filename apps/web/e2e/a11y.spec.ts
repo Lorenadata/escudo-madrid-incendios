@@ -2,7 +2,7 @@ import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 
 // 5.2 · Auditoría automática de accesibilidad (WCAG 2.1 A/AA) de las páginas públicas y del área privada.
-const PAGES = ["/", "/analisis", "/comparar", "/demo", "/normativa", "/avance", "/fuentes", "/login", "/campo"];
+const PAGES = ["/", "/ranking", "/meteo", "/analisis", "/comparar", "/demo", "/normativa", "/avance", "/fuentes", "/login", "/campo"];
 
 for (const path of PAGES) {
   test(`accesibilidad WCAG 2.1 AA: ${path}`, async ({ page }) => {
@@ -33,7 +33,7 @@ test("accesibilidad WCAG 2.1 AA: área de trabajo con sesión (plan, expediente 
 
 test.describe("móvil (390 px): sin desbordamiento horizontal", () => {
   test.use({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true });
-  for (const path of ["/", "/analisis", "/demo", "/normativa", "/avance", "/fuentes", "/campo"]) {
+  for (const path of ["/", "/ranking", "/meteo", "/analisis", "/demo", "/normativa", "/avance", "/fuentes", "/campo"]) {
     test(`sin scroll horizontal: ${path}`, async ({ page }) => {
       await page.goto(path);
       await page.waitForTimeout(2500);

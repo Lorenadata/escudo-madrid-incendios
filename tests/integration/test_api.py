@@ -554,3 +554,39 @@ def test_51_photo_metadata_gps_is_stripped_on_upload(client, auth_a):
     bad = client.post(f"/v1/inspections/{ins['id']}/evidence", headers=auth_a,
                       files={"file": ("x.jpg", b"\xff\xd8\xff" + b"no-es-imagen", "image/jpeg")})
     assert bad.status_code == 415
+
+
+def test_ranking_cruza_planes_oficiales_sin_meteorologia(client):
+    d = client.get("/v1/analysis/attention-ranking").json()
+    assert d["count"] == 179 and set(d["weights"]) == {"territory", "history", "residential", "planning"}
+    g = d["gap"]
+    assert (g["plan_required"], g["plan_required_approved"], g["plan_required_not_approved"], g["plan_required_blank"]) == (58, 28, 27, 3)
+    assert "no incluye meteorología" in d["caveat"] and not any(k.startswith("gust") for k in d["rows"][0])
+
+
+def test_riesgo_estimado_sin_prediccion_no_da_puntuacion(client, monkeypatch):
+    from escudo_api import weather_regional as wr
+    from escudo_api.routers import ranking
+
+    rw = wr.RegionalWeather(fetch=lambda code: (_ for _ in ()).throw(RuntimeError("caída")))
+    rw._run([("28131", "Prueba")])
+    monkeypatch.setattr(ranking, "regional_weather", rw)
+    monkeypatch.setattr(rw, "ensure", lambda municipalities: None)
+    d = client.get("/v1/analysis/current-risk").json()
+    assert d["status"] == "unavailable" and d["coverage"] == 0 and len(d["rows"]) == 179
+    assert all(r["score"] is None and r["band"]["id"] == "unavailable" for r in d["rows"])
+    assert "no un dato oficial" in d["caveat"]
+
+
+def test_meteo_horaria_y_regional_no_inventan_datos(client, monkeypatch):
+    from escudo_api import weather_regional as wr
+    from escudo_pipelines import aemet
+
+    assert client.get("/v1/weather/hourly", params={"municipality_code": "99999"}).status_code == 404
+    monkeypatch.setattr(aemet, "get_hourly_forecast", lambda code, **kw: {"status": "unavailable", "points": [], "summary": None})
+    assert client.get("/v1/weather/hourly", params={"municipality_code": "28131"}).json()["status"] == "unavailable"
+    rw = wr.RegionalWeather(fetch=lambda code: (_ for _ in ()).throw(RuntimeError("caída")))
+    rw._run([("28131", "Prueba")])
+    snap = rw.snapshot()
+    assert snap["status"] == "unavailable" and snap["coverage"] == 0
+    assert snap["rows"][0]["gust_max_24h_kmh"] is None and set(snap["rows"][0]["gust_hourly_kmh"]) == {None}

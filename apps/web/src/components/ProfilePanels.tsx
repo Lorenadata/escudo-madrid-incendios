@@ -10,7 +10,7 @@ const DEFAULT_WEATHER_DISCLAIMER =
   "Predicción meteorológica oficial de AEMET, solo informativa: no es un índice de peligro de incendio, ni pronóstico de ignición, ni alerta operativa.";
 
 /** Mapa oficial de AEMET (imagen peninsular): se muestra tal cual, con su fecha y autoría. Nunca se extrae un valor local. */
-function FireDangerMap({ indicator }: { indicator: NonNullable<WeatherContext["fire_danger"]> }) {
+export function FireDangerMap({ indicator }: { indicator: NonNullable<WeatherContext["fire_danger"]> }) {
   const url = typeof indicator.value === "string" && /^https:\/\/opendata\.aemet\.es\//.test(indicator.value) ? indicator.value : null;
   if (!url) return <IndicatorValue indicator={indicator} />;
   return (

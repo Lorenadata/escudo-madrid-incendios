@@ -5,6 +5,7 @@ de forma LITERAL y con página citada:
 
 - Anexo II (pág. 59): términos municipales declarados Zonas de Alto Riesgo (ZAR). El texto (pág. 16) declara 59.
 - Anexo I (págs. 54–58): número de siniestros por término municipal de origen y causa, 2015–2024 (fuente EGIF).
+- Anexo VI (1) (págs. 93–96): obligación de plan de actuación municipal (PAMIF) y aprobación en pleno, por municipio.
 
 No se corrige ningún valor. Las erratas de nombre del documento se emparejan con el municipio INE mediante una
 tabla explícita (`NAME_FIXES`) y quedan registradas; las filas cuyo total publicado no coincide con la suma de
@@ -40,6 +41,10 @@ ZAR_COUNT_PAGE = 16
 FIRES_PAGES = range(54, 59)
 ZAR_DECLARED = 59
 FIRES_PERIOD = "2015-2024"
+PLAN_PAGES = range(93, 97)  # Anexo VI (1): municipios que disponen de PAMIF
+# El texto plano pierde las celdas vacías: cada «Si/No» se asigna a su columna por la posición x en la página.
+PLAN_NAME_MAX_X = 240
+PLAN_COLUMNS = {"zar_2017": (320, 345), "pamif_required": (380, 400), "pamif_approved": (445, 470), "under_5000": (510, 530)}
 CAUSES = ("rayo", "negligencia_accidente", "intencionado", "desconocida", "reproducido")
 
 SPEC = SourceSpec(
@@ -52,7 +57,8 @@ SPEC = SourceSpec(
     license="Documento oficial público CAM (cita obligatoria)",  # ≤64 (data_sources.license)
     spatial_scope="término municipal",
     temporal_scope="ZAR vigentes en 2026; siniestros 2015–2024",
-    use_in_product="Municipios declarados Zona de Alto Riesgo (Anexo II) y siniestros por municipio y causa 2015–2024 (Anexo I)",
+    use_in_product=("Municipios declarados Zona de Alto Riesgo (Anexo II), siniestros por municipio y causa 2015–2024 "
+                    "(Anexo I) y planes de actuación municipal (Anexo VI)"),
     caveats=("Extracción literal del PDF con página citada. El Anexo I contiene filas cuyo total no coincide con la "
              "suma de causas y filas incompletas: se muestran tal cual y marcadas. Fuente original del Anexo I: EGIF."),
     resource_format="PDF",
@@ -138,6 +144,37 @@ def column_totals(text: str) -> list[int] | None:
     return [int(x) for x in m.group(1).split()] if m else None
 
 
+def plan_row_from_cells(cells: list[tuple[float, str]]) -> dict | None:
+    """Fila del Anexo VI (1) a partir de sus celdas (x, texto). Una celda vacía queda como "" (no se interpreta)."""
+    cells = sorted(cells)
+    # el nombre puede llegar partido en varios trozos de texto (cambios de fuente en tildes)
+    m = re.match(r"(28\d{3})\s+(.+)", " ".join(t for x, t in cells if x < PLAN_NAME_MAX_X))
+    if not m:
+        return None
+    row = {"ine_code": m.group(1), "name_literal": re.sub(r"\s+", " ", m.group(2)).strip()}
+    for col, (lo, hi) in PLAN_COLUMNS.items():
+        marks = [t for x, t in cells if lo <= x <= hi and t in ("Si", "Sí", "No")]
+        if len(marks) > 1:
+            raise ValueError(f"{m.group(1)}: varias marcas en la columna {col}: {marks}")
+        row[col] = ("si" if marks[0] in ("Si", "Sí") else "no") if marks else ""
+    return row
+
+
+def parse_plan_page(page) -> list[dict]:
+    """Lee una página del Anexo VI (1) agrupando el texto por línea (y) y columna (x)."""
+    lines: dict[int, list[tuple[float, str]]] = {}
+
+    def visit(text, cm, tm, _font, _size):
+        t = text.strip()
+        if t:
+            x = tm[4] * cm[0] + tm[5] * cm[2] + cm[4]
+            y = tm[4] * cm[1] + tm[5] * cm[3] + cm[5]
+            lines.setdefault(round(y), []).append((x, t))
+
+    page.extract_text(visitor_text=visit)
+    return [r for cells in lines.values() if (r := plan_row_from_cells(cells))]
+
+
 def fetch() -> dict:
     out_dir = RAW_DIR / SOURCE_ID
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -151,7 +188,8 @@ def fetch() -> dict:
         "license_id": "documento-publico-oficial", "license_title": SPEC.license,
         "resource_last_modified": r.headers.get("last-modified"),
         "extracted_at": datetime.now(UTC).isoformat(timespec="seconds"),
-        "pages_used": {"zar_annex_II": ZAR_PAGE, "zar_count_text": ZAR_COUNT_PAGE, "fires_annex_I": list(FIRES_PAGES)},
+        "pages_used": {"zar_annex_II": ZAR_PAGE, "zar_count_text": ZAR_COUNT_PAGE, "fires_annex_I": list(FIRES_PAGES),
+                       "municipal_plans_annex_VI_1": list(PLAN_PAGES)},
     }
     (out_dir / "manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
     return manifest
@@ -237,8 +275,30 @@ def transform() -> dict:
     check("siniestros_total_vs_causas_informativo", True,
           f"{len(mism)} filas con total publicado ≠ suma de causas (se muestran marcadas, sin corregir)")
 
+    # --- Anexo VI (1): planes de actuación municipal (PAMIF)
+    by_code = {code: name for code, name in idx.values()}
+    plan_rows = []
+    for page in PLAN_PAGES:
+        for r in parse_plan_page(reader.pages[page - 1]):
+            plan_rows.append({"ine_code": r["ine_code"], "cam_name": by_code.get(r["ine_code"], ""),
+                              "name_literal": r["name_literal"], "zar_2017": r["zar_2017"],
+                              "pamif_required": r["pamif_required"], "pamif_approved": r["pamif_approved"],
+                              "under_5000": r["under_5000"], "source_id": SOURCE_ID, "page": page})
+    plan_rows.sort(key=lambda r: r["ine_code"])
+    plan_zar = {r["ine_code"] for r in plan_rows if r["zar_2017"] == "si"}
+    required = [r for r in plan_rows if r["pamif_required"] == "si"]
+    check("planes_179_municipios", len({r["ine_code"] for r in plan_rows}) == 179 and all(r["cam_name"] for r in plan_rows),
+          f"{len(plan_rows)} filas del Anexo VI (1), págs. {PLAN_PAGES[0]}–{PLAN_PAGES[-1]}")
+    check("planes_zar_coincide_con_anexo_II", plan_zar == {r["ine_code"] for r in zar_rows},
+          f"{len(plan_zar)} municipios con «ZAR 2017» = Sí, frente a {len(zar_rows)} del Anexo II")
+    check("planes_recuento_informativo", True,
+          f"{len(required)} obligados; {sum(r['pamif_approved'] == 'si' for r in required)} con aprobación en pleno; "
+          f"{sum(r['pamif_approved'] == 'no' for r in required)} con «No»; "
+          f"{sum(r['pamif_approved'] == '' for r in required)} con la casilla vacía")
+
     OUT_DIR.mkdir(parents=True, exist_ok=True)
-    for name, rows in (("zar_municipalities.csv", zar_rows), ("municipal_fires_2015_2024.csv", fire_rows)):
+    for name, rows in (("zar_municipalities.csv", zar_rows), ("municipal_fires_2015_2024.csv", fire_rows),
+                       ("municipal_plans.csv", plan_rows)):
         with (OUT_DIR / name).open("w", encoding="utf-8", newline="") as f:
             w = csv.DictWriter(f, fieldnames=list(rows[0].keys()))
             w.writeheader()
