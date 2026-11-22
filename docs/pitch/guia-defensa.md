@@ -10,7 +10,7 @@ Para estudiar antes del 26/11. Está escrita para explicarla con tus palabras, n
 
 **Lo que hace ESCUDO MADRID.** Es una web abierta que cubre ese hueco en cuatro pasos:
 
-1. **Ver:** fichas de cada municipio con datos oficiales (población, mayores de 65, viviendas, riesgo oficial, incendios históricos, áreas quemadas por satélite y meteorología de AEMET). Cada dato lleva su fuente y su fecha.
+1. **Ver:** fichas de cada municipio con datos oficiales (población, mayores de 65, viviendas, riesgo oficial, incendios históricos, áreas quemadas por satélite y meteorología de AEMET). Cada dato lleva su fuente y su fecha. Además, un **ranking** de los 179 municipios que explica por qué cada uno merece atención, y un **riesgo estimado para hoy** que cruza el mapa oficial con el tiempo previsto por AEMET.
 2. **Inspeccionar:** el técnico o el gestor recorre la urbanización con el móvil y anota lo que ve, con fotos, **aunque no haya cobertura**.
 3. **Decidir:** con un presupuesto dado, el optimizador propone qué actuaciones hacer primero y lo compara con dos maneras sencillas de elegir.
 4. **Ejecutar y comprobar:** se crea el plan con responsables, plazos y evidencias; se prepara el expediente INFOMA con las citas literales del decreto y se genera un informe PDF.
@@ -32,6 +32,8 @@ Demo pública: **https://lorenadata-escudo-madrid.hf.space**. Si lleva 48 h sin 
 | `/` (inicio) | Mapa de la Comunidad con las capas oficiales de riesgo, peligrosidad y vulnerabilidad, y las áreas quemadas de EFFIS. Al pulsar un municipio se abre su ficha. | No |
 | Ficha municipal | Población, densidad, altitud, viviendas (Censo 2021), clases de riesgo oficial, si es Zona de Alto Riesgo, incendios 2015–2024 del Plan Anual, áreas quemadas por satélite y predicción AEMET. Cada bloque tiene «Ver método y fuentes». | No |
 | `/analisis` | Filtros sobre valores publicados, por ejemplo municipios con mucha superficie en riesgo alto y poca densidad. | No |
+| `/ranking` | **Riesgo estimado hoy** (mapa oficial × tiempo previsto), el cruce con las Zonas de Alto Riesgo y los planes municipales (38 y 28 de 58), y el ranking de los 179 municipios con el porqué de cada puesto y pesos ajustables. | No |
+| `/meteo` | Rachas, viento, lluvia, humedad y temperatura hora a hora de AEMET para los 179 municipios, previsión a 7 días y el mapa oficial de peligro de AEMET. | No |
 | `/comparar` | Dos o más municipios lado a lado. | No |
 | `/demo` | **Caso guiado** con una urbanización ficticia: inspección, 11 actuaciones, presupuesto de 30.000 € y resultado del optimizador. Es lo que se enseña en la defensa. | No |
 | `/normativa` | Buscador del Decreto INFOMA y del Plan Anual: devuelve el fragmento literal con la página. | No |
@@ -62,7 +64,7 @@ Fuentes oficiales → Programas de descarga y limpieza → Base de datos → API
 - **Plan Anual 2026 (PDF oficial):** de él extraemos qué municipios son **Zona de Alto Riesgo** (Anexo II) y los incendios por municipio 2015–2024 (Anexo I). Comprobamos que la suma de lo extraído coincide con la fila de totales del propio documento.
 - **Decreto 59/2017 INFOMA (BOCM):** la norma que dice qué debe tener un plan de autoprotección. Lo usamos para el expediente y el buscador.
 - **EFFIS (servicio europeo):** perímetros de áreas quemadas detectadas por satélite.
-- **AEMET OpenData:** predicción municipal y mapa oficial de peligro de incendio.
+- **AEMET:** predicción municipal diaria y **horaria** (XML público, sin clave) y mapa oficial de peligro de incendio (OpenData, con clave).
 
 **Cómo se descargan.** Un programa en Python descarga cada fuente y guarda una ficha (`manifest.json`) con la URL, la fecha, la licencia y la **huella SHA-256**. La huella es como la huella dactilar del fichero: si cambia un solo byte, la huella cambia. Así podemos demostrar que el dato que enseñamos es exactamente el oficial, y detectar cuándo la fuente se actualiza (`escudo_pipelines.refresh`).
 
@@ -106,6 +108,12 @@ Es el «camarero» entre la base de datos y la web: la web pide algo («dame la 
 
 **Portal público de avance (`/avance`).** Enseña cuánto se ha avanzado en cada municipio sin permitir deducir los datos de ninguna urbanización concreta. Solo se muestra si hay al menos 3 ámbitos de 3 organizaciones distintas y ninguna supera el 50 %, y los valores se redondean.
 
+**El cruce que da el titular.** Cruzamos el mapa oficial de riesgo con dos anexos del Plan Anual 2026: la lista de Zonas de Alto Riesgo (Anexo II) y la tabla de planes municipales (Anexo VI, leída columna a columna porque el texto del PDF pierde las casillas vacías). Resultado: **95** municipios tienen más de la mitad del término en riesgo alto o muy alto; **57** son Zona de Alto Riesgo y **38 no**, y **ninguno de esos 38** está obligado a tener plan municipal (en ellos viven 222.139 personas, padrón 2025). De los **58** municipios obligados, **28** figuran con plan aprobado en pleno, 27 con «No» y 3 con la casilla vacía.
+
+**Ranking de atención preventiva (`/ranking`).** Ordena los 179 municipios de 0 a 100 con cuatro bloques: territorio en riesgo oficial alto (peso 40), historial de incendios (20), contexto residencial (15) y falta de plan aprobado (25). Cada municipio enseña sus motivos. Los pesos son una decisión nuestra: se ven, se pueden mover en pantalla y publicamos su **estabilidad** (en cuántas de 81 combinaciones de pesos sigue entre los 20 primeros). No usa meteorología.
+
+**Riesgo estimado hoy (`/ranking`).** Parte del término en riesgo alto o muy alto (mapa oficial) **×** índice de Fosberg, un índice meteorológico de incendios publicado en 1978 que combina temperatura, humedad y viento. Lo calculamos con la predicción hora a hora de AEMET para las próximas 24 horas. Las horas desde que empieza a llover (0,5 mm) no cuentan, porque el índice no tiene en cuenta la lluvia. Es una **estimación nuestra, no un dato oficial**, y no está validada con incendios reales de Madrid (decisión en ADR-0005).
+
 **Calendario.** Las tareas del plan se exportan a Google Calendar o a Outlook (fichero `.ics`).
 
 ### 3.6 Seguridad y privacidad (en una frase cada una)
@@ -118,7 +126,7 @@ Es el «camarero» entre la base de datos y la web: la web pide algo («dame la 
 
 ### 3.7 Pruebas y calidad
 
-- **159 pruebas automáticas:** 129 de datos, API y optimizador, y 30 de navegador, que hacen clic como una persona, incluidas accesibilidad y modo sin conexión.
+- **196 pruebas automáticas:** 159 de datos, API y optimizador, y 37 de navegador, que hacen clic como una persona, incluidas accesibilidad y modo sin conexión.
 - Cada vez que se sube código, GitHub ejecuta las pruebas solo («integración continua»).
 - Instalación desde cero comprobada: unos 9 minutos siguiendo el README.
 
@@ -154,7 +162,28 @@ Sí, y está declarado en `PROVENANCE.md`: las bases lo permiten. Usé Claude Co
 Todavía no con técnicos ni gestores; es el siguiente paso y el protocolo está listo y cerrado de antemano. *(Si haces el ensayo interno: «Lo probaron 2 personas ajenas al proyecto en un ensayo interno; con 2 personas no sacamos conclusiones, solo detectamos problemas de uso».)*
 
 **¿Qué pasa si AEMET no responde?**
-Se muestra «no disponible» con la fecha del último dato válido. Nunca se enseña un dato viejo como si fuera actual. El resto sigue funcionando.
+Si el servicio con clave tarda más de 6 segundos, se usa la predicción pública de AEMET y no se vuelve a probar en 5 minutos. Si tampoco hay predicción pública, se muestra «no disponible» con la fecha del último dato válido. Nunca se enseña un dato viejo como si fuera actual. El resto sigue funcionando.
+
+**El resumen dice que 38 municipios tienen más de la mitad del territorio en riesgo alto. ¿No son más?**
+Sí: son 95. De ellos, 57 son Zona de Alto Riesgo y 38 no, y ninguno de esos 38 está obligado a tener plan municipal. El resumen tenía 100 palabras y se quedó con los 38, que son el hallazgo. *(Dilo tú antes de que lo pregunten si sale el tema: da credibilidad.)*
+
+**¿Entonces la Comunidad se ha equivocado con las Zonas de Alto Riesgo?**
+No lo decimos. Las Zonas de Alto Riesgo son el tercio de municipios con mayor valor en otro índice oficial (peligrosidad potencial e importancia de protección, Plan Anual pág. 15), y la lista es de 2017. Lo que enseñamos es una pregunta que merece revisión, no un error.
+
+**¿Las urbanizaciones solo tienen que tener plan si están en Zona de Alto Riesgo?**
+No. El plan de autoprotección depende de estar en terreno forestal o a menos de 400 m de él (Plan Anual pág. 51 y Anexo 5 del INFOMA), no de ser Zona de Alto Riesgo. La obligación de las Zonas de Alto Riesgo es el plan **municipal**.
+
+**¿Cómo calculáis el «riesgo estimado hoy»? ¿Es oficial?**
+No es oficial y la página lo dice. Es la parte del término en riesgo alto o muy alto del mapa oficial multiplicada por el índice de Fosberg, calculado con temperatura, humedad y viento previstos por AEMET; las horas con lluvia no cuentan. No usamos pesos inventados. Límites: no conoce el estado de la vegetación ni la lluvia ya caída, y no está validado con incendios de Madrid.
+
+**Hoy sale todo bajo. ¿Funciona?**
+Es noviembre y llueve: el mapa oficial de peligro de AEMET, que se ve en `/meteo`, también marca peligro bajo o muy bajo en Madrid. En un día de verano con 38 °C, 15 % de humedad y viento fuerte, el índice sube mucho.
+
+**¿Por qué Robregordo es el primero del ranking?**
+Pulsa en él y lo dice: el 95 % del término está en riesgo alto o muy alto, es Zona de Alto Riesgo y está obligado a plan municipal sin aprobación que conste, y el 80 % de sus viviendas no son principales. Cada puesto se explica así.
+
+**¿Los pesos del ranking no son arbitrarios?**
+Son una decisión, y por eso se ven, se pueden cambiar en pantalla y publicamos cuánto cambia el resultado al moverlos. Robregordo sigue entre los 20 primeros en todas las combinaciones probadas.
 
 **¿Y si cambian los datos oficiales?**
 Un comando vuelve a descargar todas las fuentes, compara las huellas y, si algo cambió, lo incorpora y guarda el historial. Se ve en `/fuentes`.
@@ -185,6 +214,8 @@ Todo el historial de cambios está fechado en GitHub. `PROVENANCE.md` declara la
 - «Vivienda segura / insegura». Se dice «revisión preventiva prioritaria».
 - «Aprueba el plan de autoprotección» o «certifica». Se dice que **prepara** el expediente.
 - «La IA decide». El optimizador sigue reglas explícitas y las prioridades las pone un técnico.
+- «Este municipio tiene hoy riesgo alto» sin más. Se dice «nuestra estimación de hoy» y se recuerda que no es oficial.
+- «La Comunidad se ha equivocado con las Zonas de Alto Riesgo». Se dice que el cruce plantea una pregunta que merece revisión.
 
 ---
 
@@ -194,8 +225,10 @@ Todo el historial de cambios está fechado en GitHub. `PROVENANCE.md` declara la
 |---|---|
 | Interfaz urbano-forestal | Zona donde las casas se juntan con el monte. |
 | INFOMA | Plan de la Comunidad de Madrid contra incendios forestales (Decreto 59/2017). |
-| Plan de autoprotección | Documento que el INFOMA exige a urbanizaciones en zonas de riesgo. |
-| ZAR | Zona de Alto Riesgo de incendio, según el Plan Anual. |
+| Plan de autoprotección | Documento que el INFOMA exige a urbanizaciones, campings o núcleos en terreno forestal o a menos de 400 m de él. |
+| ZAR | Zona de Alto Riesgo: 59 municipios, el tercio con mayor valor en un índice oficial de peligrosidad e importancia de protección. Obliga a tener plan **municipal**. |
+| Índice de Fosberg | Índice meteorológico de incendios (1978) que combina temperatura, humedad y viento; de 0 a 100. |
+| Puntuación de atención | Nuestro orden de revisión de los 179 municipios; no es riesgo de incendio. |
 | Riesgo / peligrosidad / vulnerabilidad | Peligrosidad: probabilidad de que el fuego se produzca y se propague. Vulnerabilidad: lo que se puede perder. Riesgo: la combinación de ambas, que publica la Comunidad. |
 | SHA-256 | Huella digital de un fichero; demuestra que no ha cambiado. |
 | API | Intermediario entre la base de datos y la web. |

@@ -14,6 +14,7 @@ Estructura **obligatoria**: máximo 3 diapositivas de contenido + 4.ª con una c
 
 - **Problema:** la información de prevención existe, pero pasar a actuaciones priorizadas, presupuestadas y documentadas exige coordinación entre ayuntamientos, urbanizaciones y técnicos.
 - **Contexto (Plan Anual 2026 de la CAM):** 59 municipios declarados Zona de Alto Riesgo (pág. 16); 68 PAIF en 26 municipios, 21 con informe favorable y 47 en tramitación (pág. 52 del PDF); 5.652,38 ha programadas para trabajos preventivos.
+- **Hallazgo al cruzar datos oficiales:** 95 municipios tienen más de la mitad del término en riesgo alto o muy alto; **38** están fuera de las Zonas de Alto Riesgo y **ninguno** está obligado a plan municipal. De los **58** obligados, **28** figuran con plan aprobado (mapa oficial IDEM × Plan Anual 2026, Anexos II y VI).
 - **Portal de Datos Abiertos de la Comunidad de Madrid (11 conjuntos, CC-BY):**
   - CAM-01 Población censada por edad, nacionalidad y sexo — datos.comunidad.madrid/dataset/poblacion_censada_por_edad_nacionalidad_y_sexo
   - CAM-02 Densidad de población — datos.comunidad.madrid/dataset/1930748
@@ -26,7 +27,7 @@ Estructura **obligatoria**: máximo 3 diapositivas de contenido + 4.ª con una c
 
 ## Diapositiva 3 — Resultados, impacto, viabilidad y enlaces
 
-- **Resultados verificables:** 179 municipios con indicadores trazables · reparto exacto de las clases oficiales de riesgo por municipio · optimizador determinista validado contra la solución exacta en 200 instancias · expediente INFOMA de 15 puntos con cita literal · normativa con citas (18/20) · 159 pruebas automáticas (129 de datos, API y optimizador; 30 de navegador, incluida accesibilidad WCAG 2.1 AA) · instalación limpia en ~9 min.
+- **Resultados verificables:** 179 municipios con indicadores trazables · reparto exacto de las clases oficiales de riesgo por municipio · optimizador determinista validado contra la solución exacta en 200 instancias · expediente INFOMA de 15 puntos con cita literal · normativa con citas (18/20) · ranking de los 179 municipios con el porqué de cada puesto · riesgo estimado para hoy (mapa oficial × índice de Fosberg con la predicción horaria de AEMET; estimación propia, no oficial) · 196 pruebas automáticas (159 de datos, API y optimizador; 37 de navegador, incluida accesibilidad WCAG 2.1 AA) · instalación limpia en ~9 min.
 - **Caso guiado (datos ficticios):** con el mismo presupuesto, la optimización cubre el 90,1 % de la prioridad técnica frente al 84,2 % (priorización manual) y el 85,1 % (menor coste).
 - **Impacto que medimos:** cobertura de prioridades bajo presupuesto, actuaciones documentadas con evidencia, plazos vencidos, reproducibilidad. **No** afirmamos incendios evitados ni reducción de riesgo.
 - **Viabilidad:** software libre (EUPL-1.2), Docker, datos abiertos, multiusuario aislado, modo degradado si AEMET cae.
@@ -34,4 +35,4 @@ Estructura **obligatoria**: máximo 3 diapositivas de contenido + 4.ª con una c
 
 ## Diapositiva 4 — Captura del sistema
 
-Usar `artifacts/demo-screenshots/02-ficha-riesgo-oficial.png` (mapa + ficha + capa oficial). Alternativa: `04-comparacion-estrategias.png`. Debe ser una pantalla que exista en la versión entregada.
+Usar `artifacts/demo-screenshots/09-riesgo-estimado-hoy.png` (ranking del día, mapa y motivos). Alternativas: `02-ficha-riesgo-oficial.png` (mapa + ficha + capa oficial) o `04-comparacion-estrategias.png`. Debe ser una pantalla que exista en la versión entregada.

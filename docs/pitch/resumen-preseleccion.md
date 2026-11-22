@@ -1,11 +1,11 @@
 # Resumen de preselección (≤ 100 palabras)
 
-> Enviar antes del 24/11/2026 por el procedimiento que indique la organización, con título, integrantes y confirmación de presencia (acción humana). El recuento de palabras lo hace `scripts/count_words.py`; no editar el texto sin volver a contarlo.
+> **Texto enviado** a la organización. Se conserva aquí tal cual; `scripts/count_words.py` comprueba que tiene 100 palabras o menos.
 
 **Título:** ESCUDO MADRID — del mapa al plan; del plan a la ejecución comprobable
 
 <!-- RESUMEN:INICIO -->
-ESCUDO MADRID integra once conjuntos del Portal de Datos Abiertos de la Comunidad de Madrid, el Plan Anual de incendios, la cartografía oficial de riesgo y la predicción de AEMET en una plataforma abierta para municipios y urbanizaciones. Permite consultar fichas territoriales con fuente y fecha, inspeccionar sin cobertura, comparar actuaciones preventivas bajo presupuesto con optimización transparente, seguir el plan con evidencias y preparar el expediente de autoprotección con citas literales del Decreto INFOMA. Distingue siempre datos oficiales, derivados y escenarios. No sustituye a técnicos ni a servicios de emergencia. Presentaremos una demostración funcional con código abierto.
+Treinta y ocho municipios madrileños tienen más de la mitad de su territorio en riesgo alto o muy alto de incendio, y ninguno está obligado a tener plan municipal. De los 58 obligados, solo 28 figuran con plan aprobado. Lo revela cruzar datos dispersos: Portal de Datos Abiertos de la Comunidad de Madrid, cartografía oficial de riesgo, Plan Anual, AEMET y satélite europeo. ESCUDO MADRID convierte ese cruce en acción: señala dónde falta planificación, prioriza actuaciones según presupuesto y documenta cada medida ejecutada, para ayuntamientos y urbanizaciones. Demostración pública, código abierto y cada cifra trazable hasta su fuente.
 <!-- RESUMEN:FIN -->
 
-**Cambio respecto al borrador del PRD §10.4:** se elimina «una evaluación verificable de su utilidad», porque esa evaluación aún no existe (A1, `COMPLIANCE.md` C17). Si antes del 23/11 se realiza el ensayo con usuarios, puede reincorporarse citando su tamaño de muestra.
+**Origen de las cifras:** `GET /v1/analysis/attention-ranking`, campo `gap` (cruce de GEO-01 con los Anexos II y VI del Plan Anual 2026). Matiz para la defensa: son 95 los municipios con más de la mitad del término en riesgo alto o muy alto; los 38 del resumen son los que quedan fuera de las Zonas de Alto Riesgo, y ninguno de ellos está obligado a tener plan municipal (ver `guia-defensa.md`, sección 4).
