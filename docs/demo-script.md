@@ -7,14 +7,14 @@ Formato de las bases (ap. 8–9): exposición de **5 min** y **5 min** de pregun
 1. `bash scripts/demo.sh` (≈30 s): BD, migraciones, datos, API :8000, web :3000 y cachés calentadas (incluida AEMET con su fecha real).
 2. `bash scripts/demo.sh check`: 10 e2e en verde (T10) y la demo queda restaurada sin ámbitos de prueba. Si falla, usar el **plan B**.
 3. Abrir pestañas: `/` (explorador), `/demo`, `/fuentes`, y el PDF `/v1/demo/report.pdf` ya descargado.
-4. **Plan B sin red ni servidor:** capturas `artifacts/demo-screenshots/01…06` y el PDF descargado. AEMET puede estar caído: la ficha mostrará «No disponible» — es el comportamiento correcto y se puede enseñar (pregunta «¿Y si AEMET falla?»).
+4. **Plan B sin red ni servidor:** capturas de la web pública del 22/11 en `artifacts/demo-screenshots/plan-b/` (01 fuentes → 10 meteo, en el orden del guion) y el informe `11-informe-demo.pdf`. AEMET puede estar caído: la ficha mostrará «No disponible» — es el comportamiento correcto y se puede enseñar (pregunta «¿Y si AEMET falla?»).
 
 ## Guion
 
 | Tiempo | Pantalla | Qué decir (idea, no literal) |
 |---|---|---|
 | 0:00–0:40 | Diapositiva 1–2 | La información de prevención existe; convertirla en actuaciones priorizadas y documentadas exige coordinación. El *Plan Anual 2026* programa **5.652,38 ha** de trabajos preventivos y recoge **68 PAIF** en **26 municipios** (21 con informe favorable, 47 en tramitación). Estas cifras dan contexto: no prueban un déficit. |
-| 0:40–1:30 | `/fuentes` | Ocho conjuntos del **Portal de Datos Abiertos de la CAM**, cada uno con licencia, fecha y huella SHA-256; cartografía oficial del IDEM y AEMET como complemento. Descargar el CSV: cualquiera reproduce las cifras. |
+| 0:40–1:30 | `/fuentes` | Once conjuntos del **Portal de Datos Abiertos de la CAM**, cada uno con licencia, fecha y huella SHA-256; cartografía oficial del IDEM y AEMET como complemento. Descargar el CSV: cualquiera reproduce las cifras. |
 | 1:30–2:15 | `/` explorador | Coropleta de densidad (CAM-02) sobre los 179 municipios. Buscar **San Lorenzo de El Escorial**: población 18.942 (CAM-01, 2025), 20,8 % ≥65, serie 2021–2025. Aviso de escala municipal. «Superficie forestal municipal: no disponible» — el portal solo la publica a escala regional y no la inventamos. |
 | 2:15–2:45 | capa de riesgo | Activar **Riesgo oficial (GEO-01)**: clases literales; 53,9 % de la superficie municipal en «Riesgo muy alto». Peligrosidad y vulnerabilidad son capas distintas y no se mezclan. AEMET con fecha de emisión. |
 | (opcional, si sobra tiempo) | `/ranking` | «Riesgo estimado hoy» y el cruce: **38** municipios con más de la mitad del término en riesgo alto fuera de las Zonas de Alto Riesgo, ninguno obligado a plan municipal; **28 de 58** obligados con plan aprobado. Pulsar el primero del ranking y leer «Por qué está aquí». Recordar que la estimación de hoy no es oficial. |
