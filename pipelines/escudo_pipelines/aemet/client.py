@@ -40,6 +40,13 @@ class AemetUnavailable(RuntimeError):
     """No se ha podido obtener un producto válido (red, HTTP, cuota, parseo)."""
 
 
+class OpenDataNoData(AemetUnavailable):
+    """OpenData responde bien, pero el producto no está publicado (estado 404). No es una caída."""
+
+
+MISSING_TTL = 1800  # un producto no publicado se vuelve a consultar cada 30 minutos, no en cada visita
+
+
 @dataclass
 class CacheEntry:
     fetched_at: float
@@ -84,10 +91,34 @@ def default_cache() -> TTLCache:
     return _default_cache
 
 
-def _client(client: httpx.Client | None) -> tuple[httpx.Client, bool]:
+def _client(client: httpx.Client | None, timeout: float = 20) -> tuple[httpx.Client, bool]:
     if client is not None:
         return client, False
-    return httpx.Client(timeout=20, follow_redirects=True, headers={"User-Agent": USER_AGENT}), True
+    return httpx.Client(timeout=timeout, follow_redirects=True, headers={"User-Agent": USER_AGENT}), True
+
+
+OPENDATA_TIMEOUT = 6  # segundos por petición: si OpenData va lento, se pasa al XML público
+OPENDATA_PAUSE = 300  # tras un fallo de red o de servicio, OpenData no se vuelve a probar durante 5 minutos
+
+
+class OpenDataBreaker:
+    """Evita que cada visita espere a un OpenData caído: tras un fallo, se salta durante un tiempo."""
+
+    def __init__(self) -> None:
+        self._until = 0.0
+
+    def check(self) -> None:
+        if time.monotonic() < self._until:
+            raise AemetUnavailable("OpenData en pausa tras un fallo reciente")
+
+    def trip(self) -> None:
+        self._until = time.monotonic() + OPENDATA_PAUSE
+
+    def reset(self) -> None:
+        self._until = 0.0
+
+
+opendata_breaker = OpenDataBreaker()
 
 
 class XmlPublicProvider:
@@ -128,15 +159,33 @@ class OpenDataProvider:
             raise ValueError("OpenDataProvider requiere AEMET_API_KEY")
         self._key = api_key
 
-    def _two_step(self, url: str, c: httpx.Client) -> tuple[bytes, dict]:
-        r = c.get(url, headers={"api_key": self._key, "Accept": "application/json"})
-        if r.status_code in (401, 403, 429) or not r.content:
+    @staticmethod
+    def _get(c: httpx.Client, url: str, **kw) -> httpx.Response:
+        """GET con pausa automática: un fallo de red, cuota, clave o servidor detiene OpenData unos minutos."""
+        opendata_breaker.check()
+        try:
+            r = c.get(url, **kw)
+        except httpx.TransportError:
+            opendata_breaker.trip()
+            raise
+        if r.status_code in (401, 403, 429) or r.status_code >= 500 or not r.content:
+            opendata_breaker.trip()
             raise AemetUnavailable(f"OpenData HTTP {r.status_code} (clave, cuota o servicio)")
+        return r
+
+    def _meta(self, url: str, c: httpx.Client) -> dict:
+        r = self._get(c, url, headers={"api_key": self._key, "Accept": "application/json"})
         r.raise_for_status()
         meta = r.json()
+        if int(meta.get("estado", 0)) == 404:
+            raise OpenDataNoData(f"OpenData estado=404 {meta.get('descripcion')}")
         if int(meta.get("estado", 0)) != 200 or not meta.get("datos"):
             raise AemetUnavailable(f"OpenData estado={meta.get('estado')} {meta.get('descripcion')}")
-        d = c.get(meta["datos"])
+        return meta
+
+    def _two_step(self, url: str, c: httpx.Client) -> tuple[bytes, dict]:
+        meta = self._meta(url, c)
+        d = self._get(c, meta["datos"])
         d.raise_for_status()
         return d.content, meta
 
@@ -145,7 +194,7 @@ class OpenDataProvider:
         raw = cache.get(key, TTL_SECONDS["forecast_municipal"], now)
         fetched = raw is None
         if raw is None:
-            c, owned = _client(client)
+            c, owned = _client(client, OPENDATA_TIMEOUT)
             try:
                 raw, _ = self._two_step(OD_DAILY.format(ine=ine), c)
             except (httpx.HTTPError, ValueError) as exc:
@@ -170,17 +219,16 @@ class OpenDataProvider:
         key = f"odfire:{area}:{forecast_day or 'est'}"
         raw = cache.get(key, TTL_SECONDS["fire_danger_map"], now)
         if raw is None:
-            c, owned = _client(client)
+            if cache.get(key + ":sin-datos", MISSING_TTL, now) is not None:
+                raise OpenDataNoData("OpenData: mapa no publicado (comprobado hace menos de 30 minutos)")
+            c, owned = _client(client, OPENDATA_TIMEOUT)
             try:
                 url = (OD_FIRE_ESTIMATED.format(area=area) if forecast_day is None
                        else OD_FIRE_FORECAST.format(dia=forecast_day, area=area))
-                r = c.get(url, headers={"api_key": self._key})
-                if r.status_code in (401, 403, 429) or not r.content:
-                    raise AemetUnavailable(f"OpenData HTTP {r.status_code}")
-                meta = r.json()
-                if int(meta.get("estado", 0)) != 200 or not meta.get("datos"):
-                    raise AemetUnavailable(f"OpenData estado={meta.get('estado')}")
-                raw = meta["datos"].encode()
+                raw = self._meta(url, c)["datos"].encode()
+            except OpenDataNoData:
+                cache.put(key + ":sin-datos", b"1", now)  # no se vuelve a preguntar en cada visita
+                raise
             except (httpx.HTTPError, ValueError) as exc:
                 raise AemetUnavailable(f"OpenData mapa incendios: {exc}") from exc
             finally:
@@ -195,7 +243,7 @@ class OpenDataProvider:
         key = f"odfireimg:{area}:{forecast_day or 'est'}"
         raw = cache.get(key, TTL_SECONDS["fire_danger_map"], now)
         if raw is None:
-            c, owned = _client(client)
+            c, owned = _client(client, OPENDATA_TIMEOUT)
             try:
                 url = (OD_FIRE_ESTIMATED.format(area=area) if forecast_day is None
                        else OD_FIRE_FORECAST.format(dia=forecast_day, area=area))

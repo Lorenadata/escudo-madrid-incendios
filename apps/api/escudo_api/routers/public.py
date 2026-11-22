@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import logging
 from typing import Any, Literal
 
 from fastapi import APIRouter, Depends, HTTPException, Query, Response
@@ -248,7 +249,8 @@ def fire_danger_map(kind: Literal["estimated", "forecast"]) -> Response:
         content, media = OpenDataProvider(key).fetch_fire_map_image(
             None, default_cache(), now_epoch(), forecast_day=None if kind == "estimated" else 1)
     except AemetUnavailable as exc:
-        raise HTTPException(503, f"Mapa oficial no disponible: {exc}") from exc
+        logging.getLogger("escudo.weather").warning("Mapa oficial de AEMET no disponible (%s): %s", kind, exc)
+        raise HTTPException(503, "Mapa oficial no disponible en AEMET en este momento") from exc
     return Response(content, media_type=media, headers={"Cache-Control": "public, max-age=1800"})
 
 

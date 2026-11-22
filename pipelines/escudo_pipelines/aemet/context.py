@@ -18,7 +18,14 @@ from typing import Any
 
 import httpx
 
-from .client import AemetUnavailable, OpenDataProvider, TTLCache, XmlPublicProvider, default_cache
+from .client import (
+    AemetUnavailable,
+    OpenDataProvider,
+    TTLCache,
+    XmlPublicProvider,
+    default_cache,
+    opendata_breaker,
+)
 from .parsers import MADRID_TZ, DayForecast, ParsedForecast
 
 SOURCE_ID = "AEMET-PRED-MUN"
@@ -55,6 +62,7 @@ def reset_state() -> None:
     """Solo para tests: vacía caché y registro de últimos datos válidos en memoria."""
     _last_valid.clear()
     default_cache().clear()
+    opendata_breaker.reset()
 
 
 def _indicator(

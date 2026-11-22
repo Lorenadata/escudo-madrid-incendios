@@ -289,3 +289,48 @@ def test_fire_map_falls_back_to_forecast_when_estimated_missing():
     assert fd["status"] == "official" and fd["value"].endswith("prev.png")
     assert fd["indicator_id"] == "aemet_fire_danger_map_forecast" and "previsto para mañana" in fd["label"]
     assert fd["temporal_scope"] > NOW_OK.date().isoformat()
+
+
+def test_opendata_caido_se_salta_durante_la_pausa_y_usa_el_xml():
+    from escudo_pipelines.aemet.client import opendata_breaker
+
+    def handler(request):
+        if request.url.host == "opendata.aemet.es":
+            raise httpx.ConnectTimeout("handshake timed out", request=request)
+        return serve_xml(request)
+
+    c, rec = client_for(handler)
+    first = get_weather_context("28079", now=NOW_OK, client=c, api_key="TEST-KEY", cache=TTLCache())
+    assert first["provider"] == "aemet_xml_public" and first["fire_danger"] is None
+    hits = sum(r.url.host == "opendata.aemet.es" for r in rec.requests)
+    second = get_weather_context("28079", now=NOW_OK, client=c, api_key="TEST-KEY", cache=TTLCache())
+    assert second["provider"] == "aemet_xml_public"
+    assert sum(r.url.host == "opendata.aemet.es" for r in rec.requests) == hits  # en pausa: ni una petición más
+    assert any("pausa" in e for e in second["errors"])
+    opendata_breaker.reset()
+
+
+def test_opendata_sin_datos_no_activa_la_pausa():
+    from escudo_pipelines.aemet.client import AemetUnavailable, OpenDataProvider, opendata_breaker
+
+    def handler(request):
+        return httpx.Response(200, json={"estado": 404, "descripcion": "No hay datos que satisfagan esos criterios"})
+
+    c, _ = client_for(handler)
+    with pytest.raises(AemetUnavailable):
+        OpenDataProvider("TEST-KEY").fetch_fire_map_url(c, TTLCache(), 1000.0)
+    opendata_breaker.check()  # no lanza: un «sin datos» no es una caída
+
+
+def test_mapa_no_publicado_se_recuerda_y_no_se_pregunta_en_cada_visita():
+    from escudo_pipelines.aemet.client import OpenDataNoData, OpenDataProvider
+
+    c, rec = client_for(lambda r: httpx.Response(200, json={"estado": 404, "descripcion": "No hay datos"}))
+    p, cache = OpenDataProvider("TEST-KEY"), TTLCache()
+    for t in (1000.0, 1100.0):
+        with pytest.raises(OpenDataNoData):
+            p.fetch_fire_map_url(c, cache, t)
+    assert len(rec.requests) == 1
+    with pytest.raises(OpenDataNoData):
+        p.fetch_fire_map_url(c, cache, 1000.0 + 1801)
+    assert len(rec.requests) == 2  # pasados 30 minutos, se vuelve a comprobar
