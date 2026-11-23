@@ -11,16 +11,7 @@ Formato de las bases (ap. 8–9): exposición de **5 min** y **5 min** de pregun
 
 ## Guion
 
-| Tiempo | Pantalla | Qué decir (idea, no literal) |
-|---|---|---|
-| 0:00–0:40 | Diapositiva 1–2 | La información de prevención existe; convertirla en actuaciones priorizadas y documentadas exige coordinación. El *Plan Anual 2026* programa **5.652,38 ha** de trabajos preventivos y recoge **68 PAIF** en **26 municipios** (21 con informe favorable, 47 en tramitación). Estas cifras dan contexto: no prueban un déficit. |
-| 0:40–1:30 | `/fuentes` | Once conjuntos del **Portal de Datos Abiertos de la CAM**, cada uno con licencia, fecha y huella SHA-256; cartografía oficial del IDEM y AEMET como complemento. Descargar el CSV: cualquiera reproduce las cifras. |
-| 1:30–2:15 | `/` explorador | Coropleta de densidad (CAM-02) sobre los 179 municipios. Buscar **San Lorenzo de El Escorial**: población 18.942 (CAM-01, 2025), 20,8 % ≥65, serie 2021–2025. Aviso de escala municipal. «Superficie forestal municipal: no disponible» — el portal solo la publica a escala regional y no la inventamos. |
-| 2:15–2:45 | capa de riesgo | Activar **Riesgo oficial (GEO-01)**: clases literales; 53,9 % de la superficie municipal en «Riesgo muy alto». Peligrosidad y vulnerabilidad son capas distintas y no se mezclan. AEMET con fecha de emisión. |
-| (opcional, si sobra tiempo) | `/ranking` | «Riesgo estimado hoy» y el cruce: **38** municipios con más de la mitad del término en riesgo alto fuera de las Zonas de Alto Riesgo, ninguno obligado a plan municipal; **28 de 58** obligados con plan aprobado. Pulsar el primero del ranking y leer «Por qué está aquí». Recordar que la estimación de hoy no es oficial. |
-| 2:45–3:45 | `/demo` | Caso guiado con urbanización **ficticia** etiquetada: inspección → 11 medidas del catálogo ligado al INFOMA → presupuesto de demo 30.000 €. El optimizador CP-SAT cubre el **90,1 %** de la prioridad técnica frente a **84,2 %** (manual) y **85,1 %** (menor coste), sin superar el presupuesto. Mostrar sensibilidad. Insistir: es una función objetivo acordada, **no reducción de riesgo**. |
-| 3:45–4:20 | plan + PDF | Plan con responsables, vencimientos, historial y evidencias; informe PDF con fuentes, método, supuestos y «validación profesional pendiente». |
-| 4:20–5:00 | Diapositiva 3 | 196 pruebas automáticas (incluida accesibilidad), código abierto que se instala desde cero en ~9 min, datos aislados por organización. Siguiente paso: validar con técnicos y una urbanización real; el protocolo está listo. |
+El guion vigente, con lo que se dice y lo que se hace en cada bloque, está en **`docs/pitch/guion-escenario.md`** (abre con el hallazgo 38 / 28 de 58, sigue con `/ranking`, la ficha, el caso guiado y la diapositiva 3). Preguntas: `docs/pitch/preguntas.md`. Recorrido de cada pantalla: `docs/pitch/recorrido-web.md`. Entrega: `docs/pitch/entrega.md`.
 
 ## Preguntas previsibles (PRD §10.3)
 
