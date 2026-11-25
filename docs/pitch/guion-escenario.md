@@ -102,7 +102,9 @@ Aquí hablas con naturalidad: **enseñas lo que ves, como si se lo enseñaras a 
 
 > **«Del mapa al plan, / y del plan a la ejecución comprobable. / El siguiente paso es probarlo con uno de esos treinta y ocho ayuntamientos. / Gracias.»**
 
-Y te callas. Sonríe y espera la primera pregunta. Deja esta diapositiva puesta durante las preguntas.
+Y te callas. Sonríe y espera la primera pregunta. Deja esta diapositiva puesta durante las preguntas: tiene un **QR a la demo**. Si hay un silencio antes de la primera pregunta, puedes decir: «El QR lleva a la web: es abierta, exploradla.»
+
+El QR va solo en la última diapositiva a propósito: si el público entra durante tu recorrido, la demo podría ir más lenta justo cuando la estás enseñando.
 
 *(Si antes del jueves hablas con un técnico o un ayuntamiento, añade antes de «Gracias»: «Un técnico de … nos dijo: "…"».)*
 

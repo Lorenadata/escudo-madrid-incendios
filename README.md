@@ -5,6 +5,19 @@ Plataforma abierta de **planificación preventiva de incendios forestales** para
 > «Del mapa al plan; del plan a la ejecución comprobable.»
 > ESCUDO MADRID es una herramienta de apoyo a la planificación. **No** sustituye a ASEM 112, AEMET, INFOMA ni a personal técnico competente. No emite alertas, rutas de evacuación ni aprobaciones de PAIF.
 
+## Pruébala en 3 minutos, sin instalar nada
+
+**Demo pública: https://lorenadata-escudo-madrid.hf.space** (sin registro; si nadie la ha abierto en 48 horas, tarda unos 40 segundos en despertar).
+
+Lo que aparece al cruzar el mapa oficial de riesgo (IDEM) con el Plan Anual 2026 (Anexos II y VI): **38 municipios** tienen más de la mitad del término en riesgo alto o muy alto y están fuera de las Zonas de Alto Riesgo, sin obligación de plan municipal; de los **58** obligados, **28** figuran con su plan aprobado. No indica un error de la lista oficial, que sale de otro índice: indica un cruce que merece revisión.
+
+1. **`/ranking`**: los 179 municipios ordenados por atención preventiva, el riesgo estimado para hoy con la previsión de AEMET (estimación propia, no oficial), el cruce de los 38 y el porqué de cada puesto.
+2. **Pulsa un municipio en `/`**: su ficha con datos del Portal de Datos Abiertos y la capa oficial de riesgo; cada cifra dice de dónde sale.
+3. **`/demo`**: una urbanización ficticia de principio a fin, de la inspección al plan, con el optimizador (90,1 % de la prioridad técnica cubierta frente al 84,2 % de la priorización manual, mismo presupuesto) y el informe PDF.
+4. **`/fuentes`**: las 18 fuentes con licencia, fecha y huella SHA-256.
+
+![Página «Dónde mirar primero» del ranking: los 179 municipios ordenados por atención preventiva](artifacts/demo-screenshots/plan-b/04-ranking-portada.png)
+
 ## Qué hace (estado real en `PROGRESS.md`)
 
 - Ingiere datos del **Portal de Datos Abiertos de la Comunidad de Madrid** (11 datasets: población, densidad, altitud, secciones censales, incendios, repoblaciones, usos del suelo, espacios protegidos y tres del Censo 2021 sobre vivienda y ocupación) con checksum y licencia.

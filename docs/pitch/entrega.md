@@ -6,6 +6,13 @@
 - Repositorio: https://github.com/Lorenadata/escudo-madrid-incendios
 - Presentación: https://claude.ai/artifact/AsDqdTXnzfK2Y7kVWvfGb6 (versión del 25/11; para presentar y exportar; no entregar este enlace, que es privado). La anterior, A1YnP4JdUmR68rRVFhDjXX, queda solo como referencia.
 
+**Lo que se envía decide si pasas a la final** (de los preseleccionados, 12 presentan ante el jurado): quien evalúa leerá el PDF sin ti delante y abrirá los enlaces. Por eso:
+
+- El PDF tiene que entenderse solo: en él las apariciones por clic salen visibles, con el hallazgo, los 11 conjuntos del Portal, las cifras y la franja «En la web» que dice qué mirar.
+- El repositorio empieza con «Pruébala en 3 minutos»: enlace a la demo, el hallazgo y el recorrido.
+- La demo tiene que estar despierta: ábrela la mañana del 26 y cada día después, mientras dure la evaluación.
+- Si el formulario de entrega tiene un campo de texto libre, pega el párrafo de `resumen-preseleccion.md` y la línea: «Demo abierta sin registro: empieza por /ranking.»
+
 ## Lunes 23
 
 - [ ] Decidir la congelación: no se añade nada nuevo; solo se arregla lo que esté roto. Versión final marcada como `v1.0-datamad`.
