@@ -4,7 +4,7 @@
 
 - Demo: https://lorenadata-escudo-madrid.hf.space
 - Repositorio: https://github.com/Lorenadata/escudo-madrid-incendios
-- Presentación: https://claude.ai/artifact/A1YnP4JdUmR68rRVFhDjXX (para exportar; no entregar este enlace, que es privado)
+- Presentación: https://claude.ai/artifact/AsDqdTXnzfK2Y7kVWvfGb6 (versión del 25/11; para presentar y exportar; no entregar este enlace, que es privado). La anterior, A1YnP4JdUmR68rRVFhDjXX, queda solo como referencia.
 
 ## Lunes 23
 
@@ -22,7 +22,9 @@
 ## Miércoles 25
 
 - [ ] Ensayo final completo, con cronómetro.
+- [ ] Exportar a PDF la presentación nueva (en el PDF las apariciones por clic salen ya visibles) y revisar las 4 diapositivas.
 - [ ] Copiar al portátil y a una memoria USB: el PDF de la presentación y la carpeta `artifacts/demo-screenshots/plan-b/`.
+- [ ] Ensayar con las 4 pestañas y `F11`: comprobar que `Ctrl+1`…`Ctrl+4` no sacan la presentación del modo Presentar.
 - [ ] Dejar subida la entrega si la plataforma ya está abierta (objetivo interno: el 25, no el 26).
 
 ## Jueves 26

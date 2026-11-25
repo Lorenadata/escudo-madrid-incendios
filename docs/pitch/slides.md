@@ -1,6 +1,8 @@
 # Contenido de la presentación 3 + 1 (bases DATAMAD, ap. 8)
 
-Estructura **obligatoria**: máximo 3 diapositivas de contenido + 4.ª con una captura del sistema. Este fichero es la fuente del texto; el diseño final se monta a partir de aquí.
+Estructura **obligatoria**: máximo 3 diapositivas de contenido + 4.ª con una captura del sistema. Este fichero es la fuente del texto. Versión final (25/11): https://claude.ai/artifact/AsDqdTXnzfK2Y7kVWvfGb6, mismo estilo que la web, con apariciones por clic que siguen el guion (`guion-escenario.md`). En el PDF todo sale visible.
+
+En pantalla, por brevedad, la diapositiva 2 muestra los 11 conjuntos agrupados por código y la franja del recorrido por la web; la lista completa con enlaces está en `DATA_CATALOG.md` y en la página «Fuentes».
 
 ## Diapositiva 1 — Nombre, participantes y descripción
 
@@ -35,4 +37,4 @@ Estructura **obligatoria**: máximo 3 diapositivas de contenido + 4.ª con una c
 
 ## Diapositiva 4 — Captura del sistema
 
-Usar `artifacts/demo-screenshots/09-riesgo-estimado-hoy.png` (ranking del día, mapa y motivos). Alternativas: `02-ficha-riesgo-oficial.png` (mapa + ficha + capa oficial) o `04-comparacion-estrategias.png`. Debe ser una pantalla que exista en la versión entregada.
+Usada: `artifacts/demo-screenshots/plan-b/04-ranking-portada.png` («Dónde mirar primero» y «Riesgo estimado hoy», web pública, 22/11/2026), junto a la frase de cierre. Alternativas: `09-riesgo-estimado-hoy.png`, `02-ficha-riesgo-oficial.png` (mapa + ficha + capa oficial) o `04-comparacion-estrategias.png`. Debe ser una pantalla que exista en la versión entregada.
