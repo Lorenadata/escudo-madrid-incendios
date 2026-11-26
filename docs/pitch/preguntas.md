@@ -2,6 +2,95 @@
 
 Respuestas cortas para decirlas con tus palabras. Primero la idea, luego el dato. Si no sabes algo, di «eso no lo hemos medido» antes que improvisar una cifra.
 
+## Datos abiertos: portales, obtención y calidad
+
+Es un datatón de datos abiertos: estas son las preguntas más probables. Fuentes de cada respuesta: `DATA_CATALOG.md`, `docs/spatial-method.md` y `PROVENANCE.md`.
+
+### ¿Qué portales habéis usado?
+Cinco de la administración y dos más:
+- **Portal de Datos Abiertos de la Comunidad** (datos.comunidad.madrid): los 11 conjuntos.
+- **IDEM**, la infraestructura de datos espaciales de la Comunidad: el mapa oficial de riesgo, peligrosidad y vulnerabilidad.
+- **Portal de Transparencia de la Comunidad**: el Plan Anual 2026 en PDF.
+- **BOCM**: el decreto INFOMA.
+- **datos.gob.es**: para localizar las capas de IDEM.
+- **AEMET** (la predicción municipal pública) y **EFFIS-Copernicus** (las áreas quemadas por satélite).
+
+En total, 18 fuentes: 11 del Portal, el Plan Anual, el decreto, las 3 capas de IDEM, EFFIS y AEMET.
+
+### ¿Cómo los habéis obtenido? ¿A mano?
+No, todo por programa. Los 11 conjuntos se piden a la API del Portal (es un CKAN, con `package_show`), que da la dirección de cada fichero. Las capas de IDEM se localizaron con la API de datos.gob.es y se descargan de IDEM. Cada descarga guarda un `manifest.json` con la URL, la fecha, la licencia y una huella **SHA-256** del fichero. Un comando lo descarga todo de nuevo.
+
+### ¿Para qué sirve la huella SHA-256?
+Para demostrar que el dato es el oficial y saber si ha cambiado. Si el fichero cambia en el portal, la huella cambia. Pasó de verdad: el 08/11 cambió la huella de un conjunto (usos del suelo, CAM-07). El comando de actualización lo detectó y comprobó que eran **las mismas 760 filas en otro orden**. Se incorporó con historial y los valores no cambiaron.
+
+### ¿Qué licencias tienen? ¿Podéis reutilizarlos?
+- Portal: CC BY, que declara el propio portal.
+- IDEM: CC BY 4.0. Ojo: el registro de datos.gob.es **no declara licencia**, así que la tomamos de los metadatos oficiales ISO 19139 de IDEM y los guardamos.
+- AEMET: reutilización citando la fuente.
+- EFFIS: CC BY 4.0.
+- Nuestro código: EUPL-1.2.
+
+Todas permiten reutilizar citando, y la web cita cada fuente.
+
+### ¿Qué problemas de calidad habéis encontrado en los datos?
+Muchos, y están documentados. Es de lo mejor que puedes contar:
+- **Sin escala municipal.** Incendios (CAM-05) y usos del suelo (CAM-07) solo están como total regional. Por eso no hay «% forestal por municipio»: la web pone «no disponible».
+- **Sin geometría.** Espacios protegidos (CAM-04) es una lista de 80 espacios sin mapa, así que no se puede cruzar con el territorio.
+- **Secreto estadístico.** En viviendas unifamiliares (CAM-10) solo 151 de 179 municipios tienen dato; el resto viene con «-».
+- **Dato provisional.** Consumo eléctrico (CAM-11) es provisional: 135 municipios con dato y un código 28999 sin municipio, que se descarta.
+- **Códigos distintos.** El Portal usa códigos de 4 cifras y el INE de 5, así que hay una conversión con su prueba.
+- **Erratas en el Plan Anual.** Nombres mal escritos: «Torredolones», «San María de la Alameda»… Se corrigen con una tabla explícita.
+- **Totales que no cuadran.** En el propio Plan Anual, la suma de causas de los siniestros no coincide con el total en 95 municipios (2.912 frente a 2.641). Enseñamos los dos valores y lo advertimos; **no corregimos el dato oficial**.
+
+### ¿Cómo comprobáis que los datos están bien procesados?
+Con controles automáticos. Algunos ejemplos:
+- En el Censo, total = principales + no principales en los 179 municipios.
+- La extracción del Plan Anual cuadra con su fila de totales.
+- La superficie del mapa de riesgo repartida por municipios cuadra con la total (±2 %).
+- Hay una prueba que comprueba que el número que sale en pantalla es el del fichero descargado.
+
+Los controles se guardan en la base de datos y en `quality.json`.
+
+### ¿Cómo calculáis el «% del término en riesgo alto»?
+El mapa oficial es un ráster con cuadros de 5 m de lado (25.970 × 28.409). Contamos los cuadros de cada clase dentro de cada municipio, a resolución completa y sin simplificar. Los límites municipales salen de las secciones censales del Portal (CAM-08). Las clases se copian literales de la leyenda oficial: si aparece un valor sin etiqueta, el proceso se para.
+
+### ¿Habéis modificado el dato oficial?
+No. El riesgo se usa tal como lo publica la Comunidad, sin recalcular ni renombrar clases. Lo que añadimos se marca como «derivado» (porcentajes, ranking) o «estimación» (riesgo de hoy). Cada indicador en pantalla dice si es oficial, derivado, escenario o no disponible.
+
+### Mezcláis años distintos: altitud de 1998, censo de 2021, población de 2025…
+Sí, porque es lo que publica cada fuente. Cada dato enseña su año en la ficha y nunca lo hacemos pasar por actual.
+
+### La lista de Zonas de Alto Riesgo, ¿de qué portal sale?
+No existe como conjunto en el Portal: solo está en el PDF del Plan Anual 2026 (Anexo II). La extrajimos con su número de página: 59 entradas, todas emparejadas con su código INE. El estado de los planes municipales (Anexo VI) lo leímos columna a columna, porque el texto del PDF pierde las casillas vacías.
+
+### ¿Qué conjuntos mirasteis y descartasteis?
+Auditamos más de los que usamos. Superficie forestal por propiedad, montes de utilidad pública por pertenencia y montes por comarca solo existen a escala regional o comarcal, y no aportaban escala municipal. Catastro no se usa porque tiene datos personales.
+
+### ¿Qué le pediríais al Portal para mejorar?
+Una respuesta constructiva queda muy bien:
+1. **Publicar como conjunto** la lista de Zonas de Alto Riesgo y el estado de los planes municipales, en lugar de solo en PDF.
+2. **Incendios por municipio**, no solo el total regional.
+3. **Espacios protegidos con su geometría.**
+4. **Códigos INE de 5 cifras y UTF-8** en todos los ficheros. Uno venía en latin-1.
+5. **Declarar la licencia en datos.gob.es** para las capas de IDEM.
+
+### ¿Cada cuánto se actualiza?
+- **Datos oficiales:** cuando el organismo los cambia. Un comando comprueba las huellas y, si algo cambió, lo incorpora con historial. Tarda unos 2 minutos.
+- **AEMET:** la predicción se guarda 3 horas. Si caduca o no responde, la web dice «no disponible» y la fecha del último dato válido.
+
+### ¿Es reproducible?
+Sí. El código es libre y está en GitHub. Un comando descarga todas las fuentes y comprueba sus huellas, y otro levanta la web. Dos descargas seguidas del mapa de riesgo dieron exactamente la misma huella.
+
+### ¿Usáis datos personales?
+No. Todo es municipal y agregado. Nunca atribuimos un dato municipal a una urbanización o a una vivienda. Los datos de la urbanización de la demo son ficticios y están marcados.
+
+### ¿Devolvéis algo como dato abierto?
+Sí:
+- En `/fuentes` se puede descargar un CSV con los datos de los 179 municipios.
+- En esa misma página está el catálogo de fuentes, con la fecha, la licencia y la huella SHA-256 de cada una.
+- La API está documentada (OpenAPI).
+- El código tiene licencia EUPL-1.2.
+
 ## El proyecto y el problema
 
 ### ¿Qué aporta si ya existe el mapa oficial de riesgo?
