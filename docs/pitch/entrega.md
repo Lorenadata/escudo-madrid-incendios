@@ -1,5 +1,9 @@
 # Entrega del jueves 26/11 antes de las 14:00
 
+**ENTREGADO el 26/11/2026 a las 13:37** (hora de Madrid): pull request [#4](https://github.com/albertoabellagarcia/DATAMAD2026/pull/4) en `albertoabellagarcia/DATAMAD2026`, fusionado y con la comprobación automática en verde. La carpeta [`proyectos/13`](https://github.com/albertoabellagarcia/DATAMAD2026/tree/main/proyectos/13) contiene `README.md`, el PDF de la presentación (copia en `artifacts/ESCUDO-MADRID-presentacion.pdf`) y 4 capturas.
+
+La presentación es la criba: de los 50 proyectos pasan 12 a la final. Por eso la 4.ª diapositiva enseña 4 capturas de la web (ranking, cruce, ficha y caso guiado) con su QR, y los enlaces del PDF se pueden pulsar. Si hay que corregir algo, se abre otro pull request que solo toque `proyectos/13/`; se fusiona solo hasta las 17:00 del 26/11.
+
 **Qué se entrega** (bases, apartado 8): la presentación de **3 diapositivas de contenido + una 4.ª con una captura del sistema**, y los **enlaces funcionales** a la demo y al repositorio, por la plataforma que indique la organización.
 
 - Demo: https://lorenadata-escudo-madrid.hf.space
