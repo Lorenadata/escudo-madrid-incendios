@@ -110,6 +110,28 @@ El QR va solo en la última diapositiva a propósito: si el público entra duran
 
 ---
 
+## Variante solo PDF (sin la web en directo)
+
+Úsala si te obligan a presentar con el PDF entregado (`proyectos/13`), en el ordenador de la organización o sin internet. **Las dos frases memorizadas no cambian.** El recorrido por la web se hace sobre la **diapositiva 4**, la de las 4 capturas. Al acabar vuelves atrás a la 3 y terminas en la 4.
+
+| Tiempo | Pulsas | Se ve | Qué dices (idea) |
+|---|---|---|---|
+| 0:00 | — | Diapositiva 1 | **Frase memorizada.** Luego el 28 de 58, la fuente y «Soy Lorena Marcos, y esto es ESCUDO MADRID». |
+| 0:30 | → | Diapositiva 2 | Datos dispersos: 11 conjuntos del Portal y 18 fuentes. Termina con «Esto es la web que lo une todo». |
+| 1:00 | → → | **Diapositiva 4** (te saltas la 3) | «Os enseño la web, que es abierta: el QR lleva a ella.» |
+| 1:10 | — | Captura **1 · Ranking** | Los 179 municipios ordenados por atención preventiva. Cada día se cruza con la previsión de AEMET (estimación nuestra, y la web lo dice). |
+| 1:40 | — | Captura **2 · El cruce** | «Lo del principio, en la web: los 38 en rojo, los 28 de 58. Robregordo, el primero: el 95 % de su término en riesgo alto y sin plan aprobado. Cada puesto explica por qué está ahí.» |
+| 2:15 | — | Captura **3 · Ficha** | San Lorenzo de El Escorial: 18.942 habitantes, del Portal. Cada número dice de dónde sale; si un dato no existe, pone «no disponible». |
+| 2:45 | — | Captura **4 · Caso guiado** | La urbanización es ficticia y está marcada así. Inspección con el móvil, actuaciones del decreto INFOMA y 30.000 €: el optimizador cubre el 90,1 % frente al 84,2 % de elegir a mano. Termina en un informe que prepara el expediente pero no lo aprueba. |
+| 3:20 | ← | Diapositiva 3 | «En cifras:» las barras, luego 15 · 18/20 · 196, luego impacto y viabilidad (software libre, nueve minutos de instalación, no es de emergencias). |
+| 4:30 | → | Diapositiva 4 | **Frase de cierre memorizada.** Se queda puesta durante las preguntas, con el QR. |
+
+**Consejos:**
+
+- **Señala cada captura** con el puntero o con la mano antes de hablar de ella, y di su número: «la uno, el ranking…». El público tiene que saber dónde mirar.
+- **No leas la pantalla.** Las capturas son pequeñas, así que cuenta tú lo que se ve: la cifra y la idea.
+- **Si hay wifi y te dejan un minuto**, abre `/ranking` desde tu móvil o portátil cuando muestres la captura 1. Si no, no lo menciones: el QR ya demuestra que la web es real y abierta.
+
 ## Si algo falla
 
 - **La web tarda en abrir:** di «la demo es pública y se despierta en unos segundos» y sigue hablando. Si no abre, usa las capturas de `artifacts/demo-screenshots/plan-b/` en el mismo orden: 04, 05, 06, 07, 03, 09 y el PDF 11.
