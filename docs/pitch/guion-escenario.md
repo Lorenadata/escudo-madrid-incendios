@@ -116,7 +116,7 @@ El QR va solo en la última diapositiva a propósito: si el público entra duran
 
 | Tiempo | Pulsas | Se ve | Qué dices (idea) |
 |---|---|---|---|
-| 0:00 | — | Diapositiva 1 | **Frase memorizada.** Luego el 28 de 58, la fuente y «Soy Lorena Marcos, y esto es ESCUDO MADRID». |
+| 0:00 | — | Diapositiva 1 | **Frase memorizada.** Luego el 28 de 58, la fuente y «Soy Lorena Marcos, y esto es ESCUDO MADRID: / trabaja antes del incendio, no durante». |
 | 0:30 | → | Diapositiva 2 | Datos dispersos: 11 conjuntos del Portal y 18 fuentes. Termina con «Esto es la web que lo une todo». |
 | 1:00 | → → | **Diapositiva 4** (te saltas la 3) | «Os enseño la web, que es abierta: el QR lleva a ella.» |
 | 1:10 | — | Captura **1 · Ranking** | Los 179 municipios ordenados por atención preventiva. Cada día se cruza con la previsión de AEMET (estimación nuestra, y la web lo dice). |
